@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-surface": "#1b1c1c",
+          "on-primary": "#ffffff",
+          "secondary-container": "#81f1f8",
+          "surface-container-low": "#f5f3f3",
+          "outline-variant": "#c1c8c7",
+          "surface-container": "#efeded",
+          "surface": "#fbf9f8",
+          "primary": "#000d0d",
+          "secondary": "#00696e",
+          "primary-container": "#002626",
+          "surface-variant": "#e4e2e2",
+          "surface-dim": "#dbdad9",
+          "surface-container-high": "#e9e8e7",
+          "background": "#fbf9f8",
+          "surface-container-lowest": "#ffffff",
+          "inverse-surface": "#303030",
+          "on-surface-variant": "#414848",
+          "primary-fixed": "#c5eae9",
+          "surface-container-highest": "#e4e2e2"
+        },
+        borderRadius: {
+          "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"
+        },
+        fontFamily: {
+          "headline": ["Inter"], "body": ["Inter"], "label": ["Inter"]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; background-color: #fbf9f8; }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block; line-height: 1;
+  }
+</style>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+</head>
+<body class="min-h-screen flex flex-col text-on-surface">
+
+<!-- ── NAVBAR (V1) ── -->
+<nav class="w-full top-0 sticky bg-[#EFE7DA] z-50">
+  <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-6">
+    <div class="text-2xl font-bold text-[#002626]">L'Espoir asbl</div>
+    <div class="hidden md:flex gap-8 font-inter text-base tracking-tight items-center">
+      <a class="text-[#002626] font-bold border-b-2 border-[#002626] pb-1" href="#">Accueil</a>
+      <a class="text-[#002626] opacity-80 hover:text-[#002626] transition-colors duration-200" href="#">Services ▾</a>
+      <a class="text-[#002626] opacity-80 hover:text-[#002626] transition-colors duration-200" href="#">À propos ▾</a>
+      <a class="text-[#002626] opacity-80 hover:text-[#002626] transition-colors duration-200" href="#">Actualités</a>
+      <a class="text-[#002626] opacity-80 hover:text-[#002626] transition-colors duration-200" href="#">Offres d'emploi</a>
+      <a class="text-[#002626] opacity-80 hover:text-[#002626] transition-colors duration-200" href="#">Contact</a>
+    </div>
+    <button class="bg-[#95C623] text-[#002626] px-6 py-2.5 rounded-full font-bold hover:brightness-110 transition-all">Faire un don</button>
+  </div>
+</nav>
+
+<main class="flex-grow">
+
+  <!-- ── HERO (V2 Split) ── -->
+  <section class="grid grid-cols-1 md:grid-cols-2 min-h-[820px]">
+    <div class="relative overflow-hidden">
+      <img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1boYXCjYT_Dq3cJzhoetGN9p1lfusVe6vfOEpApdnDo-49LytCYeb4HuRJeOYFCbrfAdA5efhvXHxqFdNAc4QtQpiHdOgshYe10mjCglX78AGz_MrNizQ57FCDGzKm0Qo9TBjp2UqMBvMQ64pRxDEBDEPDRDRb3U_CdtR_U5G4qMvcVOJJnPhhdKWVKQcahNeDjghB-KcCvPK-k_fOxjfmdd9NypLNgS8Au85_y9VsZvfgUsGndo94MHJYU4s_p9vQzPqfJ_B7us" alt="Jeunes accompagnés par L'Espoir asbl"/>
+    </div>
+    <div class="bg-[#EFE7DA] flex flex-col justify-center px-12 md:px-20 py-20">
+      <span class="text-[#E55812] font-bold tracking-widest text-sm uppercase mb-6">Bienvenue à L'Espoir</span>
+      <h1 class="text-5xl md:text-6xl font-extrabold text-[#002626] leading-[1.1] tracking-tight mb-8">
+        Accompagner chaque jeune vers un avenir meilleur
+      </h1>
+      <p class="text-xl text-[#002626] opacity-80 leading-relaxed mb-12 max-w-lg">
+        L'Espoir asbl accompagne des enfants et jeunes en difficulté à travers trois services complémentaires dans la région de Huy.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <button class="bg-[#002626] text-[#EFE7DA] px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">Nos Services</button>
+        <button class="bg-transparent border-2 border-[#002626] text-[#002626] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#002626] hover:text-[#EFE7DA] transition-all">Découvrir l'ASBL</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ZITAT (V2) ── -->
+  <section class="bg-[#EFE7DA] py-16 px-8 border-b border-[#002626]/10">
+    <div class="max-w-3xl mx-auto text-center">
+      <div style="font-family: Georgia, serif; font-size: 6rem; color: #E55812; line-height: 1; margin-bottom: 1rem; opacity: 0.9;">&ldquo;</div>
+      <blockquote class="text-2xl md:text-3xl font-medium text-[#002626] italic leading-snug mb-6">
+        "Notre mission est d'offrir un refuge, une écoute et les outils nécessaires pour que chaque jeune puisse construire son propre chemin avec dignité et espoir."
+      </blockquote>
+      <p class="text-[#002626] font-bold uppercase tracking-widest text-sm">— L'Équipe de L'Espoir asbl</p>
+    </div>
+  </section>
+
+  <!-- ── SERVICES (V2 — farbige Cards) ── -->
+  <section class="py-24 px-8 bg-surface">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-16 text-center">
+        <span class="text-[#E55812] font-black tracking-widest text-sm uppercase block mb-3">Nos domaines d'action</span>
+        <h2 class="text-4xl font-bold text-[#002626]">Trois services, une mission</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- SRG -->
+        <div class="bg-[#95C623] p-10 rounded-3xl flex flex-col items-start text-white transition-transform hover:-translate-y-2">
+          <div class="bg-white/20 p-4 rounded-2xl mb-6">
+            <span class="material-symbols-outlined text-4xl">home_pin</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-2">SRG</h3>
+          <p class="text-xs font-bold uppercase tracking-wider opacity-75 mb-4">Service Résidentiel Général</p>
+          <p class="text-white/90 leading-relaxed mb-8 flex-grow">Accueil, hébergement et accompagnement de jeunes de 3 à 18 ans nécessitant une aide spécialisée hors de leur milieu familial. Trois maisons à Amay et Couthuin.</p>
+          <a class="mt-auto flex items-center gap-2 font-bold hover:underline" href="#">
+            En savoir plus <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+        <!-- SASE -->
+        <div class="bg-[#E55812] p-10 rounded-3xl flex flex-col items-start text-white transition-transform hover:-translate-y-2">
+          <div class="bg-white/20 p-4 rounded-2xl mb-6">
+            <span class="material-symbols-outlined text-4xl">family_restroom</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-2">SASE</h3>
+          <p class="text-xs font-bold uppercase tracking-wider opacity-75 mb-4">Service d'Accompagnement Socio-Éducatif</p>
+          <p class="text-white/90 leading-relaxed mb-8 flex-grow">Aide éducative préventive pour les familles en difficulté, directement à domicile. Jusqu'à 13 situations simultanées dans l'arrondissement de Huy.</p>
+          <a class="mt-auto flex items-center gap-2 font-bold hover:underline" href="#">
+            En savoir plus <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+        <!-- SAPA -->
+        <div class="bg-[#119DA4] p-10 rounded-3xl flex flex-col items-start text-white transition-transform hover:-translate-y-2">
+          <div class="bg-white/20 p-4 rounded-2xl mb-6">
+            <span class="material-symbols-outlined text-4xl">volunteer_activism</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-2">SAPA</h3>
+          <p class="text-xs font-bold uppercase tracking-wider opacity-75 mb-4">Service de Parrainage — Escapade</p>
+          <p class="text-white/90 leading-relaxed mb-8 flex-grow">Mise en relation de jeunes avec des familles bénévoles pour un lien privilégié et durable. Zone Huy-Waremme-Hannut, agréé depuis 2022.</p>
+          <a class="mt-auto flex items-center gap-2 font-bold hover:underline" href="#">
+            En savoir plus <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT + STATS (V1 style, V2 texte) ── -->
+  <section class="bg-[#EFE7DA] py-24 px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <span class="text-[#E55812] font-black tracking-widest text-sm uppercase block mb-4">Notre histoire</span>
+        <h2 class="text-4xl font-bold text-[#002626] mb-8 leading-tight">Plus de 40 ans au service de la jeunesse à Huy</h2>
+        <p class="text-lg text-[#002626] opacity-80 leading-relaxed mb-6">
+          Fondée en 1985 suite à la fermeture du home d'enfants de la Maison-Dieu à Antheit, L'Espoir asbl perpétue depuis plus de 40 ans une mission d'accueil et d'accompagnement des jeunes en difficulté.
+        </p>
+        <p class="text-lg text-[#002626] opacity-80 leading-relaxed mb-8">
+          Agréée et subsidiée par la Fédération Wallonie-Bruxelles, notre équipe pluridisciplinaire travaille main dans la main avec les familles, les mandants et les partenaires locaux.
+        </p>
+        <a class="inline-flex items-center gap-2 font-bold text-[#002626] border-b-2 border-[#002626] pb-1 hover:text-[#E55812] hover:border-[#E55812] transition-colors" href="#">
+          Notre histoire complète <span class="material-symbols-outlined text-base">arrow_forward</span>
+        </a>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-surface p-8 rounded-2xl">
+          <div class="text-4xl font-black text-[#E55812] mb-2">120+</div>
+          <div class="text-sm font-bold uppercase tracking-wider text-on-surface-variant">Jeunes accompagnés</div>
+        </div>
+        <div class="bg-surface p-8 rounded-2xl">
+          <div class="text-4xl font-black text-[#95C623] mb-2">40+</div>
+          <div class="text-sm font-bold uppercase tracking-wider text-on-surface-variant">Membres de l'équipe</div>
+        </div>
+        <div class="bg-surface p-8 rounded-2xl">
+          <div class="text-4xl font-black text-[#119DA4] mb-2">3</div>
+          <div class="text-sm font-bold uppercase tracking-wider text-on-surface-variant">Services spécialisés</div>
+        </div>
+        <div class="bg-surface p-8 rounded-2xl">
+          <div class="text-4xl font-black text-[#002626] mb-2">1985</div>
+          <div class="text-sm font-bold uppercase tracking-wider text-on-surface-variant">Année de création</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ACTUALITÉS (V3 Bento) ── -->
+  <section class="py-32 px-8 bg-surface">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex justify-between items-end mb-16">
+        <div>
+          <span class="text-[#119DA4] font-black tracking-widest text-sm uppercase block mb-3">Le journal de l'espoir</span>
+          <h2 class="text-4xl md:text-5xl font-bold text-[#002626]">Actualités</h2>
+        </div>
+        <a class="hidden md:block text-[#002626] font-bold border-b-2 border-[#002626] pb-1 hover:text-[#E55812] hover:border-[#E55812] transition-colors" href="#">Voir toutes les actualités</a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 min-h-[600px]">
+
+        <!-- PROJET — grand featured gauche (Lime Green badge) -->
+        <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-2xl">
+          <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNyRWZRXRvRB3FDZdTEanATNwYuGwY6MoomXnAmauN9D8g2qF0MWkrK6V_i6_BhnWOI7GisosKLOHGyEGFk62x7EsNQ2aKArHo80m3MRfStgq4XKnN1FXHrD-NlaBeyhbPcEfEd-ceXO7RwOvGj6AS_WtG9lCXkRoe-57SZ92xHcpMkrt5R4Ggt3uCfjvJDmz7_DuXEjpwWVi_uoJV_tEfAUxiTpVx88Z7qlo0IZdwCCKIP95IWnh906SVdjyW3BxfHHTqEAYovp4" alt="Potager communautaire"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#002626] via-[#002626]/40 to-transparent opacity-90"></div>
+          <div class="absolute bottom-0 p-10 text-white">
+            <span class="bg-[#95C623] text-[#002626] px-3 py-1 text-xs font-bold uppercase mb-4 inline-block rounded">Projet SRG</span>
+            <h3 class="text-3xl font-bold mb-3 leading-tight">Lancement du potager communautaire au cœur de Huy</h3>
+            <p class="opacity-80 line-clamp-2 mb-4 text-sm">Un nouvel espace de partage et d'apprentissage pour nos jeunes résidents.</p>
+            <span class="flex items-center gap-2 font-bold text-sm">Lire la suite <span class="material-symbols-outlined text-base">north_east</span></span>
+          </div>
+        </div>
+
+        <!-- ACTUALITÉ 1 — droite haut (Dark Cyan badge) -->
+        <div class="md:col-span-2 relative group overflow-hidden rounded-2xl">
+          <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtdJ_9qMBs0zwSjVDJnkkO3ET-0_ivGOpvDDcr6GGTOtYJPAgI1LF-JcXZ1CSfW6oggiWbN3GdKE1WWp3f4ABKCXTgJI7RWcpziHW3lxD88z8tCipOeCsb0vEksyTE3sbGbCJXsxOScDmeP4SPIMihv4rtPFXnPu0Ap2d8IzFI-PPRt1zdRWU_sVD5Joc4Qlue8LLW5hcHpqLnJq4tOc0lsz2nQ4TvESyk76m0-8i6eEi6jXY9yv_LnyzLBobIn8Z3RTqLKQFA4hk" alt="Portes ouvertes"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#002626] via-[#002626]/40 to-transparent opacity-90"></div>
+          <div class="absolute bottom-0 p-8 text-white">
+            <span class="bg-[#119DA4] text-white px-3 py-1 text-xs font-bold uppercase mb-3 inline-block rounded">Actualité</span>
+            <h3 class="text-2xl font-bold leading-snug mb-2">Portes ouvertes — venez découvrir nos services</h3>
+            <div class="flex justify-between items-end mt-3">
+              <p class="text-sm text-white/60">12 Mai 2026</p>
+              <span class="material-symbols-outlined text-white">arrow_forward</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTUALITÉ 2 — droite bas petit (Dark Cyan badge) -->
+        <div class="md:col-span-1 relative group overflow-hidden rounded-2xl">
+          <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0yqqOp4NtjKYbuBY0j42MhsWxYJyKFEBaEHuKk14MvQLuVgUjpxjFq07Ybe4ZBvtw--leeS_VyzJF4iBp39PzoGbad0qycGH3cbVTqZfKlMNhNXrLOdu4aGM4YYHQGsBT3YisAAZ2tyrwAlwE9mdHAYtH-11d4COHgl_PVFd4XSGNh1yFMWUEGShTI6RcvDpx33spVhqcM1nBY1h4vI6cOAPRx4EM9rRy9LiMGPhL4DE5r-uJv5Dq--B5faf3nTk5cVEgGZs_N9w" alt="Ateliers créatifs"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#002626] via-[#002626]/40 to-transparent opacity-90"></div>
+          <div class="absolute bottom-0 p-6 text-white">
+            <span class="bg-[#119DA4] text-white px-3 py-1 text-xs font-bold uppercase mb-3 inline-block rounded">Actualité</span>
+            <h3 class="text-lg font-bold leading-snug mb-2">Ateliers créatifs — programme printemps 2026</h3>
+            <p class="text-sm text-white/60">28 Avril 2026</p>
+          </div>
+        </div>
+
+        <!-- OFFRE D'EMPLOI — Evergreen bg, badge rouge -->
+        <div class="md:col-span-1 bg-[#002626] p-8 text-white flex flex-col justify-between rounded-2xl">
+          <div>
+            <span class="bg-[#E55812] text-white px-3 py-1 text-xs font-bold uppercase mb-4 inline-block rounded">Offre d'emploi</span>
+            <h3 class="text-xl font-bold leading-snug mt-2">L'asbl recrute un éducateur spécialisé.</h3>
+          </div>
+          <a class="text-[#95C623] font-bold text-sm flex items-center gap-2 mt-4 border-b border-[#95C623]/40 pb-1 w-fit hover:border-[#95C623] transition-colors" href="#">
+            Postuler <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAIRE UN DON (V3 — nahtlos in Footer) ── -->
+  <section class="bg-[#002626] py-24 px-8 overflow-hidden">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+      <div class="md:w-3/5">
+        <span class="text-[#95C623] font-black tracking-widest text-sm uppercase block mb-6">Nous soutenir</span>
+        <h2 class="text-5xl md:text-6xl font-black text-white mb-8 leading-[1.1]">
+          Soutenez nos actions, changez des vies.
+        </h2>
+        <p class="text-xl text-white/80 mb-10 max-w-xl leading-relaxed">
+          Sans vos dons, il nous serait impossible d'offrir aux enfants l'infrastructure qu'ils méritent. Chaque contribution finance des projets pédagogiques, des sorties culturelles et l'amélioration de nos maisons.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <button class="bg-[#95C623] text-[#002626] px-8 py-4 rounded-full font-bold text-lg hover:brightness-110 transition-all">
+            Faire un don maintenant
+          </button>
+          <button class="border border-white/30 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all">
+            Comment ça marche ?
+          </button>
+        </div>
+        <p class="text-white/50 text-sm mt-6">
+          Dons ≥ 40 € déductibles fiscalement · Via le Service Arc-en-Ciel · IBAN BE41 6300 1180 0010
+        </p>
+      </div>
+      <div class="md:w-2/5 grid grid-cols-2 gap-4">
+        <div class="aspect-square bg-[#E55812] flex flex-col items-center justify-center p-8 text-center rotate-3">
+          <span class="material-symbols-outlined text-4xl mb-2" style="font-variation-settings: 'FILL' 1;">favorite</span>
+          <span class="font-bold text-lg">Solidarité</span>
+        </div>
+        <div class="aspect-square bg-[#95C623] flex flex-col items-center justify-center p-8 text-center -rotate-2">
+          <span class="material-symbols-outlined text-4xl mb-2" style="font-variation-settings: 'FILL' 1;">school</span>
+          <span class="font-bold text-lg text-[#002626]">Éducation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER (V3 — nahtlos nach Faire un don) ── -->
+<footer class="bg-[#001a1a] w-full text-[#EFE7DA]">
+  <div class="max-w-7xl mx-auto px-8 pt-16 pb-8">
+    <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
+      <!-- Info -->
+      <div class="max-w-xs space-y-4">
+        <div class="text-xl font-bold">L'Espoir asbl</div>
+        <p class="opacity-70 text-sm leading-relaxed">
+          Rue de Biber 11<br/>4540 Amay, Belgique<br/><br/>
+          085 23 58 14<br/>
+          direction@asbl-espoir.be
+        </p>
+        <p class="opacity-50 text-xs">N° entreprise : 0431 081 064<br/>Agréé Fédération Wallonie-Bruxelles</p>
+      </div>
+      <!-- Nav -->
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-10">
+        <div class="flex flex-col gap-3">
+          <span class="font-bold text-[#95C623] uppercase tracking-widest text-xs mb-1">Navigation</span>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="#">Accueil</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="#">Services</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="#">À propos</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="#">Actualités</a>
+        </div>
+        <div class="flex flex-col gap-3">
+          <span class="font-bold text-[#95C623] uppercase tracking-widest text-xs mb-1">Engagement</span>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="#">Offres d'emploi</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="#">Faire un don</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="#">Partenaires</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="#">Contact</a>
+        </div>
+        <div class="flex flex-col gap-3">
+          <span class="font-bold text-[#95C623] uppercase tracking-widest text-xs mb-1">Services</span>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="#">SRG — Résidentiel</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="#">SASE — Accompagnement</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="#">SAPA — Escapade</a>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom bar -->
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs opacity-40">
+      <p>© 2026 L'Espoir asbl. Tous droits réservés.</p>
+      <div class="flex gap-6">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+        <span>Made with ♥ by lacønis</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
