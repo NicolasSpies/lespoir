@@ -373,22 +373,18 @@
     transition: opacity 0.9s ease-out;
   }
 
-  /* ── Hero image organic edge overlays ── */
-  .hero-wave-right {
-    display: none;
-    position: absolute; top: 0; right: 0;
-    width: 80px; height: 100%;
-    pointer-events: none; z-index: 10;
-  }
-  .hero-wave-bottom {
-    display: block;
-    position: absolute; bottom: 0; left: 0;
-    width: 100%; height: 48px;
-    pointer-events: none; z-index: 10;
-  }
+  /* ── Hero image panel: organic rounded edges ── */
+  /* Desktop: round the right side so the image blends into the cream content panel */
   @media (min-width: 768px) {
-    .hero-wave-right { display: block; }
-    .hero-wave-bottom { display: none; }
+    .hero-img-reveal {
+      border-radius: 0 2.5rem 2.5rem 0;
+    }
+  }
+  /* Mobile: round the bottom so the image blends into the content below */
+  @media (max-width: 767px) {
+    .hero-img-reveal {
+      border-radius: 0 0 2.5rem 2.5rem;
+    }
   }
 
   /* ── Hero sizing (fits in first viewport fold under the tall nav) ── */
@@ -824,7 +820,7 @@
 <main class="flex-grow">
 
   <!-- ── HERO (V2 Split) ── -->
-  <section id="hero" class="relative grid grid-cols-1 md:grid-cols-2">
+  <section id="hero" class="relative grid grid-cols-1 md:grid-cols-2 bg-[#EFE7DA]">
     <div class="hero-img-reveal relative overflow-hidden">
       <div class="hero-slider">
         <img src="1.jpg" alt="L'Espoir asbl" class="active blur-up"/>
@@ -838,14 +834,6 @@
           <button data-slide="3" aria-label="Image 4" aria-selected="false" role="tab"></button>
         </div>
       </div>
-      <!-- Desktop: organic wave on right edge (masks hard vertical cut to content panel) -->
-      <svg class="hero-wave-right" viewBox="0 0 80 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M80 0 Q10 200 45 400 Q75 600 35 800 L80 800 Z" fill="#EFE7DA"/>
-      </svg>
-      <!-- Mobile: organic wave on bottom edge (masks hard horizontal cut to content panel) -->
-      <svg class="hero-wave-bottom" viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 28 Q360 4 720 40 Q1080 48 1440 16 L1440 48 L0 48 Z" fill="#EFE7DA"/>
-      </svg>
     </div>
     <div class="blob-parent bg-[#EFE7DA] flex flex-col justify-center px-6 sm:px-10 md:px-12 lg:px-20 py-14 md:py-20">
       <div class="blob" aria-hidden="true" style="width:320px;height:320px;background:rgba(139,173,59,0.09);top:20px;right:-80px;border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;"></div>
@@ -1322,13 +1310,18 @@
     var timer;
 
     function goTo(idx) {
-      slides[current].classList.remove('active');
+      var leaving = slides[current];
+      // Freeze the Ken Burns scale so the image doesn't snap back on slide-out
+      leaving.style.transform = window.getComputedStyle(leaving).transform;
+      leaving.classList.remove('active');
       dots[current].classList.remove('active');
       dots[current].setAttribute('aria-selected', 'false');
       current = idx;
       slides[current].classList.add('active');
       dots[current].classList.add('active');
       dots[current].setAttribute('aria-selected', 'true');
+      // Clean up frozen transform after opacity fade completes (~1.2s)
+      (function(el) { setTimeout(function() { el.style.transform = ''; }, 1300); })(leaving);
     }
 
     function next() { goTo((current + 1) % slides.length); }
