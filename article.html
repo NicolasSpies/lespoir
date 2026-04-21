@@ -220,6 +220,87 @@
   }
   .actu-tag-association { background: rgba(139,173,59,0.15); color: #5e7a22; }
 
+  /* ── Article hero ── */
+  .article-hero {
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(ellipse at top right, rgba(139,173,59,0.14), transparent 55%),
+      radial-gradient(ellipse at bottom left, rgba(17,157,164,0.10), transparent 60%),
+      #EFE7DA;
+  }
+  .hero-blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(70px); pointer-events: none; z-index: 0;
+  }
+  .hero-blob-1 {
+    width: 420px; height: 420px; top: -140px; right: -150px;
+    background: radial-gradient(circle, rgba(139,173,59,0.45), transparent 70%);
+  }
+  .hero-blob-2 {
+    width: 320px; height: 320px; bottom: -160px; left: -100px;
+    background: radial-gradient(circle, rgba(17,157,164,0.28), transparent 70%);
+  }
+  .hero-blob-3 {
+    width: 180px; height: 180px; top: 40%; left: 8%;
+    background: radial-gradient(circle, rgba(229,88,18,0.12), transparent 70%);
+  }
+  .article-hero > .hero-inner { position: relative; z-index: 1; }
+
+  .hero-meta-row {
+    display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  .hero-meta-item {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    color: rgba(0,38,38,0.62); font-size: 0.82rem; font-weight: 600;
+  }
+  .hero-meta-item .material-symbols-outlined {
+    font-size: 16px; color: #5e7a22;
+  }
+  .hero-meta-sep {
+    width: 3px; height: 3px; border-radius: 50%; background: rgba(0,38,38,0.22);
+  }
+
+  .hero-meta-avatar {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: linear-gradient(135deg, #a4c751, #5e7a22);
+    color: #fff; display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.5rem; letter-spacing: 0.02em;
+    box-shadow: 0 2px 5px rgba(139,173,59,0.3);
+    flex-shrink: 0; overflow: hidden;
+  }
+  .hero-meta-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+  .article-cover {
+    position: relative; margin-top: -5rem; z-index: 2;
+  }
+  @media (min-width: 768px) {
+    .article-cover { margin-top: -6rem; }
+  }
+  .article-cover-figure {
+    margin: 0; overflow: hidden; position: relative;
+    border-radius: 1.25rem;
+    box-shadow:
+      0 30px 60px -20px rgba(0,38,38,0.4),
+      0 10px 25px -10px rgba(0,38,38,0.2);
+  }
+  @media (max-width: 767px) {
+    .article-cover-figure { border-radius: 0; }
+  }
+  .article-cover-figure img { display: block; width: 100%; height: auto; }
+  .article-cover-figure::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, transparent 55%, rgba(0,38,38,0.22));
+  }
+  .article-cover-caption {
+    margin: 0.85rem 1.5rem 0; padding: 0;
+    display: flex; align-items: center; gap: 0.5rem;
+    color: rgba(0,38,38,0.55); font-size: 0.78rem; font-style: italic;
+  }
+  .article-cover-caption .material-symbols-outlined {
+    font-size: 14px; color: rgba(0,38,38,0.4); font-style: normal;
+  }
+
   .article-body {
     color: #002626; font-size: 1.05rem; line-height: 1.75;
   }
@@ -653,8 +734,11 @@
 <main class="flex-grow">
 
   <!-- ── ARTICLE HERO ── -->
-  <section class="pt-10 md:pt-16 pb-10 px-6 md:px-8 bg-[#EFE7DA]">
-    <div class="max-w-3xl mx-auto">
+  <section class="article-hero pt-10 md:pt-16 pb-28 md:pb-36 px-6 md:px-8">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-blob hero-blob-3"></div>
+    <div class="hero-inner max-w-3xl mx-auto">
       <nav class="flex items-center gap-2 text-sm text-[#002626]/50 mb-8 flex-wrap" aria-label="Fil d'Ariane">
         <a href="homepage.html" class="hover:text-[#002626] transition-colors">Accueil</a>
         <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
@@ -662,11 +746,8 @@
         <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
         <span class="text-[#002626] font-semibold truncate">Rapport d'activités 2025</span>
       </nav>
-      <div class="flex items-center gap-3 mb-6">
+      <div class="mb-6">
         <span class="actu-tag actu-tag-association">Association</span>
-        <span class="text-[#002626]/50 text-xs font-semibold">15 janvier 2026</span>
-        <span class="text-[#002626]/30 text-xs">·</span>
-        <span class="text-[#002626]/50 text-xs font-semibold">Lecture : 6 min</span>
       </div>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#002626] leading-[1.1] tracking-tight mb-6">
         Rapport d'activités 2025 : une année marquée par l'engagement
@@ -674,21 +755,33 @@
       <p class="text-lg md:text-xl text-[#002626]/70 leading-relaxed">
         Quarante années au service des jeunes, et toujours le même souffle. Notre rapport d'activités 2025 retrace les actions menées par le SRG, le SASE et le SAPA, les chiffres clés et les témoignages de l'équipe.
       </p>
+
+      <div class="hero-meta-row">
+        <span class="hero-meta-item"><span class="material-symbols-outlined">event</span>15 janvier 2026</span>
+        <span class="hero-meta-sep"></span>
+        <span class="hero-meta-item"><span class="material-symbols-outlined">schedule</span>Lecture : 6 min</span>
+        <span class="hero-meta-sep"></span>
+        <span class="hero-meta-item"><span class="material-symbols-outlined">visibility</span>1 240 vues</span>
+        <span class="hero-meta-sep"></span>
+        <span class="hero-meta-item"><span class="hero-meta-avatar" aria-hidden="true"><img src="asmaa.jpg" alt=""/></span>Asmaa Lakrary</span>
+      </div>
     </div>
   </section>
 
   <!-- ── COVER IMAGE ── -->
-  <div class="px-0 md:px-8 -mt-2 md:-mt-4">
+  <div class="article-cover px-0 md:px-8">
     <div class="max-w-5xl mx-auto">
-      <figure class="overflow-hidden md:rounded-2xl">
+      <figure class="article-cover-figure">
         <img
           src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=1600&q=80&auto=format&fit=crop"
           alt="Rapport d'activités L'Espoir asbl 2025"
-          class="w-full h-auto object-cover"
-          style="max-height: 560px;"
+          style="max-height: 560px; object-fit: cover;"
         />
-        <figcaption class="text-[#002626]/45 text-xs px-6 md:px-0 mt-2 italic">Photo : équipe d'accompagnement L'Espoir asbl, décembre 2025.</figcaption>
       </figure>
+      <p class="article-cover-caption">
+        <span class="material-symbols-outlined">photo_camera</span>
+        Équipe d'accompagnement L'Espoir asbl, décembre 2025.
+      </p>
     </div>
   </div>
 
@@ -1089,7 +1182,7 @@
 </div>
 
 <!-- ── FOOTER ── -->
-<footer class="bg-[#001a1a] w-full text-[#EFE7DA]">
+<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(139,173,59,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
   <div class="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-16 pb-8">
     <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
       <div class="max-w-xs space-y-4">

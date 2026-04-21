@@ -1,576 +1,1086 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L'Espoir asbl, Briefing Refonte du Site Web</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>L'Espoir asbl · Briefing Refonte du Site Web</title>
+<meta name="robots" content="noindex, nofollow"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --dark: #002626; --cyan: #119DA4; --green: #8BAD3B;
-    --orange: #E55812; --linen: #EFE7DA;
-    --gray: #f5f5f3; --border: #e0e0dc; --text: #1a1a1a; --muted: #666;
+    --dark: #002626; --darker: #001a1a;
+    --cyan: #119DA4; --green: #8BAD3B; --orange: #E55812;
+    --linen: #EFE7DA; --paper: #f7f2e6;
+    --border: rgba(0,38,38,0.1); --border-strong: rgba(0,38,38,0.18);
+    --text: #1a1a1a; --muted: #5a6666;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; color: var(--text); background: #fff; max-width: 860px; margin: 0 auto; padding: 60px 48px 80px; }
-  .doc-header { border-bottom: 3px solid var(--dark); padding-bottom: 24px; margin-bottom: 48px; }
-  .doc-header h1 { font-size: 32px; font-weight: 700; color: var(--dark); letter-spacing: -0.5px; line-height: 1.2; }
-  .doc-header .subtitle { font-size: 16px; color: var(--cyan); margin-top: 6px; }
-  .doc-header .meta { font-size: 12px; color: var(--muted); margin-top: 10px; }
-  section { margin-bottom: 48px; }
-  .st { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding-bottom: 8px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
-  h3 { font-size: 13px; font-weight: 600; color: var(--dark); margin: 20px 0 10px; }
-  p { color: #444; margin-bottom: 10px; }
-  .kv { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-  .kv tr { border-bottom: 1px solid var(--border); }
-  .kv td { padding: 9px 12px; vertical-align: top; }
-  .kv td:first-child { color: var(--muted); width: 200px; font-size: 12.5px; background: var(--gray); white-space: nowrap; }
-  .palette { display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
-  .swatch { flex: 1; padding: 16px 12px 12px; display: flex; flex-direction: column; gap: 4px; }
-  .swatch-name { font-size: 11px; font-weight: 600; }
-  .swatch-hex { font-size: 10px; font-family: monospace; opacity: 0.75; }
-  .sw-dark { background:#002626; color:#fff; } .sw-cyan { background:#119DA4; color:#fff; }
-  .sw-green { background:#8BAD3B; color:#1a1a1a; } .sw-orange { background:#E55812; color:#fff; }
-  .sw-linen { background:#EFE7DA; color:#1a1a1a; }
-  .sgrid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 12px; }
-  .sc { border-radius: 8px; padding: 14px 14px 12px; display: flex; flex-direction: column; gap: 4px; }
-  .sc .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 99px; margin-bottom: 4px; width: fit-content; }
-  .sc .name { font-size: 12px; font-weight: 600; line-height: 1.3; }
-  .sc .note { font-size: 11px; opacity: 0.75; }
-  .sc-dark { background:#e8f0f0; } .sc-dark .tag { background:var(--dark); color:#fff; } .sc-dark .name,.sc-dark .note { color:var(--dark); }
-  .sc-green { background:#f2fad8; } .sc-green .tag { background:var(--green); color:#1a3300; } .sc-green .name,.sc-green .note { color:#2a4a00; }
-  .sc-orange { background:#fdeee7; } .sc-orange .tag { background:var(--orange); color:#fff; } .sc-orange .name,.sc-orange .note { color:#7a2800; }
-  .sc-cyan { background:#e2f4f5; } .sc-cyan .tag { background:var(--cyan); color:#fff; } .sc-cyan .name,.sc-cyan .note { color:#004d52; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px; line-height: 1.65;
+    color: var(--text); background: var(--linen);
+    -webkit-font-smoothing: antialiased;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400;
+    display: inline-block; line-height: 1; vertical-align: middle;
+  }
+  a { color: inherit; }
+
+  /* Top strip */
+  .topbar {
+    background: var(--dark);
+    color: rgba(239,231,218,0.7);
+    padding: 10px 24px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.05em;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px;
+  }
+  .topbar strong { color: #fff; font-weight: 700; }
+  .topbar a {
+    color: #b8d369; text-decoration: none; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .topbar a:hover { color: #fff; }
+
+  /* Hero */
+  .hero {
+    position: relative; overflow: hidden;
+    background: var(--dark); color: #fff;
+    padding: 64px 32px 80px;
+    background-image:
+      radial-gradient(ellipse at 15% 20%, rgba(139,173,59,0.28), transparent 55%),
+      radial-gradient(ellipse at 85% 80%, rgba(17,157,164,0.22), transparent 60%),
+      radial-gradient(ellipse at 50% 100%, rgba(229,88,18,0.12), transparent 70%);
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-mark {
+    width: 72px; height: 72px; border-radius: 20px;
+    background: rgba(255,255,255,0.06);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.09);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 28px;
+  }
+  .hero-mark img { width: 54px; height: 54px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 999px;
+    background: rgba(139,173,59,0.18); color: #b8d369;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.14em;
+    text-transform: uppercase; margin-bottom: 18px;
+    border: 1px solid rgba(139,173,59,0.3);
+  }
+  .hero-eyebrow .material-symbols-outlined {
+    font-size: 14px; font-variation-settings: 'FILL' 1;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 900;
+    letter-spacing: -0.03em; line-height: 1.05;
+    max-width: 820px;
+  }
+  .hero h1 span { font-weight: 300; opacity: 0.7; }
+  .hero-sub {
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    color: rgba(239,231,218,0.75);
+    max-width: 640px; margin-top: 20px; line-height: 1.55;
+  }
+  .hero-meta {
+    margin-top: 36px; display: flex; flex-wrap: wrap; gap: 8px 18px;
+    font-size: 12px; color: rgba(239,231,218,0.55);
+  }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .hero-meta .material-symbols-outlined { font-size: 14px; }
+
+  /* Decorative wave between hero and body */
+  .wave { line-height: 0; margin-top: -1px; }
+  .wave svg { display: block; width: 100%; height: 48px; }
+
+  /* Main container */
+  main { max-width: 1100px; margin: 0 auto; padding: 48px 32px 80px; }
+
+  /* Section */
+  section { margin-bottom: 72px; scroll-margin-top: 32px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 14px;
+    padding-bottom: 14px; margin-bottom: 28px;
+    border-bottom: 1px solid var(--border-strong);
+  }
+  .sec-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 34px; height: 34px; padding: 0 10px;
+    border-radius: 10px;
+    background: var(--dark); color: #fff;
+    font-size: 12px; font-weight: 800; letter-spacing: 0.06em;
+    flex-shrink: 0;
+  }
+  .sec-head h2 {
+    font-size: clamp(1.3rem, 2.5vw, 1.75rem); font-weight: 800;
+    letter-spacing: -0.02em; color: var(--dark); line-height: 1.2;
+  }
+  .sec-head p {
+    margin-left: auto; font-size: 13px; color: var(--muted);
+    max-width: 320px; text-align: right;
+  }
+
+  /* En bref */
+  .en-bref {
+    background: var(--dark); color: #fff;
+    border-radius: 20px; padding: 36px 40px;
+    margin-bottom: 72px; position: relative; overflow: hidden;
+    background-image:
+      radial-gradient(ellipse at 15% 20%, rgba(139,173,59,0.20), transparent 55%),
+      radial-gradient(ellipse at 85% 80%, rgba(17,157,164,0.18), transparent 60%);
+  }
+  .en-bref .label {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.16em;
+    text-transform: uppercase; color: #b8d369;
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-bottom: 14px;
+  }
+  .en-bref .label .material-symbols-outlined { font-size: 14px; font-variation-settings: 'FILL' 1; }
+  .en-bref p {
+    font-size: 16px; line-height: 1.7; color: rgba(239,231,218,0.9);
+  }
+  .en-bref strong { font-weight: 700; }
+  .en-bref .s-green { color: #8BAD3B; }
+  .en-bref .s-orange { color: #E55812; }
+  .en-bref .s-cyan { color: #119DA4; }
+
+  /* KV table */
+  .kv {
+    background: #fff; border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,38,38,0.03);
+  }
+  .kv .row {
+    display: grid; grid-template-columns: 220px 1fr; gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .kv .row:last-child { border-bottom: none; }
+  .kv .k {
+    padding: 16px 20px;
+    font-size: 12px; font-weight: 700; color: var(--muted);
+    background: rgba(0,38,38,0.025);
+    letter-spacing: 0.04em;
+    border-right: 1px solid var(--border);
+    display: flex; align-items: center;
+  }
+  .kv .v {
+    padding: 16px 22px; font-size: 14.5px; color: var(--text);
+    line-height: 1.6;
+  }
+  .kv .v strong { color: var(--dark); font-weight: 700; }
+  @media (max-width: 640px) {
+    .kv .row { grid-template-columns: 1fr; }
+    .kv .k { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+  }
+
+  /* Palette */
+  .palette-big {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+    margin-bottom: 20px;
+  }
+  .palette-big .swatch {
+    border-radius: 14px; padding: 22px 16px 16px;
+    display: flex; flex-direction: column; gap: 4px;
+    min-height: 120px; justify-content: flex-end;
+    box-shadow: 0 2px 8px rgba(0,38,38,0.06);
+  }
+  .palette-big .swatch .name { font-size: 12px; font-weight: 700; }
+  .palette-big .swatch .hex { font-size: 11px; font-family: 'SF Mono', monospace; opacity: 0.75; }
+  .sw-dark { background: #002626; color: #fff; }
+  .sw-cyan { background: #119DA4; color: #fff; }
+  .sw-green { background: #8BAD3B; color: #002626; }
+  .sw-orange { background: #E55812; color: #fff; }
+  .sw-linen { background: #EFE7DA; color: #002626; box-shadow: inset 0 0 0 1px var(--border), 0 2px 8px rgba(0,38,38,0.06); }
+  @media (max-width: 720px) { .palette-big { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Old vs new compare */
+  .compare {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    margin-top: 28px;
+  }
+  .compare-card {
+    background: #fff; border-radius: 14px; padding: 0;
+    border: 1px solid var(--border); overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,38,38,0.03);
+  }
+  .compare-chip {
+    padding: 12px 18px; font-size: 11px; font-weight: 800;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .compare-chip.old { background: rgba(0,38,38,0.05); color: var(--muted); }
+  .compare-chip.new { background: rgba(139,173,59,0.15); color: #5a7a1a; }
+  .compare-chip .material-symbols-outlined { font-size: 16px; }
+  .compare-swatch {
+    height: 90px; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 14px; font-weight: 700; letter-spacing: 0.02em;
+  }
+  .compare-note {
+    padding: 14px 18px 16px;
+    font-size: 12.5px; color: var(--muted); line-height: 1.55;
+  }
+  .compare-note strong { color: var(--dark); }
+  @media (max-width: 640px) { .compare { grid-template-columns: 1fr; } }
+
+  /* Alternatives à l'étude */
+  .alt-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin-top: 22px;
+  }
+  .alt-card {
+    background: #fff; border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,38,38,0.03);
+    display: flex; flex-direction: column;
+  }
+  .alt-card.is-current { outline: 2px solid var(--green); outline-offset: -2px; }
+  .alt-badge {
+    position: absolute; top: 10px; right: 10px;
+    background: #002626; color: #fff;
+    font-size: 9.5px; font-weight: 800; letter-spacing: 0.1em;
+    padding: 3px 8px; border-radius: 99px;
+    text-transform: uppercase;
+  }
+  .alt-swatch {
+    position: relative;
+    height: 72px; display: flex; align-items: flex-end;
+    padding: 10px 12px; color: #002626;
+    font-family: 'SF Mono', monospace; font-size: 12px; font-weight: 700;
+  }
+  .alt-body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .alt-name { font-size: 13px; font-weight: 700; color: var(--dark); }
+  .alt-note { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+  .alt-mini {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    height: 22px; border-radius: 6px; overflow: hidden;
+    border: 1px solid var(--border);
+    margin-top: 2px;
+  }
+  .alt-mini > span { display: block; }
+  @media (max-width: 860px) { .alt-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Service code (SRG/SASE/SAPA) */
+  .sgrid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin-top: 28px;
+  }
+  .sc {
+    background: #fff; border-radius: 14px; padding: 20px;
+    border: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 8px;
+    box-shadow: 0 2px 8px rgba(0,38,38,0.03);
+    position: relative; overflow: hidden;
+  }
+  .sc::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: var(--svc);
+  }
+  .sc .tag {
+    display: inline-flex; align-items: center;
+    padding: 3px 10px; border-radius: 99px;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    background: var(--svc); color: var(--svc-fg, #fff);
+    width: fit-content; margin-top: 4px;
+  }
+  .sc .name { font-size: 13.5px; font-weight: 700; color: var(--dark); line-height: 1.3; }
+  .sc .note { font-size: 12px; color: var(--muted); }
+  .sc-dark { --svc: var(--dark); --svc-fg: #fff; }
+  .sc-green { --svc: var(--green); --svc-fg: #002626; }
+  .sc-orange { --svc: var(--orange); --svc-fg: #fff; }
+  .sc-cyan { --svc: var(--cyan); --svc-fg: #fff; }
+  @media (max-width: 760px) { .sgrid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Callout note */
+  .callout {
+    background: rgba(229,88,18,0.06);
+    border: 1px solid rgba(229,88,18,0.2);
+    border-radius: 12px; padding: 14px 18px;
+    margin-top: 20px;
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 13.5px; line-height: 1.55; color: #5a2a00;
+  }
+  .callout .material-symbols-outlined {
+    font-size: 20px; color: var(--orange); flex-shrink: 0; margin-top: 2px;
+    font-variation-settings: 'FILL' 1;
+  }
+  .callout.green {
+    background: rgba(139,173,59,0.08);
+    border-color: rgba(139,173,59,0.25); color: #2a4a00;
+  }
+  .callout.green .material-symbols-outlined { color: #6b8420; }
+
+  /* Mapping flow */
+  .mapping {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .map-row {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px;
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 14px;
+    align-items: center; font-size: 13.5px;
+    box-shadow: 0 2px 8px rgba(0,38,38,0.03);
+  }
+  .map-from { color: var(--muted); font-family: 'SF Mono', monospace; font-size: 12px; }
+  .map-arrow {
+    color: var(--dark); opacity: 0.35;
+    font-size: 18px;
+  }
+  .map-to { color: var(--dark); font-weight: 600; }
+  .map-to strong { color: var(--dark); font-weight: 800; }
+  .map-row.deleted .map-to { color: var(--muted); font-style: italic; }
+  @media (max-width: 640px) {
+    .map-row { grid-template-columns: 1fr; gap: 4px; }
+    .map-arrow { display: none; }
+  }
+
+  /* Sitemap */
   .sitemap { display: flex; flex-direction: column; gap: 8px; }
-  .sm-row { display: flex; align-items: stretch; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-size: 13px; }
-  .sm-i { width: 32px; display: flex; align-items: center; justify-content: center; background: var(--dark); color: #fff; font-size: 11px; font-weight: 700; flex-shrink: 0; }
-  .sm-p { width: 200px; padding: 10px 14px; background: var(--gray); font-weight: 600; color: var(--dark); display: flex; align-items: center; flex-shrink: 0; border-right: 1px solid var(--border); font-size: 13px; }
-  .sm-d { padding: 10px 14px; color: #444; display: flex; align-items: center; flex: 1; font-size: 12.5px; line-height: 1.45; }
-  .sm-b { margin-left: auto; padding: 0 12px; display: flex; align-items: center; flex-shrink: 0; }
-  .badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 99px; letter-spacing: 0.04em; }
-  .bc { background:#e2f4f5; color:#004d52; } .bn { background:#f2fad8; color:#2a4a00; }
-  .bm { background:#fdeee7; color:#7a2800; } .bs { background:var(--gray); color:var(--muted); border:1px solid var(--border); }
-  .bd { background:#002626; color:#fff; }
-  .cms-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .cms-table th { background: var(--dark); color: #fff; padding: 8px 12px; text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; }
-  .cms-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  .cms-table tr:last-child td { border-bottom: none; }
-  .cms-table tr:nth-child(even) td { background: var(--gray); }
-  .note-box { background: var(--linen); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #3a2a00; margin-top: 12px; line-height: 1.55; }
-  .doc-footer { margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; }
-  /* Connector helper */
-  .line-v { width: 2px; background: var(--border); }
-  .line-h { height: 2px; background: var(--border); }
-  @media print { body { padding: 24px 32px; } }
+  .sm-row {
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    display: grid; grid-template-columns: 44px 220px 1fr auto; gap: 0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,38,38,0.03);
+  }
+  .sm-i {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--dark); color: #fff;
+    font-size: 13px; font-weight: 800;
+  }
+  .sm-row.child .sm-i { background: transparent; color: var(--dark); font-size: 16px; opacity: 0.5; }
+  .sm-row.child.s-green .sm-i { background: rgba(139,173,59,0.12); color: #5a7a1a; }
+  .sm-row.child.s-orange .sm-i { background: rgba(229,88,18,0.12); color: var(--orange); }
+  .sm-row.child.s-cyan .sm-i { background: rgba(17,157,164,0.12); color: var(--cyan); }
+  .sm-row.cta .sm-i { background: rgba(229,88,18,0.12); color: var(--orange); }
+  .sm-p {
+    padding: 12px 16px; display: flex; align-items: center;
+    font-weight: 700; color: var(--dark); font-size: 13.5px;
+    border-right: 1px solid var(--border);
+  }
+  .sm-row.child .sm-p { font-weight: 500; padding-left: 24px; font-size: 13px; color: var(--muted); }
+  .sm-row.cta .sm-p { color: var(--orange); }
+  .sm-d {
+    padding: 12px 18px; display: flex; align-items: center;
+    font-size: 12.5px; color: var(--muted); line-height: 1.5;
+  }
+  .sm-b { padding: 0 14px; display: flex; align-items: center; }
+  .badge {
+    font-size: 10px; font-weight: 800; letter-spacing: 0.08em;
+    padding: 3px 9px; border-radius: 99px; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .b-cms { background: rgba(17,157,164,0.15); color: #0a6a70; }
+  .b-new { background: rgba(139,173,59,0.18); color: #5a7a1a; }
+  .b-cta { background: rgba(229,88,18,0.15); color: var(--orange); }
+  .b-static { background: rgba(0,38,38,0.06); color: var(--muted); }
+  .b-dropdown { background: var(--dark); color: #fff; }
+  @media (max-width: 760px) {
+    .sm-row { grid-template-columns: 44px 1fr; }
+    .sm-p { border-right: none; border-bottom: 1px solid var(--border); }
+    .sm-d { grid-column: 1 / -1; background: rgba(0,38,38,0.015); }
+    .sm-b { grid-column: 1 / -1; padding: 0 16px 12px; }
+  }
+
+  /* Interactive nav mockup */
+  .mockup {
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px -8px rgba(0,38,38,0.15);
+    margin-top: 32px; background: #fff;
+  }
+  .mockup-bar {
+    background: var(--dark); padding: 14px 22px;
+    display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+  }
+  .mockup-label {
+    font-size: 10px; font-weight: 800; letter-spacing: 0.16em;
+    color: rgba(255,255,255,0.35); margin-right: 14px; text-transform: uppercase;
+  }
+  .nav-btn {
+    padding: 7px 14px; border-radius: 8px;
+    font-size: 13px; font-weight: 600; font-family: inherit;
+    color: rgba(255,255,255,0.7); background: transparent;
+    border: none; cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
+  .nav-btn.active { background: rgba(139,173,59,0.22); color: #b8d369; }
+  .nav-btn-cta {
+    margin-left: auto; padding: 8px 16px; border-radius: 8px;
+    font-size: 13px; font-weight: 700; font-family: inherit;
+    background: var(--green); color: var(--dark);
+    border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .nav-btn-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 14px -4px rgba(139,173,59,0.5); }
+  .nav-btn-cta .material-symbols-outlined { font-size: 16px; font-variation-settings: 'FILL' 1; }
+  .mockup-panel {
+    padding: 30px 30px 28px; min-height: 220px; background: #fff;
+  }
+  .page-default {
+    display: flex; align-items: center; justify-content: center;
+    height: 180px; color: var(--muted); font-size: 13.5px;
+    gap: 10px; font-style: italic;
+  }
+  .page-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  .page-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+  @media (max-width: 720px) { .page-grid, .page-grid.three { grid-template-columns: 1fr; } }
+  .page-label {
+    font-size: 10px; font-weight: 800; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .page-card {
+    background: #f9f5eb; border-radius: 10px;
+    padding: 14px 16px;
+    border-left: 3px solid var(--dark);
+  }
+  .page-card .t { font-size: 12px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
+  .page-card .d { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .page-card.s-green { border-left-color: var(--green); background: rgba(139,173,59,0.07); }
+  .page-card.s-green .t { color: #3a5500; }
+  .page-card.s-orange { border-left-color: var(--orange); background: rgba(229,88,18,0.06); }
+  .page-card.s-orange .t { color: var(--orange); }
+  .page-card.s-cyan { border-left-color: var(--cyan); background: rgba(17,157,164,0.07); }
+  .page-card.s-cyan .t { color: #0a5a60; }
+  .page-card.s-full { grid-column: 1 / -1; }
+  .page-card .tinynote { font-size: 10.5px; color: var(--muted); margin-top: 6px; font-style: italic; }
+
+  /* CMS table */
+  .cms-table {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,38,38,0.03);
+  }
+  .cms-head, .cms-row {
+    display: grid; grid-template-columns: 220px 160px 1fr; gap: 0;
+  }
+  .cms-head {
+    background: var(--dark); color: #fff;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .cms-head > div { padding: 14px 18px; }
+  .cms-row {
+    border-top: 1px solid var(--border);
+    font-size: 13.5px; line-height: 1.55;
+  }
+  .cms-row > div { padding: 14px 18px; display: flex; align-items: center; }
+  .cms-row .cms-coll { font-weight: 700; color: var(--dark); }
+  .cms-row .cms-ent { font-size: 12px; color: var(--muted); font-family: 'SF Mono', monospace; }
+  .cms-row .cms-fields { color: #2a3a3a; }
+  .cms-row:nth-child(even) { background: rgba(0,38,38,0.02); }
+  @media (max-width: 760px) {
+    .cms-head { display: none; }
+    .cms-row { grid-template-columns: 1fr; }
+    .cms-row > div { padding: 10px 18px; }
+    .cms-row .cms-coll { padding-top: 16px; }
+    .cms-row .cms-fields { padding-bottom: 18px; }
+  }
+
+  /* Client deliverables */
+  .deliver {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  @media (max-width: 760px) { .deliver { grid-template-columns: 1fr; } }
+  .del-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 18px;
+    display: flex; flex-direction: column; gap: 8px;
+    position: relative; overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,38,38,0.03);
+  }
+  .del-card::before {
+    content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
+    background: var(--stripe, var(--dark));
+  }
+  .del-card.got { --stripe: var(--dark); }
+  .del-card.validate { --stripe: var(--green); }
+  .del-card.confirm { --stripe: var(--orange); }
+  .del-card.todo { --stripe: var(--orange); }
+  .del-card.later { --stripe: var(--cyan); }
+  .del-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding-left: 10px;
+  }
+  .del-head h4 {
+    font-size: 13.5px; font-weight: 800; color: var(--dark);
+    letter-spacing: -0.005em;
+  }
+  .del-status {
+    font-size: 10px; font-weight: 800; letter-spacing: 0.08em;
+    padding: 3px 9px; border-radius: 99px; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .ds-got { background: rgba(0,38,38,0.08); color: var(--dark); }
+  .ds-validate { background: rgba(139,173,59,0.18); color: #5a7a1a; }
+  .ds-confirm { background: rgba(229,88,18,0.14); color: var(--orange); }
+  .ds-todo { background: rgba(229,88,18,0.14); color: var(--orange); }
+  .ds-later { background: rgba(17,157,164,0.15); color: #0a6a70; }
+  .del-card p { font-size: 12.5px; color: var(--muted); padding-left: 10px; line-height: 1.55; }
+
+  /* Contact-like outro */
+  .outro {
+    margin-top: 48px;
+    background: var(--dark); color: #fff;
+    border-radius: 20px; padding: 32px 36px;
+    display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+    position: relative; overflow: hidden;
+    background-image:
+      radial-gradient(ellipse at 15% 20%, rgba(139,173,59,0.20), transparent 55%),
+      radial-gradient(ellipse at 85% 80%, rgba(17,157,164,0.16), transparent 60%);
+  }
+  .outro-text { flex: 1; min-width: 240px; }
+  .outro-text .label {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.14em; color: #b8d369;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .outro-text h3 {
+    font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 6px;
+    letter-spacing: -0.015em;
+  }
+  .outro-text p { font-size: 13.5px; color: rgba(239,231,218,0.7); line-height: 1.55; }
+  .outro-links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .outro-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px; border-radius: 10px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff; font-weight: 600; font-size: 13.5px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .outro-link:hover { background: rgba(255,255,255,0.12); border-color: var(--green); }
+  .outro-link .material-symbols-outlined { font-size: 18px; }
+
+  /* Footer */
+  .doc-foot {
+    padding: 28px 24px 36px; text-align: center;
+    font-size: 12px; color: var(--muted);
+  }
+  .doc-foot strong { color: var(--dark); }
+
+  @media print {
+    body { background: #fff; }
+    .topbar, .outro { display: none; }
+    .hero { padding: 24px 16px 32px; }
+    main { padding: 16px; }
+  }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="doc-header">
-  <h1>L'Espoir <span style="font-weight:300">asbl</span></h1>
-  <div class="subtitle">Refonte du site web, Briefing de projet</div>
-  <div class="meta">Version : avril 2026 &nbsp;·&nbsp; Créé par : lacønis &nbsp;·&nbsp; Confidentiel</div>
+<!-- Top strip -->
+<div class="topbar">
+  <div>
+    <strong>L'Espoir asbl</strong> &nbsp;·&nbsp; Briefing projet &nbsp;·&nbsp; Version avril 2026
+  </div>
+  <a href="index.html">
+    <span class="material-symbols-outlined" style="font-size:16px;">arrow_back</span>
+    Retour au preview
+  </a>
 </div>
 
-<!-- EN BREF -->
-<section style="background:var(--dark);border-radius:10px;padding:28px 32px;margin-bottom:48px;">
-  <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:14px;">En bref</div>
-  <p style="font-size:15px;line-height:1.75;color:#fff;margin:0;">
-    L'Espoir est une ASBL belge basée dans la région de Huy, active dans l'accompagnement de jeunes en difficulté. Elle opère à travers trois services complémentaires : le <strong style="color:#8BAD3B;">SRG</strong> (Service Résidentiel Général (SRG)), qui accueille des jeunes dans trois maisons de vie (Amay, Escale, Couthuin) ; le <strong style="color:#E55812;">SASE</strong> (Service d'Accompagnement Socio-Éducatif (SASE)), qui soutient les jeunes dans leur autonomie à Huy ; et le <strong style="color:#119DA4;">SAPA</strong> (Service d'Accompagnement du Parrainage (SAPA)), qui met en relation des jeunes avec des familles bénévoles via le programme Escapade. L'association s'inscrit dans une mission de protection, d'inclusion et de réinsertion sociale, portée par une équipe pluridisciplinaire engagée.
-  </p>
-</section>
-
-<!-- 01 CLIENT -->
-<section>
-  <div class="st">01 &nbsp; Client &amp; Projet</div>
-  <table class="kv">
-    <tr><td>Client</td><td>L'Espoir asbl, association sociale sans but lucratif, Région de Huy (Belgique)</td></tr>
-    <tr><td>Forme juridique</td><td>ASBL (Association Sans But Lucratif)</td></tr>
-    <tr><td>Langue principale</td><td>Français (primaire)</td></tr>
-    <tr><td>Site existant</td><td>asbl-espoir.be, Drupal, obsolète, identité visuelle incohérente</td></tr>
-    <tr><td>Publics cibles</td><td>Familles, Personnes accompagnées, Donateurs, Partenaires, Candidats à l'emploi</td></tr>
-    <tr><td>Modifiabilité</td><td>Contenu uniquement, le client gère textes et images via ContentCore</td></tr>
-    <tr><td>Sites de référence</td><td>cres-mons.be &nbsp;·&nbsp; hsf-asbl.be/fr/home</td></tr>
-  </table>
-</section>
-
-<!-- 02 IDENTITÉ VISUELLE -->
-<section>
-  <div class="st">02 &nbsp; Identité Visuelle</div>
-  <h3>Logo</h3>
-  <p>Créé par lacønis. Variantes : horizontal + vertical, asbl + srg / sase / sapa. Fichier vectoriel disponible (AI/SVG).</p>
-  <h3>Palette de couleurs</h3>
-  <div class="palette">
-    <div class="swatch sw-dark"><div class="swatch-name">Evergreen</div><div class="swatch-hex"></div></div>
-    <div class="swatch sw-cyan"><div class="swatch-name">Dark Cyan</div><div class="swatch-hex"></div></div>
-    <div class="swatch sw-green"><div class="swatch-name">Yellow Green</div><div class="swatch-hex"></div></div>
-    <div class="swatch sw-orange"><div class="swatch-name">Cayenne Red</div><div class="swatch-hex"></div></div>
-    <div class="swatch sw-linen"><div class="swatch-name">Soft Linen</div><div class="swatch-hex"></div></div>
-  </div>
-  <h3>Code couleur par service</h3>
-  <div class="sgrid">
-    <div class="sc sc-dark"><div class="tag">asbl</div><div class="name">Marque principale</div><div class="note">Evergreen, transversal</div></div>
-    <div class="sc sc-green"><div class="tag">SRG</div><div class="name">Service Résidentiel Général (SRG)</div><div class="note">Yellow Green · 3 sites</div></div>
-    <div class="sc sc-orange"><div class="tag">SASE</div><div class="name">Service d'Accompagnement Socio-Éducatif (SASE)</div><div class="note">Cayenne Red · Huy</div></div>
-    <div class="sc sc-cyan"><div class="tag">SAPA</div><div class="name">Service d'Accompagnement du Parrainage (SAPA)</div><div class="note">Dark Cyan · Escapade</div></div>
-  </div>
-  <div class="note-box">Chaque service possède sa propre couleur de logo → à décliner systématiquement sur toutes les sous-pages, icônes et accents. Le changement de couleur sert de repère visuel pour l'utilisateur.</div>
-</section>
-
-<!-- 03 ANALYSE EXISTANT -->
-<section>
-  <div class="st">03 &nbsp; Analyse de l'existant, Mapping Ancien → Nouveau</div>
-  <p style="margin-bottom:16px;font-size:13px;color:#555;">Inventaire des pages existantes, leur destination dans la nouvelle structure et ce qui est supprimé.</p>
-  <table class="kv">
-    <tr><td style="font-size:12px;">/page/historique</td><td>→ <strong>À propos</strong> (fusionné avec Missions + Valeurs)</td></tr>
-    <tr><td style="font-size:12px;">/maisons</td><td>→ <strong>Services</strong> (renommé + restructuré par SRG / SASE / SAPA)</td></tr>
-    <tr><td style="font-size:12px;">/service/amay, /escale, /couthuin</td><td>→ <strong>Services › SRG</strong> (3 entrées, 1 template CMS)</td></tr>
-    <tr><td style="font-size:12px;">/service/le-sase (Huy)</td><td>→ <strong>Services › SASE</strong></td></tr>
-    <tr><td style="font-size:12px;">/service/escapade-sapa</td><td>→ <strong>Services › SAPA</strong></td></tr>
-    <tr><td style="font-size:12px;">/liste-news</td><td>→ <strong>Actualités</strong> (CMS, même usage)</td></tr>
-    <tr><td style="font-size:12px;">/projets</td><td>→ <strong>Faire un don</strong> (section "Projets en cours")</td></tr>
-    <tr><td style="font-size:12px;">/liens-utiles</td><td>→ <strong>Faire un don</strong> (liens de dons externes) + <strong>Partenaires</strong> (liens partenaires)</td></tr>
-    <tr><td style="font-size:12px;">/nous-aider</td><td>→ <strong>Faire un don</strong> (page principale, appel aux dons)</td></tr>
-    <tr><td style="font-size:12px;">/contacts</td><td>→ <strong>Contact</strong> (repris et enrichi)</td></tr>
-    <tr><td style="font-size:12px;">/photos</td><td>→ <strong>Supprimé comme page distincte</strong>, photos intégrées dans les pages Services et Accueil</td></tr>
-    <tr><td style="font-size:12px;">/user + /register</td><td>→ <strong>Supprimé</strong>, pas d'espace connecté prévu</td></tr>
-  </table>
-</section>
-
-<!-- 04 ARCHITECTURE + NAVIGATION -->
-<section>
-  <div class="st">04 &nbsp; Nouvelle Architecture &amp; Navigation</div>
-
-  <!-- PAGE LIST -->
-  <div class="sitemap" style="margin-bottom:32px;">
-    <div class="sm-row">
-      <div class="sm-i">1</div><div class="sm-p">Accueil</div>
-      <div class="sm-d">Hero + aperçu des 3 services, dernières actualités, CTA : Faire un don + réseaux sociaux.</div>
-      <div class="sm-b"><span class="badge bs">Statique</span></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-mark">
+      <img src="favicon.svg" alt=""/>
     </div>
-    <div class="sm-row">
-      <div class="sm-i">2</div><div class="sm-p">Services</div>
-      <div class="sm-d">Page d'aperçu des 3 services. Clic direct depuis le menu. Chaque service renvoie vers sa sous-page.</div>
-      <div class="sm-b"><span class="badge bd">Dropdown</span></div>
-    </div>
-    <div class="sm-row">
-      <div class="sm-i" style="background:#f2fad8;color:#2a4a00;">↳</div>
-      <div class="sm-p" style="padding-left:28px;font-size:12px;color:#555;">SRG</div>
-      <div class="sm-d" style="font-size:12px;color:#666;">1 template CMS × 3 entrées : Amay, Escale (Mise en autonomie), Couthuin</div>
-      <div class="sm-b"><span class="badge bc">CMS ×3</span></div>
-    </div>
-    <div class="sm-row">
-      <div class="sm-i" style="background:#fdeee7;color:#E55812;">↳</div>
-      <div class="sm-p" style="padding-left:28px;font-size:12px;color:#555;">SASE, Service d'Accompagnement Socio-Éducatif, Huy</div>
-      <div class="sm-d" style="font-size:12px;color:#666;">Service d'Accompagnement à Missions Socio-Éducatives</div>
-      <div class="sm-b"><span class="badge bs">Statique</span></div>
-    </div>
-    <div class="sm-row">
-      <div class="sm-i" style="background:#e2f4f5;color:#119DA4;">↳</div>
-      <div class="sm-p" style="padding-left:28px;font-size:12px;color:#555;">SAPA, Service d'Accompagnement du Parrainage, Escapade</div>
-      <div class="sm-d" style="font-size:12px;color:#666;">Service d'Accompagnement du Parrainage (SAPA)</div>
-      <div class="sm-b"><span class="badge bs">Statique</span></div>
-    </div>
-    <div class="sm-row">
-      <div class="sm-i">3</div><div class="sm-p">À propos</div>
-      <div class="sm-d">Dropdown uniquement (pas de page propre) : Histoire · Missions &amp; Valeurs · Équipe · Partenaires.</div>
-      <div class="sm-b"><span class="badge bd">Dropdown</span></div>
-    </div>
-    <div class="sm-row">
-      <div class="sm-i" style="background:#e8f0f0;color:#002626;">↳</div>
-      <div class="sm-p" style="padding-left:28px;font-size:12px;color:#555;">Notre histoire</div>
-      <div class="sm-desc" style="padding:10px 14px;color:#666;font-size:12px;flex:1;">Chronologie et contexte de création de l'ASBL, évolution au fil des années.</div>
-      <div class="sm-b"><span class="badge bs">Statique</span></div>
-    </div>
-    <div class="sm-row">
-      <div class="sm-i" style="background:#e8f0f0;color:#002626;">↳</div>
-      <div class="sm-p" style="padding-left:28px;font-size:12px;color:#555;">Missions &amp; Valeurs</div>
-      <div class="sm-desc" style="padding:10px 14px;color:#666;font-size:12px;flex:1;">Raison d'être de l'association, valeurs fondatrices, engagement social.</div>
-      <div class="sm-b"><span class="badge bs">Statique</span></div>
-    </div>
-    <div class="sm-row">
-      <div class="sm-i" style="background:#e8f0f0;color:#002626;">↳</div>
-      <div class="sm-p" style="padding-left:28px;font-size:12px;color:#555;">Équipe</div>
-      <div class="sm-desc" style="padding:10px 14px;color:#666;font-size:12px;flex:1;">Présentation des membres, photos, noms et fonctions gérés via ContentCore.</div>
-      <div class="sm-b"><span class="badge bs">Statique</span></div>
-    </div>
-    <div class="sm-row">
-      <div class="sm-i" style="background:#e8f0f0;color:#002626;">↳</div>
-      <div class="sm-p" style="padding-left:28px;font-size:12px;color:#555;">Partenaires</div>
-      <div class="sm-desc" style="padding:10px 14px;color:#666;font-size:12px;flex:1;">Logos et liens des partenaires institutionnels et sponsors.</div>
-      <div class="sm-b"><span class="badge bs">Statique</span></div>
-    </div>
-    <div class="sm-row">
-      <div class="sm-i">4</div><div class="sm-p">Actualités</div>
-      <div class="sm-d">News + Agenda. Fusion de /liste-news et /agenda. Entrées gérées par le client via ContentCore.</div>
-      <div class="sm-b"><span class="badge bc">CMS</span></div>
-    </div>
-    <div class="sm-row">
-      <div class="sm-i">5</div><div class="sm-p">Offres d'emploi</div>
-      <div class="sm-d">Emplois + Stages. Nouveau, géré via ContentCore.</div>
-      <div class="sm-b"><span class="badge bn">Nouveau</span></div>
-    </div>
-    <div class="sm-row">
-      <div class="sm-i">6</div><div class="sm-p">Contact</div>
-      <div class="sm-d">Formulaire de contact + adresses + Secrétariat / Direction intégrés.</div>
-      <div class="sm-b"><span class="badge bs">Statique</span></div>
-    </div>
-    <div class="sm-row">
-      <div class="sm-i" style="background:#fdeee7;color:#E55812;">★</div>
-      <div class="sm-p" style="font-weight:700;color:#E55812;">Faire un don</div>
-      <div class="sm-d">Consolidation de /nous-aider + /projets + /liens-utiles. Bouton CTA prioritaire dans le menu.</div>
-      <div class="sm-b"><span class="badge bm">CTA</span></div>
+    <span class="hero-eyebrow">
+      <span class="material-symbols-outlined">description</span>
+      Briefing de projet · Confidentiel
+    </span>
+    <h1>Refonte du site web<br/><span>L'Espoir asbl</span></h1>
+    <p class="hero-sub">
+      Vision complète du projet : structure, identité, architecture, contenus récupérés et livrables. Pensé pour être lu en 10 minutes.
+    </p>
+    <div class="hero-meta">
+      <span><span class="material-symbols-outlined">schedule</span> Avril 2026</span>
+      <span><span class="material-symbols-outlined">badge</span> Créé par lacønis</span>
+      <span><span class="material-symbols-outlined">lock</span> Document interne</span>
     </div>
   </div>
-
-  <!-- INTERACTIVE NAV MOCKUP -->
-  <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:16px;">Structure de navigation &amp; aperçu des pages</div>
-  <p style="font-size:13px;color:#555;margin-bottom:16px;">Cliquez sur un élément du menu pour voir le contenu prévu pour cette page.</p>
-
-  <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);">
-
-    <!-- NAV BAR -->
-    <div style="background:#002626;padding:12px 20px;display:flex;align-items:center;gap:2px;flex-wrap:wrap;" id="nav-bar">
-      <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:rgba(255,255,255,0.3);margin-right:10px;">MENU</div>
-
-      <button onclick="showPage('accueil')" class="nav-btn" id="btn-accueil">Accueil</button>
-      <button onclick="showPage('services')" class="nav-btn" id="btn-services">Services ▾</button>
-      <button onclick="showPage('apropos')" class="nav-btn" id="btn-apropos">À propos ▾</button>
-      <button onclick="showPage('actualites')" class="nav-btn" id="btn-actualites">Actualités</button>
-      <button onclick="showPage('emploi')" class="nav-btn" id="btn-emploi">Offres d'emploi</button>
-      <button onclick="showPage('contact')" class="nav-btn" id="btn-contact">Contact</button>
-      <button onclick="showPage('don')" class="nav-btn-cta" id="btn-don">Faire un don</button>
-    </div>
-
-    <!-- CONTENT PANEL -->
-    <div id="nav-panel" style="min-height:200px;background:#fff;padding:28px 28px 24px;">
-
-      <!-- DEFAULT STATE -->
-      <div id="page-default" class="page-panel" style="display:flex;align-items:center;justify-content:center;height:160px;color:#aaa;font-size:13px;font-style:italic;">
-        ← Cliquez sur un élément du menu pour voir le contenu prévu
-      </div>
-
-      <!-- ACCUEIL -->
-      <div id="page-accueil" class="page-panel" style="display:none;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-bottom:12px;">Accueil</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <div style="background:#f5f5f3;border-radius:7px;padding:12px 14px;border-left:3px solid #002626;">
-            <div style="font-size:11px;font-weight:700;color:#002626;margin-bottom:4px;">Hero</div>
-            <div style="font-size:11.5px;color:#555;">Visuel fort avec slogan de l'ASBL et deux CTAs principaux : "Découvrir nos services" + "Faire un don".</div>
-          </div>
-          <div style="background:#f5f5f3;border-radius:7px;padding:12px 14px;border-left:3px solid #002626;">
-            <div style="font-size:11px;font-weight:700;color:#002626;margin-bottom:4px;">Nos services</div>
-            <div style="font-size:11.5px;color:#555;">3 cards colorées SRG / SASE / SAPA avec courte description et lien vers chaque service.</div>
-          </div>
-          <div style="background:#f5f5f3;border-radius:7px;padding:12px 14px;border-left:3px solid #002626;">
-            <div style="font-size:11px;font-weight:700;color:#002626;margin-bottom:4px;">Dernières actualités</div>
-            <div style="font-size:11.5px;color:#555;">Aperçu des 3 derniers articles issus du CMS Actualités avec lien "Voir toutes les actualités".</div>
-          </div>
-          <div style="background:#f5f5f3;border-radius:7px;padding:12px 14px;border-left:3px solid #E55812;">
-            <div style="font-size:11px;font-weight:700;color:#E55812;margin-bottom:4px;">Faire un don</div>
-            <div style="font-size:11.5px;color:#555;">Section CTA avec texte de sensibilisation et lien vers la page Faire un don.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SERVICES -->
-      <div id="page-services" class="page-panel" style="display:none;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-bottom:12px;">Services, page d'aperçu + sous-pages</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
-          <div style="background:#f2fad8;border-radius:7px;padding:12px 14px;border-left:3px solid #8BAD3B;">
-            <div style="font-size:11px;font-weight:700;color:#2a4a00;margin-bottom:4px;">SRG, Service Résidentiel Général</div>
-            <div style="font-size:11.5px;color:#555;margin-bottom:6px;">Accueil résidentiel de jeunes en difficulté dans 3 maisons.</div>
-            <div style="font-size:10px;color:#888;">Sous-pages CMS : Amay · Escale · Couthuin</div>
-          </div>
-          <div style="background:#fdeee7;border-radius:7px;padding:12px 14px;border-left:3px solid #E55812;">
-            <div style="font-size:11px;font-weight:700;color:#7a2800;margin-bottom:4px;">SASE, Service d'Accompagnement Socio-Éducatif</div>
-            <div style="font-size:11.5px;color:#555;margin-bottom:6px;">Suivi socio-éducatif de jeunes en milieu ouvert à Huy.</div>
-            <div style="font-size:10px;color:#888;">Page statique</div>
-          </div>
-          <div style="background:#e2f4f5;border-radius:7px;padding:12px 14px;border-left:3px solid #119DA4;">
-            <div style="font-size:11px;font-weight:700;color:#004d52;margin-bottom:4px;">SAPA, Service d'Accompagnement du Parrainage</div>
-            <div style="font-size:11.5px;color:#555;margin-bottom:6px;">Mise en relation de jeunes avec des familles bénévoles via Escapade.</div>
-            <div style="font-size:10px;color:#888;">Page statique</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- À PROPOS -->
-      <div id="page-apropos" class="page-panel" style="display:none;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-bottom:12px;">À propos, dropdown uniquement (pas de page propre)</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <div style="background:#f5f5f3;border-radius:7px;padding:12px 14px;border-left:3px solid #002626;">
-            <div style="font-size:11px;font-weight:700;color:#002626;margin-bottom:4px;">Notre histoire</div>
-            <div style="font-size:11.5px;color:#555;">Chronologie et contexte de création de l'ASBL, évolution au fil des années.</div>
-          </div>
-          <div style="background:#f5f5f3;border-radius:7px;padding:12px 14px;border-left:3px solid #002626;">
-            <div style="font-size:11px;font-weight:700;color:#002626;margin-bottom:4px;">Missions &amp; Valeurs</div>
-            <div style="font-size:11.5px;color:#555;">Raison d'être de l'association, valeurs fondatrices, engagement social.</div>
-          </div>
-          <div style="background:#f2fad8;border-radius:7px;padding:12px 14px;border-left:3px solid #8BAD3B;">
-            <div style="font-size:11px;font-weight:700;color:#2a4a00;margin-bottom:4px;">Équipe</div>
-            <div style="font-size:11.5px;color:#555;">Présentation des membres de l'équipe. Photos, noms et fonctions gérés via ContentCore.</div>
-          </div>
-          <div style="background:#f5f5f3;border-radius:7px;padding:12px 14px;border-left:3px solid #002626;">
-            <div style="font-size:11px;font-weight:700;color:#002626;margin-bottom:4px;">Partenaires</div>
-            <div style="font-size:11.5px;color:#555;">Logos et liens des partenaires institutionnels et sponsors. Mis à jour par le client.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ACTUALITÉS -->
-      <div id="page-actualites" class="page-panel" style="display:none;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-bottom:12px;">Actualités, CMS</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <div style="background:#f5f5f3;border-radius:7px;padding:12px 14px;border-left:3px solid #119DA4;">
-            <div style="font-size:11px;font-weight:700;color:#002626;margin-bottom:4px;">Liste des articles</div>
-            <div style="font-size:11.5px;color:#555;">Grille de toutes les actualités avec titre, date, image et extrait. Filtrables par catégorie.</div>
-          </div>
-          <div style="background:#f5f5f3;border-radius:7px;padding:12px 14px;border-left:3px solid #119DA4;">
-            <div style="font-size:11px;font-weight:700;color:#002626;margin-bottom:4px;">Agenda</div>
-            <div style="font-size:11.5px;color:#555;">Événements à venir de l'ASBL. Fusion de l'ancien /agenda et /liste-news.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- OFFRES D'EMPLOI -->
-      <div id="page-emploi" class="page-panel" style="display:none;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-bottom:12px;">Offres d'emploi, CMS · Nouveau</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <div style="background:#f5f5f3;border-radius:7px;padding:12px 14px;border-left:3px solid #8BAD3B;">
-            <div style="font-size:11px;font-weight:700;color:#002626;margin-bottom:4px;">Offres d'emploi</div>
-            <div style="font-size:11.5px;color:#555;">Liste des postes ouverts (CDI / CDD) avec description, service concerné et date limite de candidature.</div>
-          </div>
-          <div style="background:#f5f5f3;border-radius:7px;padding:12px 14px;border-left:3px solid #8BAD3B;">
-            <div style="font-size:11px;font-weight:700;color:#002626;margin-bottom:4px;">Stages</div>
-            <div style="font-size:11.5px;color:#555;">Offres de stages disponibles avec liens vers formulaires ou PDF. Géré via ContentCore.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CONTACT -->
-      <div id="page-contact" class="page-panel" style="display:none;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-bottom:12px;">Contact</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <div style="background:#f5f5f3;border-radius:7px;padding:12px 14px;border-left:3px solid #002626;">
-            <div style="font-size:11px;font-weight:700;color:#002626;margin-bottom:4px;">Formulaire de contact</div>
-            <div style="font-size:11.5px;color:#555;">Formulaire général (nom, email, message) pour toute demande entrante.</div>
-          </div>
-          <div style="background:#f5f5f3;border-radius:7px;padding:12px 14px;border-left:3px solid #002626;">
-            <div style="font-size:11px;font-weight:700;color:#002626;margin-bottom:4px;">Adresses &amp; Secrétariat</div>
-            <div style="font-size:11.5px;color:#555;">Coordonnées de tous les sites (Amay, Huy…) + Direction et Secrétariat de l'ASBL.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAIRE UN DON -->
-      <div id="page-don" class="page-panel" style="display:none;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-bottom:12px;">Faire un don, CTA prioritaire</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <div style="background:#fdeee7;border-radius:7px;padding:12px 14px;border-left:3px solid #E55812;">
-            <div style="font-size:11px;font-weight:700;color:#E55812;margin-bottom:4px;">Appel aux dons</div>
-            <div style="font-size:11.5px;color:#555;">Texte de sensibilisation + coordonnées bancaires pour virement. Pas de paiement en ligne.</div>
-          </div>
-          <div style="background:#fdeee7;border-radius:7px;padding:12px 14px;border-left:3px solid #E55812;">
-            <div style="font-size:11px;font-weight:700;color:#E55812;margin-bottom:4px;">Projets en cours</div>
-            <div style="font-size:11.5px;color:#555;">Présentation des projets soutenus avec liens externes (cres-mons.be, hsf-asbl.be). Géré via ContentCore.</div>
-          </div>
-          <div style="background:#fdeee7;border-radius:7px;padding:12px 14px;border-left:3px solid #E55812;grid-column:1/-1;">
-            <div style="font-size:11px;font-weight:700;color:#E55812;margin-bottom:4px;">Partenaires de soutien</div>
-            <div style="font-size:11.5px;color:#555;">Liens et logos des organisations partenaires liées aux dons, issus de l'ancien /liens-utiles.</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <style>
-    .nav-btn {
-      padding: 6px 13px; border-radius: 6px; font-size: 12.5px; font-weight: 500;
-      color: rgba(255,255,255,0.65); background: transparent; border: none; cursor: pointer;
-      font-family: inherit; transition: background 0.15s, color 0.15s;
-    }
-    .nav-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
-    .nav-btn.active { background: rgba(255,255,255,0.18); color: #fff; font-weight: 700; }
-    .nav-btn-cta {
-      margin-left: auto; padding: 7px 16px; border-radius: 6px; font-size: 12.5px;
-      font-weight: 700; background: #E55812; color: #fff; border: none; cursor: pointer;
-      font-family: inherit; transition: opacity 0.15s;
-    }
-    .nav-btn-cta:hover { opacity: 0.85; }
-    .nav-btn-cta.active { outline: 2px solid #fff; outline-offset: 2px; }
-  </style>
-
-  <script>
-    function showPage(id) {
-      document.querySelectorAll('.page-panel').forEach(p => p.style.display = 'none');
-      document.querySelectorAll('.nav-btn, .nav-btn-cta').forEach(b => b.classList.remove('active'));
-      document.getElementById('page-' + id).style.display = 'block';
-      document.getElementById('btn-' + id).classList.add('active');
-    }
-  </script>
-
-  <div class="note-box" style="margin-top:12px;">"Faire un don" est mis en évidence comme bouton CTA (bouton Yellow Green, texte Evergreen), pas un simple lien de menu. "À propos" est uniquement un déclencheur de dropdown, sans page propre. Sur mobile, le CTA reste accessible via une barre fixe en bas d'écran.</div>
 </section>
-
-<!-- 05 CMS -->
-<section>
-<section>
-  <div class="st">05 &nbsp; Besoins CMS</div>
-  <table class="cms-table">
-    <thead><tr><th>Collection / Template</th><th>Entrées</th><th>Champs disponibles</th></tr></thead>
-    <tbody>
-      <tr>
-        <td><strong>Site SRG</strong></td>
-        <td>×3 (Amay, Escale, Couthuin)</td>
-        <td>Nom du site, adresse complète, description, galerie photos, horaires d'accueil, coordonnées de contact, nom du responsable, carte / localisation</td>
-      </tr>
-      <tr>
-        <td><strong>Actualités / News</strong></td>
-        <td>Illimité</td>
-        <td>Titre, date de publication, catégorie, texte (rich text), image principale, résumé / extrait</td>
-      </tr>
-      <tr>
-        <td><strong>Offres d'emploi</strong></td>
-        <td>Illimité</td>
-        <td>Intitulé du poste, type (CDI / CDD / Stage), service concerné, description de la fonction, profil recherché, date limite de candidature, lien ou PDF à joindre</td>
-      </tr>
-      <tr>
-        <td><strong>Projets (Faire un don)</strong></td>
-        <td>Illimité</td>
-        <td>Nom du projet, description, lien externe, statut (en cours / terminé)</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="note-box">Les pages SASE, SAPA, À propos, Équipe et Partenaires sont <strong>statiques</strong>, configurées une fois, modifiables via de simples champs de texte dans ContentCore.</div>
-</section>
-
-<!-- 06 FONCTIONNALITÉS -->
-<section>
-  <div class="st">06 &nbsp; Fonctionnalités clés &amp; Exigences</div>
-  <table class="kv">
-    <tr><td>Éléments visibles clés</td><td>Familles · Services (page d'accueil) · Faire un don · Facebook + Instagram</td></tr>
-    <tr><td>Textes</td><td>Fournis par le client, intégrés en interne</td></tr>
-    <tr><td>Logique dons</td><td>Liens externes : cres-mons.be + hsf-asbl.be + projets propres regroupés sur une page</td></tr>
-    <tr><td>Réseaux sociaux</td><td>Facebook + Instagram, liens en header / footer + éventuellement widget de fil</td></tr>
-    <tr><td>Services en page d'accueil</td><td>Les 3 services (SRG / SASE / SAPA) sous forme de cards avec code couleur, liens vers sous-pages</td></tr>
-    <tr><td>Galerie photos</td><td>Pas de page dédiée, photos intégrées dans les pages Services et Accueil</td></tr>
-    <tr><td>Connexion / Intranet</td><td>Supprimé, pas d'espace connecté dans la nouvelle version du site</td></tr>
-  </table>
-</section>
-
-<!-- 07 DÉCISIONS TECHNIQUES -->
-<section>
-  <div class="st">07 &nbsp; Décisions techniques &amp; organisationnelles</div>
-  <table class="kv">
-    <tr>
-      <td>CMS</td>
-      <td>
-        <strong>ContentCore</strong>, système de gestion de contenu développé en interne par lacønis. Toutes les collections dynamiques (Sites SRG, Actualités, Offres d'emploi, Projets) sont gérées via cette plateforme. Le client peut modifier l'ensemble des contenus texte et images de toutes les pages du site en totale autonomie, sans toucher au layout ni au design.
-      </td>
-    </tr>
-    <tr><td>Photos</td><td>Images de <strong>stock dans un premier temps</strong>, remplacées progressivement par des photos fournies par le client. Prévoir des zones de remplacement faciles à mettre à jour via ContentCore.</td></tr>
-    <tr><td>Langue</td><td><strong>Français uniquement.</strong> Pas de multilinguisme prévu (NL / DE exclus).</td></tr>
-    <tr><td>Espace connecté</td><td><strong>Supprimé.</strong> Pas d'intranet ni de Register / Login dans la nouvelle version du site.</td></tr>
-    <tr><td>Dons</td><td><strong>Par virement bancaire</strong>, comme actuellement. Pas de plateforme de paiement en ligne. La page "Faire un don" affiche les coordonnées bancaires et les liens vers les projets partenaires externes.</td></tr>
-    <tr><td>Secrétariat / Direction</td><td>Intégré dans la page <strong>Contact</strong> et repris dans le <strong>footer</strong>, pas de sous-page dédiée.</td></tr>
-    <tr><td>Équipe</td><td>Le client gère lui-même tous les contenus (photos, textes, fonctions) via <strong>ContentCore</strong>.</td></tr>
-  </table>
-</section>
-
-<!-- 08 CE QUE LE CLIENT DOIT FOURNIR -->
-<section>
-  <div class="st">08 &nbsp; Ce que le client doit fournir</div>
-  <p style="font-size:13px;color:#555;margin-bottom:20px;">lacønis récupère un maximum de contenu depuis l'ancien site. Le client est invité à valider et compléter ce qui manque. Les éléments <span style="background:#fdeee7;color:#E55812;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">À COMPLÉTER</span> nécessitent une action du client avant ou après le lancement.</p>
-
-  <table class="cms-table">
-    <thead><tr><th>Élément</th><th>Détail</th><th>Statut</th></tr></thead>
-    <tbody>
-      <tr>
-        <td><strong>Coordonnées &amp; adresses</strong></td>
-        <td>Tous les sites récupérés : Direction (Rue de Biber 11), SRG Amay (n°9), Escale (n°7), Couthuin, SASE Huy, Escapade. Téléphones et emails inclus.</td>
-        <td><span style="background:#e8f0f0;color:#002626;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">RÉCUPÉRÉ</span></td>
-      </tr>
-      <tr>
-        <td><strong>Textes, Services SRG</strong></td>
-        <td>Descriptions complètes récupérées pour Amay, Escale et Couthuin : missions, capacités, public, méthodologie, équipe. À valider et adapter par le client.</td>
-        <td><span style="background:#f2fad8;color:#2a4a00;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">RÉCUPÉRÉ, À VALIDER</span></td>
-      </tr>
-      <tr>
-        <td><strong>Textes, SASE &amp; SAPA</strong></td>
-        <td>Descriptions récupérées pour le SASE (Huy) et Escapade (SAPa). À valider et adapter par le client.</td>
-        <td><span style="background:#f2fad8;color:#2a4a00;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">RÉCUPÉRÉ, À VALIDER</span></td>
-      </tr>
-      <tr>
-        <td><strong>Texte, Histoire</strong></td>
-        <td>Chronologie complète récupérée (1985 → 2002). lacønis reformule pour le nouveau site. À valider par le client.</td>
-        <td><span style="background:#f2fad8;color:#2a4a00;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">RÉCUPÉRÉ, À VALIDER</span></td>
-      </tr>
-      <tr>
-        <td><strong>Texte, Faire un don</strong></td>
-        <td>Texte d'appel aux dons récupéré + IBAN Arc-en-Ciel (BE41 6300 1180 0010, mention "don au projet n°67"). À confirmer si toujours d'actualité.</td>
-        <td><span style="background:#f2fad8;color:#2a4a00;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">RÉCUPÉRÉ, À CONFIRMER</span></td>
-      </tr>
-      <tr>
-        <td><strong>Partenaires &amp; liens utiles</strong></td>
-        <td>26 partenaires récupérés (institutionnels, donateurs, associatifs) avec URLs. Certains liens datent de 2013-2015, le client doit vérifier lesquels sont encore actifs.</td>
-        <td><span style="background:#fdeee7;color:#E55812;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">À VÉRIFIER</span></td>
-      </tr>
-      <tr>
-        <td><strong>Logos partenaires</strong></td>
-        <td>Pas de logos récupérables depuis l'ancienne site. lacønis collecte ce qui est disponible en ligne. Le client complète pour les partenaires sans logo disponible.</td>
-        <td><span style="background:#fdeee7;color:#E55812;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">À COMPLÉTER</span></td>
-      </tr>
-      <tr>
-        <td><strong>Textes, Missions &amp; Valeurs</strong></td>
-        <td>Non présents sous cette forme sur l'ancien site. lacønis propose une base à partir des descriptions récupérées. Le client valide.</td>
-        <td><span style="background:#fdeee7;color:#E55812;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">À COMPLÉTER</span></td>
-      </tr>
-      <tr>
-        <td><strong>Photos, Équipe</strong></td>
-        <td>Aucune photo d'équipe disponible. Le client les ajoute lui-même via ContentCore après la mise en ligne.</td>
-        <td><span style="background:#e2f4f5;color:#004d52;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">POST-LANCEMENT</span></td>
-      </tr>
-      <tr>
-        <td><strong>Photos, Maisons &amp; Services</strong></td>
-        <td>Pas de photos réutilisables. Images de stock utilisées en attendant. Le client remplace progressivement via ContentCore.</td>
-        <td><span style="background:#e2f4f5;color:#004d52;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">POST-LANCEMENT</span></td>
-      </tr>
-      <tr>
-        <td><strong>Liens réseaux sociaux</strong></td>
-        <td>Page Facebook Escapade récupérée. Vérifier s'il existe une page Facebook / Instagram officielle pour l'ASBL L'Espoir.</td>
-        <td><span style="background:#fdeee7;color:#E55812;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">À CONFIRMER</span></td>
-      </tr>
-      <tr>
-        <td><strong>Accès domaine asbl-espoir.be</strong></td>
-        <td>Transfert DNS vers Hostinger (serveur lacønis). Le client contacte son prestataire actuel. Hébergement inclus dans la prestation lacønis.</td>
-        <td><span style="background:#fdeee7;color:#E55812;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">À COMPLÉTER</span></td>
-      </tr>
-      <tr>
-        <td><strong>Statistiques page d'accueil</strong></td>
-        <td>Nombre exact de jeunes accompagnés par an + nombre de membres de l'équipe. (Actuellement : placeholders 120+ et 40+)</td>
-        <td><span style="background:#fdeee7;color:#E55812;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">À CONFIRMER</span></td>
-      </tr>
-      <tr>
-        <td><strong>Projets en cours</strong></td>
-        <td>Liste à jour des projets à mettre en avant sur la page Faire un don. L'ancien projet Rue de Biber n°11 date de 2015, à mettre à jour.</td>
-        <td><span style="background:#fdeee7;color:#E55812;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">À COMPLÉTER</span></td>
-      </tr>
-      <tr>
-        <td><strong>Partenaires actifs</strong></td>
-        <td>Vérifier quels partenaires de l'ancienne liste /liens-utiles sont encore actifs, plusieurs liens datent de 2013-2015.</td>
-        <td><span style="background:#fdeee7;color:#E55812;font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px;">À VÉRIFIER</span></td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="note-box" style="margin-top:12px;">L'hébergement est assuré par lacønis sur un serveur dédié Hostinger, performance, sécurité et mises à jour techniques incluses, sans intervention du client. · N° entreprise ASBL : 0431 081 064 · Agrément SRG i0128 / SASE i0971</div>
-</section>
-
-<div class="doc-footer">
-  <span>L'Espoir asbl, Briefing Refonte du Site Web</span>
-  <span>lacønis · Avril 2026 · Confidentiel</span>
+<div class="wave" aria-hidden="true">
+  <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 4 Q360 48 720 8 Q1080 0 1440 40 L1440 48 L0 48 Z" fill="#EFE7DA"/>
+  </svg>
 </div>
+
+<main>
+
+  <!-- EN BREF -->
+  <div class="en-bref">
+    <div class="label">
+      <span class="material-symbols-outlined">flash_on</span>
+      En bref
+    </div>
+    <p>
+      L'Espoir est une ASBL belge basée dans la région de Huy, active dans l'accompagnement de jeunes en difficulté. Elle opère à travers trois services complémentaires : le <strong class="s-green">SRG</strong> (Service Résidentiel Général), qui accueille des jeunes dans trois maisons de vie (Amay, Escale, Couthuin) ; le <strong class="s-orange">SASE</strong> (Service d'Accompagnement Socio-Éducatif), qui soutient les jeunes dans leur autonomie à Huy ; et le <strong class="s-cyan">SAPA</strong> (Service d'Accompagnement du Parrainage), qui met en relation des jeunes avec des familles bénévoles via Escapade.
+    </p>
+  </div>
+
+  <!-- 01 CLIENT -->
+  <section id="s1">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>Client &amp; projet</h2>
+      <p>Contexte et acteurs</p>
+    </div>
+    <div class="kv">
+      <div class="row"><div class="k">Client</div><div class="v">L'Espoir asbl, association sociale sans but lucratif — région de Huy (Belgique)</div></div>
+      <div class="row"><div class="k">Forme juridique</div><div class="v">ASBL (Association Sans But Lucratif)</div></div>
+      <div class="row"><div class="k">Langue principale</div><div class="v">Français uniquement — pas de NL / DE</div></div>
+      <div class="row"><div class="k">Site existant</div><div class="v">asbl-espoir.be — Drupal obsolète, identité visuelle incohérente</div></div>
+      <div class="row"><div class="k">Publics cibles</div><div class="v">Familles · Personnes accompagnées · Donateurs · Partenaires · Candidats à l'emploi</div></div>
+      <div class="row"><div class="k">Modifiabilité</div><div class="v">Le client gère <strong>textes et images</strong> via ContentCore — layout et design protégés</div></div>
+      <div class="row"><div class="k">Références</div><div class="v">cres-mons.be &nbsp;·&nbsp; hsf-asbl.be/fr/home</div></div>
+    </div>
+  </section>
+
+  <!-- 02 IDENTITÉ VISUELLE -->
+  <section id="s2">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Identité visuelle</h2>
+      <p>Logo, palette, code couleur</p>
+    </div>
+
+    <h3 style="font-size:13px;font-weight:700;color:var(--dark);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px;">Palette de couleurs</h3>
+    <div class="palette-big">
+      <div class="swatch sw-dark"><div class="name">Evergreen</div><div class="hex">#002626</div></div>
+      <div class="swatch sw-cyan"><div class="name">Dark Cyan</div><div class="hex">#119DA4</div></div>
+      <div class="swatch sw-green"><div class="name">Yellow Green</div><div class="hex">#8BAD3B</div></div>
+      <div class="swatch sw-orange"><div class="name">Cayenne Red</div><div class="hex">#E55812</div></div>
+      <div class="swatch sw-linen"><div class="name">Soft Linen</div><div class="hex">#EFE7DA</div></div>
+    </div>
+
+    <h3 style="font-size:13px;font-weight:700;color:var(--dark);letter-spacing:0.06em;text-transform:uppercase;margin-top:28px;margin-bottom:6px;">Évolution du vert</h3>
+    <p style="font-size:13.5px;color:var(--muted);">L'ancien vert tirait vers le citron / flashy ; le nouveau est plus profond et plus chaleureux, tout en restant lumineux. Il ressort sur fond sombre et fonctionne bien avec le linen.</p>
+    <div class="compare">
+      <div class="compare-card">
+        <div class="compare-chip old"><span class="material-symbols-outlined">history</span> Ancien site</div>
+        <div class="compare-swatch" style="background:#94C523;color:#002626;">#94C523</div>
+        <div class="compare-note">Vert <strong>lime / citron</strong>, très saturé et « flashy ». Agressif à l'œil sur fond clair, fatigant en grandes surfaces.</div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-chip new"><span class="material-symbols-outlined">auto_awesome</span> Nouveau site</div>
+        <div class="compare-swatch" style="background:#8BAD3B;color:#002626;">#8BAD3B</div>
+        <div class="compare-note"><strong>Yellow Green</strong> plus profond, plus chaleureux. Garde l'énergie du vert sans la fatigue visuelle, excellent contraste sur Evergreen.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:13px;font-weight:700;color:var(--dark);letter-spacing:0.06em;text-transform:uppercase;margin-top:36px;margin-bottom:6px;">Alternatives à l'étude</h3>
+    <p style="font-size:13.5px;color:var(--muted);margin-bottom:4px;">Le <strong style="color:var(--dark);">#8BAD3B</strong> reste notre recommandation : il garde l'ADN chaleureux de la marque tout en se démarquant nettement de l'ancien lime. Par transparence, voici néanmoins trois pistes plus sobres, au cas où vous souhaiteriez explorer une direction plus institutionnelle — chacune a été vérifiée avec les quatre autres couleurs de la palette.</p>
+    <div class="alt-grid">
+      <div class="alt-card is-current">
+        <div class="alt-swatch" style="background:#8BAD3B;">
+          <span class="alt-badge">Actuel</span>
+          #8BAD3B
+        </div>
+        <div class="alt-body">
+          <div class="alt-name">Yellow Green</div>
+          <div class="alt-note">Vif, lumineux, chaleureux. Garde l'élan de la marque sans tomber dans le lime. Le meilleur équilibre entre énergie et maturité.</div>
+          <div class="alt-mini" aria-hidden="true">
+            <span style="background:#002626;"></span>
+            <span style="background:#119DA4;"></span>
+            <span style="background:#8BAD3B;"></span>
+            <span style="background:#E55812;"></span>
+            <span style="background:#EFE7DA;"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="alt-card">
+        <div class="alt-swatch" style="background:#7A9E3B;">#7A9E3B</div>
+        <div class="alt-body">
+          <div class="alt-name">Moss</div>
+          <div class="alt-note">Un cran plus sobre. Cohérent avec la palette, mais perd un peu de la luminosité qui fait chanter le duo vert / Cayenne.</div>
+          <div class="alt-mini" aria-hidden="true">
+            <span style="background:#002626;"></span>
+            <span style="background:#119DA4;"></span>
+            <span style="background:#7A9E3B;"></span>
+            <span style="background:#E55812;"></span>
+            <span style="background:#EFE7DA;"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="alt-card">
+        <div class="alt-swatch" style="background:#6E8F34;color:#EFE7DA;">#6E8F34</div>
+        <div class="alt-body">
+          <div class="alt-name">Olive profond</div>
+          <div class="alt-note">Plus ancré, plus institutionnel. Gagne en sérieux, mais s'éloigne du ton joyeux et accueillant visé pour un public familial.</div>
+          <div class="alt-mini" aria-hidden="true">
+            <span style="background:#002626;"></span>
+            <span style="background:#119DA4;"></span>
+            <span style="background:#6E8F34;"></span>
+            <span style="background:#E55812;"></span>
+            <span style="background:#EFE7DA;"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="alt-card">
+        <div class="alt-swatch" style="background:#8A9A47;">#8A9A47</div>
+        <div class="alt-body">
+          <div class="alt-name">Sauge olive</div>
+          <div class="alt-note">Plus terreux, plus discret. Distance nette avec l'ancien vert, mais demande à être épaulé — seul face au Cayenne, il peut paraître timide.</div>
+          <div class="alt-mini" aria-hidden="true">
+            <span style="background:#002626;"></span>
+            <span style="background:#119DA4;"></span>
+            <span style="background:#8A9A47;"></span>
+            <span style="background:#E55812;"></span>
+            <span style="background:#EFE7DA;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:13px;font-weight:700;color:var(--dark);letter-spacing:0.06em;text-transform:uppercase;margin-top:36px;margin-bottom:0;">Code couleur par service</h3>
+    <div class="sgrid">
+      <div class="sc sc-dark"><span class="tag">asbl</span><div class="name">Marque principale</div><div class="note">Evergreen · transversal</div></div>
+      <div class="sc sc-green"><span class="tag">SRG</span><div class="name">Service Résidentiel Général</div><div class="note">Yellow Green · 3 sites</div></div>
+      <div class="sc sc-orange"><span class="tag">SASE</span><div class="name">Service d'Accompagnement Socio-Éducatif</div><div class="note">Cayenne Red · Huy</div></div>
+      <div class="sc sc-cyan"><span class="tag">SAPA</span><div class="name">Service d'Accompagnement du Parrainage</div><div class="note">Dark Cyan · Escapade</div></div>
+    </div>
+    <div class="callout green">
+      <span class="material-symbols-outlined">lightbulb</span>
+      <div>Chaque service a sa propre couleur, déclinée systématiquement sur les sous-pages, icônes et accents. Le changement de couleur sert de <strong>repère visuel</strong> pour l'utilisateur.</div>
+    </div>
+  </section>
+
+  <!-- 03 MAPPING -->
+  <section id="s3">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>Ancien → Nouveau</h2>
+      <p>Mapping de chaque page existante</p>
+    </div>
+    <div class="mapping">
+      <div class="map-row"><div class="map-from">/page/historique</div><div class="map-arrow">→</div><div class="map-to"><strong>À propos</strong> (fusionné avec Missions + Valeurs)</div></div>
+      <div class="map-row"><div class="map-from">/maisons</div><div class="map-arrow">→</div><div class="map-to"><strong>Services</strong> (renommé et restructuré par SRG / SASE / SAPA)</div></div>
+      <div class="map-row"><div class="map-from">/service/amay, /escale, /couthuin</div><div class="map-arrow">→</div><div class="map-to"><strong>Services › SRG</strong> (3 entrées, 1 template CMS)</div></div>
+      <div class="map-row"><div class="map-from">/service/le-sase (Huy)</div><div class="map-arrow">→</div><div class="map-to"><strong>Services › SASE</strong></div></div>
+      <div class="map-row"><div class="map-from">/service/escapade-sapa</div><div class="map-arrow">→</div><div class="map-to"><strong>Services › SAPA</strong></div></div>
+      <div class="map-row"><div class="map-from">/liste-news</div><div class="map-arrow">→</div><div class="map-to"><strong>Actualités</strong> (CMS, même usage)</div></div>
+      <div class="map-row"><div class="map-from">/projets</div><div class="map-arrow">→</div><div class="map-to"><strong>Faire un don</strong> (section « Projets en cours »)</div></div>
+      <div class="map-row"><div class="map-from">/liens-utiles</div><div class="map-arrow">→</div><div class="map-to"><strong>Faire un don</strong> + <strong>Partenaires</strong></div></div>
+      <div class="map-row"><div class="map-from">/nous-aider</div><div class="map-arrow">→</div><div class="map-to"><strong>Faire un don</strong> (page principale)</div></div>
+      <div class="map-row"><div class="map-from">/contacts</div><div class="map-arrow">→</div><div class="map-to"><strong>Contact</strong> (repris et enrichi)</div></div>
+      <div class="map-row deleted"><div class="map-from">/photos</div><div class="map-arrow">✕</div><div class="map-to">Supprimé — photos intégrées dans Services et Accueil</div></div>
+      <div class="map-row deleted"><div class="map-from">/user · /register</div><div class="map-arrow">✕</div><div class="map-to">Supprimé — pas d'espace connecté</div></div>
+    </div>
+  </section>
+
+  <!-- 04 ARCHITECTURE -->
+  <section id="s4">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>Architecture &amp; navigation</h2>
+      <p>Nouvelle structure du site</p>
+    </div>
+
+    <div class="sitemap">
+      <div class="sm-row"><div class="sm-i">1</div><div class="sm-p">Accueil</div><div class="sm-d">Hero + aperçu des 3 services, dernières actualités, CTA : Faire un don + réseaux sociaux.</div><div class="sm-b"><span class="badge b-static">Statique</span></div></div>
+      <div class="sm-row"><div class="sm-i">2</div><div class="sm-p">Services</div><div class="sm-d">Page d'aperçu des 3 services. Clic direct depuis le menu. Chaque service renvoie vers sa sous-page.</div><div class="sm-b"><span class="badge b-dropdown">Dropdown</span></div></div>
+      <div class="sm-row child s-green"><div class="sm-i">↳</div><div class="sm-p">SRG</div><div class="sm-d">1 template CMS × 3 entrées : Amay, Escale (Mise en autonomie), Couthuin.</div><div class="sm-b"><span class="badge b-cms">CMS ×3</span></div></div>
+      <div class="sm-row child s-orange"><div class="sm-i">↳</div><div class="sm-p">SASE — Huy</div><div class="sm-d">Service d'Accompagnement Socio-Éducatif.</div><div class="sm-b"><span class="badge b-static">Statique</span></div></div>
+      <div class="sm-row child s-cyan"><div class="sm-i">↳</div><div class="sm-p">SAPA — Escapade</div><div class="sm-d">Service d'Accompagnement du Parrainage.</div><div class="sm-b"><span class="badge b-static">Statique</span></div></div>
+      <div class="sm-row"><div class="sm-i">3</div><div class="sm-p">À propos</div><div class="sm-d">Dropdown uniquement (pas de page propre) : Histoire · Missions &amp; Valeurs · Équipe · Partenaires.</div><div class="sm-b"><span class="badge b-dropdown">Dropdown</span></div></div>
+      <div class="sm-row child"><div class="sm-i">↳</div><div class="sm-p">Notre histoire</div><div class="sm-d">Chronologie et contexte de création, évolution au fil des années.</div><div class="sm-b"><span class="badge b-static">Statique</span></div></div>
+      <div class="sm-row child"><div class="sm-i">↳</div><div class="sm-p">Missions &amp; Valeurs</div><div class="sm-d">Raison d'être, valeurs fondatrices, engagement social.</div><div class="sm-b"><span class="badge b-static">Statique</span></div></div>
+      <div class="sm-row child"><div class="sm-i">↳</div><div class="sm-p">Équipe</div><div class="sm-d">Membres, photos, noms et fonctions — gérés via ContentCore.</div><div class="sm-b"><span class="badge b-static">Statique</span></div></div>
+      <div class="sm-row child"><div class="sm-i">↳</div><div class="sm-p">Partenaires</div><div class="sm-d">Logos et liens des partenaires institutionnels et sponsors.</div><div class="sm-b"><span class="badge b-static">Statique</span></div></div>
+      <div class="sm-row"><div class="sm-i">4</div><div class="sm-p">Actualités</div><div class="sm-d">News + agenda. Fusion de /liste-news et /agenda. Entrées gérées par le client.</div><div class="sm-b"><span class="badge b-cms">CMS</span></div></div>
+      <div class="sm-row"><div class="sm-i">5</div><div class="sm-p">Offres d'emploi</div><div class="sm-d">Emplois + stages. Nouveau, géré via ContentCore.</div><div class="sm-b"><span class="badge b-new">Nouveau</span></div></div>
+      <div class="sm-row"><div class="sm-i">6</div><div class="sm-p">Contact</div><div class="sm-d">Formulaire + adresses des 6 sites + Direction / Secrétariat.</div><div class="sm-b"><span class="badge b-static">Statique</span></div></div>
+      <div class="sm-row cta"><div class="sm-i">★</div><div class="sm-p">Faire un don</div><div class="sm-d">Consolidation de /nous-aider + /projets + /liens-utiles. Bouton CTA prioritaire dans le menu.</div><div class="sm-b"><span class="badge b-cta">CTA</span></div></div>
+    </div>
+
+    <!-- Interactive nav mockup -->
+    <h3 style="font-size:13px;font-weight:700;color:var(--dark);letter-spacing:0.06em;text-transform:uppercase;margin-top:36px;">Aperçu du contenu par page</h3>
+    <p style="font-size:13.5px;color:var(--muted);margin-top:6px;">Cliquez sur un élément du menu pour voir ce qui est prévu.</p>
+
+    <div class="mockup">
+      <div class="mockup-bar" id="nav-bar">
+        <span class="mockup-label">Menu</span>
+        <button onclick="showPage('accueil')" class="nav-btn" id="btn-accueil">Accueil</button>
+        <button onclick="showPage('services')" class="nav-btn" id="btn-services">Services ▾</button>
+        <button onclick="showPage('apropos')" class="nav-btn" id="btn-apropos">À propos ▾</button>
+        <button onclick="showPage('actualites')" class="nav-btn" id="btn-actualites">Actualités</button>
+        <button onclick="showPage('emploi')" class="nav-btn" id="btn-emploi">Offres d'emploi</button>
+        <button onclick="showPage('contact')" class="nav-btn" id="btn-contact">Contact</button>
+        <button onclick="showPage('don')" class="nav-btn-cta" id="btn-don"><span class="material-symbols-outlined">favorite</span> Faire un don</button>
+      </div>
+
+      <div class="mockup-panel">
+
+        <div id="page-default" class="page-panel page-default">
+          <span class="material-symbols-outlined" style="font-size:18px;">ads_click</span>
+          Cliquez sur un élément du menu pour voir le contenu prévu
+        </div>
+
+        <div id="page-accueil" class="page-panel" style="display:none;">
+          <div class="page-label">Accueil</div>
+          <div class="page-grid">
+            <div class="page-card"><div class="t">Hero</div><div class="d">Visuel fort avec slogan et deux CTAs : « Découvrir nos services » + « Faire un don ».</div></div>
+            <div class="page-card"><div class="t">Nos services</div><div class="d">3 cards colorées SRG / SASE / SAPA avec courte description et lien.</div></div>
+            <div class="page-card"><div class="t">Dernières actualités</div><div class="d">3 derniers articles depuis le CMS + « Voir toutes les actualités ».</div></div>
+            <div class="page-card s-orange"><div class="t">Faire un don</div><div class="d">Section CTA avec texte de sensibilisation et lien vers la page Faire un don.</div></div>
+          </div>
+        </div>
+
+        <div id="page-services" class="page-panel" style="display:none;">
+          <div class="page-label">Services — page d'aperçu + sous-pages</div>
+          <div class="page-grid three">
+            <div class="page-card s-green"><div class="t">SRG — Service Résidentiel Général</div><div class="d">Accueil résidentiel dans 3 maisons.</div><div class="tinynote">CMS : Amay · Escale · Couthuin</div></div>
+            <div class="page-card s-orange"><div class="t">SASE — Accompagnement Socio-Éducatif</div><div class="d">Suivi en milieu ouvert à Huy.</div><div class="tinynote">Page statique</div></div>
+            <div class="page-card s-cyan"><div class="t">SAPA — Parrainage</div><div class="d">Mise en relation avec familles bénévoles via Escapade.</div><div class="tinynote">Page statique</div></div>
+          </div>
+        </div>
+
+        <div id="page-apropos" class="page-panel" style="display:none;">
+          <div class="page-label">À propos — dropdown uniquement, pas de page propre</div>
+          <div class="page-grid">
+            <div class="page-card"><div class="t">Notre histoire</div><div class="d">Chronologie et contexte de création de l'ASBL.</div></div>
+            <div class="page-card"><div class="t">Missions &amp; Valeurs</div><div class="d">Raison d'être, valeurs fondatrices, engagement social.</div></div>
+            <div class="page-card s-green"><div class="t">Équipe</div><div class="d">Membres, photos, noms et fonctions — gérés via ContentCore.</div></div>
+            <div class="page-card"><div class="t">Partenaires</div><div class="d">Logos et liens des partenaires institutionnels et sponsors.</div></div>
+          </div>
+        </div>
+
+        <div id="page-actualites" class="page-panel" style="display:none;">
+          <div class="page-label">Actualités — CMS</div>
+          <div class="page-grid">
+            <div class="page-card s-cyan"><div class="t">Liste des articles</div><div class="d">Grille avec titre, date, image et extrait. Filtrable par catégorie.</div></div>
+            <div class="page-card s-cyan"><div class="t">Agenda</div><div class="d">Événements à venir. Fusion de l'ancien /agenda et /liste-news.</div></div>
+          </div>
+        </div>
+
+        <div id="page-emploi" class="page-panel" style="display:none;">
+          <div class="page-label">Offres d'emploi — CMS · Nouveau</div>
+          <div class="page-grid">
+            <div class="page-card s-green"><div class="t">Offres d'emploi</div><div class="d">CDI / CDD avec description, service concerné et date limite.</div></div>
+            <div class="page-card s-green"><div class="t">Stages</div><div class="d">Offres de stages avec liens vers formulaires ou PDF.</div></div>
+          </div>
+        </div>
+
+        <div id="page-contact" class="page-panel" style="display:none;">
+          <div class="page-label">Contact</div>
+          <div class="page-grid">
+            <div class="page-card"><div class="t">Formulaire général</div><div class="d">Nom, email, message — pour toute demande entrante.</div></div>
+            <div class="page-card"><div class="t">Adresses &amp; Direction</div><div class="d">Les 6 sites + Direction et Secrétariat.</div></div>
+          </div>
+        </div>
+
+        <div id="page-don" class="page-panel" style="display:none;">
+          <div class="page-label">Faire un don — CTA prioritaire</div>
+          <div class="page-grid">
+            <div class="page-card s-orange"><div class="t">Appel aux dons</div><div class="d">Texte + coordonnées bancaires pour virement. Pas de paiement en ligne.</div></div>
+            <div class="page-card s-orange"><div class="t">Projets en cours</div><div class="d">Projets soutenus + liens externes (cres-mons.be, hsf-asbl.be).</div></div>
+            <div class="page-card s-orange s-full"><div class="t">Partenaires de soutien</div><div class="d">Liens et logos des partenaires liés aux dons, issus de l'ancien /liens-utiles.</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="material-symbols-outlined">priority_high</span>
+      <div>« Faire un don » est un <strong>bouton CTA</strong> (Yellow Green sur Evergreen), pas un simple lien. « À propos » est uniquement un dropdown, sans page propre. Sur mobile, le CTA reste accessible via une barre fixe en bas d'écran.</div>
+    </div>
+  </section>
+
+  <!-- 05 CMS -->
+  <section id="s5">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2>Besoins CMS</h2>
+      <p>Collections gérées par ContentCore</p>
+    </div>
+    <div class="cms-table">
+      <div class="cms-head">
+        <div>Collection · Template</div>
+        <div>Entrées</div>
+        <div>Champs disponibles</div>
+      </div>
+      <div class="cms-row">
+        <div class="cms-coll">Site SRG</div>
+        <div class="cms-ent">×3 (Amay · Escale · Couthuin)</div>
+        <div class="cms-fields">Nom, adresse, description, galerie photos, horaires, contacts, responsable, carte / localisation.</div>
+      </div>
+      <div class="cms-row">
+        <div class="cms-coll">Actualités · News</div>
+        <div class="cms-ent">Illimité</div>
+        <div class="cms-fields">Titre, date, catégorie, texte (rich text), image principale, résumé / extrait.</div>
+      </div>
+      <div class="cms-row">
+        <div class="cms-coll">Offres d'emploi</div>
+        <div class="cms-ent">Illimité</div>
+        <div class="cms-fields">Intitulé, type (CDI / CDD / Stage), service, description, profil, date limite, lien ou PDF.</div>
+      </div>
+      <div class="cms-row">
+        <div class="cms-coll">Projets (Faire un don)</div>
+        <div class="cms-ent">Illimité</div>
+        <div class="cms-fields">Nom, description, lien externe, statut (en cours / terminé).</div>
+      </div>
+    </div>
+    <div class="callout green">
+      <span class="material-symbols-outlined">check_circle</span>
+      <div>Les pages <strong>SASE</strong>, <strong>SAPA</strong>, <strong>À propos</strong>, <strong>Équipe</strong> et <strong>Partenaires</strong> sont statiques — configurées une fois, modifiables via simples champs de texte dans ContentCore.</div>
+    </div>
+  </section>
+
+  <!-- 06 FONCTIONNALITÉS -->
+  <section id="s6">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2>Fonctionnalités clés</h2>
+      <p>Exigences fonctionnelles</p>
+    </div>
+    <div class="kv">
+      <div class="row"><div class="k">Éléments visibles clés</div><div class="v">Familles · Services (accueil) · Faire un don · Facebook + Instagram</div></div>
+      <div class="row"><div class="k">Textes</div><div class="v">Fournis par le client, intégrés en interne</div></div>
+      <div class="row"><div class="k">Logique dons</div><div class="v">Liens externes : cres-mons.be + hsf-asbl.be · projets propres regroupés</div></div>
+      <div class="row"><div class="k">Réseaux sociaux</div><div class="v">Facebook + Instagram · liens en header / footer + widget de fil éventuel</div></div>
+      <div class="row"><div class="k">Services en accueil</div><div class="v">Les 3 services (SRG / SASE / SAPA) en cards colorées avec liens</div></div>
+      <div class="row"><div class="k">Galerie photos</div><div class="v">Pas de page dédiée — intégrée dans Services et Accueil</div></div>
+      <div class="row"><div class="k">Connexion / Intranet</div><div class="v">Supprimé — pas d'espace connecté</div></div>
+    </div>
+  </section>
+
+  <!-- 07 DÉCISIONS TECHNIQUES -->
+  <section id="s7">
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <h2>Décisions techniques</h2>
+      <p>Choix techniques et organisationnels</p>
+    </div>
+    <div class="kv">
+      <div class="row">
+        <div class="k">CMS</div>
+        <div class="v"><strong>ContentCore</strong> — système de gestion de contenu développé en interne par lacønis. Toutes les collections dynamiques (Sites SRG, Actualités, Offres d'emploi, Projets) y sont gérées. Le client modifie textes et images de toutes les pages en totale autonomie, sans toucher au layout ni au design.</div>
+      </div>
+      <div class="row"><div class="k">Photos</div><div class="v">Images de <strong>stock dans un premier temps</strong>, remplacées progressivement par des photos du client via ContentCore.</div></div>
+      <div class="row"><div class="k">Langue</div><div class="v"><strong>Français uniquement</strong> — pas de multilinguisme prévu.</div></div>
+      <div class="row"><div class="k">Espace connecté</div><div class="v"><strong>Supprimé</strong> — pas d'intranet ni de Register / Login.</div></div>
+      <div class="row"><div class="k">Dons</div><div class="v"><strong>Par virement bancaire</strong> uniquement — pas de plateforme de paiement en ligne. La page « Faire un don » affiche l'IBAN et les liens externes.</div></div>
+      <div class="row"><div class="k">Secrétariat / Direction</div><div class="v">Intégré dans la page <strong>Contact</strong> et repris dans le footer — pas de sous-page dédiée.</div></div>
+      <div class="row"><div class="k">Équipe</div><div class="v">Le client gère lui-même toutes les photos, textes et fonctions via <strong>ContentCore</strong>.</div></div>
+      <div class="row"><div class="k">Hébergement</div><div class="v">Serveur dédié Hostinger géré par lacønis — performance, sécurité et mises à jour incluses, sans intervention du client.</div></div>
+    </div>
+  </section>
+
+  <!-- 08 LIVRABLES CLIENT -->
+  <section id="s8">
+    <div class="sec-head">
+      <span class="sec-num">08</span>
+      <h2>Ce que le client doit fournir</h2>
+      <p>Livrables &amp; éléments à valider</p>
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:24px;">
+      lacønis récupère un maximum de contenu depuis l'ancien site. Le client est invité à valider et compléter ce qui manque. Les éléments marqués <span class="del-status ds-todo">À COMPLÉTER</span> nécessitent une action avant ou après le lancement.
+    </p>
+
+    <div class="deliver">
+      <div class="del-card got">
+        <div class="del-head"><h4>Coordonnées &amp; adresses</h4><span class="del-status ds-got">Récupéré</span></div>
+        <p>Tous les sites : Direction (Rue de Biber 11), SRG Amay (n°9), Escale (n°7), Couthuin, SASE Huy, Escapade. Téléphones et emails inclus.</p>
+      </div>
+      <div class="del-card validate">
+        <div class="del-head"><h4>Textes — Services SRG</h4><span class="del-status ds-validate">À valider</span></div>
+        <p>Descriptions complètes récupérées pour Amay, Escale et Couthuin : missions, capacités, public, méthodologie, équipe.</p>
+      </div>
+      <div class="del-card validate">
+        <div class="del-head"><h4>Textes — SASE &amp; SAPA</h4><span class="del-status ds-validate">À valider</span></div>
+        <p>Descriptions récupérées pour le SASE (Huy) et Escapade (SAPA). À adapter par le client.</p>
+      </div>
+      <div class="del-card validate">
+        <div class="del-head"><h4>Texte — Histoire</h4><span class="del-status ds-validate">À valider</span></div>
+        <p>Chronologie complète récupérée (1985 → 2002). lacønis reformule pour le nouveau site.</p>
+      </div>
+      <div class="del-card confirm">
+        <div class="del-head"><h4>Texte — Faire un don</h4><span class="del-status ds-confirm">À confirmer</span></div>
+        <p>Texte d'appel aux dons récupéré + IBAN Arc-en-Ciel (BE41 6300 1180 0010, mention « don au projet n°67 »). Toujours d'actualité ?</p>
+      </div>
+      <div class="del-card todo">
+        <div class="del-head"><h4>Partenaires &amp; liens utiles</h4><span class="del-status ds-todo">À vérifier</span></div>
+        <p>26 partenaires récupérés (institutionnels, donateurs, associatifs). Certains liens datent de 2013-2015 — à valider.</p>
+      </div>
+      <div class="del-card todo">
+        <div class="del-head"><h4>Logos partenaires</h4><span class="del-status ds-todo">À compléter</span></div>
+        <p>Pas de logos récupérables depuis l'ancien site. lacønis collecte ce qui est dispo en ligne ; le client complète le reste.</p>
+      </div>
+      <div class="del-card todo">
+        <div class="del-head"><h4>Missions &amp; Valeurs</h4><span class="del-status ds-todo">À compléter</span></div>
+        <p>Non présents sous cette forme sur l'ancien site. lacønis propose une base à partir des descriptions récupérées.</p>
+      </div>
+      <div class="del-card later">
+        <div class="del-head"><h4>Photos — Équipe</h4><span class="del-status ds-later">Post-lancement</span></div>
+        <p>Aucune photo d'équipe disponible. Le client les ajoute via ContentCore après la mise en ligne.</p>
+      </div>
+      <div class="del-card later">
+        <div class="del-head"><h4>Photos — Maisons &amp; Services</h4><span class="del-status ds-later">Post-lancement</span></div>
+        <p>Pas de photos réutilisables. Images de stock en attendant. Le client remplace progressivement.</p>
+      </div>
+      <div class="del-card todo">
+        <div class="del-head"><h4>Réseaux sociaux</h4><span class="del-status ds-todo">À confirmer</span></div>
+        <p>Page Facebook Escapade récupérée. Vérifier s'il existe une page officielle pour l'ASBL L'Espoir.</p>
+      </div>
+      <div class="del-card todo">
+        <div class="del-head"><h4>Accès domaine asbl-espoir.be</h4><span class="del-status ds-todo">À compléter</span></div>
+        <p>Transfert DNS vers Hostinger. Le client contacte son prestataire actuel. Hébergement inclus chez lacønis.</p>
+      </div>
+      <div class="del-card todo">
+        <div class="del-head"><h4>Statistiques page d'accueil</h4><span class="del-status ds-todo">À confirmer</span></div>
+        <p>Nombre exact de jeunes accompagnés par an + membres de l'équipe. (Actuellement placeholders 120+ et 40+.)</p>
+      </div>
+      <div class="del-card todo">
+        <div class="del-head"><h4>Projets en cours</h4><span class="del-status ds-todo">À compléter</span></div>
+        <p>Liste à jour des projets à mettre en avant sur la page Faire un don. L'ancien projet Rue de Biber n°11 date de 2015.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="material-symbols-outlined">info</span>
+      <div>L'hébergement est assuré par lacønis sur serveur dédié Hostinger — performance, sécurité et mises à jour incluses, sans intervention du client. &nbsp;·&nbsp; N° entreprise ASBL : 0431 081 064 &nbsp;·&nbsp; Agrément SRG i0128 / SASE i0971</div>
+    </div>
+  </section>
+
+  <!-- Outro -->
+  <div class="outro">
+    <div class="outro-text">
+      <div class="label"><span class="material-symbols-outlined" style="font-size:14px;vertical-align:-2px;">support_agent</span> Une question sur le briefing ?</div>
+      <h3>On en parle quand vous voulez</h3>
+      <p>Chaque décision est ouverte à discussion. N'hésitez pas à revenir vers nous sur n'importe quel point.</p>
+    </div>
+    <div class="outro-links">
+      <a href="homepage.html" class="outro-link"><span class="material-symbols-outlined">public</span> Voir le site</a>
+    </div>
+  </div>
+
+</main>
+
+<div class="doc-foot">
+  <strong>L'Espoir asbl</strong> · Briefing Refonte du Site Web · lacønis · Avril 2026 · Confidentiel
+</div>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page-panel').forEach(function (p) { p.style.display = 'none'; });
+    document.querySelectorAll('.nav-btn, .nav-btn-cta').forEach(function (b) { b.classList.remove('active'); });
+    document.getElementById('page-' + id).style.display = 'block';
+    document.getElementById('btn-' + id).classList.add('active');
+  }
+</script>
 
 </body>
 </html>
