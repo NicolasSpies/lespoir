@@ -113,6 +113,8 @@
   .btn-primary:hover { box-shadow: 0 10px 24px rgba(0,38,38,0.25); filter: brightness(1.08); }
   .btn-accent { background: #8BAD3B; color: #002626; }
   .btn-accent:hover { box-shadow: 0 10px 24px rgba(139,173,59,0.35); filter: brightness(1.05); }
+  .btn-accent .material-symbols-outlined { font-variation-settings: 'FILL' 0; transition: font-variation-settings 0.35s ease, transform 0.35s ease; }
+  .btn-accent:hover .material-symbols-outlined { font-variation-settings: 'FILL' 1; transform: scale(1.08); }
   .btn-outline { background: transparent; color: #002626; box-shadow: inset 0 0 0 2px #002626; }
   .btn-outline:hover { background: #002626; color: #EFE7DA; }
   .btn-outline-light { background: transparent; color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5); }
@@ -736,15 +738,23 @@
   var copyBtn = document.getElementById('copyIbanBtn');
   var ibanText = document.getElementById('ibanText');
   if (copyBtn && ibanText) {
+    function fallbackCopy(text) {
+      var tmp = document.createElement('textarea');
+      tmp.value = text;
+      tmp.style.position = 'fixed'; tmp.style.left = '-9999px'; tmp.style.top = '0';
+      document.body.appendChild(tmp);
+      tmp.focus(); tmp.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(tmp);
+    }
     copyBtn.addEventListener('click', function() {
       var text = ibanText.textContent.trim();
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function() { showCopied(); });
+        navigator.clipboard.writeText(text).then(showCopied).catch(function() {
+          fallbackCopy(text); showCopied();
+        });
       } else {
-        var tmp = document.createElement('textarea');
-        tmp.value = text; document.body.appendChild(tmp);
-        tmp.select(); document.execCommand('copy'); document.body.removeChild(tmp);
-        showCopied();
+        fallbackCopy(text); showCopied();
       }
     });
     function showCopied() {

@@ -178,6 +178,15 @@
     box-shadow: 0 10px 24px rgba(139, 173, 59, 0.35);
     filter: brightness(1.05);
   }
+  /* Heart fills up smoothly on hover (position stable) */
+  .btn-accent .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0;
+    transition: font-variation-settings 0.35s ease, transform 0.35s ease;
+  }
+  .btn-accent:hover .material-symbols-outlined {
+    font-variation-settings: 'FILL' 1;
+    transform: scale(1.08);
+  }
 
   .btn-outline {
     background: transparent;
@@ -1003,7 +1012,7 @@
 
         <!-- PROJET, grand featured gauche (Lime Green badge) -->
         <a href="article.html" class="actu-card md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-2xl block">
-          <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 blur-up" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNyRWZRXRvRB3FDZdTEanATNwYuGwY6MoomXnAmauN9D8g2qF0MWkrK6V_i6_BhnWOI7GisosKLOHGyEGFk62x7EsNQ2aKArHo80m3MRfStgq4XKnN1FXHrD-NlaBeyhbPcEfEd-ceXO7RwOvGj6AS_WtG9lCXkRoe-57SZ92xHcpMkrt5R4Ggt3uCfjvJDmz7_DuXEjpwWVi_uoJV_tEfAUxiTpVx88Z7qlo0IZdwCCKIP95IWnh906SVdjyW3BxfHHTqEAYovp4" alt="Potager communautaire"/>
+          <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 blur-up" loading="lazy" src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=1200&q=80&auto=format&fit=crop" alt="Potager communautaire"/>
           <div class="absolute inset-0 bg-gradient-to-t from-[#002626] via-[#002626]/40 to-transparent opacity-90"></div>
           <div class="absolute bottom-0 p-6 md:p-10 text-white">
             <span class="bg-[#8BAD3B] text-[#002626] px-3 py-1 text-xs font-bold uppercase mb-4 inline-block rounded">Projet SRG</span>
@@ -1015,7 +1024,7 @@
 
         <!-- ACTUALITÉ 1, droite haut (Dark Cyan badge) -->
         <a href="article.html" class="actu-card md:col-span-2 relative group overflow-hidden rounded-2xl block">
-          <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 blur-up" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtdJ_9qMBs0zwSjVDJnkkO3ET-0_ivGOpvDDcr6GGTOtYJPAgI1LF-JcXZ1CSfW6oggiWbN3GdKE1WWp3f4ABKCXTgJI7RWcpziHW3lxD88z8tCipOeCsb0vEksyTE3sbGbCJXsxOScDmeP4SPIMihv4rtPFXnPu0Ap2d8IzFI-PPRt1zdRWU_sVD5Joc4Qlue8LLW5hcHpqLnJq4tOc0lsz2nQ4TvESyk76m0-8i6eEi6jXY9yv_LnyzLBobIn8Z3RTqLKQFA4hk" alt="Portes ouvertes"/>
+          <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 blur-up" loading="lazy" src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1200&q=80&auto=format&fit=crop" alt="Portes ouvertes"/>
           <div class="absolute inset-0 bg-gradient-to-t from-[#002626] via-[#002626]/40 to-transparent opacity-90"></div>
           <div class="absolute bottom-0 p-6 md:p-8 text-white">
             <span class="bg-[#119DA4] text-white px-3 py-1 text-xs font-bold uppercase mb-3 inline-block rounded">Actualité</span>
