@@ -291,6 +291,11 @@
   .impact-card.revealed:hover { transform: translateY(-4px); }
   .method-card.revealed:hover { transform: translateY(-3px); }
 
+  /* ── Organic blobs ── */
+  .blob { position:absolute; border-radius:60% 40% 70% 30% / 50% 60% 40% 50%; pointer-events:none; z-index:0; }
+  .blob-parent > :not(.blob) { position:relative; z-index:1; }
+  .blob-parent { position:relative; overflow:hidden; }
+
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
@@ -383,7 +388,9 @@
 <main class="flex-grow">
 
   <!-- ── HERO ── -->
-  <section class="relative bg-[#002626] pt-16 pb-16 md:pt-24 md:pb-24 px-6 md:px-8 overflow-hidden">
+  <section class="relative bg-[#002626] pt-16 pb-16 md:pt-24 md:pb-24 px-6 md:px-8 overflow-hidden blob-parent">
+    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(139,173,59,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
+    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,88,18,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
     <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(139,173,59,0.15) 0%, transparent 70%);"></div>
     <div class="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(229,88,18,0.08) 0%, transparent 70%);"></div>
     <div class="relative max-w-4xl mx-auto">
@@ -394,7 +401,7 @@
       </nav>
       <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-5">Nous soutenir</span>
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-6">
-        Votre don, <br class="hidden sm:block"/>leur avenir.
+        Votre don, <br class="hidden sm:block"/>leur <span style="position:relative;display:inline-block;">avenir<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#8BAD3B" stroke-width="2.5" stroke-linecap="round"/></svg></span>.
       </h1>
       <p class="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mb-10">
         Depuis 1985, L'Espoir accompagne des jeunes et des familles qui traversent des moments difficiles. Grâce à vous, on peut continuer à leur offrir un cadre, une écoute et un vrai coup de pouce.
@@ -410,8 +417,11 @@
     </div>
   </section>
 
+  <div aria-hidden="true" style="background:#002626;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 8 Q360 48 720 20 Q1080 0 1440 32 L1440 48 L0 48 Z" fill="#EFE7DA"/></svg></div>
+
   <!-- ── POURQUOI DONNER ── -->
-  <section class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA]">
+  <section class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
+    <div class="blob" aria-hidden="true" style="width:240px;height:240px;background:rgba(17,157,164,0.09);bottom:40px;right:-60px;border-radius:50% 50% 70% 30% / 40% 60% 40% 60%;"></div>
     <div class="max-w-7xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
         <span class="text-[#E55812] font-black tracking-widest text-sm uppercase block mb-3">Votre impact</span>
@@ -439,6 +449,8 @@
       </div>
     </div>
   </section>
+
+  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 36 Q480 0 720 40 Q960 48 1440 12 L1440 48 L0 48 Z" fill="#fff"/></svg></div>
 
   <!-- ── MÉTHODES DE DON ── -->
   <section id="methodes" class="py-16 md:py-24 px-6 md:px-8">
@@ -508,8 +520,11 @@
     </div>
   </section>
 
+  <div aria-hidden="true" style="background:#fff;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 24 Q360 48 720 16 Q1080 0 1440 36 L1440 48 L0 48 Z" fill="#EFE7DA"/></svg></div>
+
   <!-- ── COMMENT ÇA MARCHE / FAQ ── -->
-  <section id="comment" class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA]">
+  <section id="comment" class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
+    <div class="blob" aria-hidden="true" style="width:280px;height:280px;background:rgba(139,173,59,0.10);top:20px;right:-80px;border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;"></div>
     <div class="max-w-4xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12">
         <span class="text-[#119DA4] font-black tracking-widest text-sm uppercase block mb-3">Comment ça marche ?</span>
@@ -565,6 +580,8 @@
       </div>
     </div>
   </section>
+
+  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 4 Q360 48 720 8 Q1080 0 1440 40 L1440 48 L0 48 Z" fill="#002626"/></svg></div>
 
   <!-- ── CTA FINAL ── -->
   <section class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden relative">
