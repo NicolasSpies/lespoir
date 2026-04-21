@@ -324,9 +324,73 @@
     transition: transform 0.22s ease, box-shadow 0.22s ease;
   }
   .service-contact-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,38,38,0.08); }
+
+  /* ── Location cards (nos sites) ── */
+  .location-card {
+    position: relative; background: #fff; border-radius: 1.1rem;
+    padding: 1.5rem 1.5rem 1.25rem; overflow: hidden;
+    border: 1px solid rgba(0,38,38,0.07);
+    display: flex; flex-direction: column; gap: 0.9rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .location-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px; background: var(--svc-color, #8BAD3B);
+  }
+  .location-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px -10px rgba(0,38,38,0.14);
+    border-color: var(--svc-color, #8BAD3B);
+  }
+  .location-tag {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    padding: 0.3rem 0.7rem; border-radius: 999px;
+    background: color-mix(in srgb, var(--svc-color, #8BAD3B) 14%, transparent);
+    color: var(--svc-color, #5e7a22);
+    font-size: 0.68rem; font-weight: 800;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    width: fit-content;
+  }
+  .location-tag .material-symbols-outlined {
+    font-size: 14px; font-variation-settings: 'FILL' 1;
+  }
+  .location-name {
+    font-size: 1.1rem; font-weight: 800; color: #002626;
+    line-height: 1.2;
+  }
+  .location-addr {
+    display: flex; align-items: flex-start; gap: 0.55rem;
+    font-size: 0.88rem; color: rgba(0,38,38,0.72); line-height: 1.5;
+  }
+  .location-addr .material-symbols-outlined {
+    font-size: 17px; color: rgba(0,38,38,0.45); flex-shrink: 0; margin-top: 1px;
+  }
+  .location-contact {
+    display: flex; flex-direction: column; gap: 0.45rem;
+    padding-top: 0.9rem; border-top: 1px dashed rgba(0,38,38,0.12);
+    margin-top: auto;
+  }
+  .location-contact a {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    font-size: 0.85rem; font-weight: 600; color: #002626;
+    text-decoration: none; transition: color 0.2s ease;
+  }
+  .location-contact a:hover { color: var(--svc-color, #8BAD3B); }
+  .location-contact a .material-symbols-outlined {
+    font-size: 15px; color: var(--svc-color, #8BAD3B);
+    font-variation-settings: 'FILL' 1;
+  }
+  .location-map {
+    font-size: 0.76rem; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--svc-color, #5e7a22) !important;
+    margin-top: 0.15rem;
+  }
+  .location-map .material-symbols-outlined { font-size: 14px; }
+
   /* ── Scroll-reveal hover fix: specificity (0,3,0) beats .scroll-reveal.revealed (0,2,0) ── */
   .info-card.revealed:hover { transform: translateY(-2px); }
   .service-contact-card.revealed:hover { transform: translateY(-3px); }
+  .location-card.revealed:hover { transform: translateY(-4px); }
 
   /* ── Organic blobs ── */
   .blob { position:absolute; border-radius:60% 40% 70% 30% / 50% 60% 40% 50%; pointer-events:none; z-index:0; }
@@ -594,71 +658,109 @@
 
   <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 12 Q360 0 720 36 Q1080 48 1440 20 L1440 48 L0 48 Z" fill="#fbf9f8"/></svg></div>
 
-  <!-- ── PAR SERVICE ── -->
+  <!-- ── NOS SITES ── -->
   <section class="py-20 px-6 md:px-8 bg-surface blob-parent">
-    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,88,18,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
+    <div class="blob" aria-hidden="true" style="width:260px;height:260px;background:rgba(139,173,59,0.09);top:40px;right:-80px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
+    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,88,18,0.07);bottom:30px;left:-60px;border-radius:60% 40% 55% 45% / 45% 55% 40% 60%;"></div>
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-12">
-        <span class="text-[#002626]/40 font-black tracking-widest text-sm uppercase block mb-3">Orientation</span>
-        <h2 class="text-2xl md:text-3xl font-bold text-[#002626]">Vous cherchez quel service ?</h2>
+        <span class="text-[#002626]/40 font-black tracking-widest text-sm uppercase block mb-3">Nos sites</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-[#002626]">Six maisons, une même équipe</h2>
         <p class="text-[#002626]/55 mt-3 max-w-lg mx-auto text-sm leading-relaxed">
-          Si vous avez une demande précise, voici vers qui vous diriger directement.
+          L'ASBL rayonne depuis Amay et Huy. Chaque service a son adresse, son téléphone et son email direct.
         </p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
 
-        <div class="service-contact-card service-col">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full bg-[#8BAD3B] flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-[#002626]" style="font-size:18px;font-variation-settings:'FILL' 1;">home</span>
-            </div>
-            <div>
-              <div class="font-black text-[#8BAD3B] text-sm">SRG</div>
-              <div class="text-xs text-[#002626]/55">Hébergement résidentiel</div>
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+
+        <!-- Direction / Secrétariat -->
+        <div class="location-card service-col" style="--svc-color:#002626;">
+          <span class="location-tag"><span class="material-symbols-outlined">star</span>Direction · Siège</span>
+          <div class="location-name">Direction &amp; Secrétariat</div>
+          <div class="location-addr">
+            <span class="material-symbols-outlined">location_on</span>
+            <span>Rue de Biber 11<br/>4540 Amay, Belgique</span>
           </div>
-          <p class="text-sm text-[#002626]/65 leading-relaxed mb-4">
-            Pour une orientation vers nos maisons, une question sur les conditions d'accueil ou une prise de contact avec le SPJ.
-          </p>
-          <a href="srg.html" class="text-[#8BAD3B] font-bold text-sm flex items-center gap-1 hover:opacity-80 transition-opacity">
-            En savoir plus <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
-          </a>
+          <div class="location-contact">
+            <a href="tel:+3285235814"><span class="material-symbols-outlined">call</span>085 23 58 14</a>
+            <a href="mailto:direction@asbl-espoir.be"><span class="material-symbols-outlined">mail</span>direction@asbl-espoir.be</a>
+            <a href="https://maps.google.com/?q=Rue+de+Biber+11+4540+Amay" target="_blank" rel="noopener" class="location-map"><span class="material-symbols-outlined">map</span>Itinéraire</a>
+          </div>
         </div>
 
-        <div class="service-contact-card service-col">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full bg-[#E55812] flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-white" style="font-size:18px;font-variation-settings:'FILL' 1;">home_work</span>
-            </div>
-            <div>
-              <div class="font-black text-[#E55812] text-sm">SASE</div>
-              <div class="text-xs text-[#002626]/55">Accompagnement à domicile</div>
-            </div>
+        <!-- SRG Amay -->
+        <div class="location-card service-col" style="--svc-color:#8BAD3B;">
+          <span class="location-tag"><span class="material-symbols-outlined">home</span>SRG · Amay</span>
+          <div class="location-name">SRG d'Amay</div>
+          <div class="location-addr">
+            <span class="material-symbols-outlined">location_on</span>
+            <span>Rue de Biber 9<br/>4540 Amay, Belgique</span>
           </div>
-          <p class="text-sm text-[#002626]/65 leading-relaxed mb-4">
-            Pour une demande d'accompagnement pour votre famille, un mandat du SPJ ou juste pour voir si le SASE peut vous aider.
-          </p>
-          <a href="sase.html" class="text-[#E55812] font-bold text-sm flex items-center gap-1 hover:opacity-80 transition-opacity">
-            En savoir plus <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
-          </a>
+          <div class="location-contact">
+            <a href="tel:+3285317737"><span class="material-symbols-outlined">call</span>085 31 77 37</a>
+            <a href="mailto:amay@asbl-espoir.be"><span class="material-symbols-outlined">mail</span>amay@asbl-espoir.be</a>
+            <a href="https://maps.google.com/?q=Rue+de+Biber+9+4540+Amay" target="_blank" rel="noopener" class="location-map"><span class="material-symbols-outlined">map</span>Itinéraire</a>
+          </div>
         </div>
 
-        <div class="service-contact-card service-col">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full bg-[#119DA4] flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-white" style="font-size:18px;font-variation-settings:'FILL' 1;">volunteer_activism</span>
-            </div>
-            <div>
-              <div class="font-black text-[#119DA4] text-sm">SAPA</div>
-              <div class="text-xs text-[#002626]/55">Parrainage familial</div>
-            </div>
+        <!-- L'Escale -->
+        <div class="location-card service-col" style="--svc-color:#8BAD3B;">
+          <span class="location-tag"><span class="material-symbols-outlined">key</span>Mise en autonomie</span>
+          <div class="location-name">L'Escale</div>
+          <div class="location-addr">
+            <span class="material-symbols-outlined">location_on</span>
+            <span>Rue de Biber 7<br/>4540 Amay, Belgique</span>
           </div>
-          <p class="text-sm text-[#002626]/65 leading-relaxed mb-4">
-            Pour devenir famille bénévole, pour orienter un jeune vers le parrainage, ou pour en savoir plus sur le fonctionnement.
-          </p>
-          <a href="sapa.html" class="text-[#119DA4] font-bold text-sm flex items-center gap-1 hover:opacity-80 transition-opacity">
-            En savoir plus <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
-          </a>
+          <div class="location-contact">
+            <a href="tel:+3285317346"><span class="material-symbols-outlined">call</span>085 31 73 46</a>
+            <a href="mailto:escale@asbl-espoir.be"><span class="material-symbols-outlined">mail</span>escale@asbl-espoir.be</a>
+            <a href="https://maps.google.com/?q=Rue+de+Biber+7+4540+Amay" target="_blank" rel="noopener" class="location-map"><span class="material-symbols-outlined">map</span>Itinéraire</a>
+          </div>
+        </div>
+
+        <!-- SRG Couthuin -->
+        <div class="location-card service-col" style="--svc-color:#8BAD3B;">
+          <span class="location-tag"><span class="material-symbols-outlined">home</span>SRG · Couthuin</span>
+          <div class="location-name">SRG de Couthuin</div>
+          <div class="location-addr">
+            <span class="material-symbols-outlined">location_on</span>
+            <span>Rue du Docteur Beaujean 28<br/>4218 Couthuin, Belgique</span>
+          </div>
+          <div class="location-contact">
+            <a href="tel:+3285711232"><span class="material-symbols-outlined">call</span>085 71 12 32</a>
+            <a href="mailto:couthuin@asbl-espoir.be"><span class="material-symbols-outlined">mail</span>couthuin@asbl-espoir.be</a>
+            <a href="https://maps.google.com/?q=Rue+du+Docteur+Beaujean+28+4218+Couthuin" target="_blank" rel="noopener" class="location-map"><span class="material-symbols-outlined">map</span>Itinéraire</a>
+          </div>
+        </div>
+
+        <!-- SASE Huy -->
+        <div class="location-card service-col" style="--svc-color:#E55812;">
+          <span class="location-tag"><span class="material-symbols-outlined">home_work</span>SASE · Huy</span>
+          <div class="location-name">SASE</div>
+          <div class="location-addr">
+            <span class="material-symbols-outlined">location_on</span>
+            <span>Rue des Augustins 44<br/>4500 Huy, Belgique</span>
+          </div>
+          <div class="location-contact">
+            <a href="tel:+3285846936"><span class="material-symbols-outlined">call</span>085 84 69 36</a>
+            <a href="mailto:saie@asbl-espoir.be"><span class="material-symbols-outlined">mail</span>saie@asbl-espoir.be</a>
+            <a href="https://maps.google.com/?q=Rue+des+Augustins+44+4500+Huy" target="_blank" rel="noopener" class="location-map"><span class="material-symbols-outlined">map</span>Itinéraire</a>
+          </div>
+        </div>
+
+        <!-- Escapade / SAPA -->
+        <div class="location-card service-col" style="--svc-color:#119DA4;">
+          <span class="location-tag"><span class="material-symbols-outlined">volunteer_activism</span>SAPA · Escapade</span>
+          <div class="location-name">Escapade</div>
+          <div class="location-addr">
+            <span class="material-symbols-outlined">location_on</span>
+            <span>Rue Joseph Wauters 12<br/>4540 Amay, Belgique</span>
+          </div>
+          <div class="location-contact">
+            <a href="tel:+32456379102"><span class="material-symbols-outlined">call</span>+32 456 37 91 02</a>
+            <a href="mailto:escapade@asbl-espoir.be"><span class="material-symbols-outlined">mail</span>escapade@asbl-espoir.be</a>
+            <a href="https://maps.google.com/?q=Rue+Joseph+Wauters+12+4540+Amay" target="_blank" rel="noopener" class="location-map"><span class="material-symbols-outlined">map</span>Itinéraire</a>
+          </div>
         </div>
 
       </div>
@@ -703,7 +805,7 @@
 </main>
 
 <!-- ── FOOTER ── -->
-<footer class="bg-[#001a1a] w-full text-[#EFE7DA]">
+<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(139,173,59,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
   <div class="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-16 pb-8">
     <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
       <div class="max-w-xs space-y-4">
