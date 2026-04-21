@@ -676,6 +676,24 @@
   /* Ensure content inside blob-parent sections stays above blobs */
   .blob-parent > * { position: relative; z-index: 1; }
   .blob-parent { position: relative; overflow: hidden; }
+
+  /* ── Stat card rotations (subtle handmade feel) ── */
+  /* Base rotations — each card slightly off-axis */
+  #about .grid .stat-card:nth-child(1) { transform: rotate(-1.2deg); }
+  #about .grid .stat-card:nth-child(2) { transform: rotate(0.7deg); }
+  #about .grid .stat-card:nth-child(3) { transform: rotate(-0.5deg); }
+  #about .grid .stat-card:nth-child(4) { transform: rotate(1deg); }
+
+  /* Hover — lift + preserve rotation (specificity beats .scroll-reveal.revealed) */
+  #about .grid .stat-card:nth-child(1):hover,
+  #about .grid .stat-card:nth-child(1).revealed:hover { transform: rotate(-1.2deg) translateY(-6px); box-shadow: 0 14px 30px rgba(0,38,38,0.10); }
+  #about .grid .stat-card:nth-child(2):hover,
+  #about .grid .stat-card:nth-child(2).revealed:hover { transform: rotate(0.7deg) translateY(-6px); box-shadow: 0 14px 30px rgba(0,38,38,0.10); }
+  #about .grid .stat-card:nth-child(3):hover,
+  #about .grid .stat-card:nth-child(3).revealed:hover { transform: rotate(-0.5deg) translateY(-6px); box-shadow: 0 14px 30px rgba(0,38,38,0.10); }
+  #about .grid .stat-card:nth-child(4):hover,
+  #about .grid .stat-card:nth-child(4).revealed:hover { transform: rotate(1deg) translateY(-6px); box-shadow: 0 14px 30px rgba(0,38,38,0.10); }
+
   /* ── Scroll-reveal hover fix: specificity (0,3,0) beats .scroll-reveal.revealed (0,2,0) ── */
   .stat-card.revealed:hover { transform: translateY(-6px); }
   .service-card.revealed:hover { transform: translateY(-10px); }
