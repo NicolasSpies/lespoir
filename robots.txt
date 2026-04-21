@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+Sitemap: https://asbl-espoir.be/sitemap.xml

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Page introuvable · L'Espoir asbl</title>
+<meta name="description" content="La page que vous cherchez n'existe pas ou a été déplacée. Retrouvez rapidement les services, les actualités et le contact de L'Espoir asbl."/>
+<link rel="canonical" href="https://asbl-espoir.be/404.html"/>
+<link rel="icon" href="lespoir-logo.svg" type="image/svg+xml"/>
+<meta name="robots" content="noindex, follow"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-surface": "#1b1c1c", "surface": "#fbf9f8",
+          "primary": "#000d0d", "primary-container": "#002626",
+          "background": "#fbf9f8", "on-surface-variant": "#414848"
+        },
+        borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        fontFamily: { "sans": ["Inter"] }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background-color: #fbf9f8; }
+
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block; line-height: 1;
+    transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  *:focus { outline: none; }
+  *:focus-visible { outline: 2px solid #8BAD3B; outline-offset: 3px; border-radius: 4px; }
+
+  :root { --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1); }
+
+  a:hover > .material-symbols-outlined,
+  a:hover > span > .material-symbols-outlined { transform: translateX(4px); }
+
+  nav a, footer a { transition: var(--transition); }
+
+  .nav-link { position: relative; padding-bottom: 6px; color: #002626; }
+  .nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: #002626; transform: scaleX(0); transform-origin: center; transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); }
+  .nav-link:hover::after, .nav-link.is-active::after { transform: scaleX(1); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem 2rem; border-radius: 999px; font-weight: 700; font-size: 1rem; cursor: pointer; border: 0; transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease; line-height: 1; text-decoration: none; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-lg { padding: 1.1rem 2.2rem; font-size: 1.05rem; }
+  .btn-sm { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+  .btn-primary { background: #002626; color: #EFE7DA; }
+  .btn-primary:hover { box-shadow: 0 10px 24px rgba(0,38,38,0.25); filter: brightness(1.08); }
+  .btn-accent { background: #8BAD3B; color: #002626; }
+  .btn-accent:hover { box-shadow: 0 10px 24px rgba(139,173,59,0.35); }
+  .btn-outline { background: transparent; color: #002626; box-shadow: inset 0 0 0 2px #002626; }
+  .btn-outline:hover { background: #002626; color: #EFE7DA; }
+
+  nav > div { transition: padding 0.3s ease; }
+  .nav-logo { transition: height 0.3s ease; }
+  nav.scrolled > div { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+  nav.scrolled .nav-logo { height: 2.25rem; }
+
+  .hamburger { width: 40px; height: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; padding: 0; background: transparent; border: 0; cursor: pointer; color: #002626; flex-shrink: 0; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: currentColor; border-radius: 2px; transition: transform 0.28s ease, opacity 0.22s ease; transform-origin: center; }
+  .hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.is-open span:nth-child(2) { opacity: 0; }
+  .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-drawer { position: fixed; top: 0; right: 0; width: min(88vw, 360px); height: 100vh; height: 100dvh; background: #EFE7DA; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); z-index: 60; overflow-y: auto; display: flex; flex-direction: column; }
+  .mobile-drawer.is-open { transform: translateX(0); }
+  .mobile-drawer-backdrop { position: fixed; inset: 0; background: rgba(0, 38, 38, 0.5); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 55; backdrop-filter: blur(2px); }
+  .mobile-drawer-backdrop.is-open { opacity: 1; pointer-events: auto; }
+  .m-drawer-header { display: flex; align-items: center; justify-content: flex-end; padding: 0.85rem 1.25rem; border-bottom: 1px solid rgba(0, 38, 38, 0.08); flex-shrink: 0; }
+  .m-close-btn { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0, 38, 38, 0.07); border: 0; cursor: pointer; color: #002626; }
+  .m-nav { flex: 1; padding: 0 0 0.5rem; overflow-y: auto; }
+  .m-link { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 1.25rem; color: #002626; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(0, 38, 38, 0.07); }
+  .m-link:hover { background: rgba(0, 38, 38, 0.04); }
+  .m-chevron { font-size: 20px; opacity: 0.45; transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
+  .m-accordion.is-open .m-chevron { transform: rotate(180deg); opacity: 0.7; }
+  .m-accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(0, 38, 38, 0.025); }
+  .m-accordion.is-open .m-accordion-body { max-height: 480px; }
+  .m-sublink { display: flex; flex-direction: column; padding: 0.65rem 1.25rem 0.65rem 1.75rem; border-bottom: 1px solid rgba(0, 38, 38, 0.05); text-decoration: none; }
+  .m-sublink .abbr { font-weight: 700; font-size: 0.9rem; color: #002626; }
+  .m-sublink .name { font-size: 0.73rem; color: rgba(0, 38, 38, 0.55); margin-top: 1px; }
+  .m-drawer-footer { padding: 1.25rem; border-top: 1px solid rgba(0, 38, 38, 0.08); }
+  .m-drawer-footer .btn { width: 100%; }
+  body.drawer-open { overflow: hidden; }
+  .m-link-row { display: flex; align-items: stretch; border-bottom: 1px solid rgba(0,38,38,0.07); }
+  .m-link-row .m-link-main { flex: 1; border-bottom: none; justify-content: flex-start; }
+  .m-chevron-btn { padding: 0 1rem; background: transparent; border: none; border-left: 1px solid rgba(0,38,38,0.07); cursor: pointer; color: #002626; display: flex; align-items: center; }
+
+  .nav-item { position: relative; display: flex; align-items: center; }
+  .nav-dropdown { position: absolute; top: calc(100% + 8px); left: 0; min-width: 240px; background: #fff; border-radius: 12px; padding: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.10); opacity: 0; transform: translateY(-6px); pointer-events: none; transition: opacity 0.18s ease, transform 0.18s ease; z-index: 100; }
+  .nav-item.dropdown-open .nav-dropdown { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .nav-dropdown a { display: block; padding: 8px 14px; border-radius: 8px; color: #002626; border-left: 3px solid transparent; text-decoration: none; }
+  .nav-dropdown a:hover { background: #f5f5f3; }
+  .nav-dropdown .dd-abbr { display: block; font-size: 15px; font-weight: 700; }
+  .nav-dropdown .dd-name { display: block; font-size: 11.5px; line-height: 1.2; margin-top: 1px; opacity: 0.55; font-weight: 500; }
+
+  /* ── 404 ── */
+  .err-wrap { max-width: 960px; margin: 0 auto; padding: 4rem 1.5rem 5rem; text-align: center; }
+  .err-big {
+    font-size: clamp(8rem, 22vw, 15rem); line-height: 0.9;
+    font-weight: 900; letter-spacing: -0.05em; color: #002626;
+    background: linear-gradient(135deg, #002626 0%, #E55812 50%, #8BAD3B 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+  }
+  .err-lead { font-size: clamp(1.15rem, 2vw, 1.35rem); color: rgba(0,38,38,0.72); line-height: 1.65; max-width: 560px; margin: 0 auto 2.5rem; }
+  .err-ctas { display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; margin-bottom: 3.5rem; }
+
+  .quick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; max-width: 880px; margin: 0 auto; }
+  .quick-card {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 0.65rem;
+    padding: 1.5rem 1.3rem; background: #fff;
+    border: 1px solid rgba(0,38,38,0.08); border-radius: 1rem;
+    text-decoration: none; text-align: left;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .quick-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,38,38,0.08); border-color: var(--accent, #8BAD3B); }
+  .quick-card .q-icon {
+    width: 40px; height: 40px; border-radius: 0.6rem;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; background: var(--accent, #8BAD3B);
+  }
+  .quick-card .q-title { font-weight: 800; color: #002626; font-size: 0.95rem; }
+  .quick-card .q-desc { font-size: 0.8rem; color: rgba(0,38,38,0.6); line-height: 1.5; }
+  .quick-card .q-arrow { margin-top: auto; padding-top: 0.4rem; display: flex; align-items: center; gap: 0.3rem; color: var(--accent, #8BAD3B); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
+</style>
+</head>
+<body class="min-h-screen flex flex-col text-on-surface">
+
+<!-- ── NAVBAR ── -->
+<nav class="w-full top-0 sticky bg-[#EFE7DA] z-50">
+  <div class="flex justify-between items-center max-w-7xl mx-auto px-6 lg:px-8 py-4 lg:py-6">
+    <a href="homepage.html"><img src="lespoir-logo.svg" alt="L'Espoir asbl" class="nav-logo h-10 lg:h-14"></a>
+    <div class="hidden lg:flex gap-7 text-sm tracking-tight items-center">
+      <a class="nav-link" href="homepage.html">Accueil</a>
+      <div class="nav-item">
+        <a class="nav-link cursor-default" href="services.html">Services ▾</a>
+        <div class="nav-dropdown">
+          <a href="srg.html"><span class="dd-abbr" style="color:#8BAD3B">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
+          <a href="sase.html"><span class="dd-abbr" style="color:#E55812">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
+          <a href="sapa.html"><span class="dd-abbr" style="color:#119DA4">SAPA</span><span class="dd-name">Service d'Accompagnement du Parrainage</span></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link cursor-default" href="apropos.html">À propos ▾</a>
+        <div class="nav-dropdown">
+          <a href="apropos.html#histoire"><span class="dd-abbr">Notre histoire</span><span class="dd-name">Depuis 1985 au service des jeunes</span></a>
+          <a href="apropos.html#missions"><span class="dd-abbr">Missions &amp; Valeurs</span><span class="dd-name">Ce qui nous guide au quotidien</span></a>
+          <a href="apropos.html#equipe"><span class="dd-abbr">Équipe</span><span class="dd-name">Les visages de L'Espoir</span></a>
+          <a href="apropos.html#partenaires"><span class="dd-abbr">Partenaires</span><span class="dd-name">Ceux qui nous soutiennent</span></a>
+        </div>
+      </div>
+      <a class="nav-link" href="actualites.html">Actualités</a>
+      <a class="nav-link" href="emploi.html">Offres d'emploi</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </div>
+    <div class="flex items-center gap-2 sm:gap-3">
+      <a href="don.html" class="btn btn-accent btn-sm">
+        <span class="material-symbols-outlined" style="font-size:18px;">favorite</span>
+        <span class="hidden min-[420px]:inline">Faire un don</span>
+      </a>
+      <button id="hamburgerBtn" class="hamburger lg:hidden" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileDrawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── MOBILE DRAWER ── -->
+<div id="drawerBackdrop" class="mobile-drawer-backdrop lg:hidden" aria-hidden="true"></div>
+<aside id="mobileDrawer" class="mobile-drawer lg:hidden" role="dialog" aria-modal="true" aria-label="Menu de navigation" aria-hidden="true">
+  <div class="m-drawer-header">
+    <button id="drawerCloseBtn" class="m-close-btn" aria-label="Fermer le menu">
+      <span class="material-symbols-outlined" style="font-size:20px;">close</span>
+    </button>
+  </div>
+  <nav class="m-nav">
+    <a href="homepage.html" class="m-link">Accueil</a>
+    <div class="m-accordion">
+      <div class="m-link-row">
+        <a href="services.html" class="m-link m-link-main">Services</a>
+        <button class="m-accordion-trigger m-chevron-btn" aria-expanded="false" aria-label="Voir les sous-pages de Services">
+          <span class="m-chevron material-symbols-outlined">expand_more</span>
+        </button>
+      </div>
+      <div class="m-accordion-body">
+        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#8BAD3B">SRG</span><span class="name">Service Résidentiel Général</span></a>
+        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E55812">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
+        <a href="sapa.html" class="m-sublink"><span class="abbr" style="color:#119DA4">SAPA</span><span class="name">Service d'Accompagnement du Parrainage</span></a>
+      </div>
+    </div>
+    <div class="m-accordion">
+      <div class="m-link-row">
+        <a href="apropos.html" class="m-link m-link-main">À propos</a>
+        <button class="m-accordion-trigger m-chevron-btn" aria-expanded="false" aria-label="Voir les sous-pages de À propos">
+          <span class="m-chevron material-symbols-outlined">expand_more</span>
+        </button>
+      </div>
+      <div class="m-accordion-body">
+        <a href="apropos.html#histoire" class="m-sublink"><span class="abbr">Notre histoire</span><span class="name">Depuis 1985</span></a>
+        <a href="apropos.html#missions" class="m-sublink"><span class="abbr">Missions &amp; Valeurs</span><span class="name">Ce qui nous guide</span></a>
+        <a href="apropos.html#equipe" class="m-sublink"><span class="abbr">Équipe</span><span class="name">Les visages de L'Espoir</span></a>
+        <a href="apropos.html#partenaires" class="m-sublink"><span class="abbr">Partenaires</span><span class="name">Ceux qui nous soutiennent</span></a>
+      </div>
+    </div>
+    <a href="actualites.html" class="m-link">Actualités</a>
+    <a href="emploi.html" class="m-link">Offres d'emploi</a>
+    <a href="contact.html" class="m-link">Contact</a>
+  </nav>
+  <div class="m-drawer-footer">
+    <a href="don.html" class="btn btn-accent"><span class="material-symbols-outlined" style="font-size:18px;">favorite</span>Faire un don</a>
+  </div>
+</aside>
+
+<main class="flex-grow">
+
+  <!-- ── ERREUR 404 ── -->
+  <section class="bg-[#EFE7DA]">
+    <div class="err-wrap">
+      <div class="err-big" aria-hidden="true">404</div>
+      <h1 class="text-2xl md:text-3xl font-black text-[#002626] mb-4">Oups… cette page a pris la poudre d'escampette.</h1>
+      <p class="err-lead">
+        La page que vous cherchez n'existe pas, a été déplacée ou renommée. Pas de panique, on vous remet sur le bon chemin en un clic.
+      </p>
+      <div class="err-ctas">
+        <a href="homepage.html" class="btn btn-primary btn-lg">
+          <span class="material-symbols-outlined" style="font-size:18px;">home</span>
+          Retour à l'accueil
+        </a>
+        <a href="contact.html" class="btn btn-outline btn-lg">
+          <span class="material-symbols-outlined" style="font-size:18px;">mail</span>
+          Nous contacter
+        </a>
+      </div>
+
+      <div class="quick-grid">
+        <a href="services.html" class="quick-card" style="--accent:#8BAD3B;">
+          <div class="q-icon"><span class="material-symbols-outlined" style="font-size:22px;">category</span></div>
+          <div class="q-title">Nos services</div>
+          <div class="q-desc">SRG · SASE · SAPA, nos trois domaines d'action auprès des jeunes.</div>
+          <span class="q-arrow">Découvrir <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
+        </a>
+        <a href="apropos.html" class="quick-card" style="--accent:#002626;">
+          <div class="q-icon"><span class="material-symbols-outlined" style="font-size:22px;">groups</span></div>
+          <div class="q-title">À propos</div>
+          <div class="q-desc">Notre histoire, nos missions, notre équipe et nos partenaires.</div>
+          <span class="q-arrow">En savoir plus <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
+        </a>
+        <a href="emploi.html" class="quick-card" style="--accent:#E55812;">
+          <div class="q-icon"><span class="material-symbols-outlined" style="font-size:22px;">work</span></div>
+          <div class="q-title">Offres d'emploi</div>
+          <div class="q-desc">Rejoignez une équipe engagée dans l'aide à la jeunesse.</div>
+          <span class="q-arrow">Voir les postes <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
+        </a>
+        <a href="don.html" class="quick-card" style="--accent:#119DA4;">
+          <div class="q-icon"><span class="material-symbols-outlined" style="font-size:22px;">favorite</span></div>
+          <div class="q-title">Faire un don</div>
+          <div class="q-desc">Soutenez nos projets, déductible fiscalement dès 40€.</div>
+          <span class="q-arrow">Je soutiens <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="bg-[#001a1a] w-full text-[#EFE7DA]">
+  <div class="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-16 pb-8">
+    <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
+      <div class="max-w-xs space-y-4">
+        <div class="text-xl font-bold">L'Espoir asbl</div>
+        <p class="opacity-70 text-sm leading-relaxed">
+          Rue de Biber 11<br/>4540 Amay, Belgique<br/><br/>
+          085 23 58 14<br/>
+          direction@asbl-espoir.be
+        </p>
+        <p class="opacity-50 text-xs">N° entreprise : 0431 081 064<br/>Agréé Fédération Wallonie-Bruxelles</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-10">
+        <div class="flex flex-col gap-3">
+          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Navigation</span>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html">Accueil</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="services.html">Services</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="apropos.html">À propos</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="actualites.html">Actualités</a>
+        </div>
+        <div class="flex flex-col gap-3">
+          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Engagement</span>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="emploi.html">Offres d'emploi</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="don.html">Faire un don</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html#partenaires">Partenaires</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="contact.html">Contact</a>
+        </div>
+        <div class="flex flex-col gap-3">
+          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Services</span>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="srg.html">SRG · Résidentiel</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sase.html">SASE · Accompagnement</a>
+          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sapa.html">SAPA · Parrainage</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs opacity-40">
+      <p>© 2026 L'Espoir asbl. Tous droits réservés.</p>
+      <div class="flex gap-6">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="politique-confidentialite.html">Politique de confidentialité</a>
+        <span>Made with ♥ by <a href="https://laconis.be" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">lacønis</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+  /* ── MOBILE DRAWER ── */
+  var btn = document.getElementById('hamburgerBtn');
+  var closeBtn = document.getElementById('drawerCloseBtn');
+  var drawer = document.getElementById('mobileDrawer');
+  var backdrop = document.getElementById('drawerBackdrop');
+  if (btn && drawer && backdrop) {
+    function o(){drawer.classList.add('is-open');backdrop.classList.add('is-open');btn.classList.add('is-open');btn.setAttribute('aria-expanded','true');drawer.setAttribute('aria-hidden','false');document.body.classList.add('drawer-open');}
+    function c(){drawer.classList.remove('is-open');backdrop.classList.remove('is-open');btn.classList.remove('is-open');btn.setAttribute('aria-expanded','false');drawer.setAttribute('aria-hidden','true');document.body.classList.remove('drawer-open');}
+    btn.addEventListener('click',function(){drawer.classList.contains('is-open')?c():o();});
+    if (closeBtn) closeBtn.addEventListener('click',c);
+    backdrop.addEventListener('click',c);
+    drawer.querySelectorAll('a.m-link, a.m-sublink, a.m-link-main, .m-drawer-footer .btn').forEach(function(el){el.addEventListener('click',c);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&drawer.classList.contains('is-open'))c();});
+    window.addEventListener('resize',function(){if(window.innerWidth>=1024&&drawer.classList.contains('is-open'))c();});
+    drawer.querySelectorAll('.m-accordion-trigger').forEach(function(t){
+      t.addEventListener('click',function(){
+        var a=t.closest('.m-accordion');var open=a.classList.contains('is-open');
+        drawer.querySelectorAll('.m-accordion.is-open').forEach(function(x){x.classList.remove('is-open');x.querySelector('.m-accordion-trigger').setAttribute('aria-expanded','false');});
+        if(!open){a.classList.add('is-open');t.setAttribute('aria-expanded','true');}
+      });
+    });
+  }
+
+  /* ── NAV SHRINK ── */
+  var nav = document.querySelector('nav');
+  if (nav) window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive:true });
+
+  /* ── NAV DROPDOWNS ── */
+  document.querySelectorAll('.nav-item').forEach(function(item) {
+    var t;
+    item.addEventListener('mouseenter', function(){ if(t){clearTimeout(t);t=null;} document.querySelectorAll('.nav-item.dropdown-open').forEach(function(o){ if(o!==item) o.classList.remove('dropdown-open'); }); item.classList.add('dropdown-open'); });
+    item.addEventListener('mouseleave', function(){ t=setTimeout(function(){ item.classList.remove('dropdown-open'); },120); });
+  });
+})();
+</script>
+
+</body>
+</html>

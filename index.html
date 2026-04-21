@@ -2,74 +2,17 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>L'Espoir asbl — Dossier de projet</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>L'Espoir asbl, Redirection</title>
+<meta http-equiv="refresh" content="0; url=homepage.html"/>
+<link rel="icon" href="lespoir-logo.svg" type="image/svg+xml"/>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Inter', sans-serif;
-    background: #002626;
-    color: #fff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-  .logo { height: 4rem; margin-bottom: 1.5rem; }
-  .subtitle {
-    color: #95C623;
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 3.5rem;
-  }
-  .buttons {
-    display: flex;
-    gap: 1.25rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1.125rem 2.5rem;
-    border-radius: 9999px;
-    font-size: 1.125rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: transform 0.2s ease, filter 0.2s ease;
-  }
-  .btn:hover {
-    transform: scale(1.04);
-    filter: brightness(1.05);
-  }
-  .btn:active { transform: scale(0.97); }
-  .btn-briefing {
-    background: #EFE7DA;
-    color: #002626;
-  }
-  .btn-site {
-    background: #95C623;
-    color: #002626;
-  }
-  @media (max-width: 520px) {
-    .buttons { flex-direction: column; align-items: center; }
-    .btn { width: 100%; justify-content: center; }
-  }
+  body { font-family: sans-serif; background: #002626; color: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; }
+  a { color: #8BAD3B; }
 </style>
 </head>
 <body>
-  <img src="lespoir-logo.svg" alt="L'Espoir asbl" class="logo" style="filter: brightness(0) invert(1);">
-  <p class="subtitle">Dossier du projet web</p>
-  <div class="buttons">
-    <a href="briefing.html" class="btn btn-briefing">Briefing de projet</a>
-    <a href="homepage.html" class="btn btn-site">Aperçu du site</a>
-  </div>
-  <p style="position:fixed;bottom:1.5rem;font-size:0.75rem;color:rgba(255,255,255,0.3);">Made with ♥ by <a href="https://laconis.be" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;">lacønis</a></p>
+  <p>Redirection… <a href="homepage.html">Cliquez ici si la page ne se charge pas.</a></p>
+  <script>window.location.replace("homepage.html");</script>
 </body>
 </html>
