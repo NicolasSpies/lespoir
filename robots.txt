@@ -1,4 +1,87 @@
+# Search engines
 User-agent: *
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+# AI crawlers — explicitly allowed (Generative Engine Optimization)
+# OpenAI
+User-agent: GPTBot
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+# Google AI
+User-agent: Google-Extended
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+# Microsoft / Meta / DuckDuckGo / Amazon / You.com / Mistral
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+User-agent: YouBot
+Allow: /
+Disallow: /404.html
+Disallow: /briefing.html
+
+User-agent: Mistral-User
 Allow: /
 Disallow: /404.html
 Disallow: /briefing.html

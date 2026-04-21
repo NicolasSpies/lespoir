@@ -93,7 +93,6 @@
 
   /* ── Arrow animations ── */
   a:hover > .material-symbols-outlined,
-  *:hover > a > .material-symbols-outlined,
   a:hover > span > .material-symbols-outlined { transform: translateX(4px); }
 
   /* ── Text links ── */
@@ -136,6 +135,8 @@
   .btn-primary:hover { box-shadow: 0 10px 24px rgba(0,38,38,0.25); filter: brightness(1.08); }
   .btn-accent { background: #8BAD3B; color: #002626; }
   .btn-accent:hover { box-shadow: 0 10px 24px rgba(139,173,59,0.35); filter: brightness(1.05); }
+  .btn-accent .material-symbols-outlined { font-variation-settings: 'FILL' 0; transition: font-variation-settings 0.35s ease, transform 0.35s ease; }
+  .btn-accent:hover .material-symbols-outlined { font-variation-settings: 'FILL' 1; transform: scale(1.08); }
   .btn-outline { background: transparent; color: #002626; box-shadow: inset 0 0 0 2px #002626; }
   .btn-outline:hover { background: #002626; color: #EFE7DA; }
   .btn-outline-light { background: transparent; color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5); }
@@ -331,6 +332,15 @@
   .blob { position:absolute; border-radius:60% 40% 70% 30% / 50% 60% 40% 50%; pointer-events:none; z-index:0; }
   .blob-parent > :not(.blob) { position:relative; z-index:1; }
   .blob-parent { position:relative; overflow:hidden; }
+
+  /* ── Mobile: auto-activate hover state when element is centered in viewport ── */
+  @media (hover: none) {
+    .don-card.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
+    .don-card.revealed.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); }
+    .info-card.is-active { border-color: #8BAD3B; box-shadow: 0 6px 20px rgba(139,173,59,0.12); transform: translateY(-2px); }
+    .info-card.revealed.is-active { transform: translateY(-2px); }
+    .service-contact-card.revealed.is-active { transform: translateY(-3px); }
+  }
 
 </style>
 </head>
@@ -845,6 +855,16 @@
       closeTimer = setTimeout(function() { item.classList.remove('dropdown-open'); }, 120);
     });
   });
+
+  if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
+    var touchTargets = document.querySelectorAll('.don-card, .info-card, .service-contact-card');
+    var touchObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        entry.target.classList.toggle('is-active', entry.isIntersecting);
+      });
+    }, { threshold: [0.5], rootMargin: '-20% 0px -20% 0px' });
+    touchTargets.forEach(function(el) { touchObs.observe(el); });
+  }
 
 })();
 </script>

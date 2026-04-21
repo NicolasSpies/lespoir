@@ -30,6 +30,7 @@
 <meta name="twitter:title" content="Faire un don · Déduction fiscale 45% · L'Espoir asbl, Huy"/>
 <meta name="twitter:description" content="Soutenez l'aide à la jeunesse : don ponctuel ou récurrent à L'Espoir asbl. Attestation fiscale de 45 % dès 40 € via le Fonds Arc-en-Ciel. IBAN BE41 6300 1180 0010."/>
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1200&q=80"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Mon don est-il vraiment déductible fiscalement ?","acceptedAnswer":{"@type":"Answer","text":"Oui. À partir de 40 € par an versés via le Service Arc-en-Ciel (sur le compte BE41 6300 1180 0010 avec la mention « L'Espoir asbl Amay »), vous recevez une attestation fiscale qui vous permet de déduire 45 % du montant de vos impôts. Pour un don de 100 €, ça vous revient en réalité à 55 €."}},{"@type":"Question","name":"Pourquoi passer par le Service Arc-en-Ciel ?","acceptedAnswer":{"@type":"Answer","text":"L'Espoir asbl n'est pas directement agréée pour émettre des attestations fiscales. Le Service Arc-en-Ciel, qui l'est, centralise les dons de plusieurs associations pour la jeunesse. C'est donc lui qui envoie l'attestation, mais votre don est intégralement reversé à L'Espoir grâce à la mention « L'Espoir asbl Amay »."}},{"@type":"Question","name":"Où va concrètement mon argent ?","acceptedAnswer":{"@type":"Answer","text":"Les dons financent tout ce que les subsides de la Fédération Wallonie-Bruxelles ne couvrent pas : les activités extérieures des jeunes, le matériel scolaire, l'aménagement des maisons, la formation continue de nos équipes, et les projets pédagogiques portés par les enfants et les éducateurs eux-mêmes."}},{"@type":"Question","name":"Puis-je mettre en place un don récurrent ?","acceptedAnswer":{"@type":"Answer","text":"Bien sûr. Le plus simple, c'est un ordre permanent mensuel sur le compte du Service Arc-en-Ciel, n'importe quel montant à partir de 5 €/mois. Les dons récurrents nous aident énormément à planifier sereinement sur l'année."}},{"@type":"Question","name":"Et si je veux donner autre chose que de l'argent ?","acceptedAnswer":{"@type":"Answer","text":"Vos compétences, votre temps, du matériel, un local, une prestation : tout ça nous intéresse. Contactez-nous pour en discuter, on trouvera une façon utile de mettre votre aide à profit."}},{"@type":"Question","name":"Est-ce que vous êtes transparents sur l'usage des dons ?","acceptedAnswer":{"@type":"Answer","text":"Oui. L'Espoir asbl publie un rapport d'activités annuel (consultable dans la section Actualités) et nos comptes sont déposés chaque année à la Banque Nationale de Belgique, conformément à la loi sur les ASBL."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"NGO","@id":"https://asbl-espoir.be/#organization","name":"L'Espoir asbl","alternateName":["ASBL L'Espoir","L'Espoir Aide à la Jeunesse"],"url":"https://asbl-espoir.be/","logo":{"@type":"ImageObject","url":"https://asbl-espoir.be/lespoir-logo.svg","width":512,"height":512},"foundingDate":"1985","description":"Association sans but lucratif belge agréée par la Fédération Wallonie-Bruxelles, active dans l'aide à la jeunesse à Huy et Amay depuis 1985 via trois services : SRG (résidentiel), SASE (accompagnement socio-éducatif) et SAPA (parrainage familial).","address":{"@type":"PostalAddress","streetAddress":"Rue de Biber 11","postalCode":"4540","addressLocality":"Amay","addressRegion":"Liège","addressCountry":"BE"},"telephone":"+32-85-23-58-14","email":"direction@asbl-espoir.be","areaServed":[{"@type":"City","name":"Huy"},{"@type":"City","name":"Amay"},{"@type":"City","name":"Waremme"},{"@type":"City","name":"Hannut"},{"@type":"AdministrativeArea","name":"Province de Liège"}],"taxID":"0431.081.064","sameAs":[],"knowsAbout":["aide à la jeunesse","protection de l'enfance","hébergement résidentiel","accompagnement socio-éducatif","parrainage familial","éducation spécialisée"]},{"@type":"WebSite","@id":"https://asbl-espoir.be/#website","url":"https://asbl-espoir.be/","name":"L'Espoir asbl","inLanguage":"fr-BE","publisher":{"@id":"https://asbl-espoir.be/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://asbl-espoir.be/"},{"@type":"ListItem","position":2,"name":"Faire un don","item":"https://asbl-espoir.be/don.html"}]},{"@type":"WebPage","name":"Faire un don à L'Espoir asbl","potentialAction":{"@type":"DonateAction","recipient":{"@id":"https://asbl-espoir.be/#organization"},"name":"Don à L'Espoir asbl"}},{"@type":"WebPage","@id":"https://asbl-espoir.be/don.html#webpage","url":"https://asbl-espoir.be/don.html","name":"Faire un don · Déduction fiscale 45% · L'Espoir asbl, Huy","description":"Soutenez l'aide à la jeunesse : don ponctuel ou récurrent à L'Espoir asbl. Attestation fiscale de 45 % dès 40 € via le Fonds Arc-en-Ciel. IBAN BE41 6300 1180 0010.","inLanguage":"fr-BE","isPartOf":{"@id":"https://asbl-espoir.be/#website"},"about":{"@id":"https://asbl-espoir.be/#organization"}}]}</script>
 <!-- SEO:END -->
 
@@ -77,7 +78,6 @@
   :root { --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1); }
 
   a:hover > .material-symbols-outlined,
-  *:hover > a > .material-symbols-outlined,
   a:hover > span > .material-symbols-outlined { transform: translateX(4px); }
 
   nav a, footer a { transition: var(--transition); }
@@ -112,6 +112,8 @@
   .btn-primary:hover { box-shadow: 0 10px 24px rgba(0,38,38,0.25); filter: brightness(1.08); }
   .btn-accent { background: #8BAD3B; color: #002626; }
   .btn-accent:hover { box-shadow: 0 10px 24px rgba(139,173,59,0.35); filter: brightness(1.05); }
+  .btn-accent .material-symbols-outlined { font-variation-settings: 'FILL' 0; transition: font-variation-settings 0.35s ease, transform 0.35s ease; }
+  .btn-accent:hover .material-symbols-outlined { font-variation-settings: 'FILL' 1; transform: scale(1.08); }
   .btn-outline { background: transparent; color: #002626; box-shadow: inset 0 0 0 2px #002626; }
   .btn-outline:hover { background: #002626; color: #EFE7DA; }
   .btn-outline-light { background: transparent; color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5); }
@@ -295,6 +297,15 @@
   .blob { position:absolute; border-radius:60% 40% 70% 30% / 50% 60% 40% 50%; pointer-events:none; z-index:0; }
   .blob-parent > :not(.blob) { position:relative; z-index:1; }
   .blob-parent { position:relative; overflow:hidden; }
+
+  /* ── Mobile: auto-activate hover state when element is centered in viewport ── */
+  @media (hover: none) {
+    .don-card.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
+    .impact-card.is-active { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,38,38,0.09); }
+    .impact-card.revealed.is-active { transform: translateY(-4px); }
+    .method-card.is-active { border-color: #8BAD3B; box-shadow: 0 10px 32px rgba(139,173,59,0.12); transform: translateY(-3px); }
+    .method-card.revealed.is-active { transform: translateY(-3px); }
+  }
 
 </style>
 </head>
@@ -735,15 +746,23 @@
   var copyBtn = document.getElementById('copyIbanBtn');
   var ibanText = document.getElementById('ibanText');
   if (copyBtn && ibanText) {
+    function fallbackCopy(text) {
+      var tmp = document.createElement('textarea');
+      tmp.value = text;
+      tmp.style.position = 'fixed'; tmp.style.left = '-9999px'; tmp.style.top = '0';
+      document.body.appendChild(tmp);
+      tmp.focus(); tmp.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(tmp);
+    }
     copyBtn.addEventListener('click', function() {
       var text = ibanText.textContent.trim();
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function() { showCopied(); });
+        navigator.clipboard.writeText(text).then(showCopied).catch(function() {
+          fallbackCopy(text); showCopied();
+        });
       } else {
-        var tmp = document.createElement('textarea');
-        tmp.value = text; document.body.appendChild(tmp);
-        tmp.select(); document.execCommand('copy'); document.body.removeChild(tmp);
-        showCopied();
+        fallbackCopy(text); showCopied();
       }
     });
     function showCopied() {
@@ -773,6 +792,16 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.scroll-reveal').forEach(function(el) { observer.observe(el); });
+  }
+
+  if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
+    var touchTargets = document.querySelectorAll('.don-card, .impact-card, .method-card');
+    var touchObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        entry.target.classList.toggle('is-active', entry.isIntersecting);
+      });
+    }, { threshold: [0.5], rootMargin: '-20% 0px -20% 0px' });
+    touchTargets.forEach(function(el) { touchObs.observe(el); });
   }
 
 })();
