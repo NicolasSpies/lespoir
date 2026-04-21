@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; }
+  html, body { min-height: 100%; }
   body {
     font-family: 'Inter', sans-serif; color: #EFE7DA;
     background: #002626;
@@ -18,10 +18,15 @@
       radial-gradient(ellipse at 20% 15%, rgba(139,173,59,0.22), transparent 55%),
       radial-gradient(ellipse at 85% 85%, rgba(17,157,164,0.20), transparent 60%),
       radial-gradient(ellipse at 50% 50%, rgba(229,88,18,0.08), transparent 70%);
-    height: 100vh; height: 100dvh;
+    background-attachment: fixed;
+    min-height: 100vh; min-height: 100dvh;
     display: flex; flex-direction: column;
     padding: 2rem 1.5rem;
-    overflow: hidden; position: relative;
+    position: relative;
+  }
+  @media (min-width: 900px) {
+    html, body { height: 100%; }
+    body { height: 100vh; height: 100dvh; overflow: hidden; }
   }
   .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400;
