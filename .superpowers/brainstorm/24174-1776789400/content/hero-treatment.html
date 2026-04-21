@@ -1,0 +1,95 @@
+<h2>Homepage Hero — organische Bildkante</h2>
+<p class="subtitle">Wie soll die rechte Kante des Foto-Panels aussehen? (Desktop = rechte Kante, Mobile = untere Kante)</p>
+
+<div class="cards" style="margin-top:1.5rem;">
+
+  <!-- Option A1: Subtle organic — gentle blob-like right curve -->
+  <div class="card" data-choice="a1" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#fbf9f8;padding:0;min-height:200px;overflow:hidden;position:relative;">
+      <!-- 2-column hero mockup -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;height:200px;">
+        <!-- Image panel with organic right edge -->
+        <div style="position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#3a5a3a 0%,#5a8040 50%,#3a6a4a 100%);"></div>
+          <!-- organic SVG overlay on right edge, painted with content panel color -->
+          <svg style="position:absolute;top:0;right:0;height:100%;width:60px;" viewBox="0 0 60 200" preserveAspectRatio="none">
+            <path d="M20 0 Q0 50 15 100 Q0 150 20 200 L60 200 L60 0 Z" fill="#EFE7DA"/>
+          </svg>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:0.65rem;font-weight:600;">FOTO</div>
+        </div>
+        <!-- Content panel -->
+        <div style="background:#EFE7DA;display:flex;flex-direction:column;justify-content:center;padding:1rem;">
+          <div style="font-size:0.5rem;font-weight:800;letter-spacing:0.1em;color:#E55812;margin-bottom:0.3rem;">L'ESPOIR ASBL</div>
+          <div style="font-size:0.7rem;font-weight:900;color:#002626;line-height:1.2;margin-bottom:0.5rem;">Accompagner les jeunes depuis 1985</div>
+          <div style="display:flex;gap:0.3rem;">
+            <div style="background:#E55812;color:white;font-size:0.45rem;font-weight:700;padding:0.2rem 0.4rem;border-radius:4px;">Nos Services</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A1 — Sanfte Welle (SVG-Overlay)</h3>
+      <p>Eine leichte geschwungene SVG-Überlagerung auf der rechten Kante des Bildpanels, gefärbt wie der Content-Bereich. Subtil, ähnlich wie die Section-Waves.</p>
+    </div>
+  </div>
+
+  <!-- Option A2: Stronger blob-like organic cut -->
+  <div class="card" data-choice="a2" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#fbf9f8;padding:0;min-height:200px;overflow:hidden;position:relative;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;height:200px;">
+        <!-- Image panel with stronger organic shape -->
+        <div style="position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#3a5a3a 0%,#5a8040 50%,#3a6a4a 100%);"></div>
+          <!-- stronger organic SVG overlay -->
+          <svg style="position:absolute;top:0;right:0;height:100%;width:80px;" viewBox="0 0 80 200" preserveAspectRatio="none">
+            <path d="M40 0 Q-10 40 30 80 Q60 120 10 160 Q-10 180 40 200 L80 200 L80 0 Z" fill="#EFE7DA"/>
+          </svg>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:0.65rem;font-weight:600;">FOTO</div>
+        </div>
+        <!-- Content panel -->
+        <div style="background:#EFE7DA;display:flex;flex-direction:column;justify-content:center;padding:1rem;">
+          <div style="font-size:0.5rem;font-weight:800;letter-spacing:0.1em;color:#E55812;margin-bottom:0.3rem;">L'ESPOIR ASBL</div>
+          <div style="font-size:0.7rem;font-weight:900;color:#002626;line-height:1.2;margin-bottom:0.5rem;">Accompagner les jeunes depuis 1985</div>
+          <div style="display:flex;gap:0.3rem;">
+            <div style="background:#E55812;color:white;font-size:0.45rem;font-weight:700;padding:0.2rem 0.4rem;border-radius:4px;">Nos Services</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A2 — Stärkere organische Kurve</h3>
+      <p>Eine ausgeprägter geschwungene Kante — mehr Blob-Charakter, weniger linear. Der Übergang ist deutlicher aber bleibt weich.</p>
+    </div>
+  </div>
+
+  <!-- Option A3: border-radius on the container -->
+  <div class="card" data-choice="a3" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#fbf9f8;padding:1rem;min-height:200px;display:flex;align-items:center;justify-content:center;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;height:160px;width:100%;gap:0.5rem;align-items:stretch;">
+        <!-- Image with organic border-radius, gap visible -->
+        <div style="position:relative;border-radius:0 2.5rem 2.5rem 0 / 0 3rem 2rem 0;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.18);">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#3a5a3a 0%,#5a8040 50%,#3a6a4a 100%);"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:0.65rem;font-weight:600;">FOTO</div>
+        </div>
+        <!-- Content panel -->
+        <div style="background:#EFE7DA;display:flex;flex-direction:column;justify-content:center;padding:0.75rem;border-radius:2rem 0 0 2rem;">
+          <div style="font-size:0.45rem;font-weight:800;letter-spacing:0.1em;color:#E55812;margin-bottom:0.25rem;">L'ESPOIR ASBL</div>
+          <div style="font-size:0.6rem;font-weight:900;color:#002626;line-height:1.2;margin-bottom:0.4rem;">Accompagner les jeunes</div>
+          <div style="background:#E55812;color:white;font-size:0.4rem;font-weight:700;padding:0.15rem 0.35rem;border-radius:3px;width:fit-content;">Nos Services</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A3 — border-radius + kleiner Gap</h3>
+      <p>Beide Panels bekommen abgerundete Ecken und einen kleinen Abstand — wie zwei Karten nebeneinander. Moderner, etwas mehr "Card-Layout"-Feeling.</p>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top:1.25rem;padding:1rem;background:var(--bg-secondary);border-radius:10px;border:1px solid var(--border);">
+  <div class="label" style="margin-bottom:0.5rem;">Zusätzlich: Animation-Bug fix (unabhängig von Bildkante)</div>
+  <p style="font-size:0.8rem;color:var(--text-secondary);margin:0;">Beim Slide-Wechsel springt das Bild kurz zurück — das können wir mit einer CSS-Transition auf dem Transform beheben, egal welche Variante wir wählen.</p>
+</div>
+
+<p class="subtitle" style="margin-top:1rem;">A1 = subtil + konsistent mit Waves · A2 = mehr Charakter · A3 = modernes Card-Feeling</p>

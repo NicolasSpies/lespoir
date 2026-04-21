@@ -444,9 +444,18 @@
     border: 1px solid rgba(255,255,255,0.15);
   }
   .hero-dots button {
+    position: relative;
     width: 9px; height: 9px; border-radius: 50%; border: none;
     background: rgba(255,255,255,0.5); cursor: pointer; padding: 0;
     transition: background 0.3s ease, transform 0.3s ease, width 0.3s ease;
+  }
+  /* Invisible 44×44 hit area for touch (WCAG 2.5.5) — visual dot unchanged */
+  .hero-dots button::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px; height: 44px;
   }
   .hero-dots button:hover {
     background: rgba(255,255,255,0.8);
@@ -764,6 +773,7 @@
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
+<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #8BAD3B;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
 
 <!-- ── NAVBAR ── -->
 <nav class="w-full top-0 sticky bg-[#EFE7DA] z-50">
@@ -865,7 +875,7 @@
   </div>
 </aside>
 
-<main class="flex-grow">
+<main id="main" class="flex-grow">
 
   <!-- ── HERO (V2 Split) ── -->
   <section id="hero" class="relative grid grid-cols-1 md:grid-cols-2 bg-[#EFE7DA]">
@@ -1119,7 +1129,7 @@
         <div class="partner-logo">Service<br>Arc-en-Ciel</div>
         <div class="partner-logo">Fondation<br>Roi Baudouin</div>
       </div>
-      <p class="text-center text-[#002626]/60 text-sm mt-10">
+      <p class="text-center text-[#002626]/80 text-sm mt-10">
         Envie de nous rejoindre ? <a href="contact.html" class="text-[#002626] font-bold underline underline-offset-4 decoration-[#E55812] hover:text-[#E55812] transition-colors">Contactez-nous</a>
       </p>
     </div>

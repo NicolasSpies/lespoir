@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Homepage Design — L'Espoir</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: #f0ede8; color: #002626; }
+
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  h1 { font-size: 1.1rem; font-weight: 800; color: #002626; margin-bottom: 0.25rem; }
+  .meta { font-size: 0.78rem; color: #666; margin-bottom: 2rem; }
+
+  /* Section labels */
+  .section-label {
+    display: inline-block;
+    font-size: 0.62rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #888; background: #e8e4df; border-radius: 4px; padding: 3px 8px; margin-bottom: 1.5rem;
+  }
+  .section-label.new { color: #2d7a2d; background: #d4edcc; }
+
+  /* ── HERO ── */
+  .hero {
+    background: #002626;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    position: relative; overflow: hidden;
+    margin-bottom: 0;
+  }
+  .hero-blob-1 {
+    position: absolute; width: 280px; height: 280px;
+    background: rgba(139,173,59,0.12);
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+    top: -80px; right: -60px;
+    /* NEW */
+  }
+  .hero-blob-2 {
+    position: absolute; width: 200px; height: 200px;
+    background: rgba(229,88,18,0.08);
+    border-radius: 30% 70% 40% 60% / 60% 30% 70% 40%;
+    bottom: -60px; left: 20px;
+    /* NEW */
+  }
+  .hero-overline {
+    font-size: 0.65rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #8BAD3B; margin-bottom: 1rem;
+  }
+  .hero-title {
+    font-size: 2rem; font-weight: 900; color: #EFE7DA; line-height: 1.1;
+    margin-bottom: 1.25rem; position: relative; z-index: 1;
+  }
+  .hero-title .underline-word {
+    position: relative; display: inline-block;
+  }
+  .hero-title .underline-word svg {
+    position: absolute; bottom: -4px; left: 0; width: 100%; height: 10px;
+    /* NEW: hand-drawn underline */
+  }
+  .hero-sub {
+    font-size: 0.85rem; color: rgba(239,231,218,0.7); line-height: 1.6;
+    max-width: 420px; margin-bottom: 1.5rem; position: relative; z-index: 1;
+  }
+  .hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; position: relative; z-index: 1; }
+  .btn-dark { background: #8BAD3B; color: #002626; border-radius: 999px; padding: 0.65rem 1.4rem; font-weight: 700; font-size: 0.85rem; }
+  .btn-ghost { border: 1.5px solid rgba(239,231,218,0.35); color: #EFE7DA; border-radius: 999px; padding: 0.65rem 1.4rem; font-weight: 600; font-size: 0.85rem; }
+
+  /* ── WAVE DIVIDER ── */
+  .wave-divider { position: relative; height: 40px; margin-bottom: -1px; /* NEW */ }
+
+  /* ── SERVICES ── */
+  .services-section {
+    background: #EFE7DA;
+    padding: 2.5rem 2rem;
+    position: relative;
+  }
+  .section-title-wrap { position: relative; display: inline-block; margin-bottom: 1.5rem; }
+  .section-title { font-size: 1.5rem; font-weight: 900; color: #002626; line-height: 1.2; }
+  .section-title-wrap svg { display: block; /* NEW: underline svg */ }
+
+  .service-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .svc { border-radius: 16px; padding: 1.25rem; color: white; }
+  .svc-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 10px; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+  .svc h3 { font-size: 0.9rem; font-weight: 800; margin-bottom: 0.25rem; }
+  .svc p { font-size: 0.72rem; opacity: 0.8; line-height: 1.4; }
+
+  /* ── WAVE 2 ── */
+
+  /* ── STATS ── */
+  .stats-section {
+    background: #fbf9f8;
+    padding: 2.5rem 2rem;
+    position: relative;
+  }
+  .stats-blob {
+    position: absolute; width: 300px; height: 300px;
+    background: rgba(139,173,59,0.06);
+    border-radius: 55% 45% 60% 40% / 40% 60% 45% 55%;
+    top: -60px; right: -80px;
+    /* NEW */
+  }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; max-width: 360px; position: relative; z-index: 1; }
+  .stat-card {
+    background: white; border-radius: 14px; padding: 1rem 1.25rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .stat-card.r1 { transform: rotate(-1.2deg); /* NEW */ }
+  .stat-card.r2 { transform: rotate(0.7deg);  /* NEW */ }
+  .stat-card.r3 { transform: rotate(-0.5deg); /* NEW */ }
+  .stat-card.r4 { transform: rotate(1deg);    /* NEW */ }
+  .stat-num { font-size: 1.6rem; font-weight: 900; margin-bottom: 0.2rem; }
+  .stat-lbl { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #666; }
+
+  /* ── WAVE 3 ── */
+
+  /* ── QUOTE ── */
+  .quote-section {
+    background: #002626;
+    padding: 2.5rem 2rem;
+    position: relative; overflow: hidden;
+  }
+  .quote-blob {
+    position: absolute; width: 250px; height: 250px;
+    background: rgba(17,157,164,0.10);
+    border-radius: 40% 60% 50% 50% / 55% 45% 60% 40%;
+    bottom: -60px; right: -40px;
+    /* NEW */
+  }
+  .quote-mark { font-family: Georgia, serif; font-size: 5rem; color: #E55812; line-height: 0.8; opacity: 0.85; }
+  .quote-text { font-size: 1.1rem; font-weight: 600; color: #EFE7DA; line-height: 1.6; margin: 0.5rem 0 1rem; max-width: 480px; position: relative; z-index: 1; }
+  .quote-attr { font-size: 0.72rem; color: rgba(239,231,218,0.55); }
+
+  /* ── WAVE 4 ── */
+
+  /* ── DON ── */
+  .don-section {
+    background: #EFE7DA;
+    padding: 2.5rem 2rem;
+    position: relative; overflow: hidden;
+  }
+  .don-blob {
+    position: absolute; width: 220px; height: 220px;
+    background: rgba(229,88,18,0.08);
+    border-radius: 50% 50% 40% 60% / 45% 55% 50% 50%;
+    top: -50px; left: -40px;
+    /* NEW */
+  }
+  .don-cta-wrap { position: relative; display: inline-block; z-index: 1; }
+  .don-cta { background: #002626; color: #EFE7DA; border-radius: 999px; padding: 0.75rem 1.75rem; font-weight: 700; font-size: 0.9rem; display: inline-block; }
+  .don-cta-wrap svg { position: absolute; top: -8px; left: -10px; width: calc(100% + 20px); height: calc(100% + 16px); pointer-events: none; /* NEW: dashed circle */ }
+
+  /* badges */
+  .change-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    background: #d4edcc; color: #2d7a2d; border-radius: 4px; padding: 2px 6px;
+    vertical-align: middle; margin-left: 6px;
+  }
+
+  .divider-note {
+    text-align: center; font-size: 0.68rem; color: #999; padding: 0.5rem;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Homepage — Design-Vorschlag</h1>
+  <p class="meta">Grüne Labels = neue Elemente. Alles andere bleibt wie es ist.</p>
+
+  <!-- ═══ HERO ═══ -->
+  <div class="section-label new">✦ NEU: Blob-Shapes im Hintergrund</div>
+  <div class="hero">
+    <div class="hero-blob-1"></div>
+    <div class="hero-blob-2"></div>
+    <div class="hero-overline">L'Espoir asbl · Huy &amp; Amay</div>
+    <div class="hero-title" style="position:relative;z-index:1;">
+      Accompagner les
+      <span class="underline-word">
+        jeunes
+        <svg viewBox="0 0 80 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 7 Q20 2 40 7 Q60 11 79 5" stroke="#8BAD3B" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <br>depuis 1985.
+    </div>
+    <div class="hero-sub">Aide à la jeunesse agréée par la Fédération Wallonie-Bruxelles — trois services, une mission.</div>
+    <div class="hero-btns">
+      <span class="btn-dark">Nos services →</span>
+      <span class="btn-ghost">Faire un don</span>
+    </div>
+  </div>
+  <div class="divider-note">↑ Blob-Shapes + handgezeichneter Unterstrich unter "jeunes" <span class="change-badge">NEU</span></div>
+
+  <!-- Wave hero → services -->
+  <div style="position:relative;height:36px;margin-bottom:-1px;">
+    <div style="background:#002626;height:18px;"></div>
+    <svg viewBox="0 0 860 36" style="position:absolute;bottom:0;left:0;width:100%;height:36px;" preserveAspectRatio="none">
+      <path d="M0 0 Q215 36 430 18 Q645 0 860 28 L860 36 L0 36 Z" fill="#EFE7DA"/>
+    </svg>
+  </div>
+  <div class="divider-note" style="background:#EFE7DA;margin:0;">↑ Organische Wellen-Kurve statt harter Trennlinie <span class="change-badge">NEU</span></div>
+
+  <!-- ═══ SERVICES ═══ -->
+  <div class="section-label" style="margin-top:1.5rem;">UNVERÄNDERT — Layout</div>
+  <div class="services-section">
+    <div class="section-title-wrap">
+      <div class="section-title">Nos services</div>
+      <svg viewBox="0 0 130 10" style="width:100%;height:10px;" fill="none">
+        <path d="M1 7 Q32 2 65 7 Q98 12 129 5" stroke="#8BAD3B" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="change-badge" style="display:inline-flex;margin-bottom:1rem;">NEU: Unterstrich</span>
+    <div class="service-cards">
+      <div class="svc" style="background:#8BAD3B;color:#002626;">
+        <div class="svc-icon">🏠</div>
+        <h3>SRG</h3>
+        <p>Résidentiel général</p>
+      </div>
+      <div class="svc" style="background:#E55812;">
+        <div class="svc-icon">👨‍👩‍👧</div>
+        <h3>SASE</h3>
+        <p>Accompagnement socio-éducatif</p>
+      </div>
+      <div class="svc" style="background:#119DA4;">
+        <div class="svc-icon">🤝</div>
+        <h3>SAPA</h3>
+        <p>Parrainage familial</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave services → stats -->
+  <div style="position:relative;height:36px;margin-bottom:-1px;">
+    <div style="background:#EFE7DA;height:18px;"></div>
+    <svg viewBox="0 0 860 36" style="position:absolute;bottom:0;left:0;width:100%;height:36px;" preserveAspectRatio="none">
+      <path d="M0 8 Q215 36 430 16 Q645 -4 860 20 L860 36 L0 36 Z" fill="#fbf9f8"/>
+    </svg>
+  </div>
+  <div class="divider-note" style="background:#fbf9f8;margin:0;">↑ Wellen-Übergang <span class="change-badge">NEU</span></div>
+
+  <!-- ═══ STATS ═══ -->
+  <div class="stats-section">
+    <div class="stats-blob"></div>
+    <div style="margin-bottom:1rem;font-size:0.65rem;color:#8BAD3B;font-weight:700;">↑ Blob-Shape im Hintergrund (sehr subtil) <span class="change-badge">NEU</span></div>
+    <div class="stats-grid">
+      <div class="stat-card r1">
+        <div class="stat-num" style="color:#E55812;">120+</div>
+        <div class="stat-lbl">Jeunes accompagnés</div>
+      </div>
+      <div class="stat-card r2">
+        <div class="stat-num" style="color:#8BAD3B;">40+</div>
+        <div class="stat-lbl">Membres de l'équipe</div>
+      </div>
+      <div class="stat-card r3">
+        <div class="stat-num" style="color:#119DA4;">3</div>
+        <div class="stat-lbl">Services spécialisés</div>
+      </div>
+      <div class="stat-card r4">
+        <div class="stat-num" style="color:#002626;">1985</div>
+        <div class="stat-lbl">Année de création</div>
+      </div>
+    </div>
+    <div style="margin-top:0.75rem;font-size:0.65rem;color:#8BAD3B;font-weight:700;">↑ Jede Karte leicht rotiert (–1.2° / +0.7° / –0.5° / +1°) <span class="change-badge">NEU</span></div>
+  </div>
+
+  <!-- Wave stats → quote -->
+  <div style="position:relative;height:36px;margin-bottom:-1px;">
+    <div style="background:#fbf9f8;height:18px;"></div>
+    <svg viewBox="0 0 860 36" style="position:absolute;bottom:0;left:0;width:100%;height:36px;" preserveAspectRatio="none">
+      <path d="M0 20 Q215 0 430 24 Q645 36 860 10 L860 36 L0 36 Z" fill="#002626"/>
+    </svg>
+  </div>
+
+  <!-- ═══ QUOTE ═══ -->
+  <div class="quote-section">
+    <div class="quote-blob"></div>
+    <div class="quote-mark">"</div>
+    <div class="quote-text">On ne lâche pas. Pas de jugement, juste de la présence.</div>
+    <div class="quote-attr">— Éducateur SRG, 12 ans d'ancienneté</div>
+    <div style="margin-top:0.75rem;font-size:0.65rem;color:rgba(139,173,59,0.8);font-weight:700;">↑ Blob-Shape in Teal im Hintergrund <span class="change-badge" style="background:rgba(139,173,59,0.15);color:#8BAD3B;">NEU</span></div>
+  </div>
+
+  <!-- Wave quote → don -->
+  <div style="position:relative;height:36px;margin-bottom:-1px;">
+    <div style="background:#002626;height:18px;"></div>
+    <svg viewBox="0 0 860 36" style="position:absolute;bottom:0;left:0;width:100%;height:36px;" preserveAspectRatio="none">
+      <path d="M0 12 Q215 36 430 20 Q645 4 860 28 L860 36 L0 36 Z" fill="#EFE7DA"/>
+    </svg>
+  </div>
+
+  <!-- ═══ DON ═══ -->
+  <div class="don-section">
+    <div class="don-blob"></div>
+    <div style="position:relative;z-index:1;">
+      <div style="font-size:1.2rem;font-weight:900;color:#002626;margin-bottom:0.75rem;">Faire un don</div>
+      <div style="font-size:0.82rem;color:#555;margin-bottom:1.25rem;max-width:380px;line-height:1.5;">Virement ponctuel ou ordre permanent. Attestation fiscale automatique dès 40&nbsp;€/an.</div>
+      <div class="don-cta-wrap">
+        <span class="don-cta">Faire un don →</span>
+        <svg viewBox="0 0 160 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="80" cy="22" rx="76" ry="19" stroke="#E55812" stroke-width="1.8" stroke-dasharray="5 3"/>
+        </svg>
+      </div>
+      <div style="margin-top:0.75rem;font-size:0.65rem;color:#E55812;font-weight:700;">↑ Gestrichelter Ellipsen-Kreis um CTA + Blob-Shape <span class="change-badge" style="background:#fde8d8;color:#c0440f;">NEU</span></div>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div style="margin-top:2rem;background:white;border-radius:16px;padding:1.5rem;border:1px solid #e8e4df;">
+    <div style="font-weight:800;font-size:0.9rem;color:#002626;margin-bottom:1rem;">Zusammenfassung — was ändert sich</div>
+    <div style="display:flex;flex-direction:column;gap:0.6rem;font-size:0.8rem;">
+      <div style="display:flex;gap:0.75rem;align-items:baseline;"><span style="color:#8BAD3B;font-weight:700;">1.</span><span><strong>Blob-Shapes</strong> in Hero, Stats, Quote, Don — organische Formen sehr sanft im Hintergrund</span></div>
+      <div style="display:flex;gap:0.75rem;align-items:baseline;"><span style="color:#8BAD3B;font-weight:700;">2.</span><span><strong>Wellenlinien</strong> zwischen allen Sektionen — kein harter Schnitt mehr</span></div>
+      <div style="display:flex;gap:0.75rem;align-items:baseline;"><span style="color:#8BAD3B;font-weight:700;">3.</span><span><strong>SVG-Unterstrich</strong> unter "jeunes" im Hero + unter "Nos services" Titel</span></div>
+      <div style="display:flex;gap:0.75rem;align-items:baseline;"><span style="color:#8BAD3B;font-weight:700;">4.</span><span><strong>Stat-Karten rotiert</strong> leicht unterschiedlich (max ±1.2°) — kein gleichmäßiges Raster</span></div>
+      <div style="display:flex;gap:0.75rem;align-items:baseline;"><span style="color:#8BAD3B;font-weight:700;">5.</span><span><strong>Gestrichelter Kreis</strong> um "Faire un don" CTA</span></div>
+    </div>
+    <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid #e8e4df;font-size:0.75rem;color:#666;">
+      Layout, Farben, Typografie, Content — alles bleibt exakt gleich.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

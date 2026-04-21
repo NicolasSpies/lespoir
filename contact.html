@@ -409,6 +409,7 @@
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
+<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #8BAD3B;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
 
 <!-- ── NAVBAR ── -->
 <nav class="w-full top-0 sticky bg-[#EFE7DA] z-50">
@@ -499,7 +500,7 @@
   </div>
 </aside>
 
-<main class="flex-grow">
+<main id="main" class="flex-grow">
 
   <!-- ── HERO ── -->
   <section class="relative bg-[#002626] pt-16 pb-14 md:pt-24 md:pb-20 px-6 md:px-8 overflow-hidden blob-parent">
@@ -548,11 +549,11 @@
           <!-- Name row -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="prenom">Prénom</label>
+              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="prenom">Prénom</label>
               <input id="prenom" name="prenom" type="text" placeholder="Marie" class="form-field" autocomplete="given-name"/>
             </div>
             <div>
-              <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="nom">Nom</label>
+              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="nom">Nom</label>
               <input id="nom" name="nom" type="text" placeholder="Dupont" class="form-field" autocomplete="family-name"/>
             </div>
           </div>
@@ -560,18 +561,18 @@
           <!-- Email + phone row -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="email">E-mail</label>
+              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="email">E-mail</label>
               <input id="email" name="email" type="email" placeholder="marie@exemple.be" class="form-field" autocomplete="email"/>
             </div>
             <div>
-              <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="tel">Téléphone <span class="font-normal normal-case tracking-normal opacity-60">(facultatif)</span></label>
+              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="tel">Téléphone <span class="font-normal normal-case tracking-normal opacity-60">(facultatif)</span></label>
               <input id="tel" name="tel" type="tel" placeholder="04xx xx xx xx" class="form-field" autocomplete="tel"/>
             </div>
           </div>
 
           <!-- Subject -->
           <div>
-            <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="objet">Votre demande concerne</label>
+            <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="objet">Votre demande concerne</label>
             <select id="objet" name="objet" class="form-field">
               <option value="" disabled selected>Choisissez un sujet</option>
               <option value="general">Question générale</option>
@@ -587,7 +588,7 @@
 
           <!-- Message -->
           <div>
-            <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="message">Message</label>
+            <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="message">Message</label>
             <textarea id="message" name="message" placeholder="Dites-nous ce que vous avez en tête..." class="form-field"></textarea>
           </div>
 

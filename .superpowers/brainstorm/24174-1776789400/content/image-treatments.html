@@ -1,0 +1,102 @@
+<h2>Images — organischer machen</h2>
+<p class="subtitle">3 Richtungen — klick was am besten zum Rest der Seite passt.</p>
+
+<div class="cards" style="margin-top:1.5rem;">
+
+  <!-- Option A: Organic border-radius -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#fbf9f8;padding:1.5rem;min-height:220px;display:flex;align-items:center;justify-content:center;gap:1.5rem;">
+
+      <!-- Hero-style: 2-column split with organic cut -->
+      <div style="width:180px;height:160px;position:relative;border-radius:0 40% 30% 0 / 0 50% 40% 0;overflow:hidden;flex-shrink:0;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#5a7a3a 0%,#7a9d4c 40%,#3a6a5a 100%);"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font-size:0.7rem;font-weight:600;opacity:0.7;">FOTO</div>
+      </div>
+
+      <!-- Small card image -->
+      <div style="display:flex;flex-direction:column;gap:0.75rem;">
+        <div style="width:120px;height:80px;border-radius:12px 30% 12px 30% / 30% 12px 30% 12px;overflow:hidden;position:relative;">
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,#5a7a3a,#3a6a5a);"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font-size:0.65rem;opacity:0.7;">Karte</div>
+        </div>
+        <div style="width:120px;height:80px;border-radius:30% 12px 30% 12px / 12px 30% 12px 30%;overflow:hidden;position:relative;">
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,#7a9d4c,#5a7a3a);"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font-size:0.65rem;opacity:0.7;">Karte</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Organische border-radius</h3>
+      <p>Unregelmäßige border-radius auf Bildcontainern — gleicher Stil wie die Blobs. Hero-Bild bekommt eine geschwungene rechte Kante, Karten eine asymmetrische Form.</p>
+    </div>
+  </div>
+
+  <!-- Option B: SVG wavy mask on hero only, soft corners on cards -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#fbf9f8;padding:1.5rem;min-height:220px;display:flex;align-items:center;justify-content:center;gap:1.5rem;">
+
+      <!-- Hero: wavy SVG edge on right side -->
+      <div style="width:180px;height:160px;position:relative;overflow:visible;flex-shrink:0;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#5a7a3a 0%,#7a9d4c 40%,#3a6a5a 100%);border-radius:0;"></div>
+        <!-- SVG wave on the right edge -->
+        <svg style="position:absolute;top:0;right:-16px;height:100%;width:32px;" viewBox="0 0 32 160" preserveAspectRatio="none">
+          <path d="M0 0 Q16 40 0 80 Q16 120 0 160 L32 160 L32 0 Z" fill="#fbf9f8"/>
+        </svg>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font-size:0.7rem;font-weight:600;opacity:0.7;">FOTO</div>
+      </div>
+
+      <!-- Cards: soft uniform radius -->
+      <div style="display:flex;flex-direction:column;gap:0.75rem;">
+        <div style="width:120px;height:80px;border-radius:16px;overflow:hidden;position:relative;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,#5a7a3a,#3a6a5a);"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font-size:0.65rem;opacity:0.7;">Karte</div>
+        </div>
+        <div style="width:120px;height:80px;border-radius:16px;overflow:hidden;position:relative;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,#7a9d4c,#5a7a3a);"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font-size:0.65rem;opacity:0.7;">Karte</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — SVG-Welle am Hero-Rand</h3>
+      <p>Hero-Bild bekommt eine geschwungene SVG-Überlagerung auf der rechten Kante (wie die Section-Waves). Karten bekommen einheitliche weiche Ecken. Konsistent mit den Wellen-Dividers.</p>
+    </div>
+  </div>
+
+  <!-- Option C: Gradient fade + subtle shadow frame -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#fbf9f8;padding:1.5rem;min-height:220px;display:flex;align-items:center;justify-content:center;gap:1.5rem;">
+
+      <!-- Hero: gradient fade on edges -->
+      <div style="width:180px;height:160px;position:relative;flex-shrink:0;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#5a7a3a 0%,#7a9d4c 40%,#3a6a5a 100%);"></div>
+        <!-- top fade -->
+        <div style="position:absolute;top:0;left:0;right:0;height:40px;background:linear-gradient(to bottom,rgba(0,38,38,0.4),transparent);"></div>
+        <!-- right gradient fade to page bg -->
+        <div style="position:absolute;top:0;right:0;bottom:0;width:50px;background:linear-gradient(to right,transparent,#fbf9f8);"></div>
+        <!-- bottom fade -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(to top,rgba(0,38,38,0.3),transparent);"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font-size:0.7rem;font-weight:600;opacity:0.8;">FOTO</div>
+      </div>
+
+      <!-- Cards: photo with soft shadow frame -->
+      <div style="display:flex;flex-direction:column;gap:0.75rem;">
+        <div style="width:120px;height:80px;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 0 0 3px rgba(139,173,59,0.3),0 8px 24px rgba(0,0,0,0.15);">
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,#5a7a3a,#3a6a5a);"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font-size:0.65rem;opacity:0.7;">Karte</div>
+        </div>
+        <div style="width:120px;height:80px;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 0 0 3px rgba(229,88,18,0.25),0 8px 24px rgba(0,0,0,0.15);">
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,#7a9d4c,#5a7a3a);"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font-size:0.65rem;opacity:0.7;">Karte</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Gradient-Fade an Kanten</h3>
+      <p>Bilder "laufen aus" an den Rändern mit einem sanften Farbverlauf statt harter Kante. Cards bekommen farbige Box-Shadow-Frames (Marken-Akzent). Weicher, filmischer Look.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:1rem;">Klick auf eine Option — oder sag welche Elemente du kombinieren möchtest.</p>

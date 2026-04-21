@@ -475,6 +475,7 @@
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
+<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #8BAD3B;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
 
 <!-- ── NAVBAR ── -->
 <nav class="w-full top-0 sticky bg-[#EFE7DA] z-50">
@@ -565,7 +566,7 @@
   </div>
 </aside>
 
-<main class="flex-grow">
+<main id="main" class="flex-grow">
 
   <!-- ── HERO ── -->
   <section class="relative bg-[#002626] pt-16 pb-14 md:pt-24 md:pb-20 px-6 md:px-8 overflow-hidden blob-parent">
@@ -700,7 +701,7 @@
                 <span class="text-[#002626]/35 text-xs font-semibold">Publié le 10 avril 2026</span>
               </div>
               <h3 class="text-lg font-black text-[#002626] leading-snug mb-1">Éducateur·trice spécialisé·e, SRG</h3>
-              <p class="text-sm text-[#002626]/60 leading-relaxed">
+              <p class="text-sm text-[#002626]/80 leading-relaxed">
                 Accompagnement d'enfants et d'adolescents en hébergement résidentiel. Vous contribuez à la vie quotidienne dans nos maisons, co-construisez les projets éducatifs individuels et travaillez en lien étroit avec les familles et le SPJ.
               </p>
             </div>
@@ -735,7 +736,7 @@
                 <span class="text-[#002626]/35 text-xs font-semibold">Publié le 5 avril 2026</span>
               </div>
               <h3 class="text-lg font-black text-[#002626] leading-snug mb-1">Éducateur·trice à domicile, SASE</h3>
-              <p class="text-sm text-[#002626]/60 leading-relaxed">
+              <p class="text-sm text-[#002626]/80 leading-relaxed">
                 Visites à domicile auprès de familles en difficulté dans la région hutoise. Soutien à la parentalité, travail sur le quotidien familial et coordination avec les mandants (SPJ, SAJ).
               </p>
             </div>
@@ -770,7 +771,7 @@
                 <span class="text-[#002626]/35 text-xs font-semibold">Offre permanente</span>
               </div>
               <h3 class="text-lg font-black text-[#002626] leading-snug mb-1">Famille bénévole, SAPA</h3>
-              <p class="text-sm text-[#002626]/60 leading-relaxed">
+              <p class="text-sm text-[#002626]/80 leading-relaxed">
                 Accueillez un jeune le week-end ou pendant les vacances scolaires pour lui offrir un espace familial chaleureux. Pas besoin d'être professionnel du secteur : il faut surtout de la disponibilité, de la bienveillance et l'envie d'ouvrir votre porte.
               </p>
             </div>
@@ -913,7 +914,7 @@
 
             <!-- Poste visé -->
             <div>
-              <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="poste">Poste visé <span class="text-[#E55812]">*</span></label>
+              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="poste">Poste visé <span class="text-[#E55812]">*</span></label>
               <select id="poste" name="poste" class="form-field" required>
                 <option value="">Sélectionnez un poste -</option>
                 <option value="srg-educateur">Éducateur·trice spécialisé·e, SRG (CDI)</option>
@@ -931,11 +932,11 @@
             <!-- Identité -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="prenom">Prénom <span class="text-[#E55812]">*</span></label>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="prenom">Prénom <span class="text-[#E55812]">*</span></label>
                 <input id="prenom" name="prenom" type="text" placeholder="Marie" class="form-field" autocomplete="given-name" required/>
               </div>
               <div>
-                <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="nom">Nom <span class="text-[#E55812]">*</span></label>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="nom">Nom <span class="text-[#E55812]">*</span></label>
                 <input id="nom" name="nom" type="text" placeholder="Dupont" class="form-field" autocomplete="family-name" required/>
               </div>
             </div>
@@ -943,11 +944,11 @@
             <!-- Contact -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="email">E-mail <span class="text-[#E55812]">*</span></label>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="email">E-mail <span class="text-[#E55812]">*</span></label>
                 <input id="email" name="email" type="email" placeholder="marie@exemple.be" class="form-field" autocomplete="email" required/>
               </div>
               <div>
-                <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="tel">Téléphone <span class="text-[#E55812]">*</span></label>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="tel">Téléphone <span class="text-[#E55812]">*</span></label>
                 <input id="tel" name="tel" type="tel" placeholder="04xx xx xx xx" class="form-field" autocomplete="tel" required/>
               </div>
             </div>
@@ -955,11 +956,11 @@
             <!-- Localisation + disponibilité -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="ville">Ville / Code postal</label>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="ville">Ville / Code postal</label>
                 <input id="ville" name="ville" type="text" placeholder="4500 Huy" class="form-field" autocomplete="address-level2"/>
               </div>
               <div>
-                <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="dispo">Disponibilité</label>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="dispo">Disponibilité</label>
                 <select id="dispo" name="dispo" class="form-field">
                   <option value="">À préciser -</option>
                   <option value="immediate">Immédiate</option>
@@ -972,20 +973,20 @@
 
             <!-- Formation -->
             <div>
-              <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="formation">Formation / diplôme principal</label>
+              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="formation">Formation / diplôme principal</label>
               <input id="formation" name="formation" type="text" placeholder="Bachelier éducateur spécialisé, HELMo (2022)" class="form-field"/>
             </div>
 
             <!-- Motivation -->
             <div>
-              <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2" for="motivation">Lettre de motivation <span class="text-[#E55812]">*</span></label>
+              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="motivation">Lettre de motivation <span class="text-[#E55812]">*</span></label>
               <textarea id="motivation" name="motivation" placeholder="Dites-nous en quelques lignes pourquoi vous souhaitez rejoindre L'Espoir, ce qui vous motive dans ce secteur et ce que vous pensez pouvoir apporter à l'équipe…" class="form-field" required></textarea>
               <p class="form-hint">Minimum 100 caractères. Parlez-nous de vous, de votre parcours et de vos motivations.</p>
             </div>
 
             <!-- CV upload -->
             <div>
-              <label class="block text-xs font-bold text-[#002626]/60 uppercase tracking-widest mb-2">CV au format PDF <span class="text-[#E55812]">*</span></label>
+              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2">CV au format PDF <span class="text-[#E55812]">*</span></label>
               <div id="fileDrop" class="file-drop">
                 <input type="file" id="cv" name="cv" accept=".pdf,application/pdf" required aria-describedby="cvHint"/>
                 <div class="file-drop-content">

@@ -1,0 +1,84 @@
+<h2>Subtil C+A — konkrete Elemente</h2>
+<p class="subtitle">Was würde sich ändern — und was bleibt gleich.</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;">
+
+  <!-- Vorher -->
+  <div>
+    <div class="label" style="margin-bottom:0.75rem;color:#999;">VORHER — jetzt</div>
+
+    <!-- Hero title: plain -->
+    <div style="background:#fbf9f8;border-radius:12px;padding:1.25rem;margin-bottom:1rem;border:1px solid #e8e4df;">
+      <div style="font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#8BAD3B;margin-bottom:0.4rem;">Section-Titel</div>
+      <div style="font-size:1.1rem;font-weight:900;color:#002626;line-height:1.2;">Nos services</div>
+    </div>
+
+    <!-- Stat card: perfect rectangle -->
+    <div style="background:#fbf9f8;border-radius:12px;padding:1.25rem;margin-bottom:1rem;border:1px solid #e8e4df;">
+      <div style="font-size:0.65rem;color:#666;margin-bottom:0.5rem;">Stat-Karte</div>
+      <div style="display:inline-block;background:white;border-radius:12px;padding:0.75rem 1rem;">
+        <div style="font-size:1.4rem;font-weight:900;color:#8BAD3B;">40+</div>
+        <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;color:#666;">Membres</div>
+      </div>
+    </div>
+
+    <!-- Section divider: hard line -->
+    <div style="background:#fbf9f8;border-radius:12px;padding:1.25rem;border:1px solid #e8e4df;">
+      <div style="font-size:0.65rem;color:#666;margin-bottom:0.5rem;">Sektionen-Übergang</div>
+      <div style="background:#002626;height:40px;border-radius:6px 6px 0 0;"></div>
+      <div style="background:#EFE7DA;height:40px;border-radius:0 0 6px 6px;"></div>
+      <div style="font-size:0.65rem;color:#999;margin-top:0.4rem;">Harte, flache Trennlinie</div>
+    </div>
+  </div>
+
+  <!-- Nachher -->
+  <div>
+    <div class="label" style="margin-bottom:0.75rem;color:#8BAD3B;">NACHHER — neu</div>
+
+    <!-- Hero title: hand-drawn underline -->
+    <div style="background:#fbf9f8;border-radius:12px;padding:1.25rem;margin-bottom:1rem;border:1px solid #c8e4c0;">
+      <div style="font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#8BAD3B;margin-bottom:0.4rem;">Section-Titel</div>
+      <div style="position:relative;display:inline-block;">
+        <div style="font-size:1.1rem;font-weight:900;color:#002626;line-height:1.2;">Nos services</div>
+        <svg viewBox="0 0 100 10" style="width:100%;height:10px;display:block;" fill="none">
+          <path d="M1 6 Q25 2 50 6 Q75 10 99 5" stroke="#8BAD3B" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div style="font-size:0.65rem;color:#8BAD3B;margin-top:0.3rem;">↑ handgezeichneter SVG-Unterstrich</div>
+    </div>
+
+    <!-- Stat card: slight rotation -->
+    <div style="background:#fbf9f8;border-radius:12px;padding:1.25rem;margin-bottom:1rem;border:1px solid #c8e4c0;">
+      <div style="font-size:0.65rem;color:#666;margin-bottom:0.5rem;">Stat-Karte</div>
+      <div style="display:inline-block;background:white;border-radius:12px;padding:0.75rem 1rem;transform:rotate(-1deg);box-shadow:0 4px 16px rgba(0,0,0,0.09);">
+        <div style="font-size:1.4rem;font-weight:900;color:#8BAD3B;">40+</div>
+        <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;color:#666;">Membres</div>
+      </div>
+      <div style="font-size:0.65rem;color:#8BAD3B;margin-top:0.3rem;">↑ 1° Rotation — subtil</div>
+    </div>
+
+    <!-- Section divider: organic wave -->
+    <div style="background:#fbf9f8;border-radius:12px;padding:1.25rem;border:1px solid #c8e4c0;">
+      <div style="font-size:0.65rem;color:#666;margin-bottom:0.5rem;">Sektionen-Übergang</div>
+      <div style="background:#002626;height:36px;border-radius:6px 6px 0 0;position:relative;">
+        <svg viewBox="0 0 300 20" style="position:absolute;bottom:-1px;left:0;width:100%;height:20px;" preserveAspectRatio="none">
+          <path d="M0 0 Q75 20 150 8 Q225 -4 300 12 L300 20 L0 20 Z" fill="#EFE7DA"/>
+        </svg>
+      </div>
+      <div style="background:#EFE7DA;height:28px;border-radius:0 0 6px 6px;"></div>
+      <div style="font-size:0.65rem;color:#8BAD3B;margin-top:0.4rem;">↑ organische Wellen-Kurve statt harter Linie</div>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top:1.5rem;padding:1.25rem;background:var(--bg-secondary);border-radius:12px;border:1px solid var(--border);">
+  <div class="label" style="margin-bottom:0.75rem;">ZUSÄTZLICH — organische Blobs als Hintergrund</div>
+  <div style="background:#fbf9f8;border-radius:12px;padding:1.25rem;position:relative;overflow:hidden;min-height:80px;">
+    <div style="position:absolute;width:140px;height:140px;background:rgba(139,173,59,0.10);border-radius:60% 40% 55% 45% / 45% 55% 45% 55%;top:-40px;right:-20px;"></div>
+    <div style="position:absolute;width:100px;height:100px;background:rgba(229,88,18,0.08);border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;bottom:-30px;left:10px;"></div>
+    <div style="position:relative;font-size:0.8rem;color:#002626;font-weight:600;">Inhalt sitzt auf einem weichen Blob-Hintergrund<br><span style="font-weight:400;color:#666;">— kein harter Block, fließender Übergang</span></div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:1.25rem;">Das sind ~4–5 kleine Änderungen die zusammen ein komplett anderes Gefühl geben. Passt das so?</p>
