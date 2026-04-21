@@ -368,16 +368,47 @@
     font-style: italic; text-align: center; line-height: 1.3;
   }
 
-  /* Signature — barre gradient Yellow Green → Dark Cyan */
-  .sig-espoir {
+  /* Signature v1 — barre gradient Yellow Green → Dark Cyan */
+  .sig-v1 .sig-espoir {
     border-left: 6px solid transparent;
     background:
       linear-gradient(#fff, #fff) padding-box,
       linear-gradient(180deg, #8BAD3B 0%, #119DA4 100%) border-box;
   }
 
+  /* Signature v2 — bloc unique, Escapade en bande horizontale dessous */
+  .sig-v2 { grid-template-columns: 1fr; }
+  .sig-v2 .sig-espoir {
+    border-left: 6px solid #8BAD3B;
+    background: #fff;
+  }
+  .sig-partner {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 24px;
+    background: rgba(0,38,38,0.03);
+    border-top: 1px solid rgba(0,38,38,0.08);
+  }
+  .sig-partner-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .sig-partner-logo { height: 26px; width: auto; display: block; }
+
+  /* Demo labels above each signature */
+  .sig-demo-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    margin-top: 18px; margin-bottom: 8px;
+  }
+  .sig-demo-label .tag {
+    background: var(--dark); color: #fff;
+    padding: 3px 9px; border-radius: 99px;
+    font-size: 9.5px;
+  }
+
   @media (max-width: 720px) {
-    .sig-mock { grid-template-columns: 1fr; }
+    .sig-mock:not(.sig-v2) { grid-template-columns: 1fr; }
     .sig-escapade { border-left: none; border-top: 1px solid rgba(0,38,38,0.1); padding: 12px; }
   }
   @media (max-width: 480px) {
@@ -891,7 +922,9 @@
         <p>Je reste à votre disposition pour toute question — n'hésitez pas à me joindre directement.</p>
         <p>Bien cordialement,</p>
         <div class="email-sig-sep">--</div>
-        <div class="sig-mock">
+
+        <div class="sig-demo-label"><span class="tag">V1</span> Version actuelle — deux blocs côte à côte</div>
+        <div class="sig-mock sig-v1">
           <div class="sig-espoir">
             <img src="lespoir-logo.svg" alt="L'Espoir asbl" class="sig-logo">
             <div class="sig-meta">
@@ -906,6 +939,24 @@
             <span class="sig-escapade-label">En collaboration</span>
             <img src="escapade.png" alt="Escapade" class="sig-logo-escapade">
             <span class="sig-escapade-sub">Programme de parrainage</span>
+          </div>
+        </div>
+
+        <div class="sig-demo-label"><span class="tag">V2</span> Proposition — signature unique + bande partenaire dessous</div>
+        <div class="sig-mock sig-v2">
+          <div class="sig-espoir">
+            <img src="lespoir-logo.svg" alt="L'Espoir asbl" class="sig-logo">
+            <div class="sig-meta">
+              <div class="sig-name">Asmaa LAKRARY</div>
+              <div class="sig-role">Directrice SASE &amp; SAPA</div>
+              <div class="sig-org">Asbl L'Espoir</div>
+              <div class="sig-line"><span class="material-symbols-outlined">call</span> <a href="tel:+32471946097">0471.94.60.97</a></div>
+              <div class="sig-line"><span class="material-symbols-outlined">location_on</span> 44 Rue des Augustins, 4500 Huy</div>
+            </div>
+          </div>
+          <div class="sig-partner">
+            <span class="sig-partner-label">En collaboration avec</span>
+            <img src="escapade.png" alt="Escapade" class="sig-partner-logo">
           </div>
         </div>
       </div>
