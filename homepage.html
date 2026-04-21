@@ -674,7 +674,7 @@
     z-index: 0;
   }
   /* Ensure content inside blob-parent sections stays above blobs */
-  .blob-parent > * { position: relative; z-index: 1; }
+  .blob-parent > :not(.blob) { position: relative; z-index: 1; }
   .blob-parent { position: relative; overflow: hidden; }
 
   /* ── Stat card rotations (subtle handmade feel) ── */
