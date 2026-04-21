@@ -366,38 +366,13 @@
     font-style: italic; text-align: center; line-height: 1.3;
   }
 
-  /* Variant A — Minimal blanc (fin trait Yellow Green à gauche) */
-  .sig-v-a .sig-espoir { border-left: 2px solid #8BAD3B; }
-
-  /* Variant B — Soft Linen (fond papier, barre épaisse) */
-  .sig-v-b { background: #EFE7DA; }
-  .sig-v-b .sig-espoir { background: #EFE7DA; border-left: 4px solid #8BAD3B; }
-
-  /* Variant C — Barre gradient (Yellow Green → Dark Cyan) */
-  .sig-v-c .sig-espoir {
+  /* Signature — barre gradient Yellow Green → Dark Cyan */
+  .sig-espoir {
     border-left: 6px solid transparent;
     background:
       linear-gradient(#fff, #fff) padding-box,
       linear-gradient(180deg, #8BAD3B 0%, #119DA4 100%) border-box;
   }
-
-  /* Variant D — Ancres typographiques (couleurs dans le texte) */
-  .sig-v-d .sig-role { color: #119DA4; font-weight: 700; }
-  .sig-v-d .sig-org { color: #8BAD3B; border-top-color: rgba(139,173,59,0.4); }
-
-  /* Variants comparator */
-  .sig-variants { display: flex; flex-direction: column; gap: 22px; margin-top: 18px; }
-  .sig-variant { display: flex; flex-direction: column; gap: 8px; }
-  .sig-variant-header { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-  .sig-variant-tag {
-    display: inline-flex; align-items: center;
-    font-size: 10px; font-weight: 800; letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 3px 9px; border-radius: 99px;
-    background: var(--dark); color: #fff;
-  }
-  .sig-variant-name { font-size: 13px; font-weight: 700; color: var(--dark); }
-  .sig-variant-desc { font-size: 12px; color: var(--muted); }
 
   @media (max-width: 720px) {
     .sig-mock { grid-template-columns: 1fr; }
@@ -899,18 +874,22 @@
       <div>Chaque service a sa propre couleur, déclinée systématiquement sur les sous-pages, icônes et accents. Le changement de couleur sert de <strong>repère visuel</strong> pour l'utilisateur.</div>
     </div>
 
-    <h3 style="font-size:13px;font-weight:700;color:var(--dark);letter-spacing:0.06em;text-transform:uppercase;margin-top:36px;margin-bottom:6px;">Cohabitation avec Escapade — signature e-mail</h3>
-    <p style="font-size:13.5px;color:var(--muted);margin-bottom:0;">Le partenariat avec Escapade reste parfaitement identifiable : Escapade garde son bleu propre, L'Espoir son <strong style="color:var(--dark);">Dark Cyan #119DA4</strong>. Quatre pistes visuelles à comparer, toutes sur fond clair :</p>
+    <h3 style="font-size:13px;font-weight:700;color:var(--dark);letter-spacing:0.06em;text-transform:uppercase;margin-top:36px;margin-bottom:6px;">Cohabitation avec Escapade</h3>
+    <p style="font-size:13.5px;color:var(--muted);margin-bottom:0;">Le partenariat avec Escapade reste parfaitement identifiable. Les deux univers graphiques vivent côte à côte sans se concurrencer : Escapade garde son bleu propre, L'Espoir son <strong style="color:var(--dark);">Dark Cyan #119DA4</strong>. Aucune confusion possible — ce sont deux marques distinctes qui collaborent, pas deux déclinaisons d'une même charte. Mise en situation sur une signature d'e-mail :</p>
 
-    <div class="sig-variants">
-
-      <div class="sig-variant">
-        <div class="sig-variant-header">
-          <span class="sig-variant-tag">Option A</span>
-          <span class="sig-variant-name">Minimal blanc</span>
-          <span class="sig-variant-desc">Pur, corporate. Fin trait Yellow Green à gauche.</span>
-        </div>
-        <div class="sig-mock sig-v-a">
+    <div class="email-mock">
+      <div class="email-header">
+        <div class="email-row"><span class="label">De</span> <span class="value-strong">Asmaa LAKRARY</span> &lt;direction@asbl-espoir.be&gt;</div>
+        <div class="email-row"><span class="label">À</span> famille.martin@example.be</div>
+        <div class="email-row"><span class="label">Objet</span> <span class="value-strong">Informations SAPA — Programme de parrainage</span></div>
+      </div>
+      <div class="email-body">
+        <p>Bonjour,</p>
+        <p>Merci de votre intérêt pour notre Service d'Accompagnement du Parrainage. Nous collaborons étroitement avec <em>Escapade</em> pour la mise en relation avec des familles bénévoles dans les zones de Huy, Waremme et Hannut.</p>
+        <p>Je reste à votre disposition pour toute question — n'hésitez pas à me joindre directement.</p>
+        <p>Bien cordialement,</p>
+        <div class="email-sig-sep">--</div>
+        <div class="sig-mock">
           <div class="sig-espoir">
             <img src="lespoir-logo.svg" alt="L'Espoir asbl" class="sig-logo">
             <div class="sig-meta">
@@ -928,82 +907,6 @@
           </div>
         </div>
       </div>
-
-      <div class="sig-variant">
-        <div class="sig-variant-header">
-          <span class="sig-variant-tag">Option B</span>
-          <span class="sig-variant-name">Soft Linen</span>
-          <span class="sig-variant-desc">Fond papier chaleureux, barre Yellow Green épaisse.</span>
-        </div>
-        <div class="sig-mock sig-v-b">
-          <div class="sig-espoir">
-            <img src="lespoir-logo.svg" alt="L'Espoir asbl" class="sig-logo">
-            <div class="sig-meta">
-              <div class="sig-name">Asmaa LAKRARY</div>
-              <div class="sig-role">Directrice SASE &amp; SAPA</div>
-              <div class="sig-org">Asbl L'Espoir</div>
-              <div class="sig-line"><span class="material-symbols-outlined">call</span> <a href="tel:+32471946097">0471.94.60.97</a></div>
-              <div class="sig-line"><span class="material-symbols-outlined">location_on</span> 44 Rue des Augustins, 4500 Huy</div>
-            </div>
-          </div>
-          <div class="sig-escapade">
-            <span class="sig-escapade-label">En collaboration</span>
-            <img src="escapade.png" alt="Escapade" class="sig-logo-escapade">
-            <span class="sig-escapade-sub">Programme de parrainage</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="sig-variant">
-        <div class="sig-variant-header">
-          <span class="sig-variant-tag">Option C</span>
-          <span class="sig-variant-name">Barre gradient</span>
-          <span class="sig-variant-desc">Fond blanc, bande verticale Yellow Green → Dark Cyan.</span>
-        </div>
-        <div class="sig-mock sig-v-c">
-          <div class="sig-espoir">
-            <img src="lespoir-logo.svg" alt="L'Espoir asbl" class="sig-logo">
-            <div class="sig-meta">
-              <div class="sig-name">Asmaa LAKRARY</div>
-              <div class="sig-role">Directrice SASE &amp; SAPA</div>
-              <div class="sig-org">Asbl L'Espoir</div>
-              <div class="sig-line"><span class="material-symbols-outlined">call</span> <a href="tel:+32471946097">0471.94.60.97</a></div>
-              <div class="sig-line"><span class="material-symbols-outlined">location_on</span> 44 Rue des Augustins, 4500 Huy</div>
-            </div>
-          </div>
-          <div class="sig-escapade">
-            <span class="sig-escapade-label">En collaboration</span>
-            <img src="escapade.png" alt="Escapade" class="sig-logo-escapade">
-            <span class="sig-escapade-sub">Programme de parrainage</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="sig-variant">
-        <div class="sig-variant-header">
-          <span class="sig-variant-tag">Option D</span>
-          <span class="sig-variant-name">Ancres typographiques</span>
-          <span class="sig-variant-desc">Fond blanc, couleur uniquement dans la typo (rôle Dark Cyan, org Yellow Green).</span>
-        </div>
-        <div class="sig-mock sig-v-d">
-          <div class="sig-espoir">
-            <img src="lespoir-logo.svg" alt="L'Espoir asbl" class="sig-logo">
-            <div class="sig-meta">
-              <div class="sig-name">Asmaa LAKRARY</div>
-              <div class="sig-role">Directrice SASE &amp; SAPA</div>
-              <div class="sig-org">Asbl L'Espoir</div>
-              <div class="sig-line"><span class="material-symbols-outlined">call</span> <a href="tel:+32471946097">0471.94.60.97</a></div>
-              <div class="sig-line"><span class="material-symbols-outlined">location_on</span> 44 Rue des Augustins, 4500 Huy</div>
-            </div>
-          </div>
-          <div class="sig-escapade">
-            <span class="sig-escapade-label">En collaboration</span>
-            <img src="escapade.png" alt="Escapade" class="sig-logo-escapade">
-            <span class="sig-escapade-sub">Programme de parrainage</span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
