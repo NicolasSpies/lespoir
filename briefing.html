@@ -305,55 +305,46 @@
     user-select: none;
   }
 
-  /* Signature (inside email mock) */
+  /* Signature — base (shared by all variants) */
   .sig-mock {
-    display: inline-grid;
+    display: grid;
     grid-template-columns: auto auto;
+    width: fit-content;
+    align-self: flex-start;
     border-radius: 10px; overflow: hidden;
     border: 1px solid rgba(0,38,38,0.12);
+    background: #fff;
     max-width: 100%;
   }
   .sig-espoir {
-    position: relative; overflow: hidden;
+    position: relative;
     padding: 16px 22px;
-    background: #124545;
-    background-image:
-      radial-gradient(ellipse 70% 90% at 0% 0%, rgba(139,173,59,0.55), transparent 60%),
-      radial-gradient(ellipse 80% 80% at 100% 100%, rgba(17,157,164,0.50), transparent 60%),
-      radial-gradient(circle at 85% 20%, rgba(229,88,18,0.18), transparent 45%),
-      linear-gradient(135deg, rgba(18,69,69,0.4) 0%, rgba(10,48,48,0.3) 100%);
     display: flex; gap: 18px; align-items: center;
-    color: #EFE7DA;
+    color: var(--dark);
   }
-  .sig-logo {
-    height: 36px; width: auto; display: block; flex-shrink: 0;
-    filter: brightness(0) invert(1);
-  }
+  .sig-logo { height: 36px; width: auto; display: block; flex-shrink: 0; }
   .sig-meta {
     font-family: 'Inter', system-ui, sans-serif;
     display: flex; flex-direction: column; gap: 1px; min-width: 0;
-    position: relative; z-index: 1;
   }
   .sig-name {
-    font-size: 14px; font-weight: 800; color: #fff;
+    font-size: 14px; font-weight: 800; color: var(--dark);
     letter-spacing: -0.01em; line-height: 1.2;
   }
   .sig-role {
-    font-size: 11.5px; font-weight: 600; color: #8BAD3B;
-    letter-spacing: 0.01em;
+    font-size: 11.5px; font-weight: 600; color: var(--muted);
     margin-bottom: 4px;
   }
   .sig-org {
-    font-size: 11px; font-weight: 600;
-    color: rgba(239,231,218,0.7);
+    font-size: 11px; font-weight: 700; color: var(--dark);
     letter-spacing: 0.02em; text-transform: uppercase;
     padding-top: 4px;
-    border-top: 1px solid rgba(139,173,59,0.25);
+    border-top: 1px solid rgba(0,38,38,0.12);
     margin-top: 4px; margin-bottom: 2px;
   }
   .sig-line {
     display: flex; align-items: center; gap: 6px;
-    font-size: 11.5px; color: rgba(239,231,218,0.88);
+    font-size: 11.5px; color: rgba(0,38,38,0.85);
     line-height: 1.4;
   }
   .sig-line .material-symbols-outlined { font-size: 13px; color: #119DA4; }
@@ -372,9 +363,42 @@
   .sig-logo-escapade { height: 42px; width: auto; display: block; }
   .sig-escapade-sub {
     font-size: 9.5px; color: var(--muted);
-    font-style: italic;
-    text-align: center; line-height: 1.3;
+    font-style: italic; text-align: center; line-height: 1.3;
   }
+
+  /* Variant A — Minimal blanc (fin trait Yellow Green à gauche) */
+  .sig-v-a .sig-espoir { border-left: 2px solid #8BAD3B; }
+
+  /* Variant B — Soft Linen (fond papier, barre épaisse) */
+  .sig-v-b { background: #EFE7DA; }
+  .sig-v-b .sig-espoir { background: #EFE7DA; border-left: 4px solid #8BAD3B; }
+
+  /* Variant C — Barre gradient (Yellow Green → Dark Cyan) */
+  .sig-v-c .sig-espoir {
+    border-left: 6px solid transparent;
+    background:
+      linear-gradient(#fff, #fff) padding-box,
+      linear-gradient(180deg, #8BAD3B 0%, #119DA4 100%) border-box;
+  }
+
+  /* Variant D — Ancres typographiques (couleurs dans le texte) */
+  .sig-v-d .sig-role { color: #119DA4; font-weight: 700; }
+  .sig-v-d .sig-org { color: #8BAD3B; border-top-color: rgba(139,173,59,0.4); }
+
+  /* Variants comparator */
+  .sig-variants { display: flex; flex-direction: column; gap: 22px; margin-top: 18px; }
+  .sig-variant { display: flex; flex-direction: column; gap: 8px; }
+  .sig-variant-header { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .sig-variant-tag {
+    display: inline-flex; align-items: center;
+    font-size: 10px; font-weight: 800; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 9px; border-radius: 99px;
+    background: var(--dark); color: #fff;
+  }
+  .sig-variant-name { font-size: 13px; font-weight: 700; color: var(--dark); }
+  .sig-variant-desc { font-size: 12px; color: var(--muted); }
+
   @media (max-width: 720px) {
     .sig-mock { grid-template-columns: 1fr; }
     .sig-escapade { border-left: none; border-top: 1px solid rgba(0,38,38,0.1); padding: 12px; }
@@ -875,22 +899,18 @@
       <div>Chaque service a sa propre couleur, déclinée systématiquement sur les sous-pages, icônes et accents. Le changement de couleur sert de <strong>repère visuel</strong> pour l'utilisateur.</div>
     </div>
 
-    <h3 style="font-size:13px;font-weight:700;color:var(--dark);letter-spacing:0.06em;text-transform:uppercase;margin-top:36px;margin-bottom:6px;">Cohabitation avec Escapade</h3>
-    <p style="font-size:13.5px;color:var(--muted);margin-bottom:0;">Le partenariat avec Escapade reste parfaitement identifiable. Les deux univers graphiques vivent côte à côte sans se concurrencer : Escapade garde son bleu propre, L'Espoir son <strong style="color:var(--dark);">Dark Cyan #119DA4</strong>. Aucune confusion possible — ce sont deux marques distinctes qui collaborent, pas deux déclinaisons d'une même charte. Mise en situation sur une signature d'e-mail :</p>
+    <h3 style="font-size:13px;font-weight:700;color:var(--dark);letter-spacing:0.06em;text-transform:uppercase;margin-top:36px;margin-bottom:6px;">Cohabitation avec Escapade — signature e-mail</h3>
+    <p style="font-size:13.5px;color:var(--muted);margin-bottom:0;">Le partenariat avec Escapade reste parfaitement identifiable : Escapade garde son bleu propre, L'Espoir son <strong style="color:var(--dark);">Dark Cyan #119DA4</strong>. Quatre pistes visuelles à comparer, toutes sur fond clair :</p>
 
-    <div class="email-mock">
-      <div class="email-header">
-        <div class="email-row"><span class="label">De</span> <span class="value-strong">Asmaa LAKRARY</span> &lt;direction@asbl-espoir.be&gt;</div>
-        <div class="email-row"><span class="label">À</span> famille.martin@example.be</div>
-        <div class="email-row"><span class="label">Objet</span> <span class="value-strong">Informations SAPA — Programme de parrainage</span></div>
-      </div>
-      <div class="email-body">
-        <p>Bonjour,</p>
-        <p>Merci de votre intérêt pour notre Service d'Accompagnement du Parrainage. Nous collaborons étroitement avec <em>Escapade</em> pour la mise en relation avec des familles bénévoles dans les zones de Huy, Waremme et Hannut.</p>
-        <p>Je reste à votre disposition pour toute question — n'hésitez pas à me joindre directement.</p>
-        <p>Bien cordialement,</p>
-        <div class="email-sig-sep">--</div>
-        <div class="sig-mock">
+    <div class="sig-variants">
+
+      <div class="sig-variant">
+        <div class="sig-variant-header">
+          <span class="sig-variant-tag">Option A</span>
+          <span class="sig-variant-name">Minimal blanc</span>
+          <span class="sig-variant-desc">Pur, corporate. Fin trait Yellow Green à gauche.</span>
+        </div>
+        <div class="sig-mock sig-v-a">
           <div class="sig-espoir">
             <img src="lespoir-logo.svg" alt="L'Espoir asbl" class="sig-logo">
             <div class="sig-meta">
@@ -908,6 +928,82 @@
           </div>
         </div>
       </div>
+
+      <div class="sig-variant">
+        <div class="sig-variant-header">
+          <span class="sig-variant-tag">Option B</span>
+          <span class="sig-variant-name">Soft Linen</span>
+          <span class="sig-variant-desc">Fond papier chaleureux, barre Yellow Green épaisse.</span>
+        </div>
+        <div class="sig-mock sig-v-b">
+          <div class="sig-espoir">
+            <img src="lespoir-logo.svg" alt="L'Espoir asbl" class="sig-logo">
+            <div class="sig-meta">
+              <div class="sig-name">Asmaa LAKRARY</div>
+              <div class="sig-role">Directrice SASE &amp; SAPA</div>
+              <div class="sig-org">Asbl L'Espoir</div>
+              <div class="sig-line"><span class="material-symbols-outlined">call</span> <a href="tel:+32471946097">0471.94.60.97</a></div>
+              <div class="sig-line"><span class="material-symbols-outlined">location_on</span> 44 Rue des Augustins, 4500 Huy</div>
+            </div>
+          </div>
+          <div class="sig-escapade">
+            <span class="sig-escapade-label">En collaboration</span>
+            <img src="escapade.png" alt="Escapade" class="sig-logo-escapade">
+            <span class="sig-escapade-sub">Programme de parrainage</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sig-variant">
+        <div class="sig-variant-header">
+          <span class="sig-variant-tag">Option C</span>
+          <span class="sig-variant-name">Barre gradient</span>
+          <span class="sig-variant-desc">Fond blanc, bande verticale Yellow Green → Dark Cyan.</span>
+        </div>
+        <div class="sig-mock sig-v-c">
+          <div class="sig-espoir">
+            <img src="lespoir-logo.svg" alt="L'Espoir asbl" class="sig-logo">
+            <div class="sig-meta">
+              <div class="sig-name">Asmaa LAKRARY</div>
+              <div class="sig-role">Directrice SASE &amp; SAPA</div>
+              <div class="sig-org">Asbl L'Espoir</div>
+              <div class="sig-line"><span class="material-symbols-outlined">call</span> <a href="tel:+32471946097">0471.94.60.97</a></div>
+              <div class="sig-line"><span class="material-symbols-outlined">location_on</span> 44 Rue des Augustins, 4500 Huy</div>
+            </div>
+          </div>
+          <div class="sig-escapade">
+            <span class="sig-escapade-label">En collaboration</span>
+            <img src="escapade.png" alt="Escapade" class="sig-logo-escapade">
+            <span class="sig-escapade-sub">Programme de parrainage</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sig-variant">
+        <div class="sig-variant-header">
+          <span class="sig-variant-tag">Option D</span>
+          <span class="sig-variant-name">Ancres typographiques</span>
+          <span class="sig-variant-desc">Fond blanc, couleur uniquement dans la typo (rôle Dark Cyan, org Yellow Green).</span>
+        </div>
+        <div class="sig-mock sig-v-d">
+          <div class="sig-espoir">
+            <img src="lespoir-logo.svg" alt="L'Espoir asbl" class="sig-logo">
+            <div class="sig-meta">
+              <div class="sig-name">Asmaa LAKRARY</div>
+              <div class="sig-role">Directrice SASE &amp; SAPA</div>
+              <div class="sig-org">Asbl L'Espoir</div>
+              <div class="sig-line"><span class="material-symbols-outlined">call</span> <a href="tel:+32471946097">0471.94.60.97</a></div>
+              <div class="sig-line"><span class="material-symbols-outlined">location_on</span> 44 Rue des Augustins, 4500 Huy</div>
+            </div>
+          </div>
+          <div class="sig-escapade">
+            <span class="sig-escapade-label">En collaboration</span>
+            <img src="escapade.png" alt="Escapade" class="sig-logo-escapade">
+            <span class="sig-escapade-sub">Programme de parrainage</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
