@@ -270,7 +270,7 @@
   }
 
   /* ── Quote section polish ── */
-  .quote-section { position: relative; }
+  .quote-section { position: relative; overflow: hidden; }
   .quote-mark {
     font-family: Georgia, serif;
     font-size: 9rem;
@@ -804,8 +804,8 @@
       </div>
     </div>
     <div class="blob-parent bg-[#EFE7DA] flex flex-col justify-center px-6 sm:px-10 md:px-12 lg:px-20 py-14 md:py-20">
-      <div class="blob" style="width:320px;height:320px;background:rgba(139,173,59,0.09);top:-100px;right:-80px;border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;"></div>
-      <div class="blob" style="width:200px;height:200px;background:rgba(229,88,18,0.07);bottom:-60px;left:-40px;border-radius:30% 70% 40% 60% / 60% 30% 70% 40%;"></div>
+      <div class="blob" aria-hidden="true" style="width:320px;height:320px;background:rgba(139,173,59,0.09);top:-100px;right:-80px;border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;"></div>
+      <div class="blob" aria-hidden="true" style="width:200px;height:200px;background:rgba(229,88,18,0.07);bottom:-60px;left:-40px;border-radius:30% 70% 40% 60% / 60% 30% 70% 40%;"></div>
       <span class="hero-reveal text-[#E55812] font-bold tracking-widest text-sm uppercase mb-6">Bienvenue à L'Espoir</span>
       <h1 class="hero-reveal text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold text-[#002626] leading-[1.1] tracking-tight mb-6 md:mb-8">
         Parce que chaque enfant mérite un endroit pour grandir en sécurité
@@ -821,8 +821,8 @@
   </section>
 
   <!-- ── ZITAT (V2) ── -->
-  <section class="quote-section blob-parent bg-[#EFE7DA] py-14 md:py-20 px-6 md:px-8">
-    <div class="blob" style="width:260px;height:260px;background:rgba(17,157,164,0.09);bottom:-80px;right:-40px;border-radius:40% 60% 50% 50% / 55% 45% 60% 40%;"></div>
+  <section class="quote-section bg-[#EFE7DA] py-14 md:py-20 px-6 md:px-8">
+    <div class="blob" aria-hidden="true" style="width:260px;height:260px;background:rgba(17,157,164,0.09);bottom:-80px;right:-40px;border-radius:40% 60% 50% 50% / 55% 45% 60% 40%;"></div>
     <div class="max-w-3xl mx-auto text-center">
       <div class="quote-mark mb-2">&ldquo;</div>
       <blockquote class="text-lg md:text-2xl lg:text-3xl font-medium text-[#002626] italic leading-snug mb-6 md:mb-8">
