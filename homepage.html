@@ -423,8 +423,8 @@
     animation: heroKenBurns 8s ease-out forwards;
   }
   @keyframes heroKenBurns {
-    from { transform: scale(1.02); }
-    to   { transform: scale(1.1); }
+    from { transform: scale(1); }
+    to   { transform: scale(1.08); }
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-slider img.active { animation: none; }
@@ -840,7 +840,7 @@
       </div>
       <!-- Desktop: organic wave on right edge (masks hard vertical cut to content panel) -->
       <svg class="hero-wave-right" viewBox="0 0 80 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M55 0 Q10 200 45 400 Q75 600 35 800 L80 800 L80 0 Z" fill="#EFE7DA"/>
+        <path d="M80 0 Q10 200 45 400 Q75 600 35 800 L80 800 Z" fill="#EFE7DA"/>
       </svg>
       <!-- Mobile: organic wave on bottom edge (masks hard horizontal cut to content panel) -->
       <svg class="hero-wave-bottom" viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
