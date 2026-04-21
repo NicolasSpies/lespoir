@@ -93,7 +93,6 @@
 
   /* ── Arrow animations ── */
   a:hover > .material-symbols-outlined,
-  *:hover > a > .material-symbols-outlined,
   a:hover > span > .material-symbols-outlined { transform: translateX(4px); }
 
   /* ── Text links ── */
@@ -333,6 +332,15 @@
   .blob { position:absolute; border-radius:60% 40% 70% 30% / 50% 60% 40% 50%; pointer-events:none; z-index:0; }
   .blob-parent > :not(.blob) { position:relative; z-index:1; }
   .blob-parent { position:relative; overflow:hidden; }
+
+  /* ── Mobile: auto-activate hover state when element is centered in viewport ── */
+  @media (hover: none) {
+    .don-card.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
+    .don-card.revealed.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); }
+    .info-card.is-active { border-color: #8BAD3B; box-shadow: 0 6px 20px rgba(139,173,59,0.12); transform: translateY(-2px); }
+    .info-card.revealed.is-active { transform: translateY(-2px); }
+    .service-contact-card.revealed.is-active { transform: translateY(-3px); }
+  }
 
 </style>
 </head>
@@ -847,6 +855,16 @@
       closeTimer = setTimeout(function() { item.classList.remove('dropdown-open'); }, 120);
     });
   });
+
+  if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
+    var touchTargets = document.querySelectorAll('.don-card, .info-card, .service-contact-card');
+    var touchObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        entry.target.classList.toggle('is-active', entry.isIntersecting);
+      });
+    }, { threshold: [0.5], rootMargin: '-20% 0px -20% 0px' });
+    touchTargets.forEach(function(el) { touchObs.observe(el); });
+  }
 
 })();
 </script>

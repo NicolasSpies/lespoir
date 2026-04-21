@@ -97,7 +97,6 @@
   /* ── Arrow animations ── */
   /* Horizontal arrows, slide right on parent hover */
   a:hover > .material-symbols-outlined,
-  *:hover > a > .material-symbols-outlined,
   a:hover > span > .material-symbols-outlined {
     transform: translateX(4px);
   }
@@ -726,6 +725,46 @@
   .service-card.revealed:hover { transform: translateY(-10px); }
   .don-card.revealed:hover { transform: rotate(0deg) translateY(-6px) scale(1.04); }
 
+  /* ── Mobile: auto-activate hover state when element is centered in viewport ── */
+  @media (hover: none) {
+    .don-card.is-active {
+      transform: rotate(0deg) translateY(-6px) scale(1.04);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+    }
+    .don-card.revealed.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); }
+    .actu-card.is-active .actu-arrow { transform: translateX(4px); }
+    .partner-logo.is-active {
+      opacity: 1;
+      filter: grayscale(0%);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 38, 38, 0.08);
+    }
+    .stat-card.is-active {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(0, 38, 38, 0.10);
+    }
+    .stat-card.revealed.is-active { transform: translateY(-6px); }
+    #about .grid .stat-card:nth-child(1).is-active,
+    #about .grid .stat-card:nth-child(1).revealed.is-active { transform: rotate(-1.2deg) translateY(-6px); box-shadow: 0 14px 30px rgba(0,38,38,0.10); }
+    #about .grid .stat-card:nth-child(2).is-active,
+    #about .grid .stat-card:nth-child(2).revealed.is-active { transform: rotate(0.7deg) translateY(-6px); box-shadow: 0 14px 30px rgba(0,38,38,0.10); }
+    #about .grid .stat-card:nth-child(3).is-active,
+    #about .grid .stat-card:nth-child(3).revealed.is-active { transform: rotate(-0.5deg) translateY(-6px); box-shadow: 0 14px 30px rgba(0,38,38,0.10); }
+    #about .grid .stat-card:nth-child(4).is-active,
+    #about .grid .stat-card:nth-child(4).revealed.is-active { transform: rotate(1deg) translateY(-6px); box-shadow: 0 14px 30px rgba(0,38,38,0.10); }
+    .service-card.is-active {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 38, 38, 0.18);
+    }
+    .service-card.revealed.is-active { transform: translateY(-10px); }
+    .service-card.is-active .service-icon {
+      transform: rotate(-6deg) scale(1.08);
+      background-color: rgba(255,255,255,0.28);
+    }
+    .service-card.is-active .service-cta .arrow { transform: translateX(6px); }
+    .service-card.is-active .service-cta::after { opacity: 0.9; transform: scaleX(1); }
+  }
+
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
@@ -1118,15 +1157,10 @@
           Sans vos dons, il nous serait impossible d'offrir aux enfants l'infrastructure qu'ils méritent. Chaque contribution finance des projets pédagogiques, des sorties culturelles et l'amélioration de nos maisons.
         </p>
         <div class="flex flex-col sm:flex-row flex-wrap gap-4">
-          <div style="position:relative;display:inline-block;align-self:flex-start;">
-            <a href="don.html" class="btn btn-accent btn-lg w-full sm:w-auto">
-              <span class="material-symbols-outlined" style="font-size:20px;">favorite</span>
-              Faire un don maintenant
-            </a>
-            <svg viewBox="0 0 200 58" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;top:-8px;left:-10px;width:calc(100% + 20px);height:calc(100% + 16px);pointer-events:none;">
-              <ellipse cx="100" cy="29" rx="96" ry="25" stroke="rgba(139,173,59,0.5)" stroke-width="1.8" stroke-dasharray="5 3"/>
-            </svg>
-          </div>
+          <a href="don.html" class="btn btn-accent btn-lg w-full sm:w-auto">
+            <span class="material-symbols-outlined" style="font-size:20px;">favorite</span>
+            Faire un don maintenant
+          </a>
           <a href="don.html#comment" class="btn btn-outline-light btn-lg w-full sm:w-auto">
             Comment ça marche ?
           </a>
@@ -1515,6 +1549,17 @@
 
     // The dropdown trigger link now navigates on click, don't preventDefault
   });
+
+  // ── Mobile: auto-activate hover state when element enters viewport center ──
+  if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
+    var touchTargets = document.querySelectorAll('.service-card, .don-card, .stat-card, .actu-card, .partner-logo');
+    var touchObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        entry.target.classList.toggle('is-active', entry.isIntersecting);
+      });
+    }, { threshold: [0.5], rootMargin: '-20% 0px -20% 0px' });
+    touchTargets.forEach(function(el) { touchObs.observe(el); });
+  }
 
 })();
 </script>

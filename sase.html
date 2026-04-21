@@ -93,7 +93,6 @@
 
   /* ── Arrow animations ── */
   a:hover > .material-symbols-outlined,
-  *:hover > a > .material-symbols-outlined,
   a:hover > span > .material-symbols-outlined { transform: translateX(4px); }
 
   /* ── Text links ── */
@@ -364,6 +363,16 @@
   .faq-item summary .material-symbols-outlined { transition:transform 0.25s ease; opacity:0.55; flex-shrink:0; }
   .faq-item[open] summary .material-symbols-outlined { transform:rotate(180deg); opacity:0.9; }
   .faq-item .faq-body { padding:0 1.5rem 1.5rem; color:#002626; opacity:0.75; line-height:1.65; font-size:0.95rem; }
+
+  /* ── Mobile: auto-activate hover state when element is centered in viewport ── */
+  @media (hover: none) {
+    .don-card.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
+    .don-card.revealed.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); }
+    .approach-card.is-active { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+    .approach-card.revealed.is-active { transform: translateY(-3px); }
+    .sibling-card.is-active { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,38,38,0.1); }
+    .sibling-card.revealed.is-active { transform: translateY(-4px); }
+  }
 
 </style>
 </head>
@@ -1080,6 +1089,16 @@
       closeTimer = setTimeout(function() { item.classList.remove('dropdown-open'); }, 120);
     });
   });
+
+  if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
+    var touchTargets = document.querySelectorAll('.don-card, .approach-card, .sibling-card');
+    var touchObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        entry.target.classList.toggle('is-active', entry.isIntersecting);
+      });
+    }, { threshold: [0.5], rootMargin: '-20% 0px -20% 0px' });
+    touchTargets.forEach(function(el) { touchObs.observe(el); });
+  }
 
 })();
 </script>
