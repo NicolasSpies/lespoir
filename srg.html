@@ -359,6 +359,11 @@
   .maison-card.revealed:hover { transform: translateY(-4px); }
   .sibling-card.revealed:hover { transform: translateY(-4px); }
 
+  /* ── Organic blobs ── */
+  .blob { position:absolute; border-radius:60% 40% 70% 30% / 50% 60% 40% 50%; pointer-events:none; z-index:0; }
+  .blob-parent > :not(.blob) { position:relative; z-index:1; }
+  .blob-parent { position:relative; overflow:hidden; }
+
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
@@ -455,16 +460,19 @@
 <main class="flex-grow">
 
   <!-- ── HERO ── -->
-  <section class="relative bg-[#002626] pt-20 pb-16 md:pt-28 md:pb-24 px-6 md:px-8 overflow-hidden">
+  <section class="relative bg-[#002626] pt-20 pb-16 md:pt-28 md:pb-24 px-6 md:px-8 overflow-hidden blob-parent">
+    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(139,173,59,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
+    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,88,18,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
     <!-- Background image at low opacity -->
     <img
       src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80&auto=format&fit=crop"
       alt="" aria-hidden="true"
       class="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none select-none"
       loading="eager"
+      style="position:absolute"
     />
     <!-- Green accent glow -->
-    <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(139,173,59,0.18) 0%, transparent 70%);"></div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(139,173,59,0.18) 0%, transparent 70%);position:absolute;"></div>
 
     <div class="relative max-w-4xl mx-auto">
       <!-- Breadcrumb -->
@@ -484,7 +492,7 @@
 
       <!-- Headline -->
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-6">
-        Un foyer sécurisant<br class="hidden sm:block"/> pour grandir ensemble
+        Un foyer sécurisant<br class="hidden sm:block"/> pour <span style="position:relative;display:inline-block;">grandir<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#8BAD3B" stroke-width="2.5" stroke-linecap="round"/></svg></span> ensemble
       </h1>
       <p class="text-lg text-white/70 leading-relaxed mb-10 max-w-2xl">
         Le SRG accueille des enfants et des jeunes de 3 à 18 ans qui ne peuvent pas rester chez eux pour le moment, dans un cadre où ils peuvent souffler et se reconstruire.
@@ -523,6 +531,8 @@
       </div>
     </div>
   </section>
+
+  <div aria-hidden="true" style="background:#002626;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 32 Q360 8 720 44 Q1080 48 1440 16 L1440 48 L0 48 Z" fill="#fbf9f8"/></svg></div>
 
   <!-- ── POUR QUI ── -->
   <section id="pour-qui" class="py-20 md:py-28 px-6 md:px-8 bg-surface">
@@ -572,8 +582,11 @@
     </div>
   </section>
 
+  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 24 Q480 48 720 16 Q1080 0 1440 40 L1440 48 L0 48 Z" fill="#002626"/></svg></div>
+
   <!-- ── NOTRE APPROCHE ── -->
-  <section id="approche" class="py-20 md:py-28 px-6 md:px-8 bg-[#002626]">
+  <section id="approche" class="py-20 md:py-28 px-6 md:px-8 bg-[#002626] blob-parent">
+    <div class="blob" aria-hidden="true" style="width:240px;height:240px;background:rgba(17,157,164,0.09);top:20px;right:-60px;border-radius:50% 50% 70% 30% / 40% 60% 40% 60%;"></div>
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-14">
         <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-4">Notre approche</span>
@@ -617,8 +630,11 @@
     </div>
   </section>
 
+  <div aria-hidden="true" style="background:#002626;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 16 Q360 48 720 8 Q1200 0 1440 44 L1440 48 L0 48 Z" fill="#EFE7DA"/></svg></div>
+
   <!-- ── NOS MAISONS ── -->
-  <section id="maisons" class="py-20 md:py-28 px-6 md:px-8 bg-[#EFE7DA]">
+  <section id="maisons" class="py-20 md:py-28 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
+    <div class="blob" aria-hidden="true" style="width:260px;height:260px;background:rgba(139,173,59,0.08);bottom:40px;right:-80px;border-radius:65% 35% 55% 45% / 50% 50% 50% 50%;"></div>
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div>
@@ -710,6 +726,8 @@
     </div>
   </section>
 
+  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 28 Q480 4 720 40 Q960 48 1440 20 L1440 48 L0 48 Z" fill="#fbf9f8"/></svg></div>
+
   <!-- ── NOTRE ÉQUIPE ── -->
   <section id="equipe" class="py-20 md:py-28 px-6 md:px-8 bg-surface">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -767,8 +785,11 @@
     </div>
   </section>
 
+  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 36 Q360 0 720 40 Q1080 48 1440 12 L1440 48 L0 48 Z" fill="#EFE7DA"/></svg></div>
+
   <!-- ── ORIENTATION & CONTACT ── -->
-  <section id="orientation" class="py-20 md:py-28 px-6 md:px-8 bg-[#EFE7DA]">
+  <section id="orientation" class="py-20 md:py-28 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
+    <div class="blob" aria-hidden="true" style="width:200px;height:200px;background:rgba(229,88,18,0.07);top:20px;left:-50px;border-radius:45% 55% 40% 60% / 60% 40% 60% 40%;"></div>
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
       <!-- Process steps -->
@@ -867,6 +888,8 @@
     </div>
   </section>
 
+  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 44 Q360 16 720 36 Q1080 48 1440 8 L1440 48 L0 48 Z" fill="#fbf9f8"/></svg></div>
+
   <!-- ── AUTRES SERVICES ── -->
   <section class="py-16 px-6 md:px-8 bg-surface">
     <div class="max-w-7xl mx-auto">
@@ -897,6 +920,8 @@
       </div>
     </div>
   </section>
+
+  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 40 Q480 12 720 44 Q960 48 1440 16 L1440 48 L0 48 Z" fill="#002626"/></svg></div>
 
   <!-- ── FAIRE UN DON ── -->
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden">
