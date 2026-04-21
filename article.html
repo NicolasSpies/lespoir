@@ -33,7 +33,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"NGO","@id":"https://asbl-espoir.be/#organization","name":"L'Espoir asbl","alternateName":["ASBL L'Espoir","L'Espoir Aide à la Jeunesse"],"url":"https://asbl-espoir.be/","logo":{"@type":"ImageObject","url":"https://asbl-espoir.be/lespoir-logo.svg","width":512,"height":512},"foundingDate":"1985","description":"Association sans but lucratif belge agréée par la Fédération Wallonie-Bruxelles, active dans l'aide à la jeunesse à Huy et Amay depuis 1985 via trois services : SRG (résidentiel), SASE (accompagnement socio-éducatif) et SAPA (parrainage familial).","address":{"@type":"PostalAddress","streetAddress":"Rue de Biber 11","postalCode":"4540","addressLocality":"Amay","addressRegion":"Liège","addressCountry":"BE"},"telephone":"+32-85-23-58-14","email":"direction@asbl-espoir.be","areaServed":[{"@type":"City","name":"Huy"},{"@type":"City","name":"Amay"},{"@type":"City","name":"Waremme"},{"@type":"City","name":"Hannut"},{"@type":"AdministrativeArea","name":"Province de Liège"}],"taxID":"0431.081.064","sameAs":[],"knowsAbout":["aide à la jeunesse","protection de l'enfance","hébergement résidentiel","accompagnement socio-éducatif","parrainage familial","éducation spécialisée"]},{"@type":"WebSite","@id":"https://asbl-espoir.be/#website","url":"https://asbl-espoir.be/","name":"L'Espoir asbl","inLanguage":"fr-BE","publisher":{"@id":"https://asbl-espoir.be/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://asbl-espoir.be/"},{"@type":"ListItem","position":2,"name":"Actualités","item":"https://asbl-espoir.be/actualites.html"},{"@type":"ListItem","position":3,"name":"Rapport d'activités 2025","item":"https://asbl-espoir.be/article.html"}]},{"@type":"NewsArticle","headline":"Rapport d'activités 2025 · Quarante années au service des jeunes","datePublished":"2026-04-15","author":{"@id":"https://asbl-espoir.be/#organization"},"publisher":{"@id":"https://asbl-espoir.be/#organization"},"image":"https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1200&q=80","mainEntityOfPage":"https://asbl-espoir.be/article.html"},{"@type":"WebPage","@id":"https://asbl-espoir.be/article.html#webpage","url":"https://asbl-espoir.be/article.html","name":"Rapport d'activités 2025 · 40 ans au service des jeunes","description":"Retour sur une année intense de L'Espoir asbl : 120 jeunes accompagnés, trois services agréés, une équipe engagée dans l'aide à la jeunesse à Huy et Amay. Rapport d'activités 2025.","inLanguage":"fr-BE","isPartOf":{"@id":"https://asbl-espoir.be/#website"},"about":{"@id":"https://asbl-espoir.be/#organization"}}]}</script>
 <!-- SEO:END -->
 
-<link rel="icon" href="lespoir-logo.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -105,6 +105,8 @@
   .btn-outline:hover { background: #002626; color: #EFE7DA; }
   .btn-outline-light { background: transparent; color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5); }
   .btn-outline-light:hover { background: #fff; color: #002626; box-shadow: inset 0 0 0 2px #fff; }
+  .btn-outline-light .material-symbols-outlined { font-variation-settings: 'FILL' 0; transition: font-variation-settings 0.35s ease, transform 0.35s ease; }
+  .btn-outline-light:hover .material-symbols-outlined { font-variation-settings: 'FILL' 1; transform: scale(1.08); }
 
   nav > div { transition: padding 0.3s ease; }
   .nav-logo { transition: height 0.3s ease; }
@@ -270,10 +272,294 @@
     transition: background 0.2s ease, transform 0.2s ease;
   }
   .share-btn:hover { background: #8BAD3B; color: #002626; transform: translateY(-2px); }
+  .share-btn:hover > .material-symbols-outlined { transform: none; }
+
+  /* ── Rich content blocks ── */
+  .article-figure { margin: 2.5rem 0; }
+  .article-figure img { width: 100%; border-radius: 1rem; display: block; }
+  .article-figure figcaption {
+    font-size: 0.85rem; color: rgba(0,38,38,0.55);
+    margin-top: 0.75rem; font-style: italic; text-align: center;
+  }
+
+  .article-pullquote {
+    margin: 3rem 0; padding: 2rem 2rem 2rem 3.5rem;
+    background: linear-gradient(135deg, rgba(139,173,59,0.08), rgba(139,173,59,0.02));
+    border-radius: 1.25rem; position: relative;
+    border-left: 4px solid #8BAD3B;
+  }
+  .article-pullquote::before {
+    content: '“'; position: absolute; left: 0.9rem; top: -0.8rem;
+    font-size: 5.5rem; color: #8BAD3B; font-family: Georgia, serif;
+    line-height: 1; opacity: 0.5;
+  }
+  .article-pullquote blockquote {
+    font-size: 1.35rem; font-weight: 600; line-height: 1.5;
+    color: #002626; font-style: italic; margin: 0; border: 0; padding: 0;
+  }
+  .quote-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.5rem; }
+  .quote-author-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: #8BAD3B; color: #fff; display: flex;
+    align-items: center; justify-content: center; font-weight: 700; font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .quote-author-name { font-weight: 700; color: #002626; font-size: 0.9rem; }
+  .quote-author-role { font-size: 0.78rem; color: rgba(0,38,38,0.55); }
+
+  .article-gallery {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem; margin: 2.5rem 0;
+  }
+  @media (max-width: 640px) { .article-gallery { grid-template-columns: repeat(2, 1fr); } }
+  .gallery-item {
+    position: relative; cursor: pointer; overflow: hidden;
+    border-radius: 0.75rem; aspect-ratio: 1; background: #002626;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.45s ease, opacity 0.3s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.08); opacity: 0.85; }
+  .gallery-item .gallery-zoom {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; opacity: 0;
+    background: rgba(0,38,38,0.35); transition: opacity 0.3s ease;
+  }
+  .gallery-item:hover .gallery-zoom { opacity: 1; }
+
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(0,38,38,0.94);
+    z-index: 200; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  }
+  .lightbox.is-open { opacity: 1; pointer-events: auto; }
+  .lightbox-img { max-width: 92vw; max-height: 84vh; border-radius: 0.75rem; object-fit: contain; }
+  .lightbox-close, .lightbox-prev, .lightbox-next {
+    position: absolute; background: rgba(255,255,255,0.14); color: #fff;
+    border: 0; width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: background 0.2s ease;
+  }
+  .lightbox-close { top: 1.5rem; right: 1.5rem; }
+  .lightbox-prev { left: 1.5rem; top: 50%; transform: translateY(-50%); }
+  .lightbox-next { right: 1.5rem; top: 50%; transform: translateY(-50%); }
+  .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.28); }
+  .lightbox-caption {
+    position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    color: #fff; background: rgba(0,0,0,0.5); padding: 0.5rem 1rem;
+    border-radius: 999px; font-size: 0.85rem; max-width: 80vw; text-align: center;
+  }
+
+  .article-two-col {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2.5rem; align-items: center; margin: 3rem 0;
+  }
+  @media (max-width: 768px) { .article-two-col { grid-template-columns: 1fr; gap: 1.5rem; } }
+  .article-two-col img { width: 100%; border-radius: 1rem; aspect-ratio: 4/5; object-fit: cover; }
+  .two-col-text h3 { font-size: 1.5rem; font-weight: 800; color: #002626; margin-bottom: 1rem; line-height: 1.25; }
+  .two-col-text p { font-size: 1rem; line-height: 1.7; color: rgba(0,38,38,0.8); margin-bottom: 1rem; }
+
+  .article-callout {
+    margin: 2rem 0; padding: 1.25rem 1.5rem;
+    border-radius: 0.875rem; display: flex; gap: 1rem;
+    border: 1px solid transparent; align-items: flex-start;
+  }
+  .callout-icon {
+    flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; color: #fff;
+  }
+  .callout-body { flex: 1; }
+  .callout-title { font-weight: 700; margin-bottom: 0.15rem; font-size: 0.95rem; }
+  .callout-text { font-size: 0.92rem; line-height: 1.6; margin: 0; color: rgba(0,38,38,0.78); }
+  .callout-text a { font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+  .callout-info { background: rgba(17,157,164,0.08); border-color: rgba(17,157,164,0.22); }
+  .callout-info .callout-icon { background: #119DA4; }
+  .callout-info .callout-title { color: #0a6e73; }
+  .callout-info .callout-text a { color: #0a6e73; }
+  .callout-success { background: rgba(139,173,59,0.10); border-color: rgba(139,173,59,0.3); }
+  .callout-success .callout-icon { background: #8BAD3B; }
+  .callout-success .callout-title { color: #5e7a22; }
+  .callout-success .callout-text a { color: #5e7a22; }
+  .callout-warning { background: rgba(229,88,18,0.08); border-color: rgba(229,88,18,0.25); }
+  .callout-warning .callout-icon { background: #E55812; }
+  .callout-warning .callout-title { color: #b3400e; }
+  .callout-warning .callout-text a { color: #b3400e; }
+
+  .article-timeline {
+    margin: 3rem 0; position: relative; padding-left: 2rem;
+  }
+  .article-timeline::before {
+    content: ''; position: absolute; left: 0.55rem; top: 0.5rem; bottom: 0.5rem;
+    width: 2px; background: linear-gradient(180deg, #8BAD3B, rgba(139,173,59,0.2));
+  }
+  .timeline-item { position: relative; padding-bottom: 2rem; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -1.7rem; top: 0.45rem;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #fbf9f8; border: 3px solid #8BAD3B;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-date {
+    font-weight: 700; color: #5e7a22; font-size: 0.72rem;
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .timeline-title { font-size: 1.1rem; font-weight: 700; color: #002626; margin: 0.25rem 0 0.35rem; }
+  .timeline-desc { font-size: 0.95rem; color: rgba(0,38,38,0.7); line-height: 1.6; }
+
+  .article-ba {
+    margin: 3rem 0; position: relative; overflow: hidden;
+    border-radius: 1rem; user-select: none; aspect-ratio: 16/9;
+    background: #002626; cursor: ew-resize; touch-action: none;
+  }
+  .article-ba img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; pointer-events: none;
+  }
+  .ba-after { clip-path: polygon(var(--pos,50%) 0, 100% 0, 100% 100%, var(--pos,50%) 100%); }
+  .ba-divider {
+    position: absolute; top: 0; bottom: 0; left: var(--pos,50%);
+    width: 3px; background: #fff; transform: translateX(-50%);
+    box-shadow: 0 0 15px rgba(0,0,0,0.35); pointer-events: none;
+  }
+  .ba-handle {
+    position: absolute; top: 50%; left: var(--pos,50%);
+    transform: translate(-50%,-50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: #fff; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.35); color: #002626;
+    pointer-events: none; transform: translate(-50%,-50%) rotate(90deg);
+  }
+  .ba-label {
+    position: absolute; top: 1rem; padding: 0.35rem 0.75rem;
+    background: rgba(0,38,38,0.75); color: #fff; font-size: 0.72rem;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    border-radius: 999px; pointer-events: none;
+  }
+  .ba-label-before { left: 1rem; }
+  .ba-label-after { right: 1rem; background: rgba(139,173,59,0.9); }
+
+  .article-video {
+    margin: 2.5rem 0; aspect-ratio: 16/9; position: relative;
+    border-radius: 1rem; overflow: hidden; background: #002626;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .article-video iframe { width: 100%; height: 100%; border: 0; }
+  .video-placeholder {
+    position: absolute; inset: 0; background-size: cover; background-position: center;
+    display: flex; align-items: center; justify-content: center;
+    transition: filter 0.3s ease;
+  }
+  .article-video:hover .video-placeholder { filter: brightness(0.7); }
+  .video-placeholder::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,38,38,0.3), rgba(0,38,38,0.55));
+  }
+  .video-play {
+    position: relative; width: 84px; height: 84px; border-radius: 50%;
+    background: rgba(255,255,255,0.95); display: flex; align-items: center; justify-content: center;
+    color: #002626; transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+  .article-video:hover .video-play { transform: scale(1.08); background: #8BAD3B; color: #fff; }
+  .video-label {
+    position: absolute; bottom: 1.25rem; left: 1.25rem; color: #fff;
+    font-weight: 700; font-size: 0.95rem; text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+
+  .article-download {
+    display: flex; align-items: center; gap: 1.25rem;
+    margin: 2rem 0; padding: 1.25rem 1.5rem;
+    border: 2px solid rgba(0,38,38,0.1); border-radius: 1rem;
+    text-decoration: none; color: #002626; background: #fff;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .article-download:hover {
+    border-color: #8BAD3B; transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,38,38,0.08);
+  }
+  .dl-icon {
+    flex-shrink: 0; width: 52px; height: 52px; border-radius: 0.75rem;
+    background: #E55812; color: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 800; letter-spacing: 0.05em;
+  }
+  .dl-body { flex: 1; min-width: 0; }
+  .dl-title { font-weight: 700; margin-bottom: 0.15rem; }
+  .dl-meta { font-size: 0.8rem; color: rgba(0,38,38,0.55); }
+  .dl-arrow { color: #002626; flex-shrink: 0; transition: transform 0.25s ease; }
+  .article-download:hover .dl-arrow { transform: translateY(2px); }
+
+  .article-steps {
+    margin: 2.5rem 0; display: grid; gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 768px) { .article-steps { grid-template-columns: 1fr; } }
+  .step-card {
+    background: #fff; border: 1px solid rgba(0,38,38,0.08);
+    border-radius: 1rem; padding: 1.5rem; position: relative;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .step-card:hover { border-color: #8BAD3B; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,38,38,0.06); }
+  .step-num {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: #002626; color: #8BAD3B; display: flex;
+    align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem;
+    margin-bottom: 0.85rem;
+  }
+  .step-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.35rem; color: #002626; }
+  .step-desc { font-size: 0.9rem; color: rgba(0,38,38,0.7); line-height: 1.55; }
+
+  .article-faq { margin: 2rem 0; }
+  .faq-item { border-bottom: 1px solid rgba(0,38,38,0.12); }
+  .faq-item:first-child { border-top: 1px solid rgba(0,38,38,0.12); }
+  .faq-trigger {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    padding: 1.15rem 0; background: transparent; border: 0; font-family: inherit;
+    font-size: 1.02rem; font-weight: 700; color: #002626; cursor: pointer;
+    text-align: left; transition: color 0.2s ease;
+  }
+  .faq-trigger:hover { color: #5e7a22; }
+  .faq-icon {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(139,173,59,0.15); color: #5e7a22;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s ease, background 0.25s ease, color 0.25s ease;
+    flex-shrink: 0; margin-left: 1rem;
+  }
+  .faq-item.is-open .faq-icon { transform: rotate(45deg); background: #8BAD3B; color: #fff; }
+  .faq-body { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
+  .faq-item.is-open .faq-body { max-height: 500px; }
+  .faq-body-inner { padding-bottom: 1.25rem; color: rgba(0,38,38,0.75); line-height: 1.65; font-size: 0.96rem; }
+
+  .article-final-cta {
+    margin: 3rem 0 0; padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, #002626 0%, #043a3a 100%);
+    border-radius: 1.5rem; color: #fff; position: relative; overflow: hidden;
+  }
+  .article-final-cta::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 260px; height: 260px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,173,59,0.35), transparent 70%);
+    pointer-events: none;
+  }
+  .article-final-cta .cta-label {
+    color: #8BAD3B; font-weight: 800; font-size: 0.72rem;
+    letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.75rem;
+    position: relative;
+  }
+  .article-final-cta h3 {
+    font-size: 1.65rem; font-weight: 800; line-height: 1.25;
+    margin-bottom: 0.75rem; position: relative;
+  }
+  .article-final-cta p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; position: relative; }
+  .cta-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; position: relative; }
 
   /* ── Mobile: auto-activate hover state when element is centered in viewport ── */
   @media (hover: none) {
     .related-card.is-active { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,38,38,0.08); }
+    .step-card.is-active { border-color: #8BAD3B; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,38,38,0.06); }
+    .gallery-item.is-active img { transform: scale(1.05); }
   }
 </style>
 </head>
@@ -413,7 +699,18 @@
         <p class="text-xl text-[#002626]/85 font-medium leading-relaxed">
           2025 restera une année charnière pour L'Espoir asbl. Entre le renforcement de nos équipes, l'arrivée de nouveaux partenaires et la consolidation du tout jeune service SAPA, nous avons continué à creuser le même sillon : accompagner, au plus près, des jeunes et des familles qui traversent des moments difficiles.
         </p>
+      </div>
 
+      <!-- CALLOUT : synthèse -->
+      <div class="article-callout callout-info">
+        <div class="callout-icon"><span class="material-symbols-outlined" style="font-size:20px;">auto_stories</span></div>
+        <div class="callout-body">
+          <div class="callout-title">Article synthèse</div>
+          <p class="callout-text">Ce texte résume les grandes lignes du rapport complet 2025. Le PDF détaillé (48 pages) est téléchargeable plus bas sur la page.</p>
+        </div>
+      </div>
+
+      <div class="article-body">
         <h2>120 jeunes accompagnés, trois services, une même mission</h2>
         <p>
           Sur l'année 2025, ce sont <strong>plus de 120 jeunes et leurs familles</strong> qui ont été accompagnés par nos trois services. Un chiffre qui ne dit pas tout, chaque situation est unique, chaque parcours demande du temps, de la souplesse, de la créativité.
@@ -450,38 +747,248 @@
         <p>
           En 2025, nous avons accueilli <strong>6 nouveaux éducateurs</strong> au sein du SRG et du SASE. Chacun a suivi un parcours d'intégration de trois semaines, en binôme avec un éducateur expérimenté. Nous tenons à ce que personne ne se retrouve seul face à une situation complexe dans les premiers mois.
         </p>
+      </div>
+
+      <!-- INLINE IMAGE -->
+      <figure class="article-figure">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1400&q=80&auto=format&fit=crop" alt="Réunion d'équipe autour d'un cahier"/>
+        <figcaption>Réunion hebdomadaire d'équipe au SRG · novembre 2025.</figcaption>
+      </figure>
+
+      <div class="article-body">
         <p>
           La formation continue reste l'un de nos piliers : chaque membre de l'équipe a suivi en moyenne <strong>12 heures de formation</strong> cette année, sur des thèmes allant de la gestion de crise au travail de lien avec les familles, en passant par l'accompagnement numérique des jeunes.
         </p>
+      </div>
 
-        <blockquote>
-          « Ce qui me frappe après vingt ans à L'Espoir, c'est qu'on n'a jamais arrêté de questionner ce qu'on fait. Ça, c'est précieux. »
-          <span class="block text-sm mt-3 not-italic opacity-70">Responsable éducatif SRG</span>
-        </blockquote>
+      <!-- PULL-QUOTE -->
+      <div class="article-pullquote">
+        <blockquote>Ce qui me frappe après vingt ans à L'Espoir, c'est qu'on n'a jamais arrêté de questionner ce qu'on fait. Ça, c'est précieux.</blockquote>
+        <div class="quote-author">
+          <div class="quote-author-avatar">M</div>
+          <div>
+            <div class="quote-author-name">Marie L.</div>
+            <div class="quote-author-role">Responsable éducatif SRG · 20 ans d'engagement</div>
+          </div>
+        </div>
+      </div>
 
-        <h2>Des projets qui changent le quotidien</h2>
+      <div class="article-body">
+        <h2>Zoom sur le potager communautaire</h2>
         <p>
-          Grâce au soutien de nos partenaires et de nos donateurs, plusieurs projets ont vu le jour en 2025 :
+          Lancé en avril 2025 sur un terrain prêté par la Ville de Huy, le potager est rapidement devenu bien plus qu'un simple projet de jardinage. C'est aujourd'hui un lieu de rencontre intergénérationnel où jeunes du SRG, familles du SASE et voisins du quartier se retrouvent chaque semaine.
         </p>
-        <ul>
-          <li><strong>Le potager communautaire</strong>, lancé en avril sur un terrain prêté par la Ville de Huy, il est devenu un véritable lieu de rencontre entre jeunes du SRG et familles du quartier.</li>
-          <li><strong>Ateliers créatifs trimestriels</strong>, arts plastiques, théâtre, cuisine : des occasions pour les jeunes de développer leurs talents hors du cadre scolaire.</li>
-          <li><strong>Week-ends d'évasion</strong>, trois week-ends en Ardennes et sur la Côte belge, pour souffler et partager autre chose que le quotidien.</li>
-          <li><strong>Plateforme numérique interne</strong>, un nouvel outil pour mieux coordonner le travail entre éducateurs, sans multiplier les réunions.</li>
-        </ul>
+      </div>
 
-        <h2>Ce qui nous attend en 2026</h2>
-        <p>
-          L'année 2026 marquera les <strong>41 ans</strong> de l'association. Au programme : la consolidation du SAPA avec un élargissement progressif de sa zone d'intervention, le renforcement de nos partenariats avec les acteurs locaux (écoles, services sociaux, pôles de santé), et le lancement d'un cycle de rencontres publiques autour de la protection de la jeunesse.
-        </p>
-        <p>
-          Surtout, nous continuerons à faire ce que nous savons faire : être là, au quotidien, avec les jeunes et les familles. Merci à toutes celles et ceux qui nous accompagnent dans cette mission.
-        </p>
+      <!-- TIMELINE -->
+      <div class="article-timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">Mars 2025</div>
+          <div class="timeline-title">Conception du projet</div>
+          <div class="timeline-desc">Premiers échanges avec la Ville de Huy, repérage du terrain rue des Frères et validation du budget avec la Fondation Roi Baudouin.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Avril 2025</div>
+          <div class="timeline-title">Aménagement collectif</div>
+          <div class="timeline-desc">Bêchage, préparation des carrés, installation de la cabane à outils avec cinq jeunes du SRG et deux éducateurs. Trois samedis intenses.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Mai 2025</div>
+          <div class="timeline-title">Premières plantations</div>
+          <div class="timeline-desc">Tomates, courgettes, herbes aromatiques et fleurs comestibles. Trois familles du SASE rejoignent le groupe hebdomadaire du mercredi.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Juin 2025</div>
+          <div class="timeline-title">Ouverture au quartier</div>
+          <div class="timeline-desc">Apéro d'inauguration avec une soixantaine de voisins. Le potager devient officiellement un lieu de rencontre ouvert à tous le mercredi après-midi.</div>
+        </div>
+      </div>
 
-        <h3>Le rapport complet</h3>
+      <!-- BEFORE / AFTER -->
+      <figure class="article-figure">
+        <div class="article-ba" aria-label="Comparaison avant/après du terrain">
+          <img src="https://images.unsplash.com/photo-1433838552652-f9a46b332c40?w=1600&q=80&auto=format&fit=crop" alt="Terrain en friche avant les travaux" class="ba-before"/>
+          <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=1600&q=80&auto=format&fit=crop" alt="Potager aménagé après les travaux" class="ba-after"/>
+          <div class="ba-label ba-label-before">Avant · Mars</div>
+          <div class="ba-label ba-label-after">Après · Juin</div>
+          <div class="ba-divider"></div>
+          <div class="ba-handle"><span class="material-symbols-outlined" style="font-size:22px;">unfold_more</span></div>
+        </div>
+        <figcaption>Faites glisser le curseur · le terrain avant travaux et trois mois plus tard.</figcaption>
+      </figure>
+
+      <div class="article-body">
+        <h3>En images</h3>
+        <p>Quelques instants capturés au fil des saisons, depuis les premières plantations jusqu'aux récoltes partagées.</p>
+      </div>
+
+      <!-- GALLERY -->
+      <div class="article-gallery" role="list">
+        <div class="gallery-item" role="listitem" data-caption="Préparation des carrés de culture · avril 2025">
+          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80&auto=format&fit=crop" alt="Préparation du sol"/>
+          <div class="gallery-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
+        </div>
+        <div class="gallery-item" role="listitem" data-caption="Plantation des premières tomates · mai 2025">
+          <img src="https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?w=900&q=80&auto=format&fit=crop" alt="Mains plantant"/>
+          <div class="gallery-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
+        </div>
+        <div class="gallery-item" role="listitem" data-caption="Outils du jardin partagé">
+          <img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?w=900&q=80&auto=format&fit=crop" alt="Outils de jardinage"/>
+          <div class="gallery-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
+        </div>
+        <div class="gallery-item" role="listitem" data-caption="Première récolte · juillet 2025">
+          <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=900&q=80&auto=format&fit=crop" alt="Récolte de légumes"/>
+          <div class="gallery-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
+        </div>
+        <div class="gallery-item" role="listitem" data-caption="Repas partagé au potager · août 2025">
+          <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=900&q=80&auto=format&fit=crop" alt="Table partagée"/>
+          <div class="gallery-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
+        </div>
+        <div class="gallery-item" role="listitem" data-caption="Atelier cuisine au potager">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80&auto=format&fit=crop" alt="Cuisine collective"/>
+          <div class="gallery-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
+        </div>
+      </div>
+
+      <!-- 2-COLUMN -->
+      <div class="article-two-col">
+        <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=900&q=80&auto=format&fit=crop" alt="Accompagnement au domicile"/>
+        <div class="two-col-text">
+          <span class="text-[#E55812] font-black tracking-widest text-xs uppercase block mb-3">Focus · SASE</span>
+          <h3>Un accompagnement au plus près des familles</h3>
+          <p>Le SASE intervient au domicile des familles, au rythme de leur réalité. En 2025, nos éducateurs ont cumulé <strong>plus de 2 300 visites à domicile</strong>, soit en moyenne 48 visites par famille sur l'année.</p>
+          <p>Derrière ces chiffres, une approche simple : prendre le temps, écouter, accompagner sans juger, et aider chaque famille à retrouver ses propres ressources.</p>
+        </div>
+      </div>
+
+      <div class="article-body">
+        <h2>Formation continue : deux jours sur la gestion de crise</h2>
         <p>
-          Le rapport d'activités 2025 complet (48 pages) est disponible sur simple demande. Il détaille par service les actions menées, les publics accompagnés et les moyens humains et financiers mobilisés. <a href="contact.html">Contactez-nous</a> pour le recevoir.
+          En novembre, toute l'équipe éducative s'est retrouvée pour deux journées de formation intensive, animées par l'ASBL Parole d'Enfants. Objectif : mieux décoder les signaux de tension et désamorcer les situations difficiles.
         </p>
+      </div>
+
+      <!-- VIDEO -->
+      <a href="#" class="article-video" onclick="return false;" aria-label="Vidéo : aperçu de la formation">
+        <div class="video-placeholder" style="background-image:url('https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1400&q=80&auto=format&fit=crop');"></div>
+        <div class="video-play"><span class="material-symbols-outlined" style="font-size:36px;font-variation-settings:'FILL' 1;">play_arrow</span></div>
+        <div class="video-label">Formation gestion de crise · 2:14</div>
+      </a>
+
+      <div class="article-body">
+        <h2>Comment nous soutenir</h2>
+        <p>L'Espoir asbl vit grâce à trois piliers : ses partenaires publics, ses donateurs privés et ses bénévoles. Voici comment participer, à votre rythme.</p>
+      </div>
+
+      <!-- STEPS -->
+      <div class="article-steps">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-title">Découvrir</div>
+          <div class="step-desc">Parcourez nos services et nos projets, ou venez nous rencontrer lors d'une prochaine porte ouverte.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-title">Soutenir</div>
+          <div class="step-desc">Don unique ou régulier, bénévolat ponctuel, prêt de matériel : toutes les aides comptent.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-title">Partager</div>
+          <div class="step-desc">Parlez de nous autour de vous, sur les réseaux ou dans votre entourage professionnel.</div>
+        </div>
+      </div>
+
+      <!-- CALLOUT success -->
+      <div class="article-callout callout-success">
+        <div class="callout-icon"><span class="material-symbols-outlined" style="font-size:20px;">volunteer_activism</span></div>
+        <div class="callout-body">
+          <div class="callout-title">Envie de rejoindre l'aventure ?</div>
+          <p class="callout-text">Nous recherchons en permanence des bénévoles pour nos ateliers, le potager et nos week-ends d'évasion. <a href="contact.html">Contactez-nous</a> pour en discuter.</p>
+        </div>
+      </div>
+
+      <div class="article-body"><h2>Questions fréquentes</h2></div>
+
+      <!-- FAQ -->
+      <div class="article-faq">
+        <div class="faq-item">
+          <button class="faq-trigger" type="button" aria-expanded="false">
+            <span>Comment puis-je devenir bénévole chez L'Espoir ?</span>
+            <span class="faq-icon"><span class="material-symbols-outlined" style="font-size:20px;">add</span></span>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner">
+            La première étape est un simple échange : un café dans nos bureaux d'Amay pour vous écouter, comprendre vos envies et vous présenter nos besoins. Ensuite, nous construisons ensemble un engagement qui vous convient, ponctuel ou régulier, sur un projet précis ou en soutien d'une équipe.
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-trigger" type="button" aria-expanded="false">
+            <span>Mon don est-il déductible fiscalement ?</span>
+            <span class="faq-icon"><span class="material-symbols-outlined" style="font-size:20px;">add</span></span>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner">
+            Les dons de 40 € et plus sont déductibles à 45 % via notre partenaire, le Service Arc-en-Ciel. Vous recevez une attestation fiscale en début d'année suivante, directement utilisable dans votre déclaration.
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-trigger" type="button" aria-expanded="false">
+            <span>Puis-je faire don de matériel ou de vêtements ?</span>
+            <span class="faq-icon"><span class="material-symbols-outlined" style="font-size:20px;">add</span></span>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner">
+            Oui, avec plaisir, mais nous vous demandons de nous contacter avant tout dépôt pour vérifier si le matériel correspond aux besoins du moment. Cela évite que des objets s'accumulent sans trouver leur usage.
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-trigger" type="button" aria-expanded="false">
+            <span>L'Espoir accompagne-t-elle au-delà de Huy et Amay ?</span>
+            <span class="faq-icon"><span class="material-symbols-outlined" style="font-size:20px;">add</span></span>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner">
+            Le SRG accueille des jeunes orientés par les autorités de l'Aide à la Jeunesse de toute la Wallonie. Le SASE couvre la région de Huy-Waremme-Hannut. Le SAPA travaille actuellement sur la même zone, avec un élargissement prévu en 2026.
+          </div></div>
+        </div>
+      </div>
+
+      <!-- CALLOUT warning (protection) -->
+      <div class="article-callout callout-warning">
+        <div class="callout-icon"><span class="material-symbols-outlined" style="font-size:20px;">shield</span></div>
+        <div class="callout-body">
+          <div class="callout-title">Protection et respect de la vie privée</div>
+          <p class="callout-text">Par respect pour les jeunes que nous accompagnons, nous ne diffusons jamais leurs visages ni leurs identités. Toutes les images de ce rapport sont symboliques ou ont été explicitement autorisées par les personnes concernées.</p>
+        </div>
+      </div>
+
+      <div class="article-body">
+        <h2>Le rapport complet</h2>
+        <p>Vous pouvez télécharger la version intégrale du rapport 2025 ci-dessous. Le document détaille par service les actions menées, les publics accompagnés et les moyens humains et financiers mobilisés.</p>
+      </div>
+
+      <!-- DOWNLOAD -->
+      <a href="#" class="article-download" onclick="return false;">
+        <div class="dl-icon">PDF</div>
+        <div class="dl-body">
+          <div class="dl-title">Rapport d'activités 2025 · version complète</div>
+          <div class="dl-meta">PDF · 48 pages · 3,2 Mo</div>
+        </div>
+        <div class="dl-arrow"><span class="material-symbols-outlined">download</span></div>
+      </a>
+
+      <!-- FINAL CTA -->
+      <div class="article-final-cta">
+        <div class="cta-label">Ce projet vous touche ?</div>
+        <h3>Chaque geste compte pour les jeunes que nous accompagnons.</h3>
+        <p>Votre don finance les projets, les sorties et les moments qui font la différence au quotidien.</p>
+        <div class="cta-btns">
+          <a href="don.html" class="btn btn-accent">
+            <span class="material-symbols-outlined" style="font-size:18px;">favorite</span>
+            Faire un don
+          </a>
+          <a href="contact.html" class="btn btn-outline-light">
+            <span class="material-symbols-outlined" style="font-size:18px;">mail</span>
+            Nous contacter
+          </a>
+        </div>
       </div>
 
       <!-- SHARE -->
@@ -571,6 +1078,15 @@
   </section>
 
 </main>
+
+<!-- ── LIGHTBOX ── -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Visionneuse de galerie">
+  <button class="lightbox-close" type="button" aria-label="Fermer"><span class="material-symbols-outlined">close</span></button>
+  <button class="lightbox-prev" type="button" aria-label="Image précédente"><span class="material-symbols-outlined">chevron_left</span></button>
+  <button class="lightbox-next" type="button" aria-label="Image suivante"><span class="material-symbols-outlined">chevron_right</span></button>
+  <img src="" alt="" class="lightbox-img"/>
+  <div class="lightbox-caption"></div>
+</div>
 
 <!-- ── FOOTER ── -->
 <footer class="bg-[#001a1a] w-full text-[#EFE7DA]">
@@ -697,7 +1213,7 @@
   });
 
   if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
-    var touchTargets = document.querySelectorAll('.related-card');
+    var touchTargets = document.querySelectorAll('.related-card, .step-card, .gallery-item');
     var touchObs = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         entry.target.classList.toggle('is-active', entry.isIntersecting);
@@ -705,6 +1221,82 @@
     }, { threshold: [0.5], rootMargin: '-20% 0px -20% 0px' });
     touchTargets.forEach(function(el) { touchObs.observe(el); });
   }
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-trigger').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.parentElement;
+      var open = item.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  // ── Before/After slider ──
+  document.querySelectorAll('.article-ba').forEach(function(ba) {
+    var dragging = false;
+    function setPos(clientX) {
+      var r = ba.getBoundingClientRect();
+      var pct = Math.max(0, Math.min(100, ((clientX - r.left) / r.width) * 100));
+      ba.style.setProperty('--pos', pct + '%');
+    }
+    function down(e) { dragging = true; setPos((e.touches ? e.touches[0] : e).clientX); e.preventDefault(); }
+    function move(e) { if (!dragging) return; setPos((e.touches ? e.touches[0] : e).clientX); }
+    function up() { dragging = false; }
+    ba.addEventListener('mousedown', down);
+    ba.addEventListener('touchstart', down, { passive: false });
+    window.addEventListener('mousemove', move);
+    window.addEventListener('touchmove', move, { passive: true });
+    window.addEventListener('mouseup', up);
+    window.addEventListener('touchend', up);
+  });
+
+  // ── Lightbox ──
+  (function() {
+    var items = document.querySelectorAll('.gallery-item');
+    if (!items.length) return;
+    var lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
+    var lbImg = lightbox.querySelector('.lightbox-img');
+    var lbCap = lightbox.querySelector('.lightbox-caption');
+    var data = Array.prototype.map.call(items, function(it) {
+      return {
+        src: (it.querySelector('img').src || '').replace(/w=\d+/, 'w=1600'),
+        alt: it.querySelector('img').alt || '',
+        caption: it.dataset.caption || ''
+      };
+    });
+    var idx = 0;
+    function open(i) {
+      idx = i;
+      lbImg.src = data[i].src;
+      lbImg.alt = data[i].alt;
+      lbCap.textContent = data[i].caption;
+      lbCap.style.display = data[i].caption ? '' : 'none';
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    function next() { open((idx + 1) % data.length); }
+    function prev() { open((idx - 1 + data.length) % data.length); }
+    items.forEach(function(it, i) {
+      it.addEventListener('click', function() { open(i); });
+    });
+    lightbox.querySelector('.lightbox-close').addEventListener('click', close);
+    lightbox.querySelector('.lightbox-next').addEventListener('click', function(e) { e.stopPropagation(); next(); });
+    lightbox.querySelector('.lightbox-prev').addEventListener('click', function(e) { e.stopPropagation(); prev(); });
+    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) close(); });
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+  })();
 })();
 </script>
 </body>
