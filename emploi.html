@@ -34,6 +34,10 @@
 <!-- SEO:END -->
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://images.unsplash.com"/>
+<link rel="preconnect" href="https://cdn.tailwindcss.com"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -486,22 +490,14 @@
     <div class="hidden lg:flex gap-7 text-sm tracking-tight items-center">
       <a class="nav-link" href="homepage.html">Accueil</a>
       <div class="nav-item">
-        <a class="nav-link cursor-default" href="services.html">Services ▾</a>
+        <a class="nav-link cursor-default" href="#" onclick="event.preventDefault()">Services ▾</a>
         <div class="nav-dropdown">
           <a href="srg.html" data-hover-color="#8BAD3B"><span class="dd-abbr" style="color:#8BAD3B">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
           <a href="sase.html" data-hover-color="#E55812"><span class="dd-abbr" style="color:#E55812">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
           <a href="sapa.html" data-hover-color="#119DA4"><span class="dd-abbr" style="color:#119DA4">SAPA</span><span class="dd-name">Service d'Accompagnement du Parrainage</span></a>
         </div>
       </div>
-      <div class="nav-item">
-        <a class="nav-link cursor-default" href="apropos.html">À propos ▾</a>
-        <div class="nav-dropdown">
-          <a href="apropos.html#histoire" data-hover-color="#002626"><span class="dd-abbr" style="color:#002626">Notre histoire</span><span class="dd-name">Depuis 1985 au service des jeunes</span></a>
-          <a href="apropos.html#missions" data-hover-color="#002626"><span class="dd-abbr" style="color:#002626">Missions &amp; Valeurs</span><span class="dd-name">Ce qui nous guide au quotidien</span></a>
-          <a href="apropos.html#equipe" data-hover-color="#002626"><span class="dd-abbr" style="color:#002626">Équipe</span><span class="dd-name">Les visages de L'Espoir</span></a>
-          <a href="apropos.html#partenaires" data-hover-color="#002626"><span class="dd-abbr" style="color:#002626">Partenaires</span><span class="dd-name">Ceux qui nous soutiennent</span></a>
-        </div>
-      </div>
+      <a class="nav-link" href="apropos.html">À propos</a>
       <a class="nav-link" href="actualites.html">Actualités</a>
       <a class="nav-link is-active" href="emploi.html">Offres d'emploi</a>
       <a class="nav-link" href="contact.html">Contact</a>
@@ -532,7 +528,7 @@
     <a href="homepage.html" class="m-link">Accueil</a>
     <div class="m-accordion">
       <div class="m-link-row">
-        <a href="services.html" class="m-link m-link-main">Services</a>
+        <a href="#" class="m-link m-link-main" onclick="event.preventDefault(); this.nextElementSibling.click();">Services</a>
         <button class="m-accordion-trigger m-chevron-btn" aria-expanded="false" aria-label="Voir les sous-pages de Services">
           <span class="m-chevron material-symbols-outlined">expand_more</span>
         </button>
@@ -543,20 +539,7 @@
         <a href="sapa.html" class="m-sublink"><span class="abbr" style="color:#119DA4">SAPA</span><span class="name">Service d'Accompagnement du Parrainage</span></a>
       </div>
     </div>
-    <div class="m-accordion">
-      <div class="m-link-row">
-        <a href="apropos.html" class="m-link m-link-main">À propos</a>
-        <button class="m-accordion-trigger m-chevron-btn" aria-expanded="false" aria-label="Voir les sous-pages de À propos">
-          <span class="m-chevron material-symbols-outlined">expand_more</span>
-        </button>
-      </div>
-      <div class="m-accordion-body">
-        <a href="apropos.html#histoire" class="m-sublink"><span class="abbr">Notre histoire</span><span class="name">Depuis 1985 au service des jeunes</span></a>
-        <a href="apropos.html#missions" class="m-sublink"><span class="abbr">Missions &amp; Valeurs</span><span class="name">Ce qui nous guide</span></a>
-        <a href="apropos.html#equipe" class="m-sublink"><span class="abbr">Équipe</span><span class="name">Les visages de L'Espoir</span></a>
-        <a href="apropos.html#partenaires" class="m-sublink"><span class="abbr">Partenaires</span><span class="name">Ceux qui nous soutiennent</span></a>
-      </div>
-    </div>
+    <a href="apropos.html" class="m-link">À propos</a>
     <a href="actualites.html" class="m-link">Actualités</a>
     <a href="emploi.html" class="m-link is-active">Offres d'emploi</a>
     <a href="contact.html" class="m-link">Contact</a>
@@ -965,7 +948,7 @@
                   <option value="">À préciser -</option>
                   <option value="immediate">Immédiate</option>
                   <option value="1-mois">Dans le mois</option>
-                  <option value="preavis">Après préavis (2-3 mois)</option>
+                  <option value="preavis">Après préavis (2 à 3 mois)</option>
                   <option value="flexible">Flexible</option>
                 </select>
               </div>
@@ -1065,7 +1048,7 @@
               Process de recrutement
             </h3>
             <ul>
-              <li><span class="material-symbols-outlined">check_circle</span><div><strong>1.</strong>Analyse de votre dossier (5-10 jours)</div></li>
+              <li><span class="material-symbols-outlined">check_circle</span><div><strong>1.</strong>Analyse de votre dossier (5 à 10 jours)</div></li>
               <li><span class="material-symbols-outlined">check_circle</span><div><strong>2.</strong>Entretien de découverte avec la direction</div></li>
               <li><span class="material-symbols-outlined">check_circle</span><div><strong>3.</strong>Rencontre avec l'équipe du service</div></li>
               <li><span class="material-symbols-outlined">check_circle</span><div><strong>4.</strong>Proposition &amp; signature</div></li>
@@ -1164,7 +1147,6 @@
         <div class="flex flex-col gap-3">
           <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Navigation</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html">Accueil</a>
-          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="services.html">Services</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="apropos.html">À propos</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="actualites.html">Actualités</a>
         </div>

@@ -35,7 +35,6 @@ Détails : https://asbl-espoir.be/sapa.html
 ## Pages principales
 
 - [Accueil](https://asbl-espoir.be/) : présentation générale et mission
-- [Services](https://asbl-espoir.be/services.html) : vue d'ensemble des trois services
 - [SRG](https://asbl-espoir.be/srg.html) : service résidentiel général
 - [SASE](https://asbl-espoir.be/sase.html) : accompagnement socio-éducatif
 - [SAPA](https://asbl-espoir.be/sapa.html) : parrainage familial

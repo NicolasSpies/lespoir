@@ -8,6 +8,9 @@
 <link rel="canonical" href="https://asbl-espoir.be/404.html"/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <meta name="robots" content="noindex, follow"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdn.tailwindcss.com"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -147,22 +150,14 @@
     <div class="hidden lg:flex gap-7 text-sm tracking-tight items-center">
       <a class="nav-link" href="homepage.html">Accueil</a>
       <div class="nav-item">
-        <a class="nav-link cursor-default" href="services.html">Services ▾</a>
+        <a class="nav-link cursor-default" href="#" onclick="event.preventDefault()">Services ▾</a>
         <div class="nav-dropdown">
           <a href="srg.html"><span class="dd-abbr" style="color:#8BAD3B">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
           <a href="sase.html"><span class="dd-abbr" style="color:#E55812">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
           <a href="sapa.html"><span class="dd-abbr" style="color:#119DA4">SAPA</span><span class="dd-name">Service d'Accompagnement du Parrainage</span></a>
         </div>
       </div>
-      <div class="nav-item">
-        <a class="nav-link cursor-default" href="apropos.html">À propos ▾</a>
-        <div class="nav-dropdown">
-          <a href="apropos.html#histoire"><span class="dd-abbr">Notre histoire</span><span class="dd-name">Depuis 1985 au service des jeunes</span></a>
-          <a href="apropos.html#missions"><span class="dd-abbr">Missions &amp; Valeurs</span><span class="dd-name">Ce qui nous guide au quotidien</span></a>
-          <a href="apropos.html#equipe"><span class="dd-abbr">Équipe</span><span class="dd-name">Les visages de L'Espoir</span></a>
-          <a href="apropos.html#partenaires"><span class="dd-abbr">Partenaires</span><span class="dd-name">Ceux qui nous soutiennent</span></a>
-        </div>
-      </div>
+      <a class="nav-link" href="apropos.html">À propos</a>
       <a class="nav-link" href="actualites.html">Actualités</a>
       <a class="nav-link" href="emploi.html">Offres d'emploi</a>
       <a class="nav-link" href="contact.html">Contact</a>
@@ -191,7 +186,7 @@
     <a href="homepage.html" class="m-link">Accueil</a>
     <div class="m-accordion">
       <div class="m-link-row">
-        <a href="services.html" class="m-link m-link-main">Services</a>
+        <a href="#" class="m-link m-link-main" onclick="event.preventDefault(); this.nextElementSibling.click();">Services</a>
         <button class="m-accordion-trigger m-chevron-btn" aria-expanded="false" aria-label="Voir les sous-pages de Services">
           <span class="m-chevron material-symbols-outlined">expand_more</span>
         </button>
@@ -202,20 +197,7 @@
         <a href="sapa.html" class="m-sublink"><span class="abbr" style="color:#119DA4">SAPA</span><span class="name">Service d'Accompagnement du Parrainage</span></a>
       </div>
     </div>
-    <div class="m-accordion">
-      <div class="m-link-row">
-        <a href="apropos.html" class="m-link m-link-main">À propos</a>
-        <button class="m-accordion-trigger m-chevron-btn" aria-expanded="false" aria-label="Voir les sous-pages de À propos">
-          <span class="m-chevron material-symbols-outlined">expand_more</span>
-        </button>
-      </div>
-      <div class="m-accordion-body">
-        <a href="apropos.html#histoire" class="m-sublink"><span class="abbr">Notre histoire</span><span class="name">Depuis 1985</span></a>
-        <a href="apropos.html#missions" class="m-sublink"><span class="abbr">Missions &amp; Valeurs</span><span class="name">Ce qui nous guide</span></a>
-        <a href="apropos.html#equipe" class="m-sublink"><span class="abbr">Équipe</span><span class="name">Les visages de L'Espoir</span></a>
-        <a href="apropos.html#partenaires" class="m-sublink"><span class="abbr">Partenaires</span><span class="name">Ceux qui nous soutiennent</span></a>
-      </div>
-    </div>
+    <a href="apropos.html" class="m-link">À propos</a>
     <a href="actualites.html" class="m-link">Actualités</a>
     <a href="emploi.html" class="m-link">Offres d'emploi</a>
     <a href="contact.html" class="m-link">Contact</a>
@@ -247,10 +229,10 @@
       </div>
 
       <div class="quick-grid">
-        <a href="services.html" class="quick-card" style="--accent:#8BAD3B;">
-          <div class="q-icon"><span class="material-symbols-outlined" style="font-size:22px;">category</span></div>
-          <div class="q-title">Nos services</div>
-          <div class="q-desc">SRG · SASE · SAPA, nos trois domaines d'action auprès des jeunes.</div>
+        <a href="srg.html" class="quick-card" style="--accent:#8BAD3B;">
+          <div class="q-icon"><span class="material-symbols-outlined" style="font-size:22px;">home</span></div>
+          <div class="q-title">SRG</div>
+          <div class="q-desc">Service Résidentiel Général, hébergement et accompagnement des jeunes.</div>
           <span class="q-arrow">Découvrir <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
         </a>
         <a href="apropos.html" class="quick-card" style="--accent:#002626;">
@@ -294,7 +276,6 @@
         <div class="flex flex-col gap-3">
           <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Navigation</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html">Accueil</a>
-          <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="services.html">Services</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="apropos.html">À propos</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="actualites.html">Actualités</a>
         </div>
