@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>L'Espoir asbl · Palettes couleurs</title>
+<meta name="robots" content="noindex, nofollow"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --dark: #002626;
+    --muted: #6b7e7e;
+    --border: rgba(0, 38, 38, 0.08);
+    --bg: #E2DCD0;
+    --orange: #E55812;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400;
+    display: inline-block; line-height: 1;
+  }
+
+  /* Preview topbar (shared with all pages) */
+  .preview-topbar {
+    width: 100%; background: #002626; color: rgba(239,231,218,0.75);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap;
+    padding: 8px 24px;
+    font-size: 11px; letter-spacing: 0.04em;
+  }
+  .preview-topbar a {
+    color: #b8d369; font-weight: 600; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color 0.2s;
+  }
+  .preview-topbar a:hover { color: #fff; }
+  .preview-topbar a .material-symbols-outlined { font-size: 14px; }
+  .preview-topbar .title strong { color: #fff; font-weight: 700; }
+  @media (max-width: 600px) {
+    .preview-topbar { padding: 8px 16px; }
+  }
+
+  /* Page layout */
+  .palette-page {
+    max-width: 1280px; margin: 0 auto;
+    padding: 3rem 2.5rem 4rem;
+  }
+  @media (max-width: 760px) { .palette-page { padding: 2rem 1.25rem; } }
+
+  .page-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 1.5rem; flex-wrap: wrap;
+    margin-bottom: 2rem; padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-header .titles {
+    display: flex; align-items: center; gap: 18px;
+  }
+  .page-header .nav-logo { height: 44px; width: auto; display: block; flex-shrink: 0; }
+  .page-header h1 {
+    font-size: 22px; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--dark); margin-bottom: 4px;
+  }
+  .page-header .meta {
+    font-family: 'DM Mono', monospace; font-size: 11.5px;
+    color: var(--muted); letter-spacing: 0.10em; text-transform: uppercase;
+  }
+  .logo-text {
+    font-family: 'DM Mono', monospace; font-size: 13px;
+    color: var(--muted); letter-spacing: -0.02em;
+  }
+
+  .intro {
+    font-size: 14px; color: var(--muted); line-height: 1.65;
+    max-width: 760px; margin-bottom: 2.25rem;
+  }
+  .intro strong { color: var(--dark); font-weight: 600; }
+
+  /* Cards */
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    margin-bottom: 2.5rem;
+    overflow: hidden;
+    box-shadow:
+      0 1px 2px rgba(0,38,38,0.04),
+      0 12px 36px -16px rgba(0,38,38,0.14);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 2px rgba(0,38,38,0.05),
+      0 24px 56px -20px rgba(0,38,38,0.20);
+  }
+  .card.original {
+    border: 1.5px solid var(--dark);
+    box-shadow:
+      0 1px 2px rgba(0,38,38,0.06),
+      0 16px 44px -18px rgba(0,38,38,0.18);
+  }
+  .card:last-of-type { margin-bottom: 0; }
+
+  .card-inner {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    min-height: 400px;
+  }
+  .card-left {
+    padding: 2rem 2rem 1.75rem;
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: space-between;
+    gap: 1.5rem;
+  }
+  @media (max-width: 860px) {
+    .card-inner { grid-template-columns: 1fr; }
+    .card-left { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+
+  .palette-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .label-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 4px; gap: 10px;
+  }
+  .palette-name {
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .palette-desc {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .swatches {
+    display: flex; gap: 5px; height: 52px;
+  }
+  .swatch {
+    flex: 1; border-radius: 8px; position: relative;
+    transition: transform 0.15s;
+  }
+  .swatch:hover { transform: translateY(-2px); }
+  .swatch .hex {
+    position: absolute; bottom: 5px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px; font-weight: 500;
+    color: rgba(255,255,255,0.78);
+    opacity: 0; transition: opacity 0.15s;
+  }
+  .swatch:hover .hex { opacity: 1; }
+  .swatch.light { border: 1px solid var(--border); }
+  .swatch.light .hex { color: rgba(0,38,38,0.55); }
+
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px; letter-spacing: 0.12em;
+    font-weight: 600; text-transform: uppercase;
+    padding: 3px 9px;
+    background: var(--orange); color: #fff;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 3rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 11.5px; color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .footer a { color: var(--muted); text-decoration: none; }
+  .footer a:hover { color: var(--dark); }
+</style>
+<script>
+function wf(c1, c2, c3, c4, bg) {
+  return `
+  <div style="background:${bg};display:flex;flex-direction:column;height:100%;">
+
+    <!-- NAV -->
+    <div style="background:${c1};padding:0 22px;height:54px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.25);"></div>
+        <div style="width:70px;height:9px;border-radius:20px;background:rgba(255,255,255,.3);"></div>
+      </div>
+      <div style="display:flex;gap:20px;">
+        <div style="width:46px;height:7px;border-radius:20px;background:rgba(255,255,255,.2);"></div>
+        <div style="width:40px;height:7px;border-radius:20px;background:rgba(255,255,255,.2);"></div>
+        <div style="width:56px;height:7px;border-radius:20px;background:rgba(255,255,255,.2);"></div>
+        <div style="width:64px;height:7px;border-radius:20px;background:rgba(255,255,255,.2);"></div>
+      </div>
+      <div style="width:106px;height:34px;border-radius:20px;background:${c3};display:flex;align-items:center;justify-content:center;">
+        <div style="width:60px;height:7px;border-radius:20px;background:rgba(255,255,255,.7);"></div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;flex:1;min-height:150px;">
+      <div style="background:#b0aca4;opacity:.4;"></div>
+      <div style="padding:28px 26px;display:flex;flex-direction:column;justify-content:center;gap:12px;background:${bg};">
+        <div style="width:74px;height:7px;border-radius:20px;background:${c4};opacity:.9;"></div>
+        <div style="width:88%;height:14px;border-radius:20px;background:${c1};opacity:.65;"></div>
+        <div style="width:76%;height:14px;border-radius:20px;background:${c1};opacity:.65;"></div>
+        <div style="width:60%;height:14px;border-radius:20px;background:${c1};opacity:.65;"></div>
+        <div style="display:flex;gap:10px;margin-top:4px;">
+          <div style="width:92px;height:32px;border-radius:20px;background:${c1};opacity:.6;"></div>
+          <div style="width:92px;height:32px;border-radius:20px;border:2px solid ${c1};opacity:.2;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICE CARDS -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:16px 22px 20px;background:${bg};flex-shrink:0;">
+
+      <div style="background:${c3};border-radius:20px;padding:20px 16px;display:flex;flex-direction:column;gap:10px;">
+        <div style="width:40px;height:40px;border-radius:14px;background:rgba(255,255,255,.25);"></div>
+        <div style="width:48px;height:11px;border-radius:20px;background:rgba(255,255,255,.9);"></div>
+        <div style="width:80px;height:7px;border-radius:20px;background:rgba(255,255,255,.5);"></div>
+        <div style="width:90%;height:6px;border-radius:20px;background:rgba(255,255,255,.35);"></div>
+        <div style="width:72%;height:6px;border-radius:20px;background:rgba(255,255,255,.35);"></div>
+        <div style="width:60px;height:6px;border-radius:20px;background:rgba(255,255,255,.6);margin-top:4px;"></div>
+      </div>
+
+      <div style="background:${c4};border-radius:20px;padding:20px 16px;display:flex;flex-direction:column;gap:10px;">
+        <div style="width:40px;height:40px;border-radius:14px;background:rgba(255,255,255,.25);"></div>
+        <div style="width:48px;height:11px;border-radius:20px;background:rgba(255,255,255,.9);"></div>
+        <div style="width:80px;height:7px;border-radius:20px;background:rgba(255,255,255,.5);"></div>
+        <div style="width:90%;height:6px;border-radius:20px;background:rgba(255,255,255,.35);"></div>
+        <div style="width:72%;height:6px;border-radius:20px;background:rgba(255,255,255,.35);"></div>
+        <div style="width:60px;height:6px;border-radius:20px;background:rgba(255,255,255,.6);margin-top:4px;"></div>
+      </div>
+
+      <div style="background:${c2};border-radius:20px;padding:20px 16px;display:flex;flex-direction:column;gap:10px;">
+        <div style="width:40px;height:40px;border-radius:14px;background:rgba(255,255,255,.25);"></div>
+        <div style="width:48px;height:11px;border-radius:20px;background:rgba(255,255,255,.9);"></div>
+        <div style="width:80px;height:7px;border-radius:20px;background:rgba(255,255,255,.5);"></div>
+        <div style="width:90%;height:6px;border-radius:20px;background:rgba(255,255,255,.35);"></div>
+        <div style="width:72%;height:6px;border-radius:20px;background:rgba(255,255,255,.35);"></div>
+        <div style="width:60px;height:6px;border-radius:20px;background:rgba(255,255,255,.6);margin-top:4px;"></div>
+      </div>
+
+    </div>
+  </div>`;
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-wf]').forEach(el => {
+    const [c1, c2, c3, c4, bg] = el.dataset.wf.split('|');
+    el.innerHTML = wf(c1, c2, c3, c4, bg);
+  });
+});
+</script>
+</head>
+<body>
+
+<!-- ── PREVIEW TOPBAR ── -->
+<div class="preview-topbar">
+  <a href="index.html">
+    <span class="material-symbols-outlined">arrow_back</span>
+    Retour à l'aperçu
+  </a>
+  <div class="title">
+    <strong>L'Espoir asbl</strong> · Choix de palette
+  </div>
+</div>
+
+<div class="palette-page">
+
+  <div class="page-header">
+    <div class="titles">
+      <img src="lespoir-logo.svg" alt="L'Espoir asbl" class="nav-logo">
+      <div>
+        <h1>Palettes couleurs</h1>
+        <p class="meta">Alternatives au vert · Avril 2026</p>
+      </div>
+    </div>
+    <div class="logo-text">lacønis</div>
+  </div>
+
+  <p class="intro">
+    Quatre palettes à départager — il faut trancher avant la mise en production. La palette actuelle reste solide&nbsp;: c'est avant tout une <strong>question de préférence</strong>, pas un défaut de design. L'<strong>Option B est notre recommandation</strong>&nbsp;: même ADN que l'actuelle, juste réchauffé. L'Option A teste le remplacement du vert par un rose poudré (le résultat parle de lui-même), l'Option C explore une voie complètement sans vert (autour d'un accent cassis). Survolez une couleur pour voir son code hex.
+  </p>
+
+  <!-- ORIGINAL — référence en haut -->
+  <div class="card original">
+    <div class="card-inner">
+      <div class="card-left">
+        <div>
+          <div class="palette-label">Référence</div>
+          <div class="palette-name">Palette actuelle</div>
+          <div class="palette-desc">La palette du site en cours de construction. Le vert fonctionne graphiquement et s'intègre naturellement avec les photos&nbsp;— c'est une question de goût, pas un problème de design.</div>
+        </div>
+        <div class="swatches">
+          <div class="swatch" style="background:#002626"><span class="hex">#002626</span></div>
+          <div class="swatch" style="background:#119DA4"><span class="hex">#119DA4</span></div>
+          <div class="swatch" style="background:#8BAD3B"><span class="hex">#8BAD3B</span></div>
+          <div class="swatch" style="background:#E55812"><span class="hex">#E55812</span></div>
+          <div class="swatch light" style="background:#EFE7DA"><span class="hex">#EFE7DA</span></div>
+        </div>
+      </div>
+      <div data-wf="#002626|#119DA4|#8BAD3B|#E55812|#EFE7DA"></div>
+    </div>
+  </div>
+
+  <!-- OPTION B — RECOMMANDÉ -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-left">
+        <div>
+          <div class="label-row">
+            <div class="palette-label">Option B</div>
+            <span class="badge">Recommandé</span>
+          </div>
+          <div class="palette-name">Affinement chaleureux</div>
+          <div class="palette-desc">Conserve la signature qui distingue L'Espoir des autres asbl du secteur — l'Evergreen profond, le Dark Cyan institutionnel, le Soft Linen lumineux, et surtout le <strong style="color:var(--dark)">Yellow Green</strong> qui est rare dans le social et donne du caractère. Le vert est <strong style="color:var(--dark)">légèrement nudgé vers le jaune-olive</strong> (#A0AE3D) pour mieux dialoguer avec les tons chauds, et l'orange devient un <strong style="color:var(--dark)">tangerine</strong> (#E58940) moins criard. Deux retouches discrètes — même ADN, juste un cran plus humain.</div>
+        </div>
+        <div class="swatches">
+          <div class="swatch" style="background:#002626"><span class="hex">#002626</span></div>
+          <div class="swatch" style="background:#119DA4"><span class="hex">#119DA4</span></div>
+          <div class="swatch" style="background:#A0AE3D"><span class="hex">#A0AE3D</span></div>
+          <div class="swatch" style="background:#E58940"><span class="hex">#E58940</span></div>
+          <div class="swatch light" style="background:#EFE7DA"><span class="hex">#EFE7DA</span></div>
+        </div>
+      </div>
+      <div data-wf="#002626|#119DA4|#A0AE3D|#E58940|#EFE7DA"></div>
+    </div>
+  </div>
+
+  <!-- OPTION A -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-left">
+        <div>
+          <div class="palette-label">Option A</div>
+          <div class="palette-name">Rose poudré à la place du vert</div>
+          <div class="palette-desc">Test direct du remplacement proposé&nbsp;: <strong style="color:var(--dark)">seul le Yellow Green change</strong>, tout le reste de la palette actuelle est conservé (Evergreen, Dark Cyan, orange vif, crème). Le rose poudré pâlit visiblement à côté de ces accents&nbsp;: il manque la fonction d'<em>accent vivant</em> que le Yellow Green portait, il devient un détail décoratif plutôt qu'un signal visuel. La hiérarchie de la palette s'affaisse — l'orange prend toute la place, le rose s'efface.</div>
+        </div>
+        <div class="swatches">
+          <div class="swatch" style="background:#002626"><span class="hex">#002626</span></div>
+          <div class="swatch" style="background:#119DA4"><span class="hex">#119DA4</span></div>
+          <div class="swatch" style="background:#E8B4BC"><span class="hex">#E8B4BC</span></div>
+          <div class="swatch" style="background:#E55812"><span class="hex">#E55812</span></div>
+          <div class="swatch light" style="background:#EFE7DA"><span class="hex">#EFE7DA</span></div>
+        </div>
+      </div>
+      <div data-wf="#002626|#119DA4|#E8B4BC|#E55812|#EFE7DA"></div>
+    </div>
+  </div>
+
+  <!-- OPTION C — Sans vert -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-left">
+        <div>
+          <div class="palette-label">Option C</div>
+          <div class="palette-name">Cassis &amp; miel — sans vert</div>
+          <div class="palette-desc">Direction sans vert, construite autour d'un accent <strong style="color:var(--dark)">cassis</strong> sophistiqué — mais portée par des compagnons <strong style="color:var(--dark)">vifs et chaleureux</strong> pour ne pas tomber dans l'austérité&nbsp;: un <strong style="color:var(--dark)">teal lagon</strong> plus frais que le Dark Cyan clinique, et un <strong style="color:var(--dark)">miel doré</strong> qui apporte la lumière. La cassis reste le point d'ancrage mûr, les autres tons amènent l'énergie joyeuse — combinaison qui inspire confiance sans être grave.</div>
+        </div>
+        <div class="swatches">
+          <div class="swatch" style="background:#002626"><span class="hex">#002626</span></div>
+          <div class="swatch" style="background:#3FB5BD"><span class="hex">#3FB5BD</span></div>
+          <div class="swatch" style="background:#B05B82"><span class="hex">#B05B82</span></div>
+          <div class="swatch" style="background:#F4A359"><span class="hex">#F4A359</span></div>
+          <div class="swatch light" style="background:#EFE7DA"><span class="hex">#EFE7DA</span></div>
+        </div>
+      </div>
+      <div data-wf="#002626|#3FB5BD|#B05B82|#F4A359|#EFE7DA"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span><a href="mailto:nicolas@laconis.be">nicolas@laconis.be</a> · +32 488 43 91 47</span>
+    <span>Survoler les couleurs pour voir les codes hex</span>
+  </div>
+
+</div>
+
+</body>
+</html>
