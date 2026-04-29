@@ -713,13 +713,13 @@
   .blob-parent { position: relative; overflow: hidden; }
 
   /* ── Stat card rotations (subtle handmade feel) ── */
-  /* Base rotations — each card slightly off-axis */
+  /* Base rotations: each card slightly off-axis */
   #about .grid .stat-card:nth-child(1) { transform: rotate(-1.2deg); }
   #about .grid .stat-card:nth-child(2) { transform: rotate(0.7deg); }
   #about .grid .stat-card:nth-child(3) { transform: rotate(-0.5deg); }
   #about .grid .stat-card:nth-child(4) { transform: rotate(1deg); }
 
-  /* Hover — lift + preserve rotation (specificity beats .scroll-reveal.revealed) */
+  /* Hover: lift + preserve rotation (specificity beats .scroll-reveal.revealed) */
   #about .grid .stat-card:nth-child(1):hover,
   #about .grid .stat-card:nth-child(1).revealed:hover { transform: rotate(-1.2deg) translateY(-6px); box-shadow: 0 14px 30px rgba(0,38,38,0.10); }
   #about .grid .stat-card:nth-child(2):hover,
