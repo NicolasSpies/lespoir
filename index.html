@@ -105,10 +105,10 @@
 
   .choice-grid {
     display: grid; grid-template-columns: 1fr; gap: 1.25rem;
-    max-width: 860px; margin: 0 auto; width: 100%;
+    max-width: 1100px; margin: 0 auto; width: 100%;
   }
-  @media (min-width: 720px) {
-    .choice-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (min-width: 760px) {
+    .choice-grid { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
   }
 
   .choice {
@@ -183,6 +183,11 @@
     --accent-soft: rgba(139,173,59,0.25);
     --accent-fg: #002626;
   }
+  .choice-palette {
+    --accent: #E55812;
+    --accent-soft: rgba(229,88,18,0.30);
+    --accent-fg: #fff;
+  }
   .choice-site {
     --accent: #119DA4;
     --accent-soft: rgba(17,157,164,0.28);
@@ -242,6 +247,16 @@
           Sitemap détaillée, mapping de l'ancien site, contenus récupérés, hébergement, livrables et scope complet.
         </p>
         <span class="choice-cta">Ouvrir le briefing <span class="material-symbols-outlined">arrow_forward</span></span>
+      </a>
+
+      <a href="palettes.html" class="choice choice-palette">
+        <div class="choice-icon"><span class="material-symbols-outlined">palette</span></div>
+        <div class="choice-tag">Décision visuelle</div>
+        <div class="choice-title">Palettes couleurs</div>
+        <p class="choice-desc">
+          Trois palettes à comparer côte à côte — la version actuelle (vert) et deux alternatives plus chaleureuses, mises en situation sur la maquette.
+        </p>
+        <span class="choice-cta">Comparer les palettes <span class="material-symbols-outlined">arrow_forward</span></span>
       </a>
 
       <a href="homepage.html" class="choice choice-site">
