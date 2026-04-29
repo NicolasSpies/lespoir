@@ -108,8 +108,27 @@
     box-shadow:
       0 1px 2px rgba(0,38,38,0.06),
       0 16px 44px -18px rgba(0,38,38,0.18);
+    margin-bottom: 1rem;
   }
   .card:last-of-type { margin-bottom: 0; }
+
+  /* Separator between référence and alternatives */
+  .alternatives-divider {
+    display: flex; align-items: center; gap: 14px;
+    margin: 2.25rem 0 2rem;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .alternatives-divider::before,
+  .alternatives-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,38,38,0.18), transparent);
+  }
 
   .card-inner {
     display: grid;
@@ -317,6 +336,8 @@ document.addEventListener('DOMContentLoaded', () => {
       <div data-wf="#002626|#119DA4|#8BAD3B|#E55812|#EFE7DA"></div>
     </div>
   </div>
+
+  <div class="alternatives-divider">Alternatives à départager</div>
 
   <!-- OPTION A · RECOMMANDÉ -->
   <div class="card">
