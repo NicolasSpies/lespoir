@@ -12,8 +12,8 @@
   :root {
     --dark: #002626;
     --muted: #6b7e7e;
-    --border: #d6d2c8;
-    --bg: #EFE7DA;
+    --border: rgba(0, 38, 38, 0.08);
+    --bg: #E2DCD0;
     --orange: #E55812;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -89,20 +89,35 @@
   .card {
     background: #fff;
     border: 1px solid var(--border);
-    border-radius: 14px;
-    margin-bottom: 1.5rem;
+    border-radius: 18px;
+    margin-bottom: 2.5rem;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,38,38,0.03);
+    box-shadow:
+      0 1px 2px rgba(0,38,38,0.04),
+      0 12px 36px -16px rgba(0,38,38,0.14);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
-  .card.original { border: 2px solid var(--dark); }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 2px rgba(0,38,38,0.05),
+      0 24px 56px -20px rgba(0,38,38,0.20);
+  }
+  .card.original {
+    border: 1.5px solid var(--dark);
+    box-shadow:
+      0 1px 2px rgba(0,38,38,0.06),
+      0 16px 44px -18px rgba(0,38,38,0.18);
+  }
+  .card:last-of-type { margin-bottom: 0; }
 
   .card-inner {
     display: grid;
-    grid-template-columns: 300px 1fr;
-    min-height: 380px;
+    grid-template-columns: 320px 1fr;
+    min-height: 400px;
   }
   .card-left {
-    padding: 1.75rem;
+    padding: 2rem 2rem 1.75rem;
     border-right: 1px solid var(--border);
     display: flex; flex-direction: column; justify-content: space-between;
     gap: 1.5rem;
