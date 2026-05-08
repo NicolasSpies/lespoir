@@ -40,6 +40,15 @@
 <link rel="preconnect" href="https://cdn.tailwindcss.com"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Regular.otf') format('opentype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Medium.otf') format('opentype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+h1, h2, h3, h4, h5, h6,
+  [class~="font-black"]:not(.material-symbols-outlined),
+  [class~="font-extrabold"]:not(.material-symbols-outlined),
+  .hero-stat-num { font-family: 'Pally', sans-serif !important; }
+</style>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -67,8 +76,8 @@
     transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
   }
   *:focus { outline: none; }
-  *:focus-visible { outline: 2px solid #8BAD3B; outline-offset: 3px; border-radius: 4px; }
-  button:focus-visible, a:focus-visible { outline: 2px solid #8BAD3B; outline-offset: 3px; }
+  *:focus-visible { outline: 2px solid #C04B72; outline-offset: 3px; border-radius: 4px; }
+  button:focus-visible, a:focus-visible { outline: 2px solid #C04B72; outline-offset: 3px; }
 
   :root { --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1); }
 
@@ -101,8 +110,8 @@
   .btn-sm { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
   .btn-primary { background: #002626; color: #EFE7DA; }
   .btn-primary:hover { box-shadow: 0 10px 24px rgba(0,38,38,0.25); filter: brightness(1.08); }
-  .btn-accent { background: #8BAD3B; color: #002626; }
-  .btn-accent:hover { box-shadow: 0 10px 24px rgba(139,173,59,0.35); filter: brightness(1.05); }
+  .btn-accent { background: #C04B72; color: #fff; }
+  .btn-accent:hover { box-shadow: 0 10px 24px rgba(192,75,114,0.35); filter: brightness(1.05); }
   .btn-accent .material-symbols-outlined { font-variation-settings: 'FILL' 0; transition: font-variation-settings 0.35s ease, transform 0.35s ease; }
   .btn-accent:hover .material-symbols-outlined { font-variation-settings: 'FILL' 1; transform: scale(1.08); }
   .btn-outline { background: transparent; color: #002626; box-shadow: inset 0 0 0 2px #002626; }
@@ -222,13 +231,13 @@
     font-size: 0.7rem; font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.06em;
   }
-  .actu-tag-association { background: rgba(139,173,59,0.15); color: #5e7a22; }
+  .actu-tag-association { background: rgba(192,75,114,0.15); color: #8b2a4e; }
 
   /* ── Article hero ── */
   .article-hero {
     position: relative; overflow: hidden;
     background:
-      radial-gradient(ellipse at top right, rgba(139,173,59,0.14), transparent 55%),
+      radial-gradient(ellipse at top right, rgba(192,75,114,0.14), transparent 55%),
       radial-gradient(ellipse at bottom left, rgba(17,157,164,0.10), transparent 60%),
       #EFE7DA;
   }
@@ -238,7 +247,7 @@
   }
   .hero-blob-1 {
     width: 420px; height: 420px; top: -140px; right: -150px;
-    background: radial-gradient(circle, rgba(139,173,59,0.45), transparent 70%);
+    background: radial-gradient(circle, rgba(192,75,114,0.45), transparent 70%);
   }
   .hero-blob-2 {
     width: 320px; height: 320px; bottom: -160px; left: -100px;
@@ -246,7 +255,7 @@
   }
   .hero-blob-3 {
     width: 180px; height: 180px; top: 40%; left: 8%;
-    background: radial-gradient(circle, rgba(229,88,18,0.12), transparent 70%);
+    background: radial-gradient(circle, rgba(229,131,70,0.12), transparent 70%);
   }
   .article-hero > .hero-inner { position: relative; z-index: 1; }
 
@@ -259,7 +268,7 @@
     color: rgba(0,38,38,0.62); font-size: 0.82rem; font-weight: 600;
   }
   .hero-meta-item .material-symbols-outlined {
-    font-size: 16px; color: #5e7a22;
+    font-size: 16px; color: #8b2a4e;
   }
   .hero-meta-sep {
     width: 3px; height: 3px; border-radius: 50%; background: rgba(0,38,38,0.22);
@@ -267,10 +276,10 @@
 
   .hero-meta-avatar {
     width: 20px; height: 20px; border-radius: 50%;
-    background: linear-gradient(135deg, #a4c751, #5e7a22);
+    background: linear-gradient(135deg, #d4789a, #8b2a4e);
     color: #fff; display: inline-flex; align-items: center; justify-content: center;
     font-weight: 800; font-size: 0.5rem; letter-spacing: 0.02em;
-    box-shadow: 0 2px 5px rgba(139,173,59,0.3);
+    box-shadow: 0 2px 5px rgba(192,75,114,0.3);
     flex-shrink: 0; overflow: hidden;
   }
   .hero-meta-avatar img { width: 100%; height: 100%; object-fit: cover; }
@@ -318,7 +327,7 @@
     margin-top: 2rem; margin-bottom: 0.75rem;
   }
   .article-body blockquote {
-    border-left: 4px solid #8BAD3B;
+    border-left: 4px solid #C04B72;
     padding: 1rem 0 1rem 1.75rem;
     margin: 2rem 0;
     font-style: italic; font-size: 1.15rem;
@@ -328,18 +337,18 @@
   .article-body ul li { margin-bottom: 0.5rem; position: relative; list-style: none; }
   .article-body ul li::before {
     content: ''; position: absolute; left: -1.25rem; top: 0.7rem;
-    width: 6px; height: 6px; border-radius: 50%; background: #8BAD3B;
+    width: 6px; height: 6px; border-radius: 50%; background: #C04B72;
   }
   .article-body strong { color: #002626; font-weight: 700; }
-  .article-body a { color: #5e7a22; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-  .article-body a:hover { color: #8BAD3B; }
+  .article-body a { color: #8b2a4e; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .article-body a:hover { color: #C04B72; }
 
   .stat-block {
     background: #fff; border-radius: 1rem; padding: 1.5rem;
     border: 1px solid rgba(0,38,38,0.08);
     transition: border-color 0.2s ease, transform 0.2s ease;
   }
-  .stat-block:hover { border-color: #8BAD3B; transform: translateY(-2px); }
+  .stat-block:hover { border-color: #C04B72; transform: translateY(-2px); }
 
   .related-card {
     background: #fff; border-radius: 1rem; overflow: hidden;
@@ -356,7 +365,7 @@
     background: rgba(0,38,38,0.05); color: #002626;
     transition: background 0.2s ease, transform 0.2s ease;
   }
-  .share-btn:hover { background: #8BAD3B; color: #002626; transform: translateY(-2px); }
+  .share-btn:hover { background: #C04B72; color: #fff; transform: translateY(-2px); }
   .share-btn:hover > .material-symbols-outlined { transform: none; }
 
   /* ── Rich content blocks ── */
@@ -369,13 +378,13 @@
 
   .article-pullquote {
     margin: 3rem 0; padding: 2rem 2rem 2rem 3.5rem;
-    background: linear-gradient(135deg, rgba(139,173,59,0.08), rgba(139,173,59,0.02));
+    background: linear-gradient(135deg, rgba(192,75,114,0.08), rgba(192,75,114,0.02));
     border-radius: 1.25rem; position: relative;
-    border-left: 4px solid #8BAD3B;
+    border-left: 4px solid #C04B72;
   }
   .article-pullquote::before {
     content: '“'; position: absolute; left: 0.9rem; top: -0.8rem;
-    font-size: 5.5rem; color: #8BAD3B; font-family: Georgia, serif;
+    font-size: 5.5rem; color: #C04B72; font-family: Georgia, serif;
     line-height: 1; opacity: 0.5;
   }
   .article-pullquote blockquote {
@@ -385,7 +394,7 @@
   .quote-author { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.5rem; }
   .quote-author-avatar {
     width: 40px; height: 40px; border-radius: 50%;
-    background: #8BAD3B; color: #fff; display: flex;
+    background: #C04B72; color: #fff; display: flex;
     align-items: center; justify-content: center; font-weight: 700; font-size: 1rem;
     flex-shrink: 0;
   }
@@ -463,12 +472,12 @@
   .callout-info .callout-icon { background: #119DA4; }
   .callout-info .callout-title { color: #0a6e73; }
   .callout-info .callout-text a { color: #0a6e73; }
-  .callout-success { background: rgba(139,173,59,0.10); border-color: rgba(139,173,59,0.3); }
-  .callout-success .callout-icon { background: #8BAD3B; }
-  .callout-success .callout-title { color: #5e7a22; }
-  .callout-success .callout-text a { color: #5e7a22; }
-  .callout-warning { background: rgba(229,88,18,0.08); border-color: rgba(229,88,18,0.25); }
-  .callout-warning .callout-icon { background: #E55812; }
+  .callout-success { background: rgba(192,75,114,0.10); border-color: rgba(192,75,114,0.3); }
+  .callout-success .callout-icon { background: #C04B72; }
+  .callout-success .callout-title { color: #8b2a4e; }
+  .callout-success .callout-text a { color: #8b2a4e; }
+  .callout-warning { background: rgba(229,131,70,0.08); border-color: rgba(229,131,70,0.25); }
+  .callout-warning .callout-icon { background: #E58346; }
   .callout-warning .callout-title { color: #b3400e; }
   .callout-warning .callout-text a { color: #b3400e; }
 
@@ -477,17 +486,17 @@
   }
   .article-timeline::before {
     content: ''; position: absolute; left: 0.55rem; top: 0.5rem; bottom: 0.5rem;
-    width: 2px; background: linear-gradient(180deg, #8BAD3B, rgba(139,173,59,0.2));
+    width: 2px; background: linear-gradient(180deg, #C04B72, rgba(192,75,114,0.2));
   }
   .timeline-item { position: relative; padding-bottom: 2rem; }
   .timeline-item::before {
     content: ''; position: absolute; left: -1.7rem; top: 0.45rem;
     width: 14px; height: 14px; border-radius: 50%;
-    background: #fbf9f8; border: 3px solid #8BAD3B;
+    background: #fbf9f8; border: 3px solid #C04B72;
   }
   .timeline-item:last-child { padding-bottom: 0; }
   .timeline-date {
-    font-weight: 700; color: #5e7a22; font-size: 0.72rem;
+    font-weight: 700; color: #8b2a4e; font-size: 0.72rem;
     text-transform: uppercase; letter-spacing: 0.1em;
   }
   .timeline-title { font-size: 1.1rem; font-weight: 700; color: #002626; margin: 0.25rem 0 0.35rem; }
@@ -523,7 +532,7 @@
     border-radius: 999px; pointer-events: none;
   }
   .ba-label-before { left: 1rem; }
-  .ba-label-after { right: 1rem; background: rgba(139,173,59,0.9); }
+  .ba-label-after { right: 1rem; background: rgba(192,75,114,0.9); }
 
   .article-video {
     margin: 2.5rem 0; aspect-ratio: 16/9; position: relative;
@@ -547,7 +556,7 @@
     color: #002626; transition: transform 0.3s ease, background 0.3s ease;
     box-shadow: 0 10px 40px rgba(0,0,0,0.3);
   }
-  .article-video:hover .video-play { transform: scale(1.08); background: #8BAD3B; color: #fff; }
+  .article-video:hover .video-play { transform: scale(1.08); background: #C04B72; color: #fff; }
   .video-label {
     position: absolute; bottom: 1.25rem; left: 1.25rem; color: #fff;
     font-weight: 700; font-size: 0.95rem; text-shadow: 0 1px 4px rgba(0,0,0,0.5);
@@ -561,12 +570,12 @@
     transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   }
   .article-download:hover {
-    border-color: #8BAD3B; transform: translateY(-2px);
+    border-color: #C04B72; transform: translateY(-2px);
     box-shadow: 0 12px 32px rgba(0,38,38,0.08);
   }
   .dl-icon {
     flex-shrink: 0; width: 52px; height: 52px; border-radius: 0.75rem;
-    background: #E55812; color: #fff; display: flex; align-items: center; justify-content: center;
+    background: #E58346; color: #fff; display: flex; align-items: center; justify-content: center;
     font-size: 0.75rem; font-weight: 800; letter-spacing: 0.05em;
   }
   .dl-body { flex: 1; min-width: 0; }
@@ -585,10 +594,10 @@
     border-radius: 1rem; padding: 1.5rem; position: relative;
     transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .step-card:hover { border-color: #8BAD3B; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,38,38,0.06); }
+  .step-card:hover { border-color: #C04B72; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,38,38,0.06); }
   .step-num {
     width: 40px; height: 40px; border-radius: 50%;
-    background: #002626; color: #8BAD3B; display: flex;
+    background: #002626; color: #C04B72; display: flex;
     align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem;
     margin-bottom: 0.85rem;
   }
@@ -604,15 +613,15 @@
     font-size: 1.02rem; font-weight: 700; color: #002626; cursor: pointer;
     text-align: left; transition: color 0.2s ease;
   }
-  .faq-trigger:hover { color: #5e7a22; }
+  .faq-trigger:hover { color: #8b2a4e; }
   .faq-icon {
     width: 34px; height: 34px; border-radius: 50%;
-    background: rgba(139,173,59,0.15); color: #5e7a22;
+    background: rgba(192,75,114,0.15); color: #8b2a4e;
     display: flex; align-items: center; justify-content: center;
     transition: transform 0.3s ease, background 0.25s ease, color 0.25s ease;
     flex-shrink: 0; margin-left: 1rem;
   }
-  .faq-item.is-open .faq-icon { transform: rotate(45deg); background: #8BAD3B; color: #fff; }
+  .faq-item.is-open .faq-icon { transform: rotate(45deg); background: #C04B72; color: #fff; }
   .faq-body { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
   .faq-item.is-open .faq-body { max-height: 500px; }
   .faq-body-inner { padding-bottom: 1.25rem; color: rgba(0,38,38,0.75); line-height: 1.65; font-size: 0.96rem; }
@@ -625,11 +634,11 @@
   .article-final-cta::before {
     content: ''; position: absolute; top: -60px; right: -60px;
     width: 260px; height: 260px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(139,173,59,0.35), transparent 70%);
+    background: radial-gradient(circle, rgba(192,75,114,0.35), transparent 70%);
     pointer-events: none;
   }
   .article-final-cta .cta-label {
-    color: #8BAD3B; font-weight: 800; font-size: 0.72rem;
+    color: #C04B72; font-weight: 800; font-size: 0.72rem;
     letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.75rem;
     position: relative;
   }
@@ -643,22 +652,22 @@
   /* ── Mobile: auto-activate hover state when element is centered in viewport ── */
   @media (hover: none) {
     .related-card.is-active { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,38,38,0.08); }
-    .step-card.is-active { border-color: #8BAD3B; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,38,38,0.06); }
+    .step-card.is-active { border-color: #C04B72; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,38,38,0.06); }
     .gallery-item.is-active img { transform: scale(1.05); }
   }
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
-<style>.preview-topbar{background:#002626;color:rgba(239,231,218,0.7);padding:6px 20px;font-size:11.5px;font-weight:500;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:32px;position:relative;z-index:60}.preview-topbar a{color:#b8d369 !important;text-decoration:none !important;font-weight:600;display:inline-flex;align-items:center;gap:4px}.preview-topbar a:hover{color:#fff !important}.preview-topbar strong{color:#fff;font-weight:700}.preview-topbar .pt-info{margin-left:auto;text-align:right}@media (max-width:640px){.preview-topbar{font-size:10.5px;padding:5px 12px}}</style>
+<style>.preview-topbar{background:#002626;color:rgba(239,231,218,0.7);padding:6px 20px;font-size:11.5px;font-weight:500;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:32px;position:relative;z-index:60}.preview-topbar a{color:#e88aaa !important;text-decoration:none !important;font-weight:600;display:inline-flex;align-items:center;gap:4px}.preview-topbar a:hover{color:#fff !important}.preview-topbar strong{color:#fff;font-weight:700}.preview-topbar .pt-info{margin-left:auto;text-align:right}@media (max-width:640px){.preview-topbar{font-size:10.5px;padding:5px 12px}}</style>
 <div class="preview-topbar">
   <a href="index.html"><span class="material-symbols-outlined" style="font-size:14px">arrow_back</span> Retour à l'aperçu</a>
   <div class="pt-info"><strong>L'Espoir asbl</strong> &nbsp;·&nbsp; Aperçu du site web &nbsp;·&nbsp; Version avril 2026</div>
 </div>
-<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #8BAD3B;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
+<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #C04B72;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
 
 <!-- ── PREVIEW TOPBAR ── -->
 <div class="w-full bg-[#002626] text-[#EFE7DA]/75 flex items-center justify-between gap-3 flex-wrap px-4 md:px-6 py-2" style="font-size:11px;letter-spacing:0.04em;">
-  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#b8d369] font-semibold hover:text-white transition-colors">
+  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#e88aaa] font-semibold hover:text-white transition-colors">
     <span class="material-symbols-outlined" style="font-size:14px;">arrow_back</span>
     Retour à l'aperçu
   </a>
@@ -676,8 +685,8 @@
       <div class="nav-item">
         <a class="nav-link cursor-default" href="#" onclick="event.preventDefault()">Services ▾</a>
         <div class="nav-dropdown">
-          <a href="srg.html" data-hover-color="#8BAD3B"><span class="dd-abbr" style="color:#8BAD3B">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
-          <a href="sase.html" data-hover-color="#E55812"><span class="dd-abbr" style="color:#E55812">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
+          <a href="srg.html" data-hover-color="#C04B72"><span class="dd-abbr" style="color:#C04B72">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
+          <a href="sase.html" data-hover-color="#E58346"><span class="dd-abbr" style="color:#E58346">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
           <a href="sapa.html" data-hover-color="#119DA4"><span class="dd-abbr" style="color:#119DA4">SAPA</span><span class="dd-name">Service d'Accompagnement du Parrainage</span></a>
         </div>
       </div>
@@ -716,8 +725,8 @@
         </button>
       </div>
       <div class="m-accordion-body">
-        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#8BAD3B">SRG</span><span class="name">Service Résidentiel Général</span></a>
-        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E55812">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
+        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#C04B72">SRG</span><span class="name">Service Résidentiel Général</span></a>
+        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E58346">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
         <a href="sapa.html" class="m-sublink"><span class="abbr" style="color:#119DA4">SAPA</span><span class="name">Service d'Accompagnement du Parrainage</span></a>
       </div>
     </div>
@@ -819,11 +828,11 @@
       <!-- STATS ROW -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-10">
         <div class="stat-block">
-          <div class="text-3xl md:text-4xl font-black text-[#8BAD3B] mb-1">120+</div>
+          <div class="text-3xl md:text-4xl font-black text-[#C04B72] mb-1">120+</div>
           <div class="text-xs font-bold uppercase tracking-wider text-[#002626]/80">Jeunes accompagnés</div>
         </div>
         <div class="stat-block">
-          <div class="text-3xl md:text-4xl font-black text-[#E55812] mb-1">42</div>
+          <div class="text-3xl md:text-4xl font-black text-[#E58346] mb-1">42</div>
           <div class="text-xs font-bold uppercase tracking-wider text-[#002626]/80">Parrainages SAPA</div>
         </div>
         <div class="stat-block">
@@ -948,7 +957,7 @@
       <div class="article-two-col">
         <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=900&q=80&auto=format&fit=crop" alt="Accompagnement au domicile"/>
         <div class="two-col-text">
-          <span class="text-[#E55812] font-black tracking-widest text-xs uppercase block mb-3">Focus · SASE</span>
+          <span class="text-[#E58346] font-black tracking-widest text-xs uppercase block mb-3">Focus · SASE</span>
           <h3>Un accompagnement au plus près des familles</h3>
           <p>Le SASE intervient au domicile des familles, au rythme de leur réalité. En 2025, nos éducateurs ont cumulé <strong>plus de 2 300 visites à domicile</strong>, soit en moyenne 48 visites par famille sur l'année.</p>
           <p>Derrière ces chiffres, une approche simple : prendre le temps, écouter, accompagner sans juger, et aider chaque famille à retrouver ses propres ressources.</p>
@@ -1101,7 +1110,7 @@
             </a>
           </div>
         </div>
-        <a href="actualites.html" class="inline-flex items-center gap-2 text-[#002626] font-bold border-b-2 border-[#002626] pb-1 hover:text-[#8BAD3B] hover:border-[#8BAD3B] transition-colors">
+        <a href="actualites.html" class="inline-flex items-center gap-2 text-[#002626] font-bold border-b-2 border-[#002626] pb-1 hover:text-[#C04B72] hover:border-[#C04B72] transition-colors">
           <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
           Toutes les actualités
         </a>
@@ -1113,7 +1122,7 @@
   <section class="py-16 md:py-20 px-6 md:px-8 bg-[#EFE7DA]">
     <div class="max-w-7xl mx-auto">
       <div class="flex items-center gap-3 mb-10">
-        <div class="w-1 h-6 bg-[#8BAD3B] rounded-full"></div>
+        <div class="w-1 h-6 bg-[#C04B72] rounded-full"></div>
         <span class="text-[#002626]/50 font-black tracking-widest text-xs uppercase">À lire aussi</span>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1121,7 +1130,7 @@
           <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80&auto=format&fit=crop" alt="Formation continue"/>
           <div class="p-5">
             <div class="flex items-center gap-2 mb-3">
-              <span class="actu-tag" style="background:rgba(229,88,18,0.15);color:#E55812;">Formation</span>
+              <span class="actu-tag" style="background:rgba(229,131,70,0.15);color:#E58346;">Formation</span>
               <span class="text-[#002626]/40 text-xs font-semibold">12 nov. 2025</span>
             </div>
             <h3 class="font-bold text-[#002626] text-base leading-snug">Nos éducateurs en formation continue : deux jours sur la gestion de crise</h3>
@@ -1131,7 +1140,7 @@
           <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80&auto=format&fit=crop" alt="Potager communautaire"/>
           <div class="p-5">
             <div class="flex items-center gap-2 mb-3">
-              <span class="actu-tag" style="background:rgba(139,173,59,0.15);color:#5e7a22;">Projet</span>
+              <span class="actu-tag" style="background:rgba(192,75,114,0.15);color:#8b2a4e;">Projet</span>
               <span class="text-[#002626]/40 text-xs font-semibold">18 sept. 2025</span>
             </div>
             <h3 class="font-bold text-[#002626] text-base leading-snug">Lancement du potager communautaire au cœur de Huy</h3>
@@ -1154,7 +1163,7 @@
   <!-- ── CTA ── -->
   <section class="bg-[#002626] py-16 md:py-20 px-6 md:px-8">
     <div class="max-w-4xl mx-auto text-center">
-      <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-4">Envie d'en savoir plus ?</span>
+      <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Envie d'en savoir plus ?</span>
       <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
         Suivez nos actualités ou rejoignez-nous
       </h2>
@@ -1183,7 +1192,7 @@
 </div>
 
 <!-- ── FOOTER ── -->
-<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(139,173,59,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
+<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(192,75,114,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
   <div class="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-16 pb-8">
     <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
       <div class="max-w-xs space-y-4">
@@ -1197,20 +1206,20 @@
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-10">
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Navigation</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Navigation</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html">Accueil</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="apropos.html">À propos</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="actualites.html">Actualités</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Engagement</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Engagement</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="emploi.html">Offres d'emploi</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="don.html">Faire un don</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html#partenaires">Partenaires</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="contact.html">Contact</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Services</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Services</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="srg.html">SRG · Résidentiel</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sase.html">SASE · Accompagnement</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sapa.html">SAPA · Parrainage</a>

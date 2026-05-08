@@ -36,6 +36,15 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Regular.otf') format('opentype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Medium.otf') format('opentype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+h1, h2, h3, h4, h5, h6,
+  [class~="font-black"]:not(.material-symbols-outlined),
+  [class~="font-extrabold"]:not(.material-symbols-outlined),
+  .hero-stat-num { font-family: 'Pally', sans-serif !important; }
+</style>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -133,8 +142,8 @@
   .btn-sm { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
   .btn-primary { background: #002626; color: #EFE7DA; }
   .btn-primary:hover { box-shadow: 0 10px 24px rgba(0,38,38,0.25); filter: brightness(1.08); }
-  .btn-accent { background: #8BAD3B; color: #002626; }
-  .btn-accent:hover { box-shadow: 0 10px 24px rgba(139,173,59,0.35); filter: brightness(1.05); }
+  .btn-accent { background: #C04B72; color: #fff; }
+  .btn-accent:hover { box-shadow: 0 10px 24px rgba(192,75,114,0.35); filter: brightness(1.05); }
   .btn-accent .material-symbols-outlined { font-variation-settings: 'FILL' 0; transition: font-variation-settings 0.35s ease, transform 0.35s ease; }
   .btn-accent:hover .material-symbols-outlined { font-variation-settings: 'FILL' 1; transform: scale(1.08); }
   .btn-outline { background: transparent; color: #002626; box-shadow: inset 0 0 0 2px #002626; }
@@ -380,7 +389,7 @@
   .faq-item + .faq-item { margin-top: 0.75rem; }
   .faq-item summary { padding:1.25rem 1.5rem; cursor:pointer; font-weight:700; color:#002626; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:1rem; transition:background 0.2s ease; }
   .faq-item summary::-webkit-details-marker { display:none; }
-  .faq-item summary:hover { background:rgba(139,173,59,0.05); }
+  .faq-item summary:hover { background:rgba(192,75,114,0.05); }
   .faq-item summary .material-symbols-outlined { transition:transform 0.25s ease; opacity:0.55; flex-shrink:0; }
   .faq-item[open] summary .material-symbols-outlined { transform:rotate(180deg); opacity:0.9; }
   .faq-item .faq-body { padding:0 1.5rem 1.5rem; color:#002626; opacity:0.75; line-height:1.65; font-size:0.95rem; }
@@ -403,7 +412,7 @@
 
 <!-- ── PREVIEW TOPBAR ── -->
 <div class="w-full bg-[#002626] text-[#EFE7DA]/75 flex items-center justify-between gap-3 flex-wrap px-4 md:px-6 py-2" style="font-size:11px;letter-spacing:0.04em;">
-  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#b8d369] font-semibold hover:text-white transition-colors">
+  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#e88aaa] font-semibold hover:text-white transition-colors">
     <span class="material-symbols-outlined" style="font-size:14px;">arrow_back</span>
     Retour à l'aperçu
   </a>
@@ -423,8 +432,8 @@
       <div class="nav-item">
         <a class="nav-link is-active cursor-default" href="services.html">Services ▾</a>
         <div class="nav-dropdown">
-          <a href="srg.html" data-hover-color="#8BAD3B"><span class="dd-abbr" style="color:#8BAD3B">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
-          <a href="sase.html" data-hover-color="#E55812"><span class="dd-abbr" style="color:#E55812">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
+          <a href="srg.html" data-hover-color="#C04B72"><span class="dd-abbr" style="color:#C04B72">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
+          <a href="sase.html" data-hover-color="#E58346"><span class="dd-abbr" style="color:#E58346">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
           <a href="sapa.html" data-hover-color="#119DA4"><span class="dd-abbr" style="color:#119DA4">SAPA</span><span class="dd-name">Service d'Accompagnement du Parrainage</span></a>
         </div>
       </div>
@@ -473,8 +482,8 @@
         </button>
       </div>
       <div class="m-accordion-body">
-        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#8BAD3B">SRG</span><span class="name">Service Résidentiel Général</span></a>
-        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E55812">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
+        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#C04B72">SRG</span><span class="name">Service Résidentiel Général</span></a>
+        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E58346">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
         <a href="sapa.html" class="m-sublink"><span class="abbr" style="color:#119DA4">SAPA</span><span class="name">Service d'Accompagnement du Parrainage</span></a>
       </div>
     </div>
@@ -505,8 +514,8 @@
 
   <!-- ── HERO ── -->
   <section class="blob-parent relative bg-[#002626] pt-20 pb-16 md:pt-28 md:pb-24 px-6 md:px-8 overflow-hidden">
-    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(139,173,59,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
-    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,88,18,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
+    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(192,75,114,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
+    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,131,70,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
     <img
       src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=1600&q=80&auto=format&fit=crop"
       alt="" aria-hidden="true"
@@ -535,7 +544,7 @@
 
       <!-- Headline -->
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-6">
-        Un <span style="position:relative;display:inline-block;">lien<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#8BAD3B" stroke-width="2.5" stroke-linecap="round"/></svg></span> privilégié,<br class="hidden sm:block"/> une présence bénévole
+        Un <span style="position:relative;display:inline-block;">lien<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span> privilégié,<br class="hidden sm:block"/> une présence bénévole
       </h1>
       <p class="text-lg text-white/70 leading-relaxed mb-10 max-w-2xl">
         Le SAPA met en relation des enfants qui ont besoin de repères avec des familles bénévoles prêtes à s'engager. Ce lien, qu'on appelle le parrainage, offre au jeune une présence régulière et des expériences qui comptent vraiment.
@@ -717,7 +726,7 @@
 
   <!-- ── COMMENT ÇA MARCHE, BÉNÉVOLES ── -->
   <section id="benevole" class="blob-parent py-20 md:py-28 px-6 md:px-8 bg-[#EFE7DA]">
-    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,88,18,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
+    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,131,70,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
       <!-- Process -->
@@ -775,7 +784,7 @@
         </div>
 
         <!-- Contact -->
-        <div class="bg-[#002626] rounded-2xl p-8 text-white overflow-hidden" style="background-image:radial-gradient(ellipse at 15% 20%,rgba(17,157,164,0.22),transparent 55%),radial-gradient(ellipse at 85% 80%,rgba(139,173,59,0.14),transparent 60%);">
+        <div class="bg-[#002626] rounded-2xl p-8 text-white overflow-hidden" style="background-image:radial-gradient(ellipse at 15% 20%,rgba(17,157,164,0.22),transparent 55%),radial-gradient(ellipse at 85% 80%,rgba(192,75,114,0.14),transparent 60%);">
           <h3 class="text-xl font-bold mb-2">Intéressé(e) ?</h3>
           <p class="text-white/60 text-sm mb-6">Que vous souhaitiez devenir bénévole ou demander un parrainage pour votre enfant, contactez-nous.</p>
           <div class="flex flex-wrap gap-4 mb-6">
@@ -914,7 +923,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
 
         <a href="srg.html" class="sibling-card">
-          <span class="inline-flex items-center gap-2 bg-[#8BAD3B]/10 text-[#8BAD3B] rounded-full px-3 py-1 text-xs font-bold mb-4">SRG</span>
+          <span class="inline-flex items-center gap-2 bg-[#C04B72]/10 text-[#C04B72] rounded-full px-3 py-1 text-xs font-bold mb-4">SRG</span>
           <h3 class="text-lg font-bold text-[#002626] mb-2">Service Résidentiel Général</h3>
           <p class="text-sm text-[#002626]/60 leading-relaxed mb-4">Hébergement résidentiel pour enfants et jeunes de 3 à 18 ans dans trois maisons à Amay et Couthuin, 24h/24.</p>
           <span class="text-[#002626] font-bold text-sm flex items-center gap-1">
@@ -923,7 +932,7 @@
         </a>
 
         <a href="sase.html" class="sibling-card">
-          <span class="inline-flex items-center gap-2 bg-[#E55812]/10 text-[#E55812] rounded-full px-3 py-1 text-xs font-bold mb-4">SASE</span>
+          <span class="inline-flex items-center gap-2 bg-[#E58346]/10 text-[#E58346] rounded-full px-3 py-1 text-xs font-bold mb-4">SASE</span>
           <h3 class="text-lg font-bold text-[#002626] mb-2">Accompagnement Socio-Éducatif</h3>
           <p class="text-sm text-[#002626]/60 leading-relaxed mb-4">Soutien éducatif préventif à domicile pour les familles en difficulté dans l'arrondissement de Huy.</p>
           <span class="text-[#002626] font-bold text-sm flex items-center gap-1">
@@ -942,7 +951,7 @@
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
       <div class="md:w-3/5 don-text">
-        <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-6">Nous soutenir</span>
+        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-6">Nous soutenir</span>
         <h2 class="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-black text-white mb-6 md:mb-8 leading-[1.1]">
           Soutenez nos actions, changez des vies.
         </h2>
@@ -959,13 +968,13 @@
         <p class="text-white/50 text-sm mt-6">Dons ≥ 40 € déductibles fiscalement · Via le Service Arc-en-Ciel · IBAN BE41 6300 1180 0010</p>
       </div>
       <div class="md:w-2/5 grid grid-cols-2 gap-4 don-cards">
-        <div class="don-card aspect-square bg-[#E55812] flex flex-col items-center justify-center p-8 text-center rotate-3 rounded-2xl cursor-default">
+        <div class="don-card aspect-square bg-[#E58346] flex flex-col items-center justify-center p-8 text-center rotate-3 rounded-2xl cursor-default">
           <span class="material-symbols-outlined text-4xl mb-2" style="font-variation-settings:'FILL' 1;">favorite</span>
           <span class="font-bold text-lg">Solidarité</span>
         </div>
-        <div class="don-card aspect-square bg-[#8BAD3B] flex flex-col items-center justify-center p-8 text-center -rotate-2 rounded-2xl cursor-default">
+        <div class="don-card aspect-square bg-[#C04B72] flex flex-col items-center justify-center p-8 text-white text-center -rotate-2 rounded-2xl cursor-default">
           <span class="material-symbols-outlined text-4xl mb-2" style="font-variation-settings:'FILL' 1;">school</span>
-          <span class="font-bold text-lg text-[#002626]">Éducation</span>
+          <span class="font-bold text-lg text-white">Éducation</span>
         </div>
       </div>
     </div>
@@ -974,7 +983,7 @@
 </main>
 
 <!-- ── FOOTER ── -->
-<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(139,173,59,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
+<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(192,75,114,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
   <div class="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-16 pb-8">
     <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
       <div class="max-w-xs space-y-4">
@@ -988,21 +997,21 @@
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-10">
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Navigation</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Navigation</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html">Accueil</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="services.html">Services</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="apropos.html">À propos</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="actualites.html">Actualités</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Engagement</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Engagement</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="emploi.html">Offres d'emploi</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="don.html">Faire un don</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html#partenaires">Partenaires</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="contact.html">Contact</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Services</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Services</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="srg.html">SRG · Résidentiel</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sase.html">SASE · Accompagnement</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sapa.html">SAPA · Parrainage</a>

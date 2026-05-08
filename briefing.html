@@ -11,7 +11,7 @@
 <style>
   :root {
     --dark: #002626; --darker: #001a1a;
-    --cyan: #119DA4; --green: #8BAD3B; --orange: #E55812;
+    --cyan: #119DA4; --green: #C04B72; --orange: #E58346;
     --linen: #EFE7DA; --paper: #f7f2e6;
     --border: rgba(0,38,38,0.1); --border-strong: rgba(0,38,38,0.18);
     --text: #1a1a1a; --muted: #5a6666;
@@ -41,7 +41,7 @@
   }
   .topbar strong { color: #fff; font-weight: 700; }
   .topbar a {
-    color: #b8d369; text-decoration: none; font-weight: 600;
+    color: #e88aaa; text-decoration: none; font-weight: 600;
     display: inline-flex; align-items: center; gap: 5px;
   }
   .topbar a:hover { color: #fff; }
@@ -53,9 +53,9 @@
     background: var(--dark); color: #fff;
     padding: 64px 32px 80px;
     background-image:
-      radial-gradient(ellipse at 15% 20%, rgba(139,173,59,0.28), transparent 55%),
+      radial-gradient(ellipse at 15% 20%, rgba(192,75,114,0.28), transparent 55%),
       radial-gradient(ellipse at 85% 80%, rgba(17,157,164,0.22), transparent 60%),
-      radial-gradient(ellipse at 50% 100%, rgba(229,88,18,0.12), transparent 70%);
+      radial-gradient(ellipse at 50% 100%, rgba(229,131,70,0.12), transparent 70%);
   }
   .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
   .hero-mark {
@@ -69,10 +69,10 @@
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 6px 14px; border-radius: 999px;
-    background: rgba(139,173,59,0.18); color: #b8d369;
+    background: rgba(192,75,114,0.18); color: #e88aaa;
     font-size: 11px; font-weight: 800; letter-spacing: 0.14em;
     text-transform: uppercase; margin-bottom: 18px;
-    border: 1px solid rgba(139,173,59,0.3);
+    border: 1px solid rgba(192,75,114,0.3);
   }
   .hero-eyebrow .material-symbols-outlined {
     font-size: 14px; font-variation-settings: 'FILL' 1;
@@ -132,12 +132,12 @@
     border-radius: 20px; padding: 36px 40px;
     margin-bottom: 72px; position: relative; overflow: hidden;
     background-image:
-      radial-gradient(ellipse at 15% 20%, rgba(139,173,59,0.20), transparent 55%),
+      radial-gradient(ellipse at 15% 20%, rgba(192,75,114,0.20), transparent 55%),
       radial-gradient(ellipse at 85% 80%, rgba(17,157,164,0.18), transparent 60%);
   }
   .en-bref .label {
     font-size: 11px; font-weight: 800; letter-spacing: 0.16em;
-    text-transform: uppercase; color: #b8d369;
+    text-transform: uppercase; color: #e88aaa;
     display: inline-flex; align-items: center; gap: 6px;
     margin-bottom: 14px;
   }
@@ -146,8 +146,8 @@
     font-size: 16px; line-height: 1.7; color: rgba(239,231,218,0.9);
   }
   .en-bref strong { font-weight: 700; }
-  .en-bref .s-green { color: #8BAD3B; }
-  .en-bref .s-orange { color: #E55812; }
+  .en-bref .s-green { color: #C04B72; }
+  .en-bref .s-orange { color: #E58346; }
   .en-bref .s-cyan { color: #119DA4; }
 
   /* KV table */
@@ -194,8 +194,8 @@
   .palette-big .swatch .hex { font-size: 11px; font-family: 'SF Mono', monospace; opacity: 0.75; }
   .sw-dark { background: #002626; color: #fff; }
   .sw-cyan { background: #119DA4; color: #fff; }
-  .sw-green { background: #8BAD3B; color: #002626; }
-  .sw-orange { background: #E55812; color: #fff; }
+  .sw-green { background: #C04B72; color: #fff; }
+  .sw-orange { background: #E58346; color: #fff; }
   .sw-linen { background: #EFE7DA; color: #002626; box-shadow: inset 0 0 0 1px var(--border), 0 2px 8px rgba(0,38,38,0.06); }
   @media (max-width: 720px) { .palette-big { grid-template-columns: repeat(2, 1fr); } }
 
@@ -309,9 +309,9 @@
     border-left: 6px solid transparent;
     background:
       radial-gradient(ellipse 85% 120% at 100% 0%, rgba(17,157,164,0.08), transparent 60%) padding-box,
-      radial-gradient(ellipse 80% 100% at 0% 100%, rgba(139,173,59,0.10), transparent 60%) padding-box,
+      radial-gradient(ellipse 80% 100% at 0% 100%, rgba(192,75,114,0.10), transparent 60%) padding-box,
       linear-gradient(#fff, #fff) padding-box,
-      linear-gradient(180deg, #8BAD3B 0%, #119DA4 100%) border-box;
+      linear-gradient(180deg, #C04B72 0%, #119DA4 100%) border-box;
   }
   /* Escapade panel · même fond blanc, séparé par un filet dégradé discret */
   .sig-escapade {
@@ -386,8 +386,8 @@
 
   /* Callout note */
   .callout {
-    background: rgba(229,88,18,0.06);
-    border: 1px solid rgba(229,88,18,0.2);
+    background: rgba(229,131,70,0.06);
+    border: 1px solid rgba(229,131,70,0.2);
     border-radius: 12px; padding: 14px 18px;
     margin-top: 20px;
     display: flex; gap: 12px; align-items: flex-start;
@@ -398,8 +398,8 @@
     font-variation-settings: 'FILL' 1;
   }
   .callout.green {
-    background: rgba(139,173,59,0.08);
-    border-color: rgba(139,173,59,0.25); color: #2a4a00;
+    background: rgba(192,75,114,0.08);
+    border-color: rgba(192,75,114,0.25); color: #2a4a00;
   }
   .callout.green .material-symbols-outlined { color: #6b8420; }
 
@@ -441,10 +441,10 @@
     font-size: 13px; font-weight: 800;
   }
   .sm-row.child .sm-i { background: transparent; color: var(--dark); font-size: 16px; opacity: 0.5; }
-  .sm-row.child.s-green .sm-i { background: rgba(139,173,59,0.12); color: #5a7a1a; }
-  .sm-row.child.s-orange .sm-i { background: rgba(229,88,18,0.12); color: var(--orange); }
+  .sm-row.child.s-green .sm-i { background: rgba(192,75,114,0.12); color: #5a7a1a; }
+  .sm-row.child.s-orange .sm-i { background: rgba(229,131,70,0.12); color: var(--orange); }
   .sm-row.child.s-cyan .sm-i { background: rgba(17,157,164,0.12); color: var(--cyan); }
-  .sm-row.cta .sm-i { background: rgba(229,88,18,0.12); color: var(--orange); }
+  .sm-row.cta .sm-i { background: rgba(229,131,70,0.12); color: var(--orange); }
   .sm-p {
     padding: 12px 16px; display: flex; align-items: center;
     font-weight: 700; color: var(--dark); font-size: 13.5px;
@@ -463,8 +463,8 @@
     white-space: nowrap;
   }
   .b-cms { background: rgba(17,157,164,0.15); color: #0a6a70; }
-  .b-new { background: rgba(139,173,59,0.18); color: #5a7a1a; }
-  .b-cta { background: rgba(229,88,18,0.15); color: var(--orange); }
+  .b-new { background: rgba(192,75,114,0.18); color: #5a7a1a; }
+  .b-cta { background: rgba(229,131,70,0.15); color: var(--orange); }
   .b-static { background: rgba(0,38,38,0.06); color: var(--muted); }
   .b-dropdown { background: var(--dark); color: #fff; }
   @media (max-width: 760px) {
@@ -497,7 +497,7 @@
     transition: background 0.15s, color 0.15s;
   }
   .nav-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
-  .nav-btn.active { background: rgba(139,173,59,0.22); color: #b8d369; }
+  .nav-btn.active { background: rgba(192,75,114,0.22); color: #e88aaa; }
   .nav-btn-cta {
     margin-left: auto; padding: 8px 16px; border-radius: 8px;
     font-size: 13px; font-weight: 700; font-family: inherit;
@@ -505,7 +505,7 @@
     border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
     transition: transform 0.15s, box-shadow 0.15s;
   }
-  .nav-btn-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 14px -4px rgba(139,173,59,0.5); }
+  .nav-btn-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 14px -4px rgba(192,75,114,0.5); }
   .nav-btn-cta .material-symbols-outlined { font-size: 16px; font-variation-settings: 'FILL' 1; }
   .mockup-panel {
     padding: 30px 30px 28px; min-height: 220px; background: #fff;
@@ -532,9 +532,9 @@
   }
   .page-card .t { font-size: 12px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
   .page-card .d { font-size: 12px; color: var(--muted); line-height: 1.5; }
-  .page-card.s-green { border-left-color: var(--green); background: rgba(139,173,59,0.07); }
+  .page-card.s-green { border-left-color: var(--green); background: rgba(192,75,114,0.07); }
   .page-card.s-green .t { color: #3a5500; }
-  .page-card.s-orange { border-left-color: var(--orange); background: rgba(229,88,18,0.06); }
+  .page-card.s-orange { border-left-color: var(--orange); background: rgba(229,131,70,0.06); }
   .page-card.s-orange .t { color: var(--orange); }
   .page-card.s-cyan { border-left-color: var(--cyan); background: rgba(17,157,164,0.07); }
   .page-card.s-cyan .t { color: #0a5a60; }
@@ -608,9 +608,9 @@
     white-space: nowrap;
   }
   .ds-got { background: rgba(0,38,38,0.08); color: var(--dark); }
-  .ds-validate { background: rgba(139,173,59,0.18); color: #5a7a1a; }
-  .ds-confirm { background: rgba(229,88,18,0.14); color: var(--orange); }
-  .ds-todo { background: rgba(229,88,18,0.14); color: var(--orange); }
+  .ds-validate { background: rgba(192,75,114,0.18); color: #5a7a1a; }
+  .ds-confirm { background: rgba(229,131,70,0.14); color: var(--orange); }
+  .ds-todo { background: rgba(229,131,70,0.14); color: var(--orange); }
   .ds-later { background: rgba(17,157,164,0.15); color: #0a6a70; }
   .del-card p { font-size: 12.5px; color: var(--muted); padding-left: 10px; line-height: 1.55; }
 
@@ -622,12 +622,12 @@
     display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
     position: relative; overflow: hidden;
     background-image:
-      radial-gradient(ellipse at 15% 20%, rgba(139,173,59,0.20), transparent 55%),
+      radial-gradient(ellipse at 15% 20%, rgba(192,75,114,0.20), transparent 55%),
       radial-gradient(ellipse at 85% 80%, rgba(17,157,164,0.16), transparent 60%);
   }
   .outro-text { flex: 1; min-width: 240px; }
   .outro-text .label {
-    font-size: 11px; font-weight: 800; letter-spacing: 0.14em; color: #b8d369;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.14em; color: #e88aaa;
     text-transform: uppercase; margin-bottom: 8px;
   }
   .outro-text h3 {
@@ -746,8 +746,8 @@
     <div class="palette-big">
       <div class="swatch sw-dark"><div class="name">Evergreen</div><div class="hex">#002626</div></div>
       <div class="swatch sw-cyan"><div class="name">Dark Cyan</div><div class="hex">#119DA4</div></div>
-      <div class="swatch sw-green"><div class="name">Yellow Green</div><div class="hex">#8BAD3B</div></div>
-      <div class="swatch sw-orange"><div class="name">Cayenne Red</div><div class="hex">#E55812</div></div>
+      <div class="swatch sw-green"><div class="name">Yellow Green</div><div class="hex">#C04B72</div></div>
+      <div class="swatch sw-orange"><div class="name">Cayenne Red</div><div class="hex">#E58346</div></div>
       <div class="swatch sw-linen"><div class="name">Soft Linen</div><div class="hex">#EFE7DA</div></div>
     </div>
 

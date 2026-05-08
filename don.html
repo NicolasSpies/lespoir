@@ -41,6 +41,15 @@
 <link rel="preconnect" href="https://cdn.tailwindcss.com"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Regular.otf') format('opentype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Medium.otf') format('opentype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+h1, h2, h3, h4, h5, h6,
+  [class~="font-black"]:not(.material-symbols-outlined),
+  [class~="font-extrabold"]:not(.material-symbols-outlined),
+  .hero-stat-num { font-family: 'Pally', sans-serif !important; }
+</style>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -76,8 +85,8 @@
   }
 
   *:focus { outline: none; }
-  *:focus-visible { outline: 2px solid #8BAD3B; outline-offset: 3px; border-radius: 4px; }
-  button:focus-visible, a:focus-visible { outline: 2px solid #8BAD3B; outline-offset: 3px; }
+  *:focus-visible { outline: 2px solid #C04B72; outline-offset: 3px; border-radius: 4px; }
+  button:focus-visible, a:focus-visible { outline: 2px solid #C04B72; outline-offset: 3px; }
 
   :root { --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1); }
 
@@ -114,8 +123,8 @@
   .btn-sm { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
   .btn-primary { background: #002626; color: #EFE7DA; }
   .btn-primary:hover { box-shadow: 0 10px 24px rgba(0,38,38,0.25); filter: brightness(1.08); }
-  .btn-accent { background: #8BAD3B; color: #002626; }
-  .btn-accent:hover { box-shadow: 0 10px 24px rgba(139,173,59,0.35); filter: brightness(1.05); }
+  .btn-accent { background: #C04B72; color: #fff; }
+  .btn-accent:hover { box-shadow: 0 10px 24px rgba(192,75,114,0.35); filter: brightness(1.05); }
   .btn-accent .material-symbols-outlined { font-variation-settings: 'FILL' 0; transition: font-variation-settings 0.35s ease, transform 0.35s ease; }
   .btn-accent:hover .material-symbols-outlined { font-variation-settings: 'FILL' 1; transform: scale(1.08); }
   .btn-outline { background: transparent; color: #002626; box-shadow: inset 0 0 0 2px #002626; }
@@ -244,8 +253,8 @@
     transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
     display: flex; flex-direction: column;
   }
-  .method-card:hover { border-color: #8BAD3B; box-shadow: 0 10px 32px rgba(139,173,59,0.12); transform: translateY(-3px); }
-  .method-card.featured { border-color: #8BAD3B; background: linear-gradient(180deg, #f7faef 0%, #fff 100%); }
+  .method-card:hover { border-color: #C04B72; box-shadow: 0 10px 32px rgba(192,75,114,0.12); transform: translateY(-3px); }
+  .method-card.featured { border-color: #C04B72; background: linear-gradient(180deg, #f7faef 0%, #fff 100%); }
 
   .iban-display {
     background: #002626; color: #EFE7DA;
@@ -262,7 +271,7 @@
     font-family: inherit;
   }
   .copy-btn:hover { background: rgba(255,255,255,0.18); }
-  .copy-btn.copied { background: #8BAD3B; color: #002626; }
+  .copy-btn.copied { background: #C04B72; color: #fff; }
 
   .amount-chip {
     background: #fff; border: 1.5px solid rgba(0,38,38,0.15);
@@ -271,7 +280,7 @@
     cursor: pointer; transition: all 0.2s ease;
     display: inline-flex; flex-direction: column; align-items: center; gap: 0.1rem;
   }
-  .amount-chip:hover { border-color: #8BAD3B; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(139,173,59,0.14); }
+  .amount-chip:hover { border-color: #C04B72; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(192,75,114,0.14); }
   .amount-chip .amount { font-size: 1.15rem; }
   .amount-chip .impact { font-size: 0.7rem; font-weight: 500; opacity: 0.55; text-transform: none; letter-spacing: 0; }
 
@@ -286,7 +295,7 @@
     transition: background 0.2s ease;
   }
   .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary:hover { background: rgba(139,173,59,0.05); }
+  .faq-item summary:hover { background: rgba(192,75,114,0.05); }
   .faq-item summary .material-symbols-outlined { transition: transform 0.25s ease; opacity: 0.55; flex-shrink: 0; }
   .faq-item[open] summary .material-symbols-outlined { transform: rotate(180deg); opacity: 0.9; }
   .faq-item .faq-body {
@@ -307,23 +316,23 @@
     .don-card.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
     .impact-card.is-active { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,38,38,0.09); }
     .impact-card.revealed.is-active { transform: translateY(-4px); }
-    .method-card.is-active { border-color: #8BAD3B; box-shadow: 0 10px 32px rgba(139,173,59,0.12); transform: translateY(-3px); }
+    .method-card.is-active { border-color: #C04B72; box-shadow: 0 10px 32px rgba(192,75,114,0.12); transform: translateY(-3px); }
     .method-card.revealed.is-active { transform: translateY(-3px); }
   }
 
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
-<style>.preview-topbar{background:#002626;color:rgba(239,231,218,0.7);padding:6px 20px;font-size:11.5px;font-weight:500;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:32px;position:relative;z-index:60}.preview-topbar a{color:#b8d369 !important;text-decoration:none !important;font-weight:600;display:inline-flex;align-items:center;gap:4px}.preview-topbar a:hover{color:#fff !important}.preview-topbar strong{color:#fff;font-weight:700}.preview-topbar .pt-info{margin-left:auto;text-align:right}@media (max-width:640px){.preview-topbar{font-size:10.5px;padding:5px 12px}}</style>
+<style>.preview-topbar{background:#002626;color:rgba(239,231,218,0.7);padding:6px 20px;font-size:11.5px;font-weight:500;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:32px;position:relative;z-index:60}.preview-topbar a{color:#e88aaa !important;text-decoration:none !important;font-weight:600;display:inline-flex;align-items:center;gap:4px}.preview-topbar a:hover{color:#fff !important}.preview-topbar strong{color:#fff;font-weight:700}.preview-topbar .pt-info{margin-left:auto;text-align:right}@media (max-width:640px){.preview-topbar{font-size:10.5px;padding:5px 12px}}</style>
 <div class="preview-topbar">
   <a href="index.html"><span class="material-symbols-outlined" style="font-size:14px">arrow_back</span> Retour à l'aperçu</a>
   <div class="pt-info"><strong>L'Espoir asbl</strong> &nbsp;·&nbsp; Aperçu du site web &nbsp;·&nbsp; Version avril 2026</div>
 </div>
-<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #8BAD3B;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
+<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #C04B72;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
 
 <!-- ── PREVIEW TOPBAR ── -->
 <div class="w-full bg-[#002626] text-[#EFE7DA]/75 flex items-center justify-between gap-3 flex-wrap px-4 md:px-6 py-2" style="font-size:11px;letter-spacing:0.04em;">
-  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#b8d369] font-semibold hover:text-white transition-colors">
+  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#e88aaa] font-semibold hover:text-white transition-colors">
     <span class="material-symbols-outlined" style="font-size:14px;">arrow_back</span>
     Retour à l'aperçu
   </a>
@@ -341,8 +350,8 @@
       <div class="nav-item">
         <a class="nav-link cursor-default" href="#" onclick="event.preventDefault()">Services ▾</a>
         <div class="nav-dropdown">
-          <a href="srg.html" data-hover-color="#8BAD3B"><span class="dd-abbr" style="color:#8BAD3B">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
-          <a href="sase.html" data-hover-color="#E55812"><span class="dd-abbr" style="color:#E55812">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
+          <a href="srg.html" data-hover-color="#C04B72"><span class="dd-abbr" style="color:#C04B72">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
+          <a href="sase.html" data-hover-color="#E58346"><span class="dd-abbr" style="color:#E58346">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
           <a href="sapa.html" data-hover-color="#119DA4"><span class="dd-abbr" style="color:#119DA4">SAPA</span><span class="dd-name">Service d'Accompagnement du Parrainage</span></a>
         </div>
       </div>
@@ -381,8 +390,8 @@
         </button>
       </div>
       <div class="m-accordion-body">
-        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#8BAD3B">SRG</span><span class="name">Service Résidentiel Général</span></a>
-        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E55812">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
+        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#C04B72">SRG</span><span class="name">Service Résidentiel Général</span></a>
+        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E58346">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
         <a href="sapa.html" class="m-sublink"><span class="abbr" style="color:#119DA4">SAPA</span><span class="name">Service d'Accompagnement du Parrainage</span></a>
       </div>
     </div>
@@ -400,19 +409,19 @@
 
   <!-- ── HERO ── -->
   <section class="relative bg-[#002626] pt-16 pb-16 md:pt-24 md:pb-24 px-6 md:px-8 overflow-hidden blob-parent">
-    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(139,173,59,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
-    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,88,18,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
-    <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(139,173,59,0.15) 0%, transparent 70%);position:absolute;"></div>
-    <div class="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(229,88,18,0.08) 0%, transparent 70%);position:absolute;"></div>
+    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(192,75,114,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
+    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,131,70,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.15) 0%, transparent 70%);position:absolute;"></div>
+    <div class="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(229,131,70,0.08) 0%, transparent 70%);position:absolute;"></div>
     <div class="relative max-w-4xl mx-auto">
       <nav class="flex items-center gap-2 text-sm text-white/40 mb-8" aria-label="Fil d'Ariane">
         <a href="homepage.html" class="hover:text-white/70 transition-colors">Accueil</a>
         <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
-        <span class="text-[#8BAD3B] font-semibold">Faire un don</span>
+        <span class="text-[#C04B72] font-semibold">Faire un don</span>
       </nav>
-      <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-5">Nous soutenir</span>
+      <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-5">Nous soutenir</span>
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-6">
-        Votre don, <br class="hidden sm:block"/>leur <span style="position:relative;display:inline-block;">avenir<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#8BAD3B" stroke-width="2.5" stroke-linecap="round"/></svg></span>.
+        Votre don, <br class="hidden sm:block"/>leur <span style="position:relative;display:inline-block;">avenir<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>.
       </h1>
       <p class="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mb-10">
         Depuis 1985, L'Espoir accompagne des jeunes et des familles qui traversent des moments difficiles. Grâce à vous, on peut continuer à leur offrir un cadre, une écoute et un vrai coup de pouce.
@@ -435,7 +444,7 @@
     <div class="blob" aria-hidden="true" style="width:240px;height:240px;background:rgba(17,157,164,0.09);bottom:40px;right:-60px;border-radius:50% 50% 70% 30% / 40% 60% 40% 60%;"></div>
     <div class="max-w-7xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-        <span class="text-[#E55812] font-black tracking-widest text-sm uppercase block mb-3">Votre impact</span>
+        <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-3">Votre impact</span>
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight">Ce que votre don change concrètement</h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed">
           Chaque euro reçu est investi directement dans les projets qui améliorent le quotidien des jeunes accompagnés. Voici à quoi ça ressemble.
@@ -443,12 +452,12 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="impact-card">
-          <span class="material-symbols-outlined text-4xl text-[#8BAD3B] mb-4" style="font-variation-settings:'FILL' 1;">school</span>
+          <span class="material-symbols-outlined text-4xl text-[#C04B72] mb-4" style="font-variation-settings:'FILL' 1;">school</span>
           <h3 class="text-xl font-bold text-[#002626] mb-2">Éducation &amp; loisirs</h3>
           <p class="text-[#002626]/70 text-sm leading-relaxed">Sorties culturelles, stages sportifs, matériel scolaire, ateliers créatifs : tout ce qui permet à un jeune de se construire au-delà de la prise en charge.</p>
         </div>
         <div class="impact-card">
-          <span class="material-symbols-outlined text-4xl text-[#E55812] mb-4" style="font-variation-settings:'FILL' 1;">home</span>
+          <span class="material-symbols-outlined text-4xl text-[#E58346] mb-4" style="font-variation-settings:'FILL' 1;">home</span>
           <h3 class="text-xl font-bold text-[#002626] mb-2">Nos maisons</h3>
           <p class="text-[#002626]/70 text-sm leading-relaxed">Aménagement des chambres, entretien, réparations, coin cuisine : on veut que les maisons du SRG soient de vrais foyers, pas des institutions.</p>
         </div>
@@ -467,7 +476,7 @@
   <section id="methodes" class="py-16 md:py-24 px-6 md:px-8">
     <div class="max-w-6xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-        <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-3">Comment donner</span>
+        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-3">Comment donner</span>
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight">Par virement, simple et déductible</h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed">
           Virement ponctuel ou ordre permanent, via le compte du Service Arc-en-Ciel. Vous recevez une attestation fiscale automatique dès 40 € par an.
@@ -479,11 +488,11 @@
         <!-- Virement bancaire -->
         <div class="method-card featured">
           <div class="flex items-start gap-4 mb-5">
-            <div class="bg-[#8BAD3B]/15 p-3 rounded-xl flex-shrink-0">
+            <div class="bg-[#C04B72]/15 p-3 rounded-xl flex-shrink-0">
               <span class="material-symbols-outlined text-[#002626] text-3xl">account_balance</span>
             </div>
             <div>
-              <span class="inline-block bg-[#8BAD3B] text-[#002626] text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded mb-2">Recommandé</span>
+              <span class="inline-block bg-[#C04B72] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded mb-2">Recommandé</span>
               <h3 class="text-2xl font-bold text-[#002626]">Virement bancaire</h3>
               <p class="text-[#002626]/65 text-sm mt-1">Via le Service Arc-en-Ciel, attestation fiscale automatique dès 40 €.</p>
             </div>
@@ -497,15 +506,15 @@
           </div>
           <div class="text-sm text-[#002626]/75 space-y-2 mb-6">
             <div class="flex items-start gap-2">
-              <span class="material-symbols-outlined text-[#8BAD3B] flex-shrink-0" style="font-size:18px;">check_circle</span>
+              <span class="material-symbols-outlined text-[#C04B72] flex-shrink-0" style="font-size:18px;">check_circle</span>
               <span><strong>Bénéficiaire :</strong> Service Arc-en-Ciel</span>
             </div>
             <div class="flex items-start gap-2">
-              <span class="material-symbols-outlined text-[#8BAD3B] flex-shrink-0" style="font-size:18px;">check_circle</span>
+              <span class="material-symbols-outlined text-[#C04B72] flex-shrink-0" style="font-size:18px;">check_circle</span>
               <span><strong>Communication :</strong> <code class="bg-[#002626]/5 px-1.5 py-0.5 rounded text-xs">L'Espoir asbl Amay</code></span>
             </div>
             <div class="flex items-start gap-2">
-              <span class="material-symbols-outlined text-[#8BAD3B] flex-shrink-0" style="font-size:18px;">check_circle</span>
+              <span class="material-symbols-outlined text-[#C04B72] flex-shrink-0" style="font-size:18px;">check_circle</span>
               <span>Attestation fiscale envoyée par courrier en début d'année</span>
             </div>
           </div>
@@ -535,7 +544,7 @@
 
   <!-- ── COMMENT ÇA MARCHE / FAQ ── -->
   <section id="comment" class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
-    <div class="blob" aria-hidden="true" style="width:280px;height:280px;background:rgba(139,173,59,0.10);top:20px;right:-80px;border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;"></div>
+    <div class="blob" aria-hidden="true" style="width:280px;height:280px;background:rgba(192,75,114,0.10);top:20px;right:-80px;border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;"></div>
     <div class="max-w-4xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12">
         <span class="text-[#119DA4] font-black tracking-widest text-sm uppercase block mb-3">Comment ça marche ?</span>
@@ -572,13 +581,13 @@
         <details class="faq-item">
           <summary>Et si je veux donner autre chose que de l'argent ?<span class="material-symbols-outlined">expand_more</span></summary>
           <div class="faq-body">
-            Vos compétences, votre temps, du matériel, un local, une prestation : tout ça nous intéresse. <a href="contact.html" class="text-[#8BAD3B] font-bold underline">Contactez-nous</a> pour en discuter, on trouvera une façon utile de mettre votre aide à profit.
+            Vos compétences, votre temps, du matériel, un local, une prestation : tout ça nous intéresse. <a href="contact.html" class="text-[#C04B72] font-bold underline">Contactez-nous</a> pour en discuter, on trouvera une façon utile de mettre votre aide à profit.
           </div>
         </details>
         <details class="faq-item">
           <summary>Est-ce que vous êtes transparents sur l'usage des dons ?<span class="material-symbols-outlined">expand_more</span></summary>
           <div class="faq-body">
-            Oui. L'Espoir asbl publie un <strong>rapport d'activités annuel</strong> (consultable dans la <a href="actualites.html" class="text-[#8BAD3B] font-bold underline">section Actualités</a>) et nos comptes sont déposés chaque année à la Banque Nationale de Belgique, conformément à la loi sur les ASBL.
+            Oui. L'Espoir asbl publie un <strong>rapport d'activités annuel</strong> (consultable dans la <a href="actualites.html" class="text-[#C04B72] font-bold underline">section Actualités</a>) et nos comptes sont déposés chaque année à la Banque Nationale de Belgique, conformément à la loi sur les ASBL.
           </div>
         </details>
       </div>
@@ -596,9 +605,9 @@
 
   <!-- ── CTA FINAL ── -->
   <section class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden relative">
-    <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(139,173,59,0.12) 0%, transparent 70%);"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.12) 0%, transparent 70%);"></div>
     <div class="relative max-w-4xl mx-auto text-center">
-      <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-5">Merci pour votre soutien</span>
+      <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-5">Merci pour votre soutien</span>
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight">
         Ensemble, on continue.
       </h2>
@@ -621,7 +630,7 @@
 </main>
 
 <!-- ── FOOTER ── -->
-<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(139,173,59,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
+<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(192,75,114,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
   <div class="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-16 pb-8">
     <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
       <div class="max-w-xs space-y-4">
@@ -635,20 +644,20 @@
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-10">
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Navigation</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Navigation</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html">Accueil</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="apropos.html">À propos</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="actualites.html">Actualités</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Engagement</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Engagement</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="emploi.html">Offres d'emploi</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="don.html">Faire un don</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html#partenaires">Partenaires</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="contact.html">Contact</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Services</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Services</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="srg.html">SRG · Résidentiel</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sase.html">SASE · Accompagnement</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sapa.html">SAPA · Parrainage</a>

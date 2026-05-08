@@ -40,6 +40,15 @@
 <link rel="preconnect" href="https://cdn.tailwindcss.com"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Regular.otf') format('opentype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Medium.otf') format('opentype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+h1, h2, h3, h4, h5, h6,
+  [class~="font-black"]:not(.material-symbols-outlined),
+  [class~="font-extrabold"]:not(.material-symbols-outlined),
+  .hero-stat-num { font-family: 'Pally', sans-serif !important; }
+</style>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -89,8 +98,8 @@
 
   /* ── Focus states ── */
   *:focus { outline: none; }
-  *:focus-visible { outline: 2px solid #8BAD3B; outline-offset: 3px; border-radius: 4px; }
-  button:focus-visible, a:focus-visible { outline: 2px solid #8BAD3B; outline-offset: 3px; }
+  *:focus-visible { outline: 2px solid #C04B72; outline-offset: 3px; border-radius: 4px; }
+  button:focus-visible, a:focus-visible { outline: 2px solid #C04B72; outline-offset: 3px; }
 
   /* ── Design Tokens ── */
   :root { --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -137,8 +146,8 @@
   .btn-sm { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
   .btn-primary { background: #002626; color: #EFE7DA; }
   .btn-primary:hover { box-shadow: 0 10px 24px rgba(0,38,38,0.25); filter: brightness(1.08); }
-  .btn-accent { background: #8BAD3B; color: #002626; }
-  .btn-accent:hover { box-shadow: 0 10px 24px rgba(139,173,59,0.35); filter: brightness(1.05); }
+  .btn-accent { background: #C04B72; color: #fff; }
+  .btn-accent:hover { box-shadow: 0 10px 24px rgba(192,75,114,0.35); filter: brightness(1.05); }
   .btn-accent .material-symbols-outlined { font-variation-settings: 'FILL' 0; transition: font-variation-settings 0.35s ease, transform 0.35s ease; }
   .btn-accent:hover .material-symbols-outlined { font-variation-settings: 'FILL' 1; transform: scale(1.08); }
   .btn-outline { background: transparent; color: #002626; box-shadow: inset 0 0 0 2px #002626; }
@@ -302,8 +311,8 @@
   select.form-field:focus,
   textarea.form-field:focus,
   .form-field:focus {
-    border-color: #8BAD3B;
-    box-shadow: 0 0 0 3px rgba(139,173,59,0.15);
+    border-color: #C04B72;
+    box-shadow: 0 0 0 3px rgba(192,75,114,0.15);
     outline: none;
     --tw-ring-shadow: 0 0 #0000;
     --tw-ring-offset-shadow: 0 0 #0000;
@@ -319,7 +328,7 @@
     text-decoration: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
-  .info-card:hover { border-color: #8BAD3B; box-shadow: 0 6px 20px rgba(139,173,59,0.12); transform: translateY(-2px); }
+  .info-card:hover { border-color: #C04B72; box-shadow: 0 6px 20px rgba(192,75,114,0.12); transform: translateY(-2px); }
 
   /* ── Service contact pills ── */
   .service-contact-card {
@@ -339,18 +348,18 @@
   }
   .location-card::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 4px; background: var(--svc-color, #8BAD3B);
+    height: 4px; background: var(--svc-color, #C04B72);
   }
   .location-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 16px 32px -10px rgba(0,38,38,0.14);
-    border-color: var(--svc-color, #8BAD3B);
+    border-color: var(--svc-color, #C04B72);
   }
   .location-tag {
     display: inline-flex; align-items: center; gap: 0.35rem;
     padding: 0.3rem 0.7rem; border-radius: 999px;
-    background: color-mix(in srgb, var(--svc-color, #8BAD3B) 14%, transparent);
-    color: var(--svc-color, #5e7a22);
+    background: color-mix(in srgb, var(--svc-color, #C04B72) 14%, transparent);
+    color: var(--svc-color, #8b2a4e);
     font-size: 0.68rem; font-weight: 800;
     letter-spacing: 0.08em; text-transform: uppercase;
     width: fit-content;
@@ -379,14 +388,14 @@
     font-size: 0.85rem; font-weight: 600; color: #002626;
     text-decoration: none; transition: color 0.2s ease;
   }
-  .location-contact a:hover { color: var(--svc-color, #8BAD3B); }
+  .location-contact a:hover { color: var(--svc-color, #C04B72); }
   .location-contact a .material-symbols-outlined {
-    font-size: 15px; color: var(--svc-color, #8BAD3B);
+    font-size: 15px; color: var(--svc-color, #C04B72);
     font-variation-settings: 'FILL' 1;
   }
   .location-map {
     font-size: 0.76rem; font-weight: 700; letter-spacing: 0.04em;
-    text-transform: uppercase; color: var(--svc-color, #5e7a22) !important;
+    text-transform: uppercase; color: var(--svc-color, #8b2a4e) !important;
     margin-top: 0.15rem;
   }
   .location-map .material-symbols-outlined { font-size: 14px; }
@@ -405,7 +414,7 @@
   @media (hover: none) {
     .don-card.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
     .don-card.revealed.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); }
-    .info-card.is-active { border-color: #8BAD3B; box-shadow: 0 6px 20px rgba(139,173,59,0.12); transform: translateY(-2px); }
+    .info-card.is-active { border-color: #C04B72; box-shadow: 0 6px 20px rgba(192,75,114,0.12); transform: translateY(-2px); }
     .info-card.revealed.is-active { transform: translateY(-2px); }
     .service-contact-card.revealed.is-active { transform: translateY(-3px); }
   }
@@ -413,16 +422,16 @@
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
-<style>.preview-topbar{background:#002626;color:rgba(239,231,218,0.7);padding:6px 20px;font-size:11.5px;font-weight:500;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:32px;position:relative;z-index:60}.preview-topbar a{color:#b8d369 !important;text-decoration:none !important;font-weight:600;display:inline-flex;align-items:center;gap:4px}.preview-topbar a:hover{color:#fff !important}.preview-topbar strong{color:#fff;font-weight:700}.preview-topbar .pt-info{margin-left:auto;text-align:right}@media (max-width:640px){.preview-topbar{font-size:10.5px;padding:5px 12px}}</style>
+<style>.preview-topbar{background:#002626;color:rgba(239,231,218,0.7);padding:6px 20px;font-size:11.5px;font-weight:500;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:32px;position:relative;z-index:60}.preview-topbar a{color:#e88aaa !important;text-decoration:none !important;font-weight:600;display:inline-flex;align-items:center;gap:4px}.preview-topbar a:hover{color:#fff !important}.preview-topbar strong{color:#fff;font-weight:700}.preview-topbar .pt-info{margin-left:auto;text-align:right}@media (max-width:640px){.preview-topbar{font-size:10.5px;padding:5px 12px}}</style>
 <div class="preview-topbar">
   <a href="index.html"><span class="material-symbols-outlined" style="font-size:14px">arrow_back</span> Retour à l'aperçu</a>
   <div class="pt-info"><strong>L'Espoir asbl</strong> &nbsp;·&nbsp; Aperçu du site web &nbsp;·&nbsp; Version avril 2026</div>
 </div>
-<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #8BAD3B;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
+<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #C04B72;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
 
 <!-- ── PREVIEW TOPBAR ── -->
 <div class="w-full bg-[#002626] text-[#EFE7DA]/75 flex items-center justify-between gap-3 flex-wrap px-4 md:px-6 py-2" style="font-size:11px;letter-spacing:0.04em;">
-  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#b8d369] font-semibold hover:text-white transition-colors">
+  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#e88aaa] font-semibold hover:text-white transition-colors">
     <span class="material-symbols-outlined" style="font-size:14px;">arrow_back</span>
     Retour à l'aperçu
   </a>
@@ -442,8 +451,8 @@
       <div class="nav-item">
         <a class="nav-link cursor-default" href="#" onclick="event.preventDefault()">Services ▾</a>
         <div class="nav-dropdown">
-          <a href="srg.html" data-hover-color="#8BAD3B"><span class="dd-abbr" style="color:#8BAD3B">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
-          <a href="sase.html" data-hover-color="#E55812"><span class="dd-abbr" style="color:#E55812">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
+          <a href="srg.html" data-hover-color="#C04B72"><span class="dd-abbr" style="color:#C04B72">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
+          <a href="sase.html" data-hover-color="#E58346"><span class="dd-abbr" style="color:#E58346">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
           <a href="sapa.html" data-hover-color="#119DA4"><span class="dd-abbr" style="color:#119DA4">SAPA</span><span class="dd-name">Service d'Accompagnement du Parrainage</span></a>
         </div>
       </div>
@@ -484,8 +493,8 @@
         </button>
       </div>
       <div class="m-accordion-body">
-        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#8BAD3B">SRG</span><span class="name">Service Résidentiel Général</span></a>
-        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E55812">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
+        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#C04B72">SRG</span><span class="name">Service Résidentiel Général</span></a>
+        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E58346">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
         <a href="sapa.html" class="m-sublink"><span class="abbr" style="color:#119DA4">SAPA</span><span class="name">Service d'Accompagnement du Parrainage</span></a>
       </div>
     </div>
@@ -503,17 +512,17 @@
 
   <!-- ── HERO ── -->
   <section class="relative bg-[#002626] pt-16 pb-14 md:pt-24 md:pb-20 px-6 md:px-8 overflow-hidden blob-parent">
-    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(139,173,59,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
-    <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(139,173,59,0.10) 0%, transparent 70%);position:absolute;"></div>
+    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(192,75,114,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.10) 0%, transparent 70%);position:absolute;"></div>
     <div class="relative max-w-4xl mx-auto">
       <!-- Breadcrumb -->
       <nav class="flex items-center gap-2 text-sm text-white/40 mb-8" aria-label="Fil d'Ariane">
         <a href="homepage.html" class="hover:text-white/70 transition-colors">Accueil</a>
         <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
-        <span class="text-[#8BAD3B] font-semibold">Contact</span>
+        <span class="text-[#C04B72] font-semibold">Contact</span>
       </nav>
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-5">
-        On est <span style="position:relative;display:inline-block;">là<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#8BAD3B" stroke-width="2.5" stroke-linecap="round"/></svg></span><br class="hidden sm:block"/> pour vous répondre
+        On est <span style="position:relative;display:inline-block;">là<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span><br class="hidden sm:block"/> pour vous répondre
       </h1>
       <p class="text-lg text-white/65 leading-relaxed max-w-xl mb-10">
         Que ce soit pour une question sur nos services, une demande d'orientation ou juste pour en savoir plus sur ce qu'on fait, n'hésitez pas à nous écrire ou à appeler directement.
@@ -541,7 +550,7 @@
 
       <!-- FORM (3/5) -->
       <div class="lg:col-span-3 form-col">
-        <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-3">Formulaire</span>
+        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-3">Formulaire</span>
         <h2 class="text-2xl md:text-3xl font-bold text-[#002626] mb-8 leading-tight">Envoyez-nous un message</h2>
 
         <form action="#" method="post" class="space-y-5" novalidate>
@@ -606,12 +615,12 @@
 
       <!-- INFO (2/5) -->
       <div class="lg:col-span-2 info-col space-y-4 lg:sticky lg:top-28">
-        <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-3">Coordonnées</span>
+        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-3">Coordonnées</span>
         <h2 class="text-2xl font-bold text-[#002626] mb-6 leading-tight">Où nous trouver</h2>
 
         <a href="tel:+3285235814" class="info-card">
-          <div class="w-11 h-11 rounded-full bg-[#8BAD3B]/15 flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:20px;font-variation-settings:'FILL' 1;">phone</span>
+          <div class="w-11 h-11 rounded-full bg-[#C04B72]/15 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[#C04B72]" style="font-size:20px;font-variation-settings:'FILL' 1;">phone</span>
           </div>
           <div>
             <div class="text-xs text-[#002626]/45 uppercase tracking-widest font-bold mb-1">Téléphone</div>
@@ -621,8 +630,8 @@
         </a>
 
         <a href="mailto:direction@asbl-espoir.be" class="info-card">
-          <div class="w-11 h-11 rounded-full bg-[#8BAD3B]/15 flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:20px;font-variation-settings:'FILL' 1;">mail</span>
+          <div class="w-11 h-11 rounded-full bg-[#C04B72]/15 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[#C04B72]" style="font-size:20px;font-variation-settings:'FILL' 1;">mail</span>
           </div>
           <div>
             <div class="text-xs text-[#002626]/45 uppercase tracking-widest font-bold mb-1">E-mail</div>
@@ -632,8 +641,8 @@
         </a>
 
         <div class="info-card cursor-default">
-          <div class="w-11 h-11 rounded-full bg-[#8BAD3B]/15 flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:20px;font-variation-settings:'FILL' 1;">location_on</span>
+          <div class="w-11 h-11 rounded-full bg-[#C04B72]/15 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[#C04B72]" style="font-size:20px;font-variation-settings:'FILL' 1;">location_on</span>
           </div>
           <div>
             <div class="text-xs text-[#002626]/45 uppercase tracking-widest font-bold mb-1">Siège social</div>
@@ -660,8 +669,8 @@
 
   <!-- ── NOS SITES ── -->
   <section class="py-20 px-6 md:px-8 bg-surface blob-parent">
-    <div class="blob" aria-hidden="true" style="width:260px;height:260px;background:rgba(139,173,59,0.09);top:40px;right:-80px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
-    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,88,18,0.07);bottom:30px;left:-60px;border-radius:60% 40% 55% 45% / 45% 55% 40% 60%;"></div>
+    <div class="blob" aria-hidden="true" style="width:260px;height:260px;background:rgba(192,75,114,0.09);top:40px;right:-80px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
+    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,131,70,0.07);bottom:30px;left:-60px;border-radius:60% 40% 55% 45% / 45% 55% 40% 60%;"></div>
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-12">
         <span class="text-[#002626]/40 font-black tracking-widest text-sm uppercase block mb-3">Nos sites</span>
@@ -689,7 +698,7 @@
         </div>
 
         <!-- SRG Amay -->
-        <div class="location-card service-col" style="--svc-color:#8BAD3B;">
+        <div class="location-card service-col" style="--svc-color:#C04B72;">
           <span class="location-tag"><span class="material-symbols-outlined">home</span>SRG · Amay</span>
           <div class="location-name">SRG d'Amay</div>
           <div class="location-addr">
@@ -704,7 +713,7 @@
         </div>
 
         <!-- L'Escale -->
-        <div class="location-card service-col" style="--svc-color:#8BAD3B;">
+        <div class="location-card service-col" style="--svc-color:#C04B72;">
           <span class="location-tag"><span class="material-symbols-outlined">key</span>Mise en autonomie</span>
           <div class="location-name">L'Escale</div>
           <div class="location-addr">
@@ -719,7 +728,7 @@
         </div>
 
         <!-- SRG Couthuin -->
-        <div class="location-card service-col" style="--svc-color:#8BAD3B;">
+        <div class="location-card service-col" style="--svc-color:#C04B72;">
           <span class="location-tag"><span class="material-symbols-outlined">home</span>SRG · Couthuin</span>
           <div class="location-name">SRG de Couthuin</div>
           <div class="location-addr">
@@ -734,7 +743,7 @@
         </div>
 
         <!-- SASE Huy -->
-        <div class="location-card service-col" style="--svc-color:#E55812;">
+        <div class="location-card service-col" style="--svc-color:#E58346;">
           <span class="location-tag"><span class="material-symbols-outlined">home_work</span>SASE · Huy</span>
           <div class="location-name">SASE</div>
           <div class="location-addr">
@@ -773,7 +782,7 @@
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
       <div class="md:w-3/5 don-text">
-        <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-6">Nous soutenir</span>
+        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-6">Nous soutenir</span>
         <h2 class="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-black text-white mb-6 md:mb-8 leading-[1.1]">
           Soutenez nos actions, changez des vies.
         </h2>
@@ -790,11 +799,11 @@
         <p class="text-white/50 text-sm mt-6">Dons ≥ 40 € déductibles fiscalement · Via le Service Arc-en-Ciel · IBAN BE41 6300 1180 0010</p>
       </div>
       <div class="md:w-2/5 grid grid-cols-2 gap-4 don-cards">
-        <div class="don-card aspect-square bg-[#E55812] flex flex-col items-center justify-center p-8 text-center rotate-3 rounded-2xl cursor-default">
+        <div class="don-card aspect-square bg-[#E58346] flex flex-col items-center justify-center p-8 text-center rotate-3 rounded-2xl cursor-default">
           <span class="material-symbols-outlined text-4xl mb-2 text-white" style="font-variation-settings:'FILL' 1;">favorite</span>
           <span class="font-bold text-lg text-white">Solidarité</span>
         </div>
-        <div class="don-card aspect-square bg-[#8BAD3B] flex flex-col items-center justify-center p-8 text-center -rotate-2 rounded-2xl cursor-default">
+        <div class="don-card aspect-square bg-[#C04B72] flex flex-col items-center justify-center p-8 text-center -rotate-2 rounded-2xl cursor-default">
           <span class="material-symbols-outlined text-4xl mb-2 text-[#002626]" style="font-variation-settings:'FILL' 1;">school</span>
           <span class="font-bold text-lg text-[#002626]">Éducation</span>
         </div>
@@ -805,7 +814,7 @@
 </main>
 
 <!-- ── FOOTER ── -->
-<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(139,173,59,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
+<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(192,75,114,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
   <div class="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-16 pb-8">
     <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
       <div class="max-w-xs space-y-4">
@@ -819,20 +828,20 @@
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-10">
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Navigation</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Navigation</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html">Accueil</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="apropos.html">À propos</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="actualites.html">Actualités</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Engagement</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Engagement</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="emploi.html">Offres d'emploi</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="don.html">Faire un don</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html#partenaires">Partenaires</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="contact.html">Contact</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Services</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Services</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="srg.html">SRG · Résidentiel</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sase.html">SASE · Accompagnement</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sapa.html">SAPA · Parrainage</a>

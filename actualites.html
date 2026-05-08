@@ -40,6 +40,15 @@
 <link rel="preconnect" href="https://cdn.tailwindcss.com"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Regular.otf') format('opentype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Medium.otf') format('opentype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+h1, h2, h3, h4, h5, h6,
+  [class~="font-black"]:not(.material-symbols-outlined),
+  [class~="font-extrabold"]:not(.material-symbols-outlined),
+  .hero-stat-num { font-family: 'Pally', sans-serif !important; }
+</style>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -89,8 +98,8 @@
 
   /* ── Focus states ── */
   *:focus { outline: none; }
-  *:focus-visible { outline: 2px solid #8BAD3B; outline-offset: 3px; border-radius: 4px; }
-  button:focus-visible, a:focus-visible { outline: 2px solid #8BAD3B; outline-offset: 3px; }
+  *:focus-visible { outline: 2px solid #C04B72; outline-offset: 3px; border-radius: 4px; }
+  button:focus-visible, a:focus-visible { outline: 2px solid #C04B72; outline-offset: 3px; }
 
   /* ── Design Tokens ── */
   :root { --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -137,8 +146,8 @@
   .btn-sm { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
   .btn-primary { background: #002626; color: #EFE7DA; }
   .btn-primary:hover { box-shadow: 0 10px 24px rgba(0,38,38,0.25); filter: brightness(1.08); }
-  .btn-accent { background: #8BAD3B; color: #002626; }
-  .btn-accent:hover { box-shadow: 0 10px 24px rgba(139,173,59,0.35); filter: brightness(1.05); }
+  .btn-accent { background: #C04B72; color: #fff; }
+  .btn-accent:hover { box-shadow: 0 10px 24px rgba(192,75,114,0.35); filter: brightness(1.05); }
   .btn-accent .material-symbols-outlined { font-variation-settings: 'FILL' 0; transition: font-variation-settings 0.35s ease, transform 0.35s ease; }
   .btn-accent:hover .material-symbols-outlined { font-variation-settings: 'FILL' 1; transform: scale(1.08); }
   .btn-outline { background: transparent; color: #002626; box-shadow: inset 0 0 0 2px #002626; }
@@ -290,7 +299,7 @@
     text-decoration: none;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
-  .actu-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,38,38,0.09); border-color: rgba(139,173,59,0.35); }
+  .actu-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,38,38,0.09); border-color: rgba(192,75,114,0.35); }
   .actu-card-img {
     width: 100%; aspect-ratio: 16/9; overflow: hidden; flex-shrink: 0;
     background: #e8e6e5;
@@ -328,11 +337,11 @@
     letter-spacing: 0.08em; text-transform: uppercase;
     padding: 0.25rem 0.65rem; border-radius: 999px;
   }
-  .actu-tag-association { background: rgba(139,173,59,0.15); color: #5a7420; }
+  .actu-tag-association { background: rgba(192,75,114,0.15); color: #5a7420; }
   .actu-tag-projet { background: rgba(17,157,164,0.13); color: #0b6e74; }
-  .actu-tag-evenement { background: rgba(229,88,18,0.13); color: #b44410; }
+  .actu-tag-evenement { background: rgba(229,131,70,0.13); color: #b44410; }
   .actu-tag-formation { background: rgba(0,38,38,0.10); color: #002626; }
-  .actu-tag-partenariat { background: rgba(139,173,59,0.15); color: #5a7420; }
+  .actu-tag-partenariat { background: rgba(192,75,114,0.15); color: #5a7420; }
 
   /* ── Blur-up image loading ── */
   .blur-up { filter: blur(8px); transition: filter 0.5s ease; }
@@ -350,7 +359,7 @@
   @media (hover: none) {
     .don-card.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
     .don-card.revealed.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); }
-    .actu-card.is-active { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,38,38,0.09); border-color: rgba(139,173,59,0.35); }
+    .actu-card.is-active { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,38,38,0.09); border-color: rgba(192,75,114,0.35); }
     .actu-card.revealed.is-active { transform: translateY(-4px); }
     .actu-card.is-active .actu-card-img img { transform: scale(1.04); }
     .featured-card.is-active { box-shadow: 0 20px 48px rgba(0,38,38,0.10); transform: translateY(-5px); }
@@ -361,16 +370,16 @@
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
-<style>.preview-topbar{background:#002626;color:rgba(239,231,218,0.7);padding:6px 20px;font-size:11.5px;font-weight:500;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:32px;position:relative;z-index:60}.preview-topbar a{color:#b8d369 !important;text-decoration:none !important;font-weight:600;display:inline-flex;align-items:center;gap:4px}.preview-topbar a:hover{color:#fff !important}.preview-topbar strong{color:#fff;font-weight:700}.preview-topbar .pt-info{margin-left:auto;text-align:right}@media (max-width:640px){.preview-topbar{font-size:10.5px;padding:5px 12px}}</style>
+<style>.preview-topbar{background:#002626;color:rgba(239,231,218,0.7);padding:6px 20px;font-size:11.5px;font-weight:500;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:32px;position:relative;z-index:60}.preview-topbar a{color:#e88aaa !important;text-decoration:none !important;font-weight:600;display:inline-flex;align-items:center;gap:4px}.preview-topbar a:hover{color:#fff !important}.preview-topbar strong{color:#fff;font-weight:700}.preview-topbar .pt-info{margin-left:auto;text-align:right}@media (max-width:640px){.preview-topbar{font-size:10.5px;padding:5px 12px}}</style>
 <div class="preview-topbar">
   <a href="index.html"><span class="material-symbols-outlined" style="font-size:14px">arrow_back</span> Retour à l'aperçu</a>
   <div class="pt-info"><strong>L'Espoir asbl</strong> &nbsp;·&nbsp; Aperçu du site web &nbsp;·&nbsp; Version avril 2026</div>
 </div>
-<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #8BAD3B;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
+<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #C04B72;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
 
 <!-- ── PREVIEW TOPBAR ── -->
 <div class="w-full bg-[#002626] text-[#EFE7DA]/75 flex items-center justify-between gap-3 flex-wrap px-4 md:px-6 py-2" style="font-size:11px;letter-spacing:0.04em;">
-  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#b8d369] font-semibold hover:text-white transition-colors">
+  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#e88aaa] font-semibold hover:text-white transition-colors">
     <span class="material-symbols-outlined" style="font-size:14px;">arrow_back</span>
     Retour à l'aperçu
   </a>
@@ -390,8 +399,8 @@
       <div class="nav-item">
         <a class="nav-link cursor-default" href="#" onclick="event.preventDefault()">Services ▾</a>
         <div class="nav-dropdown">
-          <a href="srg.html" data-hover-color="#8BAD3B"><span class="dd-abbr" style="color:#8BAD3B">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
-          <a href="sase.html" data-hover-color="#E55812"><span class="dd-abbr" style="color:#E55812">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
+          <a href="srg.html" data-hover-color="#C04B72"><span class="dd-abbr" style="color:#C04B72">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
+          <a href="sase.html" data-hover-color="#E58346"><span class="dd-abbr" style="color:#E58346">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
           <a href="sapa.html" data-hover-color="#119DA4"><span class="dd-abbr" style="color:#119DA4">SAPA</span><span class="dd-name">Service d'Accompagnement du Parrainage</span></a>
         </div>
       </div>
@@ -432,8 +441,8 @@
         </button>
       </div>
       <div class="m-accordion-body">
-        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#8BAD3B">SRG</span><span class="name">Service Résidentiel Général</span></a>
-        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E55812">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
+        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#C04B72">SRG</span><span class="name">Service Résidentiel Général</span></a>
+        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E58346">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
         <a href="sapa.html" class="m-sublink"><span class="abbr" style="color:#119DA4">SAPA</span><span class="name">Service d'Accompagnement du Parrainage</span></a>
       </div>
     </div>
@@ -451,19 +460,19 @@
 
   <!-- ── HERO ── -->
   <section class="relative bg-[#002626] pt-16 pb-14 md:pt-24 md:pb-20 px-6 md:px-8 overflow-hidden blob-parent">
-    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(139,173,59,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
-    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,88,18,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
-    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(139,173,59,0.08) 0%, transparent 70%);position:absolute;"></div>
-    <div class="absolute -bottom-20 right-0 w-72 h-72 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(139,173,59,0.06) 0%, transparent 70%);position:absolute;"></div>
+    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(192,75,114,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
+    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,131,70,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
+    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.08) 0%, transparent 70%);position:absolute;"></div>
+    <div class="absolute -bottom-20 right-0 w-72 h-72 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.06) 0%, transparent 70%);position:absolute;"></div>
     <div class="relative max-w-4xl mx-auto">
       <!-- Breadcrumb -->
       <nav class="flex items-center gap-2 text-sm text-white/40 mb-8" aria-label="Fil d'Ariane">
         <a href="homepage.html" class="hover:text-white/70 transition-colors">Accueil</a>
         <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
-        <span class="text-[#8BAD3B] font-semibold">Actualités</span>
+        <span class="text-[#C04B72] font-semibold">Actualités</span>
       </nav>
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-5">
-        Ce qu'on fait,<br class="hidden sm:block"/> ce qu'on <span style="position:relative;display:inline-block;">vit<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#8BAD3B" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+        Ce qu'on fait,<br class="hidden sm:block"/> ce qu'on <span style="position:relative;display:inline-block;">vit<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
       </h1>
       <p class="text-lg text-white/65 leading-relaxed max-w-xl">
         Les nouvelles de l'association, les projets en cours, les événements et les moments qui font avancer notre travail au quotidien.
@@ -476,7 +485,7 @@
   <section class="py-16 md:py-20 px-6 md:px-8 bg-[#EFE7DA]">
     <div class="max-w-7xl mx-auto">
       <div class="flex items-center gap-3 mb-4">
-        <div class="w-1 h-6 bg-[#8BAD3B] rounded-full"></div>
+        <div class="w-1 h-6 bg-[#C04B72] rounded-full"></div>
         <span class="text-[#002626]/50 font-black tracking-widest text-xs uppercase">Projets actifs</span>
       </div>
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-[#002626] leading-tight mb-3 max-w-3xl">
@@ -605,7 +614,7 @@
       <!-- Header -->
       <div class="mb-10 md:mb-12">
         <div class="flex items-center gap-3 mb-3">
-          <div class="w-1 h-6 bg-[#8BAD3B] rounded-full"></div>
+          <div class="w-1 h-6 bg-[#C04B72] rounded-full"></div>
           <span class="text-[#002626]/50 font-black tracking-widest text-xs uppercase">News</span>
         </div>
         <h2 class="text-3xl md:text-4xl font-black text-[#002626] leading-tight">
@@ -636,7 +645,7 @@
             <p class="text-[#002626]/55 text-sm leading-relaxed flex-1">
               L'équipe du SRG a participé à une formation intensive sur l'accompagnement en situation de crise, organisée par la FWB à Namur.
             </p>
-            <div class="flex items-center gap-1 text-[#8BAD3B] font-bold text-xs mt-4">
+            <div class="flex items-center gap-1 text-[#C04B72] font-bold text-xs mt-4">
               Lire la suite <span class="material-symbols-outlined" style="font-size:15px;">arrow_forward</span>
             </div>
           </div>
@@ -662,7 +671,7 @@
             <p class="text-[#002626]/55 text-sm leading-relaxed flex-1">
               Cette année encore, nos équipes étaient présentes pour rencontrer les familles, répondre aux questions et présenter nos trois services.
             </p>
-            <div class="flex items-center gap-1 text-[#8BAD3B] font-bold text-xs mt-4">
+            <div class="flex items-center gap-1 text-[#C04B72] font-bold text-xs mt-4">
               Lire la suite <span class="material-symbols-outlined" style="font-size:15px;">arrow_forward</span>
             </div>
           </div>
@@ -688,7 +697,7 @@
             <p class="text-[#002626]/55 text-sm leading-relaxed flex-1">
               Après un processus d'accompagnement de plusieurs mois, trois nouvelles familles ont rejoint le réseau du SAPA pour offrir un espace de vie à des jeunes en besoin de soutien.
             </p>
-            <div class="flex items-center gap-1 text-[#8BAD3B] font-bold text-xs mt-4">
+            <div class="flex items-center gap-1 text-[#C04B72] font-bold text-xs mt-4">
               Lire la suite <span class="material-symbols-outlined" style="font-size:15px;">arrow_forward</span>
             </div>
           </div>
@@ -714,7 +723,7 @@
             <p class="text-[#002626]/55 text-sm leading-relaxed flex-1">
               Partenaires, familles et curieux ont pu découvrir nos espaces de vie rénovés, rencontrer l'équipe et mieux comprendre notre quotidien au SRG.
             </p>
-            <div class="flex items-center gap-1 text-[#8BAD3B] font-bold text-xs mt-4">
+            <div class="flex items-center gap-1 text-[#C04B72] font-bold text-xs mt-4">
               Lire la suite <span class="material-symbols-outlined" style="font-size:15px;">arrow_forward</span>
             </div>
           </div>
@@ -740,7 +749,7 @@
             <p class="text-[#002626]/55 text-sm leading-relaxed flex-1">
               La Fédération Wallonie-Bruxelles a renouvelé l'agrément de L'Espoir asbl pour la période 2025 à 2030 sur l'ensemble de ses trois services. Une reconnaissance du travail accompli.
             </p>
-            <div class="flex items-center gap-1 text-[#8BAD3B] font-bold text-xs mt-4">
+            <div class="flex items-center gap-1 text-[#C04B72] font-bold text-xs mt-4">
               Lire la suite <span class="material-symbols-outlined" style="font-size:15px;">arrow_forward</span>
             </div>
           </div>
@@ -766,7 +775,7 @@
             <p class="text-[#002626]/55 text-sm leading-relaxed flex-1">
               L'Espoir asbl et le CPAS de Huy ont signé une convention de collaboration visant à fluidifier les orientations et à assurer un suivi coordonné des familles en difficulté.
             </p>
-            <div class="flex items-center gap-1 text-[#8BAD3B] font-bold text-xs mt-4">
+            <div class="flex items-center gap-1 text-[#C04B72] font-bold text-xs mt-4">
               Lire la suite <span class="material-symbols-outlined" style="font-size:15px;">arrow_forward</span>
             </div>
           </div>
@@ -792,7 +801,7 @@
             <p class="text-[#002626]/55 text-sm leading-relaxed flex-1">
               Ateliers de théâtre, visites de musées et sorties cinéma : un programme construit avec les jeunes et leurs familles pour ouvrir de nouveaux horizons.
             </p>
-            <div class="flex items-center gap-1 text-[#8BAD3B] font-bold text-xs mt-4">
+            <div class="flex items-center gap-1 text-[#C04B72] font-bold text-xs mt-4">
               Lire la suite <span class="material-symbols-outlined" style="font-size:15px;">arrow_forward</span>
             </div>
           </div>
@@ -818,7 +827,7 @@
             <p class="text-[#002626]/55 text-sm leading-relaxed flex-1">
               Le conseil d'administration a présenté les orientations stratégiques pour les prochaines années : développement du SAPA, refonte des espaces SRG et renforcement de l'équipe SASE.
             </p>
-            <div class="flex items-center gap-1 text-[#8BAD3B] font-bold text-xs mt-4">
+            <div class="flex items-center gap-1 text-[#C04B72] font-bold text-xs mt-4">
               Lire la suite <span class="material-symbols-outlined" style="font-size:15px;">arrow_forward</span>
             </div>
           </div>
@@ -844,7 +853,7 @@
             <p class="text-[#002626]/55 text-sm leading-relaxed flex-1">
               Une journée hors des murs pour l'ensemble du personnel : ateliers collaboratifs, échanges de pratiques et réflexion commune sur nos façons de travailler avec les jeunes.
             </p>
-            <div class="flex items-center gap-1 text-[#8BAD3B] font-bold text-xs mt-4">
+            <div class="flex items-center gap-1 text-[#C04B72] font-bold text-xs mt-4">
               Lire la suite <span class="material-symbols-outlined" style="font-size:15px;">arrow_forward</span>
             </div>
           </div>
@@ -858,7 +867,7 @@
 
   <!-- ── NEWSLETTER / RESTER INFORMÉ ── -->
   <section class="py-16 md:py-20 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
-    <div class="blob" aria-hidden="true" style="width:280px;height:280px;background:rgba(139,173,59,0.10);top:20px;right:-80px;border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;"></div>
+    <div class="blob" aria-hidden="true" style="width:280px;height:280px;background:rgba(192,75,114,0.10);top:20px;right:-80px;border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;"></div>
     <div class="max-w-3xl mx-auto text-center newsletter-block">
       <span class="text-[#002626]/40 font-black tracking-widest text-xs uppercase block mb-4">Restez informé</span>
       <h2 class="text-2xl md:text-3xl font-black text-[#002626] mb-4 leading-tight">
@@ -870,7 +879,7 @@
       <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action="#" method="post">
         <input
           type="email" name="email" placeholder="votre@email.be"
-          class="flex-1 px-5 py-3.5 rounded-full border-2 border-[#002626]/15 bg-white focus:border-[#8BAD3B] focus:outline-none focus:ring-2 focus:ring-[#8BAD3B]/15 font-medium text-sm text-[#002626] placeholder:text-[#002626]/35 transition"
+          class="flex-1 px-5 py-3.5 rounded-full border-2 border-[#002626]/15 bg-white focus:border-[#C04B72] focus:outline-none focus:ring-2 focus:ring-[#C04B72]/15 font-medium text-sm text-[#002626] placeholder:text-[#002626]/35 transition"
         />
         <button type="submit" class="btn btn-primary whitespace-nowrap">
           <span class="material-symbols-outlined" style="font-size:18px;">mail</span>
@@ -886,7 +895,7 @@
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
       <div class="md:w-3/5 don-text">
-        <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-6">Nous soutenir</span>
+        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-6">Nous soutenir</span>
         <h2 class="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-black text-white mb-6 md:mb-8 leading-[1.1]">
           Soutenez nos actions, changez des vies.
         </h2>
@@ -903,11 +912,11 @@
         <p class="text-white/50 text-sm mt-6">Dons ≥ 40 € déductibles fiscalement · Via le Service Arc-en-Ciel · IBAN BE41 6300 1180 0010</p>
       </div>
       <div class="md:w-2/5 grid grid-cols-2 gap-4 don-cards">
-        <div class="don-card aspect-square bg-[#E55812] flex flex-col items-center justify-center p-8 text-center rotate-3 rounded-2xl cursor-default">
+        <div class="don-card aspect-square bg-[#E58346] flex flex-col items-center justify-center p-8 text-center rotate-3 rounded-2xl cursor-default">
           <span class="material-symbols-outlined text-4xl mb-2 text-white" style="font-variation-settings:'FILL' 1;">favorite</span>
           <span class="font-bold text-lg text-white">Solidarité</span>
         </div>
-        <div class="don-card aspect-square bg-[#8BAD3B] flex flex-col items-center justify-center p-8 text-center -rotate-2 rounded-2xl cursor-default">
+        <div class="don-card aspect-square bg-[#C04B72] flex flex-col items-center justify-center p-8 text-center -rotate-2 rounded-2xl cursor-default">
           <span class="material-symbols-outlined text-4xl mb-2 text-[#002626]" style="font-variation-settings:'FILL' 1;">school</span>
           <span class="font-bold text-lg text-[#002626]">Éducation</span>
         </div>
@@ -918,7 +927,7 @@
 </main>
 
 <!-- ── FOOTER ── -->
-<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(139,173,59,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
+<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(192,75,114,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
   <div class="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-16 pb-8">
     <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
       <div class="max-w-xs space-y-4">
@@ -932,20 +941,20 @@
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-10">
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Navigation</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Navigation</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html">Accueil</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="apropos.html">À propos</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="actualites.html">Actualités</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Engagement</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Engagement</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="emploi.html">Offres d'emploi</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="don.html">Faire un don</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html#partenaires">Partenaires</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="contact.html">Contact</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Services</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Services</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="srg.html">SRG · Résidentiel</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sase.html">SASE · Accompagnement</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sapa.html">SAPA · Parrainage</a>

@@ -1,0 +1,9 @@
+{"type":"server-started","port":57897,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:57897","screen_dir":"/Users/nicolasspies/Desktop/antigravity test/lespoir/.superpowers/brainstorm/19523-1776781783/content","state_dir":"/Users/nicolasspies/Desktop/antigravity test/lespoir/.superpowers/brainstorm/19523-1776781783/state"}
+{"type":"screen-added","file":"/Users/nicolasspies/Desktop/antigravity test/lespoir/.superpowers/brainstorm/19523-1776781783/content/intro.html"}
+{"type":"screen-added","file":"/Users/nicolasspies/Desktop/antigravity test/lespoir/.superpowers/brainstorm/19523-1776781783/content/test.html"}
+{"type":"screen-added","file":"/Users/nicolasspies/Desktop/antigravity test/lespoir/.superpowers/brainstorm/19523-1776781783/content/waiting-1.html"}
+{"type":"screen-added","file":"/Users/nicolasspies/Desktop/antigravity test/lespoir/.superpowers/brainstorm/19523-1776781783/content/directions.html"}
+{"source":"user-event","type":"click","text":"Nos jeunes\n          \n            \n          \n        \n        \n        \n          📍 Huy & Amay — seit 40 Jahren\n        \n        \n        \n          120+ jeunes accompagnés chaque année\n        \n        \n        \n          Faire un don\n          \n            \n          \n        \n      \n    \n    \n      C — Handgemacht & warm\n      Leichte Rotationen bei Karten, handgezeichnete SVG-Unterstriche und Kreise um CTAs, Papiertextur als Hintergrund. Fühlt sich persönlich an, fast wie handgeschrieben.","choice":"c","id":null,"timestamp":1776782300604}
+{"type":"screen-added","file":"/Users/nicolasspies/Desktop/antigravity test/lespoir/.superpowers/brainstorm/19523-1776781783/content/subtle-elements.html"}
+{"type":"screen-added","file":"/Users/nicolasspies/Desktop/antigravity test/lespoir/.superpowers/brainstorm/19523-1776781783/content/homepage-design.html"}
+{"type":"server-stopped","reason":"idle timeout"}

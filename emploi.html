@@ -40,6 +40,15 @@
 <link rel="preconnect" href="https://cdn.tailwindcss.com"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Regular.otf') format('opentype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Medium.otf') format('opentype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+h1, h2, h3, h4, h5, h6,
+  [class~="font-black"]:not(.material-symbols-outlined),
+  [class~="font-extrabold"]:not(.material-symbols-outlined),
+  .hero-stat-num { font-family: 'Pally', sans-serif !important; }
+</style>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -89,8 +98,8 @@
 
   /* ── Focus states ── */
   *:focus { outline: none; }
-  *:focus-visible { outline: 2px solid #8BAD3B; outline-offset: 3px; border-radius: 4px; }
-  button:focus-visible, a:focus-visible { outline: 2px solid #8BAD3B; outline-offset: 3px; }
+  *:focus-visible { outline: 2px solid #C04B72; outline-offset: 3px; border-radius: 4px; }
+  button:focus-visible, a:focus-visible { outline: 2px solid #C04B72; outline-offset: 3px; }
 
   /* ── Design Tokens ── */
   :root { --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -137,8 +146,8 @@
   .btn-sm { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
   .btn-primary { background: #002626; color: #EFE7DA; }
   .btn-primary:hover { box-shadow: 0 10px 24px rgba(0,38,38,0.25); filter: brightness(1.08); }
-  .btn-accent { background: #8BAD3B; color: #002626; }
-  .btn-accent:hover { box-shadow: 0 10px 24px rgba(139,173,59,0.35); filter: brightness(1.05); }
+  .btn-accent { background: #C04B72; color: #fff; }
+  .btn-accent:hover { box-shadow: 0 10px 24px rgba(192,75,114,0.35); filter: brightness(1.05); }
   .btn-accent .material-symbols-outlined { font-variation-settings: 'FILL' 0; transition: font-variation-settings 0.35s ease, transform 0.35s ease; }
   .btn-accent:hover .material-symbols-outlined { font-variation-settings: 'FILL' 1; transform: scale(1.08); }
   .btn-outline { background: transparent; color: #002626; box-shadow: inset 0 0 0 2px #002626; }
@@ -290,8 +299,8 @@
     transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     display: flex; flex-direction: column; gap: 1rem;
   }
-  .job-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,38,38,0.08); border-color: rgba(139,173,59,0.4); }
-  .job-card.is-open-position { border-left: 4px solid #8BAD3B; }
+  .job-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,38,38,0.08); border-color: rgba(192,75,114,0.4); }
+  .job-card.is-open-position { border-left: 4px solid #C04B72; }
   .job-card.is-spontaneous { border-left: 4px solid rgba(0,38,38,0.18); }
 
   /* ── Job tag ── */
@@ -300,9 +309,9 @@
     letter-spacing: 0.08em; text-transform: uppercase;
     padding: 0.22rem 0.6rem; border-radius: 999px;
   }
-  .job-tag-cdi { background: rgba(139,173,59,0.15); color: #4d6a0d; }
+  .job-tag-cdi { background: rgba(192,75,114,0.15); color: #4d6a0d; }
   .job-tag-cdd { background: rgba(17,157,164,0.14); color: #0b6e74; }
-  .job-tag-volunteer { background: rgba(229,88,18,0.13); color: #b44410; }
+  .job-tag-volunteer { background: rgba(229,131,70,0.13); color: #b44410; }
   .job-tag-stage { background: rgba(0,38,38,0.09); color: #002626; }
 
   /* ── Value pills ── */
@@ -319,7 +328,7 @@
     text-align: center;
     transition: border-color 0.22s ease;
   }
-  .spontaneous-card:hover { border-color: #8BAD3B; }
+  .spontaneous-card:hover { border-color: #C04B72; }
 
   /* ── Form fields (identique à contact.html) ── */
   /* Compound selectors (input.form-field etc.) to beat Tailwind Forms plugin's [type='…'] specificity */
@@ -341,8 +350,8 @@
   select.form-field:focus,
   textarea.form-field:focus,
   .form-field:focus {
-    border-color: #8BAD3B;
-    box-shadow: 0 0 0 3px rgba(139,173,59,0.15);
+    border-color: #C04B72;
+    box-shadow: 0 0 0 3px rgba(192,75,114,0.15);
     outline: none;
     --tw-ring-shadow: 0 0 #0000;
     --tw-ring-offset-shadow: 0 0 #0000;
@@ -365,10 +374,10 @@
     cursor: pointer;
     overflow: hidden;
   }
-  .file-drop:hover { border-color: #8BAD3B; background: rgba(139,173,59,0.05); }
-  .file-drop.is-dragover { border-color: #8BAD3B; background: rgba(139,173,59,0.1); transform: scale(1.005); }
+  .file-drop:hover { border-color: #C04B72; background: rgba(192,75,114,0.05); }
+  .file-drop.is-dragover { border-color: #C04B72; background: rgba(192,75,114,0.1); transform: scale(1.005); }
   .file-drop.has-file {
-    border-style: solid; border-color: #8BAD3B;
+    border-style: solid; border-color: #C04B72;
     background: #fff; padding: 0.85rem;
   }
   .file-drop.has-error { border-color: #c0392b; background: rgba(192,57,43,0.04); }
@@ -379,12 +388,12 @@
   .file-drop-content { transition: opacity 0.2s ease; }
   .file-drop.has-file .file-drop-content { display: none; }
   .file-drop-icon {
-    color: #8BAD3B; font-size: 42px !important;
+    color: #C04B72; font-size: 42px !important;
     margin-bottom: 0.5rem; display: block;
     font-variation-settings: 'FILL' 0, 'wght' 400;
   }
   .file-drop-label { font-weight: 700; color: #002626; font-size: 0.95rem; }
-  .file-drop-label strong { color: #8BAD3B; }
+  .file-drop-label strong { color: #C04B72; }
   .file-drop-sub { font-size: 0.78rem; color: rgba(0,38,38,0.55); margin-top: 0.25rem; }
   .file-selected {
     display: none; align-items: center; gap: 0.85rem;
@@ -393,7 +402,7 @@
   }
   .file-drop.has-file .file-selected { display: flex; }
   .file-selected .f-icon {
-    color: #8BAD3B; font-size: 28px !important;
+    color: #C04B72; font-size: 28px !important;
     font-variation-settings: 'FILL' 1;
   }
   .file-selected .f-name {
@@ -434,7 +443,7 @@
     font-size: 0.85rem; line-height: 1.5;
   }
   .info-box li .material-symbols-outlined {
-    color: #8BAD3B; flex-shrink: 0; font-size: 18px;
+    color: #C04B72; flex-shrink: 0; font-size: 18px;
     font-variation-settings: 'FILL' 1; margin-top: 1px;
   }
   .info-box li strong { color: #002626; margin-right: 0.15rem; }
@@ -443,14 +452,14 @@
   .success-card {
     display: none; padding: 2.75rem 2rem; background: #fff;
     border-radius: 1.25rem;
-    border: 1px solid rgba(139,173,59,0.3);
-    box-shadow: 0 1px 2px rgba(0,38,38,0.04), 0 8px 24px -12px rgba(139,173,59,0.25);
+    border: 1px solid rgba(192,75,114,0.3);
+    box-shadow: 0 1px 2px rgba(0,38,38,0.04), 0 8px 24px -12px rgba(192,75,114,0.25);
     text-align: center;
   }
   .success-card.is-visible { display: block; }
   .success-card .s-icon {
     width: 72px; height: 72px; border-radius: 50%;
-    background: rgba(139,173,59,0.15); color: #8BAD3B;
+    background: rgba(192,75,114,0.15); color: #C04B72;
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto 1.5rem;
   }
@@ -471,24 +480,24 @@
   @media (hover: none) {
     .don-card.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
     .don-card.revealed.is-active { transform: rotate(0deg) translateY(-6px) scale(1.04); }
-    .job-card.is-active { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,38,38,0.08); border-color: rgba(139,173,59,0.4); }
+    .job-card.is-active { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,38,38,0.08); border-color: rgba(192,75,114,0.4); }
     .job-card.revealed.is-active { transform: translateY(-3px); }
-    .spontaneous-card.is-active { border-color: #8BAD3B; }
+    .spontaneous-card.is-active { border-color: #C04B72; }
   }
 
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
-<style>.preview-topbar{background:#002626;color:rgba(239,231,218,0.7);padding:6px 20px;font-size:11.5px;font-weight:500;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:32px;position:relative;z-index:60}.preview-topbar a{color:#b8d369 !important;text-decoration:none !important;font-weight:600;display:inline-flex;align-items:center;gap:4px}.preview-topbar a:hover{color:#fff !important}.preview-topbar strong{color:#fff;font-weight:700}.preview-topbar .pt-info{margin-left:auto;text-align:right}@media (max-width:640px){.preview-topbar{font-size:10.5px;padding:5px 12px}}</style>
+<style>.preview-topbar{background:#002626;color:rgba(239,231,218,0.7);padding:6px 20px;font-size:11.5px;font-weight:500;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:32px;position:relative;z-index:60}.preview-topbar a{color:#e88aaa !important;text-decoration:none !important;font-weight:600;display:inline-flex;align-items:center;gap:4px}.preview-topbar a:hover{color:#fff !important}.preview-topbar strong{color:#fff;font-weight:700}.preview-topbar .pt-info{margin-left:auto;text-align:right}@media (max-width:640px){.preview-topbar{font-size:10.5px;padding:5px 12px}}</style>
 <div class="preview-topbar">
   <a href="index.html"><span class="material-symbols-outlined" style="font-size:14px">arrow_back</span> Retour à l'aperçu</a>
   <div class="pt-info"><strong>L'Espoir asbl</strong> &nbsp;·&nbsp; Aperçu du site web &nbsp;·&nbsp; Version avril 2026</div>
 </div>
-<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #8BAD3B;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
+<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #C04B72;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
 
 <!-- ── PREVIEW TOPBAR ── -->
 <div class="w-full bg-[#002626] text-[#EFE7DA]/75 flex items-center justify-between gap-3 flex-wrap px-4 md:px-6 py-2" style="font-size:11px;letter-spacing:0.04em;">
-  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#b8d369] font-semibold hover:text-white transition-colors">
+  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#e88aaa] font-semibold hover:text-white transition-colors">
     <span class="material-symbols-outlined" style="font-size:14px;">arrow_back</span>
     Retour à l'aperçu
   </a>
@@ -508,8 +517,8 @@
       <div class="nav-item">
         <a class="nav-link cursor-default" href="#" onclick="event.preventDefault()">Services ▾</a>
         <div class="nav-dropdown">
-          <a href="srg.html" data-hover-color="#8BAD3B"><span class="dd-abbr" style="color:#8BAD3B">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
-          <a href="sase.html" data-hover-color="#E55812"><span class="dd-abbr" style="color:#E55812">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
+          <a href="srg.html" data-hover-color="#C04B72"><span class="dd-abbr" style="color:#C04B72">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
+          <a href="sase.html" data-hover-color="#E58346"><span class="dd-abbr" style="color:#E58346">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
           <a href="sapa.html" data-hover-color="#119DA4"><span class="dd-abbr" style="color:#119DA4">SAPA</span><span class="dd-name">Service d'Accompagnement du Parrainage</span></a>
         </div>
       </div>
@@ -550,8 +559,8 @@
         </button>
       </div>
       <div class="m-accordion-body">
-        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#8BAD3B">SRG</span><span class="name">Service Résidentiel Général</span></a>
-        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E55812">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
+        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#C04B72">SRG</span><span class="name">Service Résidentiel Général</span></a>
+        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E58346">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
         <a href="sapa.html" class="m-sublink"><span class="abbr" style="color:#119DA4">SAPA</span><span class="name">Service d'Accompagnement du Parrainage</span></a>
       </div>
     </div>
@@ -569,19 +578,19 @@
 
   <!-- ── HERO ── -->
   <section class="relative bg-[#002626] pt-16 pb-14 md:pt-24 md:pb-20 px-6 md:px-8 overflow-hidden blob-parent">
-    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(139,173,59,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
-    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,88,18,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
-    <div class="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(139,173,59,0.09) 0%, transparent 65%);position:absolute;"></div>
-    <div class="absolute -bottom-20 -left-20 w-80 h-80 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(139,173,59,0.06) 0%, transparent 70%);position:absolute;"></div>
+    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(192,75,114,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
+    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,131,70,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
+    <div class="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.09) 0%, transparent 65%);position:absolute;"></div>
+    <div class="absolute -bottom-20 -left-20 w-80 h-80 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.06) 0%, transparent 70%);position:absolute;"></div>
     <div class="relative max-w-4xl mx-auto">
       <!-- Breadcrumb -->
       <nav class="flex items-center gap-2 text-sm text-white/40 mb-8" aria-label="Fil d'Ariane">
         <a href="homepage.html" class="hover:text-white/70 transition-colors">Accueil</a>
         <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
-        <span class="text-[#8BAD3B] font-semibold">Offres d'emploi</span>
+        <span class="text-[#C04B72] font-semibold">Offres d'emploi</span>
       </nav>
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-5">
-        Travailler ici,<br class="hidden sm:block"/> ça a du <span style="position:relative;display:inline-block;">sens<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#8BAD3B" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+        Travailler ici,<br class="hidden sm:block"/> ça a du <span style="position:relative;display:inline-block;">sens<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
       </h1>
       <p class="text-lg text-white/65 leading-relaxed max-w-xl mb-10">
         L'Espoir asbl, c'est une équipe à taille humaine, engagée depuis 1985 auprès des jeunes en difficulté. Si vous cherchez un travail qui compte vraiment, vous êtes au bon endroit.
@@ -604,7 +613,7 @@
     <div class="max-w-7xl mx-auto">
       <div class="max-w-2xl mb-12 why-header">
         <div class="flex items-center gap-3 mb-3">
-          <div class="w-1 h-6 bg-[#8BAD3B] rounded-full"></div>
+          <div class="w-1 h-6 bg-[#C04B72] rounded-full"></div>
           <span class="text-[#002626]/50 font-black tracking-widest text-xs uppercase">Pourquoi nous ?</span>
         </div>
         <h2 class="text-2xl md:text-3xl font-black text-[#002626] leading-tight">
@@ -615,8 +624,8 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
         <div class="value-pill why-item">
-          <div class="w-10 h-10 rounded-full bg-[#8BAD3B]/18 flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:20px;font-variation-settings:'FILL' 1;">groups</span>
+          <div class="w-10 h-10 rounded-full bg-[#C04B72]/18 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[#C04B72]" style="font-size:20px;font-variation-settings:'FILL' 1;">groups</span>
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Équipe soudée</div>
@@ -625,8 +634,8 @@
         </div>
 
         <div class="value-pill why-item">
-          <div class="w-10 h-10 rounded-full bg-[#8BAD3B]/18 flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:20px;font-variation-settings:'FILL' 1;">school</span>
+          <div class="w-10 h-10 rounded-full bg-[#C04B72]/18 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[#C04B72]" style="font-size:20px;font-variation-settings:'FILL' 1;">school</span>
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Formation continue</div>
@@ -635,8 +644,8 @@
         </div>
 
         <div class="value-pill why-item">
-          <div class="w-10 h-10 rounded-full bg-[#8BAD3B]/18 flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:20px;font-variation-settings:'FILL' 1;">balance</span>
+          <div class="w-10 h-10 rounded-full bg-[#C04B72]/18 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[#C04B72]" style="font-size:20px;font-variation-settings:'FILL' 1;">balance</span>
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Équilibre vie pro / perso</div>
@@ -645,8 +654,8 @@
         </div>
 
         <div class="value-pill why-item">
-          <div class="w-10 h-10 rounded-full bg-[#8BAD3B]/18 flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:20px;font-variation-settings:'FILL' 1;">handshake</span>
+          <div class="w-10 h-10 rounded-full bg-[#C04B72]/18 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[#C04B72]" style="font-size:20px;font-variation-settings:'FILL' 1;">handshake</span>
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Sens au travail</div>
@@ -655,8 +664,8 @@
         </div>
 
         <div class="value-pill why-item">
-          <div class="w-10 h-10 rounded-full bg-[#8BAD3B]/18 flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:20px;font-variation-settings:'FILL' 1;">location_on</span>
+          <div class="w-10 h-10 rounded-full bg-[#C04B72]/18 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[#C04B72]" style="font-size:20px;font-variation-settings:'FILL' 1;">location_on</span>
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Ancré dans la région</div>
@@ -665,8 +674,8 @@
         </div>
 
         <div class="value-pill why-item">
-          <div class="w-10 h-10 rounded-full bg-[#8BAD3B]/18 flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:20px;font-variation-settings:'FILL' 1;">verified</span>
+          <div class="w-10 h-10 rounded-full bg-[#C04B72]/18 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[#C04B72]" style="font-size:20px;font-variation-settings:'FILL' 1;">verified</span>
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Agrément FWB</div>
@@ -684,7 +693,7 @@
   <section id="offres" class="py-16 md:py-20 px-6 md:px-8 bg-surface">
     <div class="max-w-5xl mx-auto">
       <div class="flex items-center gap-3 mb-10 offres-header">
-        <div class="w-1 h-6 bg-[#8BAD3B] rounded-full"></div>
+        <div class="w-1 h-6 bg-[#C04B72] rounded-full"></div>
         <span class="text-[#002626]/50 font-black tracking-widest text-xs uppercase">Postes ouverts</span>
       </div>
 
@@ -696,7 +705,7 @@
             <div class="flex-1">
               <div class="flex flex-wrap items-center gap-2 mb-2">
                 <span class="job-tag job-tag-cdi">CDI</span>
-                <span class="job-tag job-tag-stage" style="background:rgba(139,173,59,0.12);color:#5a7420;">SRG</span>
+                <span class="job-tag job-tag-stage" style="background:rgba(192,75,114,0.12);color:#5a7420;">SRG</span>
                 <span class="text-[#002626]/35 text-xs font-semibold">Publié le 10 avril 2026</span>
               </div>
               <h3 class="text-lg font-black text-[#002626] leading-snug mb-1">Éducateur·trice spécialisé·e, SRG</h3>
@@ -731,7 +740,7 @@
             <div class="flex-1">
               <div class="flex flex-wrap items-center gap-2 mb-2">
                 <span class="job-tag job-tag-cdd">CDD 6 mois</span>
-                <span class="job-tag" style="background:rgba(229,88,18,0.12);color:#b44410;">SASE</span>
+                <span class="job-tag" style="background:rgba(229,131,70,0.12);color:#b44410;">SASE</span>
                 <span class="text-[#002626]/35 text-xs font-semibold">Publié le 5 avril 2026</span>
               </div>
               <h3 class="text-lg font-black text-[#002626] leading-snug mb-1">Éducateur·trice à domicile, SASE</h3>
@@ -816,7 +825,7 @@
 
         <div class="profiles-text">
           <div class="flex items-center gap-3 mb-5">
-            <div class="w-1 h-6 bg-[#8BAD3B] rounded-full"></div>
+            <div class="w-1 h-6 bg-[#C04B72] rounded-full"></div>
             <span class="text-white/40 font-black tracking-widest text-xs uppercase">Ce qu'on cherche</span>
           </div>
           <h2 class="text-3xl md:text-4xl font-black text-white leading-tight mb-8">
@@ -824,8 +833,8 @@
           </h2>
           <div class="space-y-5">
             <div class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-[#8BAD3B]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:16px;font-variation-settings:'FILL' 1;">check</span>
+              <div class="w-8 h-8 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span class="material-symbols-outlined text-[#C04B72]" style="font-size:16px;font-variation-settings:'FILL' 1;">check</span>
               </div>
               <div>
                 <div class="text-white font-bold text-sm mb-1">Un vrai sens du contact humain</div>
@@ -833,8 +842,8 @@
               </div>
             </div>
             <div class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-[#8BAD3B]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:16px;font-variation-settings:'FILL' 1;">check</span>
+              <div class="w-8 h-8 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span class="material-symbols-outlined text-[#C04B72]" style="font-size:16px;font-variation-settings:'FILL' 1;">check</span>
               </div>
               <div>
                 <div class="text-white font-bold text-sm mb-1">La capacité à travailler en équipe</div>
@@ -842,8 +851,8 @@
               </div>
             </div>
             <div class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-[#8BAD3B]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:16px;font-variation-settings:'FILL' 1;">check</span>
+              <div class="w-8 h-8 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span class="material-symbols-outlined text-[#C04B72]" style="font-size:16px;font-variation-settings:'FILL' 1;">check</span>
               </div>
               <div>
                 <div class="text-white font-bold text-sm mb-1">De la résistance et de l'adaptabilité</div>
@@ -851,8 +860,8 @@
               </div>
             </div>
             <div class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-[#8BAD3B]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:16px;font-variation-settings:'FILL' 1;">check</span>
+              <div class="w-8 h-8 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span class="material-symbols-outlined text-[#C04B72]" style="font-size:16px;font-variation-settings:'FILL' 1;">check</span>
               </div>
               <div>
                 <div class="text-white font-bold text-sm mb-1">Le permis B</div>
@@ -872,7 +881,7 @@
             loading="lazy"
           />
           <!-- Floating badge -->
-          <div class="absolute -bottom-5 -left-5 bg-[#8BAD3B] rounded-2xl px-5 py-3.5 shadow-xl">
+          <div class="absolute -bottom-5 -left-5 bg-[#C04B72] rounded-2xl px-5 py-3.5 shadow-xl">
             <div class="text-[#002626] font-black text-2xl leading-none">40+</div>
             <div class="text-[#002626]/70 text-xs font-bold mt-0.5">ans d'expérience</div>
           </div>
@@ -886,11 +895,11 @@
 
   <!-- ── CANDIDATURE SPONTANÉE ── -->
   <section id="candidature" class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
-    <div class="blob" aria-hidden="true" style="width:260px;height:260px;background:rgba(139,173,59,0.08);bottom:40px;right:-80px;border-radius:65% 35% 55% 45% / 50% 50% 50% 50%;"></div>
+    <div class="blob" aria-hidden="true" style="width:260px;height:260px;background:rgba(192,75,114,0.08);bottom:40px;right:-80px;border-radius:65% 35% 55% 45% / 50% 50% 50% 50%;"></div>
     <div class="max-w-6xl mx-auto">
 
       <div class="flex items-center gap-3 mb-6 candid-header">
-        <div class="w-1 h-6 bg-[#8BAD3B] rounded-full"></div>
+        <div class="w-1 h-6 bg-[#C04B72] rounded-full"></div>
         <span class="text-[#002626]/50 font-black tracking-widest text-xs uppercase">Votre candidature</span>
       </div>
       <h2 class="text-3xl md:text-4xl font-black text-[#002626] leading-tight mb-3 candid-header">
@@ -908,12 +917,12 @@
           <form id="postulerForm" action="#" method="post" enctype="multipart/form-data" class="space-y-5" novalidate>
 
             <p class="text-[#002626]/55 text-sm leading-relaxed">
-              Les champs marqués d'un <span class="text-[#E55812] font-bold">*</span> sont obligatoires.
+              Les champs marqués d'un <span class="text-[#E58346] font-bold">*</span> sont obligatoires.
             </p>
 
             <!-- Poste visé -->
             <div>
-              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="poste">Poste visé <span class="text-[#E55812]">*</span></label>
+              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="poste">Poste visé <span class="text-[#E58346]">*</span></label>
               <select id="poste" name="poste" class="form-field" required>
                 <option value="">Sélectionnez un poste -</option>
                 <option value="srg-educateur">Éducateur·trice spécialisé·e, SRG (CDI)</option>
@@ -931,11 +940,11 @@
             <!-- Identité -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="prenom">Prénom <span class="text-[#E55812]">*</span></label>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="prenom">Prénom <span class="text-[#E58346]">*</span></label>
                 <input id="prenom" name="prenom" type="text" placeholder="Marie" class="form-field" autocomplete="given-name" required/>
               </div>
               <div>
-                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="nom">Nom <span class="text-[#E55812]">*</span></label>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="nom">Nom <span class="text-[#E58346]">*</span></label>
                 <input id="nom" name="nom" type="text" placeholder="Dupont" class="form-field" autocomplete="family-name" required/>
               </div>
             </div>
@@ -943,11 +952,11 @@
             <!-- Contact -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="email">E-mail <span class="text-[#E55812]">*</span></label>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="email">E-mail <span class="text-[#E58346]">*</span></label>
                 <input id="email" name="email" type="email" placeholder="marie@exemple.be" class="form-field" autocomplete="email" required/>
               </div>
               <div>
-                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="tel">Téléphone <span class="text-[#E55812]">*</span></label>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="tel">Téléphone <span class="text-[#E58346]">*</span></label>
                 <input id="tel" name="tel" type="tel" placeholder="04xx xx xx xx" class="form-field" autocomplete="tel" required/>
               </div>
             </div>
@@ -978,14 +987,14 @@
 
             <!-- Motivation -->
             <div>
-              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="motivation">Lettre de motivation <span class="text-[#E55812]">*</span></label>
+              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="motivation">Lettre de motivation <span class="text-[#E58346]">*</span></label>
               <textarea id="motivation" name="motivation" placeholder="Dites-nous en quelques lignes pourquoi vous souhaitez rejoindre L'Espoir, ce qui vous motive dans ce secteur et ce que vous pensez pouvoir apporter à l'équipe…" class="form-field" required></textarea>
               <p class="form-hint">Minimum 100 caractères. Parlez-nous de vous, de votre parcours et de vos motivations.</p>
             </div>
 
             <!-- CV upload -->
             <div>
-              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2">CV au format PDF <span class="text-[#E55812]">*</span></label>
+              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2">CV au format PDF <span class="text-[#E58346]">*</span></label>
               <div id="fileDrop" class="file-drop">
                 <input type="file" id="cv" name="cv" accept=".pdf,application/pdf" required aria-describedby="cvHint"/>
                 <div class="file-drop-content">
@@ -1010,11 +1019,11 @@
 
             <!-- RGPD consent -->
             <label class="flex items-start gap-3 cursor-pointer">
-              <input type="checkbox" id="rgpd" name="rgpd" required class="mt-1 h-4 w-4 rounded border-[#002626]/30 text-[#8BAD3B] focus:ring-[#8BAD3B] shrink-0"/>
+              <input type="checkbox" id="rgpd" name="rgpd" required class="mt-1 h-4 w-4 rounded border-[#002626]/30 text-[#C04B72] focus:ring-[#C04B72] shrink-0"/>
               <span class="text-sm text-[#002626]/75 leading-relaxed">
                 J'accepte que mes données soient traitées dans le cadre de ma candidature conformément à la
-                <a href="politique-confidentialite.html" class="text-[#8BAD3B] font-semibold underline" target="_blank" rel="noopener">Politique de confidentialité</a>
-                de L'Espoir asbl. Mes données seront conservées 2 ans maximum et ne seront partagées avec aucun tiers. <span class="text-[#E55812]">*</span>
+                <a href="politique-confidentialite.html" class="text-[#C04B72] font-semibold underline" target="_blank" rel="noopener">Politique de confidentialité</a>
+                de L'Espoir asbl. Mes données seront conservées 2 ans maximum et ne seront partagées avec aucun tiers. <span class="text-[#E58346]">*</span>
               </span>
             </label>
 
@@ -1058,9 +1067,9 @@
         <!-- SIDEBAR (2/5) -->
         <aside class="lg:col-span-2 space-y-5 candid-text lg:sticky lg:top-28 lg:self-start">
 
-          <div class="info-box" style="border-left:4px solid #8BAD3B;">
+          <div class="info-box" style="border-left:4px solid #C04B72;">
             <h3>
-              <span class="material-symbols-outlined text-[#8BAD3B] align-middle mr-1.5" style="font-size:22px;font-variation-settings:'FILL' 1;">bolt</span>
+              <span class="material-symbols-outlined text-[#C04B72] align-middle mr-1.5" style="font-size:22px;font-variation-settings:'FILL' 1;">bolt</span>
               Process de recrutement
             </h3>
             <ul>
@@ -1073,7 +1082,7 @@
 
           <div class="info-box">
             <h3>
-              <span class="material-symbols-outlined text-[#8BAD3B] align-middle mr-1.5" style="font-size:22px;font-variation-settings:'FILL' 1;">shield</span>
+              <span class="material-symbols-outlined text-[#C04B72] align-middle mr-1.5" style="font-size:22px;font-variation-settings:'FILL' 1;">shield</span>
               Vos données
             </h3>
             <p>
@@ -1081,22 +1090,22 @@
             </p>
             <p style="font-size:0.78rem; margin-top:0.6rem;">
               Vous pouvez à tout moment demander la suppression de vos données en nous écrivant à
-              <a href="mailto:direction@asbl-espoir.be" class="text-[#8BAD3B] font-semibold underline">direction@asbl-espoir.be</a>.
+              <a href="mailto:direction@asbl-espoir.be" class="text-[#C04B72] font-semibold underline">direction@asbl-espoir.be</a>.
             </p>
           </div>
 
-          <div class="info-box" style="background:#002626;border-color:#002626;background-image:radial-gradient(ellipse at 15% 20%,rgba(139,173,59,0.22),transparent 55%),radial-gradient(ellipse at 85% 80%,rgba(17,157,164,0.16),transparent 60%);overflow:hidden;">
+          <div class="info-box" style="background:#002626;border-color:#002626;background-image:radial-gradient(ellipse at 15% 20%,rgba(192,75,114,0.22),transparent 55%),radial-gradient(ellipse at 85% 80%,rgba(17,157,164,0.16),transparent 60%);overflow:hidden;">
             <h3 style="color:#fff;">
-              <span class="material-symbols-outlined text-[#8BAD3B] align-middle mr-1.5" style="font-size:22px;font-variation-settings:'FILL' 1;">support_agent</span>
+              <span class="material-symbols-outlined text-[#C04B72] align-middle mr-1.5" style="font-size:22px;font-variation-settings:'FILL' 1;">support_agent</span>
               Une question ?
             </h3>
             <p style="color:rgba(255,255,255,0.75); margin-bottom:0.85rem;">Contactez-nous directement, on vous répond avec plaisir.</p>
             <div class="space-y-2">
-              <a href="tel:+3285235814" class="flex items-center gap-2 text-white font-semibold text-sm hover:text-[#8BAD3B] transition-colors">
+              <a href="tel:+3285235814" class="flex items-center gap-2 text-white font-semibold text-sm hover:text-[#C04B72] transition-colors">
                 <span class="material-symbols-outlined" style="font-size:18px;font-variation-settings:'FILL' 1;">phone</span>
                 085 23 58 14
               </a>
-              <a href="mailto:direction@asbl-espoir.be" class="flex items-center gap-2 text-white font-semibold text-sm hover:text-[#8BAD3B] transition-colors">
+              <a href="mailto:direction@asbl-espoir.be" class="flex items-center gap-2 text-white font-semibold text-sm hover:text-[#C04B72] transition-colors">
                 <span class="material-symbols-outlined" style="font-size:18px;font-variation-settings:'FILL' 1;">mail</span>
                 direction@asbl-espoir.be
               </a>
@@ -1115,7 +1124,7 @@
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
       <div class="md:w-3/5 don-text">
-        <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-6">Nous soutenir</span>
+        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-6">Nous soutenir</span>
         <h2 class="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-black text-white mb-6 md:mb-8 leading-[1.1]">
           Soutenez nos actions, changez des vies.
         </h2>
@@ -1132,11 +1141,11 @@
         <p class="text-white/50 text-sm mt-6">Dons ≥ 40 € déductibles fiscalement · Via le Service Arc-en-Ciel · IBAN BE41 6300 1180 0010</p>
       </div>
       <div class="md:w-2/5 grid grid-cols-2 gap-4 don-cards">
-        <div class="don-card aspect-square bg-[#E55812] flex flex-col items-center justify-center p-8 text-center rotate-3 rounded-2xl cursor-default">
+        <div class="don-card aspect-square bg-[#E58346] flex flex-col items-center justify-center p-8 text-center rotate-3 rounded-2xl cursor-default">
           <span class="material-symbols-outlined text-4xl mb-2 text-white" style="font-variation-settings:'FILL' 1;">favorite</span>
           <span class="font-bold text-lg text-white">Solidarité</span>
         </div>
-        <div class="don-card aspect-square bg-[#8BAD3B] flex flex-col items-center justify-center p-8 text-center -rotate-2 rounded-2xl cursor-default">
+        <div class="don-card aspect-square bg-[#C04B72] flex flex-col items-center justify-center p-8 text-center -rotate-2 rounded-2xl cursor-default">
           <span class="material-symbols-outlined text-4xl mb-2 text-[#002626]" style="font-variation-settings:'FILL' 1;">school</span>
           <span class="font-bold text-lg text-[#002626]">Éducation</span>
         </div>
@@ -1147,7 +1156,7 @@
 </main>
 
 <!-- ── FOOTER ── -->
-<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(139,173,59,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
+<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(192,75,114,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
   <div class="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-16 pb-8">
     <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
       <div class="max-w-xs space-y-4">
@@ -1161,20 +1170,20 @@
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-10">
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Navigation</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Navigation</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html">Accueil</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="apropos.html">À propos</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="actualites.html">Actualités</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Engagement</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Engagement</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="emploi.html">Offres d'emploi</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="don.html">Faire un don</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html#partenaires">Partenaires</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="contact.html">Contact</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Services</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Services</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="srg.html">SRG · Résidentiel</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sase.html">SASE · Accompagnement</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sapa.html">SAPA · Parrainage</a>

@@ -36,6 +36,15 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Regular.otf') format('opentype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Medium.otf') format('opentype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+h1, h2, h3, h4, h5, h6,
+  [class~="font-black"]:not(.material-symbols-outlined),
+  [class~="font-extrabold"]:not(.material-symbols-outlined),
+  .hero-stat-num { font-family: 'Pally', sans-serif !important; }
+</style>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -85,8 +94,8 @@
 
   /* ── Focus states ── */
   *:focus { outline: none; }
-  *:focus-visible { outline: 2px solid #E55812; outline-offset: 3px; border-radius: 4px; }
-  button:focus-visible, a:focus-visible { outline: 2px solid #E55812; outline-offset: 3px; }
+  *:focus-visible { outline: 2px solid #E58346; outline-offset: 3px; border-radius: 4px; }
+  button:focus-visible, a:focus-visible { outline: 2px solid #E58346; outline-offset: 3px; }
 
   /* ── Design Tokens ── */
   :root { --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -133,8 +142,8 @@
   .btn-sm { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
   .btn-primary { background: #002626; color: #EFE7DA; }
   .btn-primary:hover { box-shadow: 0 10px 24px rgba(0,38,38,0.25); filter: brightness(1.08); }
-  .btn-accent { background: #8BAD3B; color: #002626; }
-  .btn-accent:hover { box-shadow: 0 10px 24px rgba(139,173,59,0.35); filter: brightness(1.05); }
+  .btn-accent { background: #C04B72; color: #fff; }
+  .btn-accent:hover { box-shadow: 0 10px 24px rgba(192,75,114,0.35); filter: brightness(1.05); }
   .btn-accent .material-symbols-outlined { font-variation-settings: 'FILL' 0; transition: font-variation-settings 0.35s ease, transform 0.35s ease; }
   .btn-accent:hover .material-symbols-outlined { font-variation-settings: 'FILL' 1; transform: scale(1.08); }
   .btn-outline { background: transparent; color: #002626; box-shadow: inset 0 0 0 2px #002626; }
@@ -309,7 +318,7 @@
     border-right: 1px solid rgba(255,255,255,0.10);
   }
   .hero-stat-item:last-child { border-right: none; }
-  .hero-stat-num { font-size: 1.75rem; font-weight: 900; line-height: 1; color: #E55812; }
+  .hero-stat-num { font-size: 1.75rem; font-weight: 900; line-height: 1; color: #E58346; }
   .hero-stat-label {
     font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.09em; color: rgba(255,255,255,0.5); text-align: center;
@@ -324,7 +333,7 @@
   .approach-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
   .approach-icon {
     width: 52px; height: 52px; border-radius: 14px;
-    background: rgba(229,88,18,0.15);
+    background: rgba(229,131,70,0.15);
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 1.25rem;
   }
@@ -332,7 +341,7 @@
   .process-step { display: flex; gap: 1.25rem; align-items: flex-start; }
   .process-num {
     width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
-    background: #E55812; color: #fff;
+    background: #E58346; color: #fff;
     font-weight: 900; font-size: 0.95rem;
     display: flex; align-items: center; justify-content: center;
     margin-top: 2px;
@@ -359,7 +368,7 @@
   .faq-item + .faq-item { margin-top: 0.75rem; }
   .faq-item summary { padding:1.25rem 1.5rem; cursor:pointer; font-weight:700; color:#002626; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:1rem; transition:background 0.2s ease; }
   .faq-item summary::-webkit-details-marker { display:none; }
-  .faq-item summary:hover { background:rgba(139,173,59,0.05); }
+  .faq-item summary:hover { background:rgba(192,75,114,0.05); }
   .faq-item summary .material-symbols-outlined { transition:transform 0.25s ease; opacity:0.55; flex-shrink:0; }
   .faq-item[open] summary .material-symbols-outlined { transform:rotate(180deg); opacity:0.9; }
   .faq-item .faq-body { padding:0 1.5rem 1.5rem; color:#002626; opacity:0.75; line-height:1.65; font-size:0.95rem; }
@@ -380,7 +389,7 @@
 
 <!-- ── PREVIEW TOPBAR ── -->
 <div class="w-full bg-[#002626] text-[#EFE7DA]/75 flex items-center justify-between gap-3 flex-wrap px-4 md:px-6 py-2" style="font-size:11px;letter-spacing:0.04em;">
-  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#b8d369] font-semibold hover:text-white transition-colors">
+  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#e88aaa] font-semibold hover:text-white transition-colors">
     <span class="material-symbols-outlined" style="font-size:14px;">arrow_back</span>
     Retour à l'aperçu
   </a>
@@ -400,8 +409,8 @@
       <div class="nav-item">
         <a class="nav-link is-active cursor-default" href="services.html">Services ▾</a>
         <div class="nav-dropdown">
-          <a href="srg.html" data-hover-color="#8BAD3B"><span class="dd-abbr" style="color:#8BAD3B">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
-          <a href="sase.html" data-hover-color="#E55812"><span class="dd-abbr" style="color:#E55812">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
+          <a href="srg.html" data-hover-color="#C04B72"><span class="dd-abbr" style="color:#C04B72">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
+          <a href="sase.html" data-hover-color="#E58346"><span class="dd-abbr" style="color:#E58346">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
           <a href="sapa.html" data-hover-color="#119DA4"><span class="dd-abbr" style="color:#119DA4">SAPA</span><span class="dd-name">Service d'Accompagnement du Parrainage</span></a>
         </div>
       </div>
@@ -450,8 +459,8 @@
         </button>
       </div>
       <div class="m-accordion-body">
-        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#8BAD3B">SRG</span><span class="name">Service Résidentiel Général</span></a>
-        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E55812">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
+        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#C04B72">SRG</span><span class="name">Service Résidentiel Général</span></a>
+        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E58346">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
         <a href="sapa.html" class="m-sublink"><span class="abbr" style="color:#119DA4">SAPA</span><span class="name">Service d'Accompagnement du Parrainage</span></a>
       </div>
     </div>
@@ -482,8 +491,8 @@
 
   <!-- ── HERO ── -->
   <section class="relative bg-[#002626] pt-20 pb-16 md:pt-28 md:pb-24 px-6 md:px-8 overflow-hidden blob-parent">
-    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(139,173,59,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
-    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,88,18,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
+    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(192,75,114,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
+    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,131,70,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
     <!-- Background image at low opacity -->
     <img
       src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1600&q=80&auto=format&fit=crop"
@@ -493,7 +502,7 @@
       loading="eager"
     />
     <!-- Orange accent glow -->
-    <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(229,88,18,0.18) 0%, transparent 70%);position:absolute;"></div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(229,131,70,0.18) 0%, transparent 70%);position:absolute;"></div>
 
     <div class="relative max-w-4xl mx-auto">
       <!-- Breadcrumb -->
@@ -502,18 +511,18 @@
         <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
         <a href="services.html" class="hover:text-white/70 transition-colors">Services</a>
         <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
-        <span class="text-[#E55812] font-semibold">SASE</span>
+        <span class="text-[#E58346] font-semibold">SASE</span>
       </nav>
 
       <!-- Badge -->
-      <span class="inline-flex items-center gap-2 bg-[#E55812]/20 text-[#E55812] border border-[#E55812]/30 rounded-full px-4 py-1.5 text-sm font-bold mb-6">
-        <span class="w-2 h-2 rounded-full bg-[#E55812] inline-block"></span>
+      <span class="inline-flex items-center gap-2 bg-[#E58346]/20 text-[#E58346] border border-[#E58346]/30 rounded-full px-4 py-1.5 text-sm font-bold mb-6">
+        <span class="w-2 h-2 rounded-full bg-[#E58346] inline-block"></span>
         SASE · Service d'Accompagnement Socio-Éducatif
       </span>
 
       <!-- Headline -->
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-6">
-        Un soutien éducatif,<br class="hidden sm:block"/> au cœur de chaque <span style="position:relative;display:inline-block;">famille<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#8BAD3B" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+        Un soutien éducatif,<br class="hidden sm:block"/> au cœur de chaque <span style="position:relative;display:inline-block;">famille<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
       </h1>
       <p class="text-lg text-white/70 leading-relaxed mb-10 max-w-2xl">
         Le SASE, c'est une aide concrète qui vient jusqu'à vous. Nos éducateurs se déplacent chez les familles pour aider à tenir le quotidien, renforcer les liens parent-enfant et traverser ensemble les moments difficiles.
@@ -570,7 +579,7 @@
 
       <!-- Text (RIGHT on desktop) -->
       <div class="section-text">
-        <span class="text-[#E55812] font-black tracking-widest text-sm uppercase block mb-4">Pour qui ?</span>
+        <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-4">Pour qui ?</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
           Des familles accompagnées dans leur quotidien
         </h2>
@@ -582,19 +591,19 @@
         </p>
         <div class="flex flex-col gap-3">
           <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-[#E55812] mt-0.5" style="font-size:20px;font-variation-settings:'FILL' 1;">check_circle</span>
+            <span class="material-symbols-outlined text-[#E58346] mt-0.5" style="font-size:20px;font-variation-settings:'FILL' 1;">check_circle</span>
             <span class="text-[#002626]/80 text-base">Soutien à la parentalité et aux compétences éducatives</span>
           </div>
           <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-[#E55812] mt-0.5" style="font-size:20px;font-variation-settings:'FILL' 1;">check_circle</span>
+            <span class="material-symbols-outlined text-[#E58346] mt-0.5" style="font-size:20px;font-variation-settings:'FILL' 1;">check_circle</span>
             <span class="text-[#002626]/80 text-base">Accompagnement scolaire et socio-professionnel</span>
           </div>
           <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-[#E55812] mt-0.5" style="font-size:20px;font-variation-settings:'FILL' 1;">check_circle</span>
+            <span class="material-symbols-outlined text-[#E58346] mt-0.5" style="font-size:20px;font-variation-settings:'FILL' 1;">check_circle</span>
             <span class="text-[#002626]/80 text-base">Aide à la gestion du quotidien et de l'administration</span>
           </div>
           <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-[#E55812] mt-0.5" style="font-size:20px;font-variation-settings:'FILL' 1;">check_circle</span>
+            <span class="material-symbols-outlined text-[#E58346] mt-0.5" style="font-size:20px;font-variation-settings:'FILL' 1;">check_circle</span>
             <span class="text-[#002626]/80 text-base">Renforcement du lien parents-enfants</span>
           </div>
         </div>
@@ -610,7 +619,7 @@
     <div class="blob" aria-hidden="true" style="width:240px;height:240px;background:rgba(17,157,164,0.09);top:20px;right:-60px;border-radius:50% 50% 70% 30% / 40% 60% 40% 60%;"></div>
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-14">
-        <span class="text-[#E55812] font-black tracking-widest text-sm uppercase block mb-4">Notre approche</span>
+        <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-4">Notre approche</span>
         <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight max-w-2xl mx-auto">
           Comment on travaille, concrètement
         </h2>
@@ -619,7 +628,7 @@
 
         <div class="approach-card approach-col">
           <div class="approach-icon">
-            <span class="material-symbols-outlined text-[#E55812]" style="font-size:28px;font-variation-settings:'FILL' 1;">home_work</span>
+            <span class="material-symbols-outlined text-[#E58346]" style="font-size:28px;font-variation-settings:'FILL' 1;">home_work</span>
           </div>
           <h3 class="text-xl font-bold text-white mb-3">On vient chez vous</h3>
           <p class="text-white/65 leading-relaxed text-sm">
@@ -629,7 +638,7 @@
 
         <div class="approach-card approach-col">
           <div class="approach-icon">
-            <span class="material-symbols-outlined text-[#E55812]" style="font-size:28px;font-variation-settings:'FILL' 1;">handshake</span>
+            <span class="material-symbols-outlined text-[#E58346]" style="font-size:28px;font-variation-settings:'FILL' 1;">handshake</span>
           </div>
           <h3 class="text-xl font-bold text-white mb-3">À votre rythme, pas le nôtre</h3>
           <p class="text-white/65 leading-relaxed text-sm">
@@ -639,7 +648,7 @@
 
         <div class="approach-card approach-col">
           <div class="approach-icon">
-            <span class="material-symbols-outlined text-[#E55812]" style="font-size:28px;font-variation-settings:'FILL' 1;">diversity_3</span>
+            <span class="material-symbols-outlined text-[#E58346]" style="font-size:28px;font-variation-settings:'FILL' 1;">diversity_3</span>
           </div>
           <h3 class="text-xl font-bold text-white mb-3">Plusieurs regards, une équipe</h3>
           <p class="text-white/65 leading-relaxed text-sm">
@@ -659,7 +668,7 @@
 
       <!-- Text (LEFT on desktop) -->
       <div class="section-text">
-        <span class="text-[#E55812] font-black tracking-widest text-sm uppercase block mb-4">L'équipe</span>
+        <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-4">L'équipe</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
           Une petite équipe, très présente sur le terrain
         </h2>
@@ -668,8 +677,8 @@
         </p>
         <div class="space-y-4">
           <div class="flex items-start gap-4 pb-4 border-b border-[#002626]/08">
-            <div class="w-9 h-9 rounded-full bg-[#E55812]/10 flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-[#E55812]" style="font-size:18px;">person</span>
+            <div class="w-9 h-9 rounded-full bg-[#E58346]/10 flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-[#E58346]" style="font-size:18px;">person</span>
             </div>
             <div>
               <div class="font-bold text-[#002626] text-sm">Éducateurs spécialisés</div>
@@ -677,8 +686,8 @@
             </div>
           </div>
           <div class="flex items-start gap-4 pb-4 border-b border-[#002626]/08">
-            <div class="w-9 h-9 rounded-full bg-[#E55812]/10 flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-[#E55812]" style="font-size:18px;">psychology</span>
+            <div class="w-9 h-9 rounded-full bg-[#E58346]/10 flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-[#E58346]" style="font-size:18px;">psychology</span>
             </div>
             <div>
               <div class="font-bold text-[#002626] text-sm">Psychologue</div>
@@ -686,8 +695,8 @@
             </div>
           </div>
           <div class="flex items-start gap-4">
-            <div class="w-9 h-9 rounded-full bg-[#E55812]/10 flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-[#E55812]" style="font-size:18px;">manage_accounts</span>
+            <div class="w-9 h-9 rounded-full bg-[#E58346]/10 flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-[#E58346]" style="font-size:18px;">manage_accounts</span>
             </div>
             <div>
               <div class="font-bold text-[#002626] text-sm">Coordinatrice</div>
@@ -713,12 +722,12 @@
 
   <!-- ── COMMENT ÇA FONCTIONNE ── -->
   <section id="orientation" class="py-20 md:py-28 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
-    <div class="blob" aria-hidden="true" style="width:260px;height:260px;background:rgba(139,173,59,0.08);bottom:40px;right:-80px;border-radius:65% 35% 55% 45% / 50% 50% 50% 50%;"></div>
+    <div class="blob" aria-hidden="true" style="width:260px;height:260px;background:rgba(192,75,114,0.08);bottom:40px;right:-80px;border-radius:65% 35% 55% 45% / 50% 50% 50% 50%;"></div>
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
       <!-- Process steps -->
       <div class="orientation-text">
-        <span class="text-[#E55812] font-black tracking-widest text-sm uppercase block mb-4">Déroulement</span>
+        <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-4">Déroulement</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
           Comment ça se passe en pratique ?
         </h2>
@@ -759,13 +768,13 @@
 
       <!-- Contact card -->
       <div class="orientation-card">
-        <div class="bg-[#002626] rounded-2xl p-8 text-white overflow-hidden" style="background-image:radial-gradient(ellipse at 15% 20%,rgba(229,88,18,0.20),transparent 55%),radial-gradient(ellipse at 85% 80%,rgba(17,157,164,0.14),transparent 60%);">
+        <div class="bg-[#002626] rounded-2xl p-8 text-white overflow-hidden" style="background-image:radial-gradient(ellipse at 15% 20%,rgba(229,131,70,0.20),transparent 55%),radial-gradient(ellipse at 85% 80%,rgba(17,157,164,0.14),transparent 60%);">
           <h3 class="text-xl font-bold mb-2">Nous contacter</h3>
           <p class="text-white/60 text-sm mb-8">Pour une demande d'information ou une orientation vers le SASE.</p>
           <div class="flex flex-wrap gap-5 mb-8">
             <a href="tel:+3285235814" class="flex items-center gap-4 group" style="flex:1 1 200px;">
-              <div class="w-11 h-11 rounded-full bg-[#E55812]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#E55812]/30 transition-colors">
-                <span class="material-symbols-outlined text-[#E55812]" style="font-size:20px;">phone</span>
+              <div class="w-11 h-11 rounded-full bg-[#E58346]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#E58346]/30 transition-colors">
+                <span class="material-symbols-outlined text-[#E58346]" style="font-size:20px;">phone</span>
               </div>
               <div>
                 <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">Téléphone</div>
@@ -773,8 +782,8 @@
               </div>
             </a>
             <a href="mailto:direction@asbl-espoir.be" class="flex items-center gap-4 group" style="flex:1 1 240px;">
-              <div class="w-11 h-11 rounded-full bg-[#E55812]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#E55812]/30 transition-colors">
-                <span class="material-symbols-outlined text-[#E55812]" style="font-size:20px;">mail</span>
+              <div class="w-11 h-11 rounded-full bg-[#E58346]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#E58346]/30 transition-colors">
+                <span class="material-symbols-outlined text-[#E58346]" style="font-size:20px;">mail</span>
               </div>
               <div>
                 <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">E-mail</div>
@@ -782,8 +791,8 @@
               </div>
             </a>
             <div class="flex items-center gap-4" style="flex:1 1 240px;">
-              <div class="w-11 h-11 rounded-full bg-[#E55812]/20 flex items-center justify-center flex-shrink-0">
-                <span class="material-symbols-outlined text-[#E55812]" style="font-size:20px;">location_on</span>
+              <div class="w-11 h-11 rounded-full bg-[#E58346]/20 flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-[#E58346]" style="font-size:20px;">location_on</span>
               </div>
               <div>
                 <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">Adresse</div>
@@ -800,7 +809,7 @@
         <!-- Demande volontaire info card -->
         <div class="mt-4 bg-white rounded-2xl p-6 border border-[#002626]/08">
           <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-[#E55812] mt-0.5" style="font-size:20px;font-variation-settings:'FILL' 1;">info</span>
+            <span class="material-symbols-outlined text-[#E58346] mt-0.5" style="font-size:20px;font-variation-settings:'FILL' 1;">info</span>
             <div>
               <div class="font-bold text-[#002626] text-sm mb-1">Demande volontaire ?</div>
               <p class="text-xs text-[#002626]/60 leading-relaxed">Si vous êtes une famille souhaitant bénéficier du SASE sans mandat du SPJ, contactez-nous directement. Nous étudierons ensemble la possibilité d'une aide volontaire.</p>
@@ -818,7 +827,7 @@
   <section id="faq" class="py-20 md:py-28 px-6 md:px-8 bg-surface">
     <div class="max-w-4xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="text-[#E55812] font-black tracking-widest text-sm uppercase block mb-3">Questions fréquentes</span>
+        <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-3">Questions fréquentes</span>
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight">Ce qu'on nous demande souvent sur le SASE</h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed">Les questions qui reviennent le plus souvent de la part des familles accompagnées et des intervenants de l'aide à la jeunesse.</p>
       </div>
@@ -869,7 +878,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
 
         <a href="srg.html" class="sibling-card">
-          <span class="inline-flex items-center gap-2 bg-[#8BAD3B]/10 text-[#8BAD3B] rounded-full px-3 py-1 text-xs font-bold mb-4">SRG</span>
+          <span class="inline-flex items-center gap-2 bg-[#C04B72]/10 text-[#C04B72] rounded-full px-3 py-1 text-xs font-bold mb-4">SRG</span>
           <h3 class="text-lg font-bold text-[#002626] mb-2">Service Résidentiel Général</h3>
           <p class="text-sm text-[#002626]/60 leading-relaxed mb-4">Hébergement résidentiel pour enfants et jeunes de 3 à 18 ans dans trois maisons à Amay et Couthuin.</p>
           <span class="text-[#002626] font-bold text-sm flex items-center gap-1">
@@ -896,7 +905,7 @@
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
       <div class="md:w-3/5 don-text">
-        <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-6">Nous soutenir</span>
+        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-6">Nous soutenir</span>
         <h2 class="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-black text-white mb-6 md:mb-8 leading-[1.1]">
           Soutenez nos actions, changez des vies.
         </h2>
@@ -913,11 +922,11 @@
         <p class="text-white/50 text-sm mt-6">Dons ≥ 40 € déductibles fiscalement · Via le Service Arc-en-Ciel · IBAN BE41 6300 1180 0010</p>
       </div>
       <div class="md:w-2/5 grid grid-cols-2 gap-4 don-cards">
-        <div class="don-card aspect-square bg-[#E55812] flex flex-col items-center justify-center p-8 text-center rotate-3 rounded-2xl cursor-default">
+        <div class="don-card aspect-square bg-[#E58346] flex flex-col items-center justify-center p-8 text-center rotate-3 rounded-2xl cursor-default">
           <span class="material-symbols-outlined text-4xl mb-2" style="font-variation-settings:'FILL' 1;">favorite</span>
           <span class="font-bold text-lg">Solidarité</span>
         </div>
-        <div class="don-card aspect-square bg-[#8BAD3B] flex flex-col items-center justify-center p-8 text-center -rotate-2 rounded-2xl cursor-default">
+        <div class="don-card aspect-square bg-[#C04B72] flex flex-col items-center justify-center p-8 text-center -rotate-2 rounded-2xl cursor-default">
           <span class="material-symbols-outlined text-4xl mb-2" style="font-variation-settings:'FILL' 1;">school</span>
           <span class="font-bold text-lg text-[#002626]">Éducation</span>
         </div>
@@ -928,7 +937,7 @@
 </main>
 
 <!-- ── FOOTER ── -->
-<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(139,173,59,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
+<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(192,75,114,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
   <div class="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-16 pb-8">
     <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
       <div class="max-w-xs space-y-4">
@@ -942,21 +951,21 @@
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-10">
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Navigation</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Navigation</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html">Accueil</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="services.html">Services</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="apropos.html">À propos</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="actualites.html">Actualités</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Engagement</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Engagement</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="emploi.html">Offres d'emploi</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="don.html">Faire un don</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html#partenaires">Partenaires</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="contact.html">Contact</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Services</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Services</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="srg.html">SRG · Résidentiel</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sase.html">SASE · Accompagnement</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sapa.html">SAPA · Parrainage</a>

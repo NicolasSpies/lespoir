@@ -40,6 +40,15 @@
 <link rel="preconnect" href="https://cdn.tailwindcss.com"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Regular.otf') format('opentype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Medium.otf') format('opentype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Pally'; src: url('fonts/Pally-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+h1, h2, h3, h4, h5, h6,
+  [class~="font-black"]:not(.material-symbols-outlined),
+  [class~="font-extrabold"]:not(.material-symbols-outlined),
+  .hero-stat-num { font-family: 'Pally', sans-serif !important; }
+</style>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -89,8 +98,8 @@
 
   /* ── Focus states ── */
   *:focus { outline: none; }
-  *:focus-visible { outline: 2px solid #8BAD3B; outline-offset: 3px; border-radius: 4px; }
-  button:focus-visible, a:focus-visible { outline: 2px solid #8BAD3B; outline-offset: 3px; }
+  *:focus-visible { outline: 2px solid #C04B72; outline-offset: 3px; border-radius: 4px; }
+  button:focus-visible, a:focus-visible { outline: 2px solid #C04B72; outline-offset: 3px; }
 
   /* ── Design Tokens ── */
   :root { --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -137,8 +146,8 @@
   .btn-sm { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
   .btn-primary { background: #002626; color: #EFE7DA; }
   .btn-primary:hover { box-shadow: 0 10px 24px rgba(0,38,38,0.25); filter: brightness(1.08); }
-  .btn-accent { background: #8BAD3B; color: #002626; }
-  .btn-accent:hover { box-shadow: 0 10px 24px rgba(139,173,59,0.35); filter: brightness(1.05); }
+  .btn-accent { background: #C04B72; color: #fff; }
+  .btn-accent:hover { box-shadow: 0 10px 24px rgba(192,75,114,0.35); filter: brightness(1.05); }
   .btn-accent .material-symbols-outlined { font-variation-settings: 'FILL' 0; transition: font-variation-settings 0.35s ease, transform 0.35s ease; }
   .btn-accent:hover .material-symbols-outlined { font-variation-settings: 'FILL' 1; transform: scale(1.08); }
   .btn-outline { background: transparent; color: #002626; box-shadow: inset 0 0 0 2px #002626; }
@@ -313,7 +322,7 @@
     border-right: 1px solid rgba(255,255,255,0.10);
   }
   .hero-stat-item:last-child { border-right: none; }
-  .hero-stat-num { font-size: 1.75rem; font-weight: 900; line-height: 1; color: #8BAD3B; }
+  .hero-stat-num { font-size: 1.75rem; font-weight: 900; line-height: 1; color: #C04B72; }
   .hero-stat-label {
     font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.09em; color: rgba(255,255,255,0.5); text-align: center;
@@ -324,14 +333,14 @@
   .timeline-marker { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
   .timeline-dot {
     width: 14px; height: 14px; border-radius: 50%;
-    background: #8BAD3B; flex-shrink: 0;
+    background: #C04B72; flex-shrink: 0;
   }
   .timeline-line {
     width: 2px; flex: 1; background: rgba(0,38,38,0.1); margin-top: 6px; margin-bottom: 0;
     min-height: 1.5rem;
   }
   .timeline-item:last-child .timeline-line { display: none; }
-  .timeline-year { font-size: 0.72rem; font-weight: 900; color: #8BAD3B; letter-spacing: 0.06em; margin-bottom: 0.25rem; text-transform: uppercase; }
+  .timeline-year { font-size: 0.72rem; font-weight: 900; color: #C04B72; letter-spacing: 0.06em; margin-bottom: 0.25rem; text-transform: uppercase; }
 
   /* ── Value cards ── */
   .value-card {
@@ -343,7 +352,7 @@
   .value-card:hover { background: rgba(255,255,255,0.10); transform: translateY(-3px); }
   .value-icon {
     width: 52px; height: 52px; border-radius: 14px;
-    background: rgba(139,173,59,0.15);
+    background: rgba(192,75,114,0.15);
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 1.25rem;
   }
@@ -394,7 +403,7 @@
   }
   .person-photo {
     position: relative; aspect-ratio: 4/5; overflow: hidden;
-    background: var(--svc-color, #8BAD3B);
+    background: var(--svc-color, #C04B72);
   }
   .person-photo::after {
     content: ''; position: absolute; inset: 0; pointer-events: none;
@@ -411,14 +420,14 @@
     display: flex; align-items: center; justify-content: center;
     color: #fff; font-weight: 800; font-size: 2.75rem;
     letter-spacing: -0.02em;
-    background: linear-gradient(135deg, var(--svc-color, #8BAD3B), rgba(0,0,0,0.25));
+    background: linear-gradient(135deg, var(--svc-color, #C04B72), rgba(0,0,0,0.25));
   }
   .person-badge {
     position: absolute; top: 0.75rem; left: 0.75rem; z-index: 2;
     display: inline-flex; align-items: center; gap: 0.3rem;
     padding: 0.3rem 0.65rem; border-radius: 999px;
     background: rgba(255,255,255,0.92);
-    color: var(--svc-color, #5e7a22);
+    color: var(--svc-color, #8b2a4e);
     font-size: 0.68rem; font-weight: 800;
     letter-spacing: 0.06em; text-transform: uppercase;
     backdrop-filter: blur(6px);
@@ -450,13 +459,13 @@
   .person-quote::before {
     content: '"'; font-family: Georgia, 'Times New Roman', serif;
     position: absolute; top: 0.5rem; left: 0;
-    font-size: 2.8rem; color: var(--svc-color, #8BAD3B);
+    font-size: 2.8rem; color: var(--svc-color, #C04B72);
     opacity: 0.35; line-height: 0.8; font-style: normal;
   }
   .person-phone {
     display: inline-flex; align-items: center; gap: 0.35rem;
     margin-top: 0.6rem; font-size: 0.78rem; font-weight: 600;
-    color: var(--svc-color, #5e7a22); text-decoration: none;
+    color: var(--svc-color, #8b2a4e); text-decoration: none;
     transition: opacity 0.2s ease;
   }
   .person-phone .material-symbols-outlined {
@@ -476,7 +485,7 @@
     font-size: 0.85rem; font-weight: 600; color: #002626;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
-  .partner-pill:hover { border-color: #8BAD3B; box-shadow: 0 4px 12px rgba(139,173,59,0.15); }
+  .partner-pill:hover { border-color: #C04B72; box-shadow: 0 4px 12px rgba(192,75,114,0.15); }
   /* ── Scroll-reveal hover fix: specificity (0,3,0) beats .scroll-reveal.revealed (0,2,0) ── */
   .value-card.revealed:hover { transform: translateY(-3px); }
   .person-card.revealed:hover { transform: translateY(-4px); }
@@ -494,22 +503,22 @@
     .value-card.revealed.is-active { transform: translateY(-3px); }
     .person-card.is-active { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(0,38,38,0.10); }
     .person-card.revealed.is-active { transform: translateY(-4px); }
-    .partner-pill.is-active { border-color: #8BAD3B; box-shadow: 0 4px 12px rgba(139,173,59,0.15); }
+    .partner-pill.is-active { border-color: #C04B72; box-shadow: 0 4px 12px rgba(192,75,114,0.15); }
   }
 
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
-<style>.preview-topbar{background:#002626;color:rgba(239,231,218,0.7);padding:6px 20px;font-size:11.5px;font-weight:500;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:32px;position:relative;z-index:60}.preview-topbar a{color:#b8d369 !important;text-decoration:none !important;font-weight:600;display:inline-flex;align-items:center;gap:4px}.preview-topbar a:hover{color:#fff !important}.preview-topbar strong{color:#fff;font-weight:700}.preview-topbar .pt-info{margin-left:auto;text-align:right}@media (max-width:640px){.preview-topbar{font-size:10.5px;padding:5px 12px}}</style>
+<style>.preview-topbar{background:#002626;color:rgba(239,231,218,0.7);padding:6px 20px;font-size:11.5px;font-weight:500;letter-spacing:0.04em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;min-height:32px;position:relative;z-index:60}.preview-topbar a{color:#e88aaa !important;text-decoration:none !important;font-weight:600;display:inline-flex;align-items:center;gap:4px}.preview-topbar a:hover{color:#fff !important}.preview-topbar strong{color:#fff;font-weight:700}.preview-topbar .pt-info{margin-left:auto;text-align:right}@media (max-width:640px){.preview-topbar{font-size:10.5px;padding:5px 12px}}</style>
 <div class="preview-topbar">
   <a href="index.html"><span class="material-symbols-outlined" style="font-size:14px">arrow_back</span> Retour à l'aperçu</a>
   <div class="pt-info"><strong>L'Espoir asbl</strong> &nbsp;·&nbsp; Aperçu du site web &nbsp;·&nbsp; Version avril 2026</div>
 </div>
-<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #8BAD3B;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
+<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #C04B72;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
 
 <!-- ── PREVIEW TOPBAR ── -->
 <div class="w-full bg-[#002626] text-[#EFE7DA]/75 flex items-center justify-between gap-3 flex-wrap px-4 md:px-6 py-2" style="font-size:11px;letter-spacing:0.04em;">
-  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#b8d369] font-semibold hover:text-white transition-colors">
+  <a href="index.html" class="inline-flex items-center gap-1.5 text-[#e88aaa] font-semibold hover:text-white transition-colors">
     <span class="material-symbols-outlined" style="font-size:14px;">arrow_back</span>
     Retour à l'aperçu
   </a>
@@ -529,8 +538,8 @@
       <div class="nav-item">
         <a class="nav-link cursor-default" href="#" onclick="event.preventDefault()">Services ▾</a>
         <div class="nav-dropdown">
-          <a href="srg.html" data-hover-color="#8BAD3B"><span class="dd-abbr" style="color:#8BAD3B">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
-          <a href="sase.html" data-hover-color="#E55812"><span class="dd-abbr" style="color:#E55812">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
+          <a href="srg.html" data-hover-color="#C04B72"><span class="dd-abbr" style="color:#C04B72">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
+          <a href="sase.html" data-hover-color="#E58346"><span class="dd-abbr" style="color:#E58346">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
           <a href="sapa.html" data-hover-color="#119DA4"><span class="dd-abbr" style="color:#119DA4">SAPA</span><span class="dd-name">Service d'Accompagnement du Parrainage</span></a>
         </div>
       </div>
@@ -571,8 +580,8 @@
         </button>
       </div>
       <div class="m-accordion-body">
-        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#8BAD3B">SRG</span><span class="name">Service Résidentiel Général</span></a>
-        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E55812">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
+        <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#C04B72">SRG</span><span class="name">Service Résidentiel Général</span></a>
+        <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#E58346">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
         <a href="sapa.html" class="m-sublink"><span class="abbr" style="color:#119DA4">SAPA</span><span class="name">Service d'Accompagnement du Parrainage</span></a>
       </div>
     </div>
@@ -590,8 +599,8 @@
 
   <!-- ── HERO ── -->
   <section class="relative bg-[#002626] pt-20 pb-16 md:pt-28 md:pb-24 px-6 md:px-8 overflow-hidden blob-parent">
-    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(139,173,59,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
-    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,88,18,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
+    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(192,75,114,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
+    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,131,70,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
     <img
       src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1600&q=80&auto=format&fit=crop"
       alt="" aria-hidden="true"
@@ -599,25 +608,25 @@
       style="position:absolute"
       loading="eager"
     />
-    <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(139,173,59,0.12) 0%, transparent 70%);position:absolute;"></div>
+    <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.12) 0%, transparent 70%);position:absolute;"></div>
 
     <div class="relative max-w-4xl mx-auto">
       <!-- Breadcrumb -->
       <nav class="flex items-center gap-2 text-sm text-white/40 mb-8" aria-label="Fil d'Ariane">
         <a href="homepage.html" class="hover:text-white/70 transition-colors">Accueil</a>
         <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
-        <span class="text-[#8BAD3B] font-semibold">À propos</span>
+        <span class="text-[#C04B72] font-semibold">À propos</span>
       </nav>
 
       <!-- Badge -->
-      <span class="inline-flex items-center gap-2 bg-[#8BAD3B]/20 text-[#8BAD3B] border border-[#8BAD3B]/30 rounded-full px-4 py-1.5 text-sm font-bold mb-6">
-        <span class="w-2 h-2 rounded-full bg-[#8BAD3B] inline-block"></span>
+      <span class="inline-flex items-center gap-2 bg-[#C04B72]/20 text-[#C04B72] border border-[#C04B72]/30 rounded-full px-4 py-1.5 text-sm font-bold mb-6">
+        <span class="w-2 h-2 rounded-full bg-[#C04B72] inline-block"></span>
         L'Espoir asbl · Huy, Belgique
       </span>
 
       <!-- Headline -->
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-6">
-        Une association au service<br class="hidden sm:block"/> des <span style="position:relative;display:inline-block;">jeunes<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#8BAD3B" stroke-width="2.5" stroke-linecap="round"/></svg></span> depuis 1985
+        Une association au service<br class="hidden sm:block"/> des <span style="position:relative;display:inline-block;">jeunes<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span> depuis 1985
       </h1>
       <p class="text-lg text-white/70 leading-relaxed mb-10 max-w-2xl">
         Fondée dans la région de Huy par des travailleurs du secteur social, L'Espoir asbl accompagne des centaines de familles et de jeunes depuis quarante ans. Trois services agréés, une seule conviction : chaque enfant mérite un endroit sûr pour grandir.
@@ -661,12 +670,12 @@
 
   <!-- ── NOTRE HISTOIRE ── -->
   <section id="histoire" class="py-20 md:py-28 px-6 md:px-8 bg-surface blob-parent">
-    <div class="blob" aria-hidden="true" style="width:200px;height:200px;background:rgba(229,88,18,0.07);top:20px;left:-50px;border-radius:45% 55% 40% 60% / 60% 40% 60% 40%;"></div>
+    <div class="blob" aria-hidden="true" style="width:200px;height:200px;background:rgba(229,131,70,0.07);top:20px;left:-50px;border-radius:45% 55% 40% 60% / 60% 40% 60% 40%;"></div>
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
       <!-- Text + timeline -->
       <div class="section-text">
-        <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-4">Notre histoire</span>
+        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Notre histoire</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
           Quarante ans de présence dans la région de Huy
         </h2>
@@ -744,7 +753,7 @@
   <section id="missions" class="py-20 md:py-28 px-6 md:px-8 bg-[#002626]">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-14">
-        <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-4">Missions &amp; Valeurs</span>
+        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Missions &amp; Valeurs</span>
         <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight max-w-2xl mx-auto">
           Ce qui nous guide au quotidien
         </h2>
@@ -753,7 +762,7 @@
 
         <div class="value-card value-col">
           <div class="value-icon">
-            <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:28px;font-variation-settings:'FILL' 1;">loyalty</span>
+            <span class="material-symbols-outlined text-[#C04B72]" style="font-size:28px;font-variation-settings:'FILL' 1;">loyalty</span>
           </div>
           <h3 class="text-xl font-bold text-white mb-3">Rester là</h3>
           <p class="text-white/65 leading-relaxed text-sm">
@@ -763,7 +772,7 @@
 
         <div class="value-card value-col">
           <div class="value-icon">
-            <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:28px;font-variation-settings:'FILL' 1;">directions_walk</span>
+            <span class="material-symbols-outlined text-[#C04B72]" style="font-size:28px;font-variation-settings:'FILL' 1;">directions_walk</span>
           </div>
           <h3 class="text-xl font-bold text-white mb-3">Aller vers</h3>
           <p class="text-white/65 leading-relaxed text-sm">
@@ -773,7 +782,7 @@
 
         <div class="value-card value-col">
           <div class="value-icon">
-            <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:28px;font-variation-settings:'FILL' 1;">group</span>
+            <span class="material-symbols-outlined text-[#C04B72]" style="font-size:28px;font-variation-settings:'FILL' 1;">group</span>
           </div>
           <h3 class="text-xl font-bold text-white mb-3">Faire ensemble</h3>
           <p class="text-white/65 leading-relaxed text-sm">
@@ -783,7 +792,7 @@
 
         <div class="value-card value-col">
           <div class="value-icon">
-            <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:28px;font-variation-settings:'FILL' 1;">visibility</span>
+            <span class="material-symbols-outlined text-[#C04B72]" style="font-size:28px;font-variation-settings:'FILL' 1;">visibility</span>
           </div>
           <h3 class="text-xl font-bold text-white mb-3">Voir la personne</h3>
           <p class="text-white/65 leading-relaxed text-sm">
@@ -802,7 +811,7 @@
     <div class="blob" aria-hidden="true" style="width:240px;height:240px;background:rgba(17,157,164,0.09);bottom:40px;right:-60px;border-radius:50% 50% 70% 30% / 40% 60% 40% 60%;"></div>
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-14">
-        <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-4">Notre équipe</span>
+        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Notre équipe</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] leading-tight">
           Les gens derrière L'Espoir
         </h2>
@@ -824,7 +833,7 @@
           <div class="banner-count">3 PERSONNES</div>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-          <div class="person-card" style="--svc-color:#E55812;">
+          <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
               <div class="person-initials">AL</div>
               <img src="asmaa.jpg" alt="Asmaa Lakrary" loading="lazy" onerror="this.style.display='none'"/>
@@ -865,7 +874,7 @@
 
       <!-- ═══ SRG ═══ -->
       <div class="service-group team-col">
-        <div class="service-banner" style="background:#8BAD3B; color:#002626;">
+        <div class="service-banner" style="background:#C04B72; color:#fff;">
           <div class="banner-icon-wrap" style="background:rgba(0,38,38,0.12);">
             <span class="material-symbols-outlined" style="font-size:24px;font-variation-settings:'FILL' 1;">home</span>
           </div>
@@ -876,7 +885,7 @@
           <div class="banner-count" style="background:rgba(0,38,38,0.12);">6 PERSONNES</div>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-          <div class="person-card" style="--svc-color:#8BAD3B;">
+          <div class="person-card" style="--svc-color:#C04B72;">
             <div class="person-photo">
               <div class="person-initials">SM</div>
               <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&q=80&auto=format&fit=crop" alt="Sophie M." loading="lazy"/>
@@ -888,7 +897,7 @@
               <div class="person-quote">On construit le quotidien avec eux, pas pour eux.</div>
             </div>
           </div>
-          <div class="person-card" style="--svc-color:#8BAD3B;">
+          <div class="person-card" style="--svc-color:#C04B72;">
             <div class="person-photo">
               <div class="person-initials">JB</div>
               <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80&auto=format&fit=crop" alt="Julien B." loading="lazy"/>
@@ -898,7 +907,7 @@
               <div class="person-role">Éducateur spécialisé</div>
             </div>
           </div>
-          <div class="person-card" style="--svc-color:#8BAD3B;">
+          <div class="person-card" style="--svc-color:#C04B72;">
             <div class="person-photo">
               <div class="person-initials">LC</div>
               <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&q=80&auto=format&fit=crop" alt="Léa C." loading="lazy"/>
@@ -908,7 +917,7 @@
               <div class="person-role">Éducatrice spécialisée</div>
             </div>
           </div>
-          <div class="person-card" style="--svc-color:#8BAD3B;">
+          <div class="person-card" style="--svc-color:#C04B72;">
             <div class="person-photo">
               <div class="person-initials">CV</div>
               <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80&auto=format&fit=crop" alt="Caroline V." loading="lazy"/>
@@ -918,7 +927,7 @@
               <div class="person-role">Psychologue</div>
             </div>
           </div>
-          <div class="person-card" style="--svc-color:#8BAD3B;">
+          <div class="person-card" style="--svc-color:#C04B72;">
             <div class="person-photo">
               <div class="person-initials">AK</div>
               <img src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?w=500&q=80&auto=format&fit=crop" alt="Aïcha K." loading="lazy"/>
@@ -928,7 +937,7 @@
               <div class="person-role">Assistante sociale</div>
             </div>
           </div>
-          <div class="person-card" style="--svc-color:#8BAD3B;">
+          <div class="person-card" style="--svc-color:#C04B72;">
             <div class="person-photo">
               <div class="person-initials">MT</div>
               <img src="https://images.unsplash.com/photo-1584467735871-8297329f8d9b?w=500&q=80&auto=format&fit=crop" alt="Marianne T." loading="lazy"/>
@@ -943,7 +952,7 @@
 
       <!-- ═══ SASE ═══ -->
       <div class="service-group team-col">
-        <div class="service-banner" style="background:#E55812;">
+        <div class="service-banner" style="background:#E58346;">
           <div class="banner-icon-wrap">
             <span class="material-symbols-outlined" style="font-size:24px;font-variation-settings:'FILL' 1;">home_work</span>
           </div>
@@ -954,7 +963,7 @@
           <div class="banner-count">3 PERSONNES</div>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-          <div class="person-card" style="--svc-color:#E55812;">
+          <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
               <div class="person-initials">NR</div>
               <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=80&auto=format&fit=crop" alt="Nicolas R." loading="lazy"/>
@@ -965,7 +974,7 @@
               <div class="person-quote">Entrer chez les gens, c'est un privilège qui demande du respect.</div>
             </div>
           </div>
-          <div class="person-card" style="--svc-color:#E55812;">
+          <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
               <div class="person-initials">EG</div>
               <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&q=80&auto=format&fit=crop" alt="Élodie G." loading="lazy"/>
@@ -975,7 +984,7 @@
               <div class="person-role">Éducatrice spécialisée</div>
             </div>
           </div>
-          <div class="person-card" style="--svc-color:#E55812;">
+          <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
               <div class="person-initials">SP</div>
               <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&q=80&auto=format&fit=crop" alt="Sébastien P." loading="lazy"/>
@@ -1015,7 +1024,7 @@
           </div>
           <div class="person-card" style="--svc-color:#119DA4;">
             <div class="person-photo">
-              <div class="person-initials" style="background:linear-gradient(135deg,#119DA4,#8BAD3B);">
+              <div class="person-initials" style="background:linear-gradient(135deg,#119DA4,#C04B72);">
                 <span class="material-symbols-outlined" style="font-size:56px;font-variation-settings:'FILL' 1;">diversity_3</span>
               </div>
             </div>
@@ -1042,9 +1051,9 @@
 
   <!-- ── PARTENAIRES ── -->
   <section id="partenaires" class="py-20 md:py-28 px-6 md:px-8 bg-surface blob-parent">
-    <div class="blob" aria-hidden="true" style="width:280px;height:280px;background:rgba(139,173,59,0.10);top:20px;right:-80px;border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;"></div>
+    <div class="blob" aria-hidden="true" style="width:280px;height:280px;background:rgba(192,75,114,0.10);top:20px;right:-80px;border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;"></div>
     <div class="max-w-4xl mx-auto text-center">
-      <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-4">Partenaires</span>
+      <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Partenaires</span>
       <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
         Ceux qui nous soutiennent
       </h2>
@@ -1053,35 +1062,35 @@
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <span class="partner-pill">
-          <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
+          <span class="material-symbols-outlined text-[#C04B72]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
           Fédération Wallonie-Bruxelles
         </span>
         <span class="partner-pill">
-          <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
+          <span class="material-symbols-outlined text-[#C04B72]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
           Service de Protection de la Jeunesse
         </span>
         <span class="partner-pill">
-          <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
+          <span class="material-symbols-outlined text-[#C04B72]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
           Aide à la Jeunesse
         </span>
         <span class="partner-pill">
-          <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
+          <span class="material-symbols-outlined text-[#C04B72]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
           Ville de Huy
         </span>
         <span class="partner-pill">
-          <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
+          <span class="material-symbols-outlined text-[#C04B72]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
           Commune d'Amay
         </span>
         <span class="partner-pill">
-          <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
+          <span class="material-symbols-outlined text-[#C04B72]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
           Service Arc-en-Ciel
         </span>
         <span class="partner-pill">
-          <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
+          <span class="material-symbols-outlined text-[#C04B72]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
           ONE · Office de la Naissance et de l'Enfance
         </span>
         <span class="partner-pill">
-          <span class="material-symbols-outlined text-[#8BAD3B]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
+          <span class="material-symbols-outlined text-[#C04B72]" style="font-size:16px;font-variation-settings:'FILL' 1;">verified</span>
           CPAS de Huy
         </span>
       </div>
@@ -1094,7 +1103,7 @@
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
       <div class="md:w-3/5 don-text">
-        <span class="text-[#8BAD3B] font-black tracking-widest text-sm uppercase block mb-6">Nous soutenir</span>
+        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-6">Nous soutenir</span>
         <h2 class="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-black text-white mb-6 md:mb-8 leading-[1.1]">
           Soutenez nos actions, changez des vies.
         </h2>
@@ -1111,11 +1120,11 @@
         <p class="text-white/50 text-sm mt-6">Dons ≥ 40 € déductibles fiscalement · Via le Service Arc-en-Ciel · IBAN BE41 6300 1180 0010</p>
       </div>
       <div class="md:w-2/5 grid grid-cols-2 gap-4 don-cards">
-        <div class="don-card aspect-square bg-[#E55812] flex flex-col items-center justify-center p-8 text-center rotate-3 rounded-2xl cursor-default">
+        <div class="don-card aspect-square bg-[#E58346] flex flex-col items-center justify-center p-8 text-center rotate-3 rounded-2xl cursor-default">
           <span class="material-symbols-outlined text-4xl mb-2 text-white" style="font-variation-settings:'FILL' 1;">favorite</span>
           <span class="font-bold text-lg text-white">Solidarité</span>
         </div>
-        <div class="don-card aspect-square bg-[#8BAD3B] flex flex-col items-center justify-center p-8 text-center -rotate-2 rounded-2xl cursor-default">
+        <div class="don-card aspect-square bg-[#C04B72] flex flex-col items-center justify-center p-8 text-center -rotate-2 rounded-2xl cursor-default">
           <span class="material-symbols-outlined text-4xl mb-2 text-[#002626]" style="font-variation-settings:'FILL' 1;">school</span>
           <span class="font-bold text-lg text-[#002626]">Éducation</span>
         </div>
@@ -1126,7 +1135,7 @@
 </main>
 
 <!-- ── FOOTER ── -->
-<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(139,173,59,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
+<footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(192,75,114,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
   <div class="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-16 pb-8">
     <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
       <div class="max-w-xs space-y-4">
@@ -1140,20 +1149,20 @@
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-10">
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Navigation</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Navigation</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html">Accueil</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="apropos.html">À propos</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="actualites.html">Actualités</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Engagement</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Engagement</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="emploi.html">Offres d'emploi</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="don.html">Faire un don</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage.html#partenaires">Partenaires</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="contact.html">Contact</a>
         </div>
         <div class="flex flex-col gap-3">
-          <span class="font-bold text-[#8BAD3B] uppercase tracking-widest text-xs mb-1">Services</span>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Services</span>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="srg.html">SRG · Résidentiel</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sase.html">SASE · Accompagnement</a>
           <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sapa.html">SAPA · Parrainage</a>
