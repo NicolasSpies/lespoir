@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="tailwind.css"/>
 <link rel="preload" href="fonts/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="fonts/Pally-Bold.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="preload" href="1.webp" as="image" type="image/webp" fetchpriority="high"/>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="1-320.webp 320w, 1-480.webp 480w, 1-768.webp 768w, 1.webp 1080w" imagesizes="(max-width: 1023px) 100vw, 50vw"/>
 <style>@font-face{font-family:'Inter';font-style:normal;font-weight:400 900;font-display:swap;src:url('fonts/Inter-Variable.woff2') format('woff2-variations')}@font-face{font-family:'Material Symbols Outlined';font-style:normal;font-weight:100 700;font-display:swap;src:url('fonts/MaterialSymbols-Subset.woff2') format('woff2-variations')}.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased}@font-face{font-family:'Pally';src:url('fonts/Pally-Regular.woff2') format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Pally';src:url('fonts/Pally-Medium.woff2') format('woff2');font-weight:500;font-display:swap}@font-face{font-family:'Pally';src:url('fonts/Pally-Bold.woff2') format('woff2');font-weight:700;font-display:swap}</style>
 <style>
 h1, h2, h3, h4, h5, h6,
@@ -884,8 +884,20 @@ h1, h2, h3, h4, h5, h6,
         <div class="hero-img-deco-2" aria-hidden="true"></div>
         <div class="hero-img-card">
           <picture>
-            <source srcset="1.webp" type="image/webp"/>
-            <img src="1.jpg" alt="L'Espoir asbl, aide à la jeunesse à Huy et Amay depuis 1985" class="hero-img blur-up" fetchpriority="high" width="1080" height="1080"/>
+            <source
+              type="image/webp"
+              srcset="1-320.webp 320w, 1-480.webp 480w, 1-768.webp 768w, 1.webp 1080w"
+              sizes="(max-width: 1023px) 100vw, 50vw"
+            />
+            <img
+              src="1.jpg"
+              srcset="1-320.jpg 320w, 1-480.jpg 480w, 1-768.jpg 768w, 1.jpg 1080w"
+              sizes="(max-width: 1023px) 100vw, 50vw"
+              alt="L'Espoir asbl, aide à la jeunesse à Huy et Amay depuis 1985"
+              class="hero-img blur-up"
+              fetchpriority="high"
+              width="1080" height="1080"
+            />
           </picture>
         </div>
       </div>
