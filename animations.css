@@ -58,10 +58,10 @@ button:hover .icon-send {
   outline: none;
 }
 
-/* ── 6. Nav-links · scribble underline (replace straight line with curly SVG) ── */
+/* ── 6. Nav-links · straight underline with cassis accent on hover ── */
 .nav-link {
   position: relative;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 .nav-link::after {
   content: '';
@@ -69,18 +69,19 @@ button:hover .icon-send {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 8px;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'><path d='M1 7 Q25 2 50 7 Q75 12 99 5' fill='none' stroke='%23002626' stroke-width='2.5' stroke-linecap='round'/></svg>");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-position: center bottom;
+  height: 2.5px;
+  background: #002626;
+  border-radius: 2px;
   transform: scaleX(0);
   transform-origin: center;
-  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.32s ease;
 }
 .nav-link:hover::after,
 .nav-link.is-active::after {
   transform: scaleX(1);
+}
+.nav-link:hover::after {
+  background: #C04B72;
 }
 
 /* ── 8. 404 icon · gentle wackel on page load ── */
