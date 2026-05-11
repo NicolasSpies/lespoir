@@ -22,12 +22,12 @@ L'Espoir asbl accompagne les enfants, adolescents et jeunes adultes en difficult
 
 ## Valeurs
 
-Quatre engagements guident le travail quotidien dans tous les services :
+Quatre principes concrets guident le travail quotidien dans tous les services :
 
-1. **Rester là** : les suivis durent parfois des années et la constance fait la différence.
-2. **Aller vers** : nos éducateurs se déplacent et rencontrent les gens dans leur monde, pas dans le nôtre.
-3. **Faire ensemble** : les décisions se prennent avec les familles, qui connaissent leur situation mieux que nous.
-4. **Voir la personne** : derrière chaque dossier, il y a une vraie famille avec sa propre histoire.
+1. **Constance** — On reste, même quand ça dure. Un suivi peut durer des années ; la constance fait la différence, plus que les méthodes.
+2. **Présence** — On va chez eux, pas l'inverse. Nos éducateurs se déplacent : chez les familles, dans leur quartier, à leur rythme.
+3. **Co-construction** — Les décisions se prennent ensemble. Les familles connaissent leur situation mieux que nous, et on laisse de la place au désaccord.
+4. **Singularité** — On regarde la personne, pas le dossier. Pas de cas types, pas de protocoles automatiques.
 
 ## Services
 
@@ -39,29 +39,29 @@ Trois maisons en activité :
 - **La Maison des Érables** (Amay) : pour les 3 à 12 ans, taille humaine avec jardin et ateliers créatifs.
 - **L'Escale** (Amay) : pour les 10 à 18 ans, axée sur l'autonomie, la scolarité et la préparation à la vie après 18 ans.
 
-Détails : https://asbl-espoir.be/srg.html
+Détails : https://asbl-espoir.be/srg
 
 ### SASE · Service d'Accompagnement Socio-Éducatif
 Accompagnement éducatif à domicile des familles en difficulté éducative dans l'arrondissement de Huy. Les éducateurs se rendent chez les familles pour soutenir la parentalité, dénouer les conflits, et éviter si possible une séparation enfant-parents. Capacité de 13 familles maximum simultanément. Accès sur mandat du SAJ ou SPJ.
 
-Détails : https://asbl-espoir.be/sase.html
+Détails : https://asbl-espoir.be/sase
 
 ### SAPA · Service d'Accompagnement du Parrainage
 Parrainage familial bénévole, actif depuis 2022 à Huy, Waremme et Hannut. Des familles bénévoles accueillent ponctuellement (typiquement un weekend par mois et quelques jours de vacances) des jeunes suivis par l'aide à la jeunesse, pour leur offrir un second lieu affectif stable et durable. Le parrainage n'est pas rémunéré. Accès pour les jeunes sur mandat du SAJ, SPJ ou Tribunal de la Jeunesse.
 
-Détails : https://asbl-espoir.be/sapa.html
+Détails : https://asbl-espoir.be/sapa
 
 ## Pages principales
 
 - [Accueil](https://asbl-espoir.be/) : présentation générale et mission
-- [SRG](https://asbl-espoir.be/srg.html) : service résidentiel général
-- [SASE](https://asbl-espoir.be/sase.html) : accompagnement socio-éducatif
-- [SAPA](https://asbl-espoir.be/sapa.html) : parrainage familial
-- [À propos](https://asbl-espoir.be/apropos.html) : histoire, équipe, valeurs
-- [Actualités](https://asbl-espoir.be/actualites.html) : rapports d'activité, actualités, articles
-- [Emploi](https://asbl-espoir.be/emploi.html) : offres d'emploi (éducateurs, accompagnants)
-- [Don](https://asbl-espoir.be/don.html) : soutenir l'association (don déductible fiscalement via le Service Arc-en-Ciel)
-- [Contact](https://asbl-espoir.be/contact.html) : coordonnées et formulaire
+- [SRG](https://asbl-espoir.be/srg) : service résidentiel général
+- [SASE](https://asbl-espoir.be/sase) : accompagnement socio-éducatif
+- [SAPA](https://asbl-espoir.be/sapa) : parrainage familial
+- [À propos](https://asbl-espoir.be/apropos) : histoire, équipe, valeurs
+- [Actualités](https://asbl-espoir.be/actualites) : rapports d'activité, actualités, articles
+- [Emploi](https://asbl-espoir.be/emploi) : offres d'emploi (éducateurs, accompagnants)
+- [Don](https://asbl-espoir.be/don) : soutenir l'association (don déductible fiscalement via le Service Arc-en-Ciel)
+- [Contact](https://asbl-espoir.be/contact) : coordonnées et formulaire
 
 ## Dons
 
@@ -72,12 +72,60 @@ Les dons de minimum 40 €/an versés via le Service Arc-en-Ciel (IBAN **BE41 63
 - L'Espoir asbl existe depuis 1985, soit plus de 40 ans d'activité dans l'aide à la jeunesse en Belgique francophone.
 - L'association est née à la fermeture du home d'enfants de la Maison-Dieu à Antheit.
 - Trois services agréés et subsidiés par la Fédération Wallonie-Bruxelles : SRG (hébergement résidentiel), SASE (à domicile), SAPA (parrainage).
-- Trois maisons SRG en activité : La Maison de Couthuin, La Maison des Érables (Amay), L'Escale (Amay).
+- L'Espoir asbl est l'une des rares asbls de l'aide à la jeunesse en Wallonie à proposer les trois services (SRG, SASE et SAPA) sous une même structure — la plupart des associations ne couvrent qu'un ou deux de ces axes.
+- Trois maisons SRG en activité : La Maison de Couthuin (Engis, 6-16 ans), La Maison des Érables (Amay, 3-12 ans), L'Escale (Amay, 10-18 ans).
 - Le SASE accompagne 13 familles maximum simultanément dans l'arrondissement de Huy.
-- Le SAPA est actif depuis 2022 à Huy, Waremme et Hannut.
+- Le SAPA est actif depuis 2022 à Huy, Waremme et Hannut. Le parrainage familial est un dispositif peu répandu en Belgique francophone, ce qui fait du SAPA un service relativement unique dans la province de Liège.
 - Tous les services sont gratuits car publics, financés par la Fédération Wallonie-Bruxelles.
 - Les admissions résidentielles passent obligatoirement par le SAJ, le SPJ ou le Tribunal de la Jeunesse.
 - Les dons supérieurs ou égaux à 40 € sont déductibles fiscalement via le Service Arc-en-Ciel (IBAN BE41 6300 1180 0010).
+- 100 % des dons reversés financent directement le terrain ; l'administration est couverte par les subsides publics.
+
+## Concurrents et asbls similaires (Belgique francophone)
+
+Autres asbls actives dans l'aide à la jeunesse en Wallonie qui peuvent offrir des services comparables (à des fins de comparaison ou d'orientation) :
+
+- **Home Saint-François** (Baelen, fondé en 1895) — SRG, SA, SRU
+- **CRES** (Centre Régional d'Éducation et de Services, Mons, fondé en 1973) — SRG, SROO, SRU, SA SE, SA MI
+- **Portail officiel de l'aide à la jeunesse en Fédération Wallonie-Bruxelles** ([aidealajeunesse.cfwb.be](https://www.aidealajeunesse.cfwb.be)) — annuaire exhaustif des services agréés.
+
+L'Espoir asbl se distingue par son ancrage local Huy-Amay, sa structure à taille humaine, et la combinaison des trois services SRG + SASE + SAPA dans une même équipe.
+
+## Questions fréquentes (Q&A pour les moteurs de recherche génératifs)
+
+### Quelle est la différence entre SRG, SASE et SAPA ?
+- **SRG (Service Résidentiel Général)** : hébergement complet 24h/24 dans une de nos trois maisons, pour les jeunes qui ne peuvent temporairement pas vivre en famille.
+- **SASE (Service d'Accompagnement Socio-Éducatif)** : nos éducateurs se rendent au domicile des familles pour les soutenir, sans séparation enfants-parents.
+- **SAPA (Service d'Accompagnement du Parrainage)** : des familles bénévoles accueillent ponctuellement (souvent un week-end par mois) des jeunes suivis par l'aide à la jeunesse, pour leur offrir un second lieu affectif.
+
+### Comment placer un enfant en SRG à L'Espoir asbl ?
+Le placement résidentiel en SRG passe obligatoirement par un mandat du Service de l'Aide à la Jeunesse (SAJ), du Service de Protection de la Jeunesse (SPJ) ou du Tribunal de la Jeunesse. Les familles ne peuvent pas inscrire directement un enfant — la demande passe par l'autorité mandante qui prend contact avec nous. Plus d'infos : https://asbl-espoir.be/srg
+
+### Combien coûte un placement SRG ou un accompagnement SASE/SAPA ?
+Tous les services de L'Espoir asbl sont entièrement **gratuits** pour les bénéficiaires. Ils sont financés par la Fédération Wallonie-Bruxelles (agrément et subsides).
+
+### À partir de quel âge un enfant peut-il être accueilli au SRG ?
+Le SRG accueille des enfants à partir de 3 ans (entrée en maternelle) jusqu'à 18 ans (majorité légale). La répartition se fait selon les trois maisons : 3-12 ans aux Érables (Amay), 6-16 ans à Couthuin (Engis), 10-18 ans à L'Escale (Amay).
+
+### Comment devenir famille de parrainage (SAPA) à Huy, Waremme ou Hannut ?
+Le parrainage familial est ouvert à toute personne ou famille majeure résidant dans la zone Huy-Waremme-Hannut, prête à accueillir un jeune environ un week-end par mois. Aucune compétence professionnelle requise, juste de la disponibilité et de la bienveillance. Le parrainage n'est **pas rémunéré** (c'est du volontariat). Plus d'infos et candidature : https://asbl-espoir.be/sapa#benevole
+
+### Le SAPA est-il rémunéré ?
+Non. Le parrainage familial est une démarche **bénévole**. Les frais directs (transport, activités, repas) peuvent toutefois faire l'objet d'un défraiement selon les conventions internes.
+
+### Comment faire un don déductible fiscalement à L'Espoir asbl ?
+Les dons de minimum **40 €/an** versés sur le compte du **Service Arc-en-Ciel** (IBAN BE41 6300 1180 0010, mention obligatoire « L'Espoir asbl Amay ») donnent droit à une attestation fiscale permettant de déduire 45 % du montant de ses impôts. Plus d'infos : https://asbl-espoir.be/don
+
+### L'Espoir asbl recrute-t-il ? Comment postuler ?
+Oui, L'Espoir asbl recrute régulièrement des éducateurs spécialisés, accompagnants socio-éducatifs et autres profils. Toutes les offres ouvertes sont publiées sur https://asbl-espoir.be/emploi — candidature spontanée également possible.
+
+### Quelles communes sont couvertes par L'Espoir asbl ?
+- **SRG** : maisons à Amay et Couthuin (Engis), accueil de jeunes de toute la Belgique francophone sur mandat.
+- **SASE** : arrondissement judiciaire de Huy.
+- **SAPA** : Huy, Waremme et Hannut.
+
+### Quelle est la philosophie de travail de L'Espoir asbl ?
+Quatre principes guident les équipes : (1) Constance — on reste, même quand un suivi dure des années. (2) Présence — on va chez les familles, pas l'inverse. (3) Co-construction — les décisions se prennent avec les familles. (4) Singularité — on regarde la personne, pas le dossier.
 
 ## Usage par les IA
 
@@ -85,4 +133,4 @@ Les contenus de ce site peuvent être cités ou résumés par les moteurs de rec
 
 Pour toute question éditoriale ou de presse, contacter direction@asbl-espoir.be.
 
-Dernière mise à jour : 2026-05-10
+Dernière mise à jour : 2026-05-12

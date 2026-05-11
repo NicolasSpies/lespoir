@@ -2,79 +2,73 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://asbl-espoir.be/</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://asbl-espoir.be/homepage.html</loc>
-    <lastmod>2026-04-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://asbl-espoir.be/srg.html</loc>
-    <lastmod>2026-04-21</lastmod>
+    <loc>https://asbl-espoir.be/srg</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://asbl-espoir.be/sase.html</loc>
-    <lastmod>2026-04-21</lastmod>
+    <loc>https://asbl-espoir.be/sase</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://asbl-espoir.be/sapa.html</loc>
-    <lastmod>2026-04-21</lastmod>
+    <loc>https://asbl-espoir.be/sapa</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://asbl-espoir.be/apropos.html</loc>
-    <lastmod>2026-04-21</lastmod>
+    <loc>https://asbl-espoir.be/apropos</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://asbl-espoir.be/actualites.html</loc>
-    <lastmod>2026-04-21</lastmod>
+    <loc>https://asbl-espoir.be/actualites</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://asbl-espoir.be/emploi.html</loc>
-    <lastmod>2026-04-21</lastmod>
+    <loc>https://asbl-espoir.be/emploi</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://asbl-espoir.be/don.html</loc>
-    <lastmod>2026-04-21</lastmod>
+    <loc>https://asbl-espoir.be/don</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://asbl-espoir.be/contact.html</loc>
-    <lastmod>2026-04-21</lastmod>
+    <loc>https://asbl-espoir.be/contact</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://asbl-espoir.be/article.html</loc>
-    <lastmod>2026-04-21</lastmod>
+    <loc>https://asbl-espoir.be/article</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://asbl-espoir.be/mentions-legales.html</loc>
-    <lastmod>2026-04-21</lastmod>
+    <loc>https://asbl-espoir.be/mentions-legales</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://asbl-espoir.be/politique-confidentialite.html</loc>
-    <lastmod>2026-04-21</lastmod>
+    <loc>https://asbl-espoir.be/politique-confidentialite</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

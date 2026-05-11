@@ -1,3 +1,7 @@
 .claude/
 .DS_Store
 node_modules/
+agentdb.rvf
+agentdb.rvf.lock
+fonts/agentdb.rvf
+fonts/agentdb.rvf.lock

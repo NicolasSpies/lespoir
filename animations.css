@@ -112,3 +112,57 @@ button:hover .icon-send {
 .tilt-img:hover img {
   transform: scale(1.04);
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   Scroll-margin · Sticky navbar offset for anchor jumps
+   ═══════════════════════════════════════════════════════════════ */
+:where([id]) {
+  scroll-margin-top: 96px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Touch · auto-reveal hover/active states on mobile when in view
+   (no hover events on touch devices, so we simulate the state)
+   ═══════════════════════════════════════════════════════════════ */
+@media (hover: none) {
+  .service-card.in-view,
+  .stat-card.in-view,
+  .actu-card.in-view,
+  .maison-feature.in-view,
+  .quick-card.in-view,
+  .info-card.in-view,
+  .method-card.in-view,
+  .don-card.in-view,
+  .service-contact-card.in-view {
+    box-shadow: 0 12px 32px rgba(0,38,38,0.10);
+    transform: translateY(-3px);
+  }
+  .service-img-wrap.in-view,
+  .tilt-img.in-view {
+    transform: rotate(0deg) translateY(-3px);
+  }
+  .service-img-wrap.in-view.tilt-right,
+  .tilt-img.in-view.tilt-right {
+    transform: rotate(0deg) translateY(-3px);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Print stylesheet · cleaner output for paper
+   ═══════════════════════════════════════════════════════════════ */
+@media print {
+  nav, footer, .mobile-drawer, .mobile-drawer-backdrop,
+  .scroll-indicator, .hamburger, .skip-link,
+  [aria-hidden="true"], video, iframe, .blob {
+    display: none !important;
+  }
+  body { background: #fff !important; color: #000 !important; }
+  section { background: #fff !important; padding: 1rem 0 !important; page-break-inside: avoid; }
+  h1, h2, h3 { color: #000 !important; page-break-after: avoid; }
+  a { color: #000 !important; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; color: #555; }
+  .curly-svg, .icon-heart, .material-symbols-outlined { display: none !important; }
+  .service-img-wrap, .tilt-img { transform: none !important; box-shadow: none !important; }
+  img { max-width: 100% !important; page-break-inside: avoid; }
+  @page { margin: 1.5cm; }
+}
