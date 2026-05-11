@@ -205,7 +205,23 @@ h1, h2, h3, h4, h5, h6,
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
 </div>
-<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #C04B72;outline-offset:2px}</style><a href="#main" class="skip-link">Aller au contenu principal</a>
+<style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #C04B72;outline-offset:2px}  /* ── Heartbeat animation for don/favorite icons ── */
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    18% { transform: scale(1.22); }
+    36% { transform: scale(1); }
+    54% { transform: scale(1.18); }
+    72% { transform: scale(1); }
+  }
+  .btn:hover .icon-heart, a:hover .icon-heart, button:hover .icon-heart {
+    animation: heartbeat 1.2s ease-in-out infinite;
+    font-variation-settings: 'FILL' 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn:hover .icon-heart, a:hover .icon-heart, button:hover .icon-heart { animation: none; }
+  }
+
+</style><a href="#main" class="skip-link">Aller au contenu principal</a>
 
 <!-- ── PREVIEW TOPBAR ── -->
 <div class="w-full bg-[#002626] text-[#EFE7DA]/75 flex items-center justify-between gap-3 flex-wrap px-4 md:px-6 py-2" style="font-size:11px;letter-spacing:0.04em;">
@@ -239,7 +255,7 @@ h1, h2, h3, h4, h5, h6,
     </div>
     <div class="flex items-center gap-2 sm:gap-3">
       <a href="don.html" class="btn btn-accent btn-sm">
-        <span class="material-symbols-outlined" style="font-size:18px;">favorite</span>
+        <span class="material-symbols-outlined icon-heart" style="font-size:18px;">favorite</span>
         <span class="hidden min-[420px]:inline">Faire un don</span>
       </a>
       <button id="hamburgerBtn" class="hamburger lg:hidden" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileDrawer">
@@ -276,7 +292,7 @@ h1, h2, h3, h4, h5, h6,
     <a href="contact.html" class="m-link">Contact</a>
   </nav>
   <div class="m-drawer-footer">
-    <a href="don.html" class="btn btn-accent"><span class="material-symbols-outlined" style="font-size:18px;">favorite</span>Faire un don</a>
+    <a href="don.html" class="btn btn-accent"><span class="material-symbols-outlined icon-heart" style="font-size:18px;">favorite</span>Faire un don</a>
   </div>
 </aside>
 
