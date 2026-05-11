@@ -444,13 +444,34 @@ h1, h2, h3, h4, h5, h6,
     .hero-img-deco, .hero-img-deco-2 { display: none; }
   }
 
-  /* ── Hero image ── */
-  .hero-img-card > picture {
+  /* ── Hero slider ── */
+  .hero-slider {
+    position: relative; width: 100%; height: 100%; overflow: hidden;
+  }
+  .hero-slide {
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    pointer-events: none;
+  }
+  .hero-slide.active {
+    opacity: 1;
+    animation: heroKenBurns 8s ease-out forwards;
+  }
+  .hero-slide picture {
     display: block; width: 100%; height: 100%;
   }
   .hero-img {
     width: 100%; height: 100%; object-fit: cover;
     display: block;
+  }
+  @keyframes heroKenBurns {
+    from { transform: scale(1); }
+    to   { transform: scale(1.08); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slide { transition: none; }
+    .hero-slide.active { animation: none; }
   }
 
   /* ── Scroll animations ── */
@@ -883,20 +904,44 @@ h1, h2, h3, h4, h5, h6,
         <div class="hero-img-deco" aria-hidden="true"></div>
         <div class="hero-img-deco-2" aria-hidden="true"></div>
         <div class="hero-img-card">
-          <picture>
-            <source
-              type="image/webp"
-              srcset="1-xs.webp 480w, 1-sm.webp 768w, 1-md.webp 1024w, 1.webp 1080w"
-              sizes="(max-width: 1023px) 100vw, 50vw"
-            />
-            <img
-              src="1.webp"
-              alt="L'Espoir asbl, aide à la jeunesse à Huy et Amay depuis 1985"
-              class="hero-img blur-up"
-              fetchpriority="high"
-              width="1080" height="1080"
-            />
-          </picture>
+          <div class="hero-slider" role="region" aria-roledescription="carousel" aria-label="Galerie L'Espoir asbl">
+            <div class="hero-slide active">
+              <picture>
+                <source type="image/webp"
+                  srcset="1-xs.webp 480w, 1-sm.webp 768w, 1-md.webp 1024w, 1.webp 1080w"
+                  sizes="(max-width: 1023px) 100vw, 50vw"/>
+                <img src="1.webp" alt="L'Espoir asbl, aide à la jeunesse à Huy et Amay depuis 1985"
+                  class="hero-img blur-up" fetchpriority="high" width="1080" height="1080"/>
+              </picture>
+            </div>
+            <div class="hero-slide">
+              <picture>
+                <source type="image/webp"
+                  srcset="2-xs.webp 480w, 2-sm.webp 768w, 2-md.webp 1024w, 2.webp 1200w"
+                  sizes="(max-width: 1023px) 100vw, 50vw"/>
+                <img src="2.webp" alt="SRG L'Espoir asbl, hébergement résidentiel pour enfants à Amay et Couthuin"
+                  class="hero-img blur-up" decoding="async" width="1200" height="801"/>
+              </picture>
+            </div>
+            <div class="hero-slide">
+              <picture>
+                <source type="image/webp"
+                  srcset="3-xs.webp 320w, 3-sm.webp 512w, 3-md.webp 682w, 3.webp 800w"
+                  sizes="(max-width: 1023px) 100vw, 50vw"/>
+                <img src="3.webp" alt="SASE L'Espoir asbl, accompagnement socio-éducatif à domicile dans la région de Huy"
+                  class="hero-img blur-up" decoding="async" width="800" height="1200"/>
+              </picture>
+            </div>
+            <div class="hero-slide">
+              <picture>
+                <source type="image/webp"
+                  srcset="4-xs.webp 320w, 4-sm.webp 512w, 4-md.webp 682w, 4.webp 800w"
+                  sizes="(max-width: 1023px) 100vw, 50vw"/>
+                <img src="4.webp" alt="SAPA L'Espoir asbl, parrainage familial à Huy, Waremme et Hannut"
+                  class="hero-img blur-up" decoding="async" width="800" height="1200"/>
+              </picture>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1233,6 +1278,50 @@ h1, h2, h3, h4, h5, h6,
   heroEls.forEach(function(el, i) {
     setTimeout(function() { el.classList.add('revealed'); }, 250 + i * 120);
   });
+
+  /* ══════════════════════════════════════
+     0c. HERO SLIDER (no dot navigation · auto-rotate · fade + Ken Burns)
+     ══════════════════════════════════════ */
+
+  (function() {
+    var slider = document.querySelector('.hero-slider');
+    if (!slider) return;
+    var slides = slider.querySelectorAll('.hero-slide');
+    if (slides.length < 2) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var current = 0;
+    var interval = 6000;
+    var timer;
+
+    function go(idx) {
+      var leaving = slides[current];
+      // Freeze Ken Burns scale so leaving slide doesn't snap back during fade-out
+      leaving.style.transform = window.getComputedStyle(leaving).transform;
+      leaving.classList.remove('active');
+      current = idx;
+      slides[current].classList.add('active');
+      // Clean frozen transform after fade completes
+      (function(el) { setTimeout(function() { el.style.transform = ''; }, 1300); })(leaving);
+    }
+
+    function next() { go((current + 1) % slides.length); }
+
+    function start() { if (!timer) timer = setInterval(next, interval); }
+    function pause() { clearInterval(timer); timer = null; }
+
+    // Pause on hover/focus (UX nicety + a11y)
+    slider.addEventListener('mouseenter', pause);
+    slider.addEventListener('mouseleave', start);
+    slider.addEventListener('focusin', pause);
+    slider.addEventListener('focusout', start);
+    // Pause when tab not visible (battery-friendly)
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) pause(); else start();
+    });
+
+    start();
+  })();
 
   /* ══════════════════════════════════════
      1. SCROLL-TRIGGERED ENTRANCE ANIMATIONS
