@@ -46,8 +46,7 @@
 @font-face { font-family: 'Pally'; src: url('fonts/Pally-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
 h1, h2, h3, h4, h5, h6,
   [class~="font-black"]:not(.material-symbols-outlined),
-  [class~="font-extrabold"]:not(.material-symbols-outlined),
-  .hero-stat-num { font-family: 'Pally', sans-serif !important; }
+  [class~="font-extrabold"]:not(.material-symbols-outlined) { font-family: 'Pally', sans-serif !important; }
 </style>
 <script id="tailwind-config">
   tailwind.config = {
@@ -548,12 +547,10 @@ h1, h2, h3, h4, h5, h6,
   <nav class="m-nav">
     <a href="homepage.html" class="m-link">Accueil</a>
     <div class="m-accordion">
-      <div class="m-link-row">
-        <a href="#" class="m-link m-link-main" onclick="event.preventDefault(); this.nextElementSibling.click();">Services</a>
-        <button class="m-accordion-trigger m-chevron-btn" aria-expanded="false" aria-label="Voir les sous-pages de Services">
-          <span class="m-chevron material-symbols-outlined">expand_more</span>
-        </button>
-      </div>
+      <button class="m-accordion-trigger m-link m-link-main" aria-expanded="false" aria-label="Voir les sous-pages de Services">
+        <span>Services</span>
+        <span class="m-chevron material-symbols-outlined" aria-hidden="true">expand_more</span>
+      </button>
       <div class="m-accordion-body">
         <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#E58346">SRG</span><span class="name">Service Résidentiel Général</span></a>
         <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#C04B72">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
@@ -572,39 +569,40 @@ h1, h2, h3, h4, h5, h6,
 
 <main id="main" class="flex-grow">
 
-  <!-- ── HERO ── -->
-  <section class="relative bg-[#002626] pt-16 pb-14 md:pt-24 md:pb-20 px-6 md:px-8 overflow-hidden blob-parent">
-    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(192,75,114,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
-    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,131,70,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
-    <div class="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.09) 0%, transparent 65%);position:absolute;"></div>
-    <div class="absolute -bottom-20 -left-20 w-80 h-80 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.06) 0%, transparent 70%);position:absolute;"></div>
-    <div class="relative max-w-4xl mx-auto">
-      <!-- Breadcrumb -->
-      <nav class="flex items-center gap-2 text-sm text-white/40 mb-8" aria-label="Fil d'Ariane">
-        <a href="homepage.html" class="hover:text-white/70 transition-colors">Accueil</a>
-        <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
-        <span class="text-[#C04B72] font-semibold">Offres d'emploi</span>
-      </nav>
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-5">
-        Travailler ici,<br class="hidden sm:block"/> ça a du <span style="position:relative;display:inline-block;">sens<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+  <!-- ── HEADER ── -->
+  <section class="bg-[#EFE7DA] pt-16 pb-16 md:pt-24 md:pb-24 px-6 md:px-8">
+    <div class="max-w-4xl mx-auto">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
+        <div style="width:28px;height:3px;background:#C04B72;border-radius:2px;flex-shrink:0;"></div>
+        <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(0,38,38,0.5);">Recrutement · L'Espoir asbl</span>
+      </div>
+
+      <h1 style="font-family:'Pally',sans-serif; font-weight:700; font-size:clamp(2.4rem,4.6vw,3.8rem); line-height:1.05; color:#002626; margin-bottom:18px;">
+        On a
+        <span style="display:inline-block; position:relative; vertical-align:baseline;">
+          <span style="font-family:'Pally',sans-serif; font-weight:700; font-size:1.6em; color:#C04B72; line-height:0.8; letter-spacing:-0.03em; padding:0 0.08em;">3</span>
+          <span aria-hidden="true" style="position:absolute; bottom:6px; left:0; right:0; height:2px; background:repeating-linear-gradient(90deg, rgba(192,75,114,0.55) 0, rgba(192,75,114,0.55) 4px, transparent 4px, transparent 8px);"></span>
+        </span>
+        postes ouverts<br/>
+        <span style="color:rgba(0,38,38,0.45); font-weight:500;">pour quelqu'un comme toi.</span>
       </h1>
-      <p class="text-lg text-white/65 leading-relaxed max-w-xl mb-10">
-        L'Espoir asbl, c'est une équipe à taille humaine, engagée depuis 1985 auprès des jeunes en difficulté. Si vous cherchez un travail qui compte vraiment, vous êtes au bon endroit.
+
+      <p style="font-size:16px; color:rgba(0,38,38,0.62); line-height:1.7; max-width:520px; margin-bottom:28px;">
+        Équipe à taille humaine, engagée depuis 1985 auprès des jeunes en difficulté dans la région de Huy.
       </p>
-      <div class="flex flex-wrap gap-4">
-        <a href="#offres" class="btn btn-accent btn-lg">
-          <span class="material-symbols-outlined" style="font-size:20px;">work</span>
+
+      <div class="flex flex-wrap gap-3">
+        <a href="#offres" class="btn btn-accent">
+          <span class="material-symbols-outlined" style="font-size:18px;">work</span>
           Voir les offres
         </a>
-        <a href="#candidature" data-poste="spontanee" class="btn btn-outline-light btn-lg">Candidature spontanée</a>
+        <a href="#candidature" data-poste="spontanee" class="btn btn-outline">Candidature spontanée</a>
       </div>
     </div>
   </section>
 
-  <div aria-hidden="true" style="background:#002626;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 8 Q360 48 720 20 Q1080 0 1440 32 L1440 48 L0 48 Z" fill="#EFE7DA"/></svg></div>
-
   <!-- ── POURQUOI NOUS REJOINDRE ── -->
-  <section class="py-16 md:py-20 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
+  <section class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
     <div class="blob" aria-hidden="true" style="width:240px;height:240px;background:rgba(17,157,164,0.09);top:20px;right:-60px;border-radius:50% 50% 70% 30% / 40% 60% 40% 60%;"></div>
     <div class="max-w-7xl mx-auto">
       <div class="max-w-2xl mb-12 why-header">
@@ -683,10 +681,11 @@ h1, h2, h3, h4, h5, h6,
     </div>
   </section>
 
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 12 Q360 0 720 36 Q1080 48 1440 20 L1440 48 L0 48 Z" fill="#fbf9f8"/></svg></div>
+
+  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-3px;margin-bottom:-5px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;"><path d="M0 12 Q360 0 720 36 Q1080 48 1440 20 L1440 48 L0 48 Z" fill="#fbf9f8"/></svg></div>
 
   <!-- ── OFFRES ── -->
-  <section id="offres" class="py-16 md:py-20 px-6 md:px-8 bg-surface">
+  <section id="offres" class="py-16 md:py-24 px-6 md:px-8 bg-surface">
     <div class="max-w-5xl mx-auto">
       <div class="flex items-center gap-3 mb-10 offres-header">
         <div class="w-1 h-6 bg-[#C04B72] rounded-full"></div>
@@ -812,10 +811,11 @@ h1, h2, h3, h4, h5, h6,
     </div>
   </section>
 
-  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 24 Q480 48 720 16 Q1080 0 1440 40 L1440 48 L0 48 Z" fill="#002626"/></svg></div>
+
+  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-top:-3px;margin-bottom:-5px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;"><path d="M0 24 Q480 48 720 16 Q1080 0 1440 40 L1440 48 L0 48 Z" fill="#002626"/></svg></div>
 
   <!-- ── PROFILS RECHERCHÉS ── -->
-  <section class="py-16 md:py-20 px-6 md:px-8 bg-[#002626]">
+  <section class="py-16 md:py-24 px-6 md:px-8 bg-[#002626]">
     <div class="max-w-7xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -825,7 +825,7 @@ h1, h2, h3, h4, h5, h6,
             <span class="text-white/40 font-black tracking-widest text-xs uppercase">Ce qu'on cherche</span>
           </div>
           <h2 class="text-3xl md:text-4xl font-black text-white leading-tight mb-8">
-            Des personnes avant des CV
+            <span style="color:rgba(255,255,255,0.5); font-weight:500;">Des personnes</span> <span style="position:relative;display:inline-block;">avant des CV<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span>
           </h2>
           <div class="space-y-5">
             <div class="flex items-start gap-4">
@@ -887,7 +887,8 @@ h1, h2, h3, h4, h5, h6,
     </div>
   </section>
 
-  <div aria-hidden="true" style="background:#002626;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 40 Q360 16 720 44 Q1080 48 1440 8 L1440 48 L0 48 Z" fill="#EFE7DA"/></svg></div>
+
+  <div aria-hidden="true" style="background:#002626;line-height:0;display:block;margin-top:-3px;margin-bottom:-5px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;"><path d="M0 40 Q360 16 720 44 Q1080 48 1440 8 L1440 48 L0 48 Z" fill="#EFE7DA"/></svg></div>
 
   <!-- ── CANDIDATURE SPONTANÉE ── -->
   <section id="candidature" class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
@@ -899,7 +900,7 @@ h1, h2, h3, h4, h5, h6,
         <span class="text-[#002626]/50 font-black tracking-widest text-xs uppercase">Votre candidature</span>
       </div>
       <h2 class="text-3xl md:text-4xl font-black text-[#002626] leading-tight mb-3 candid-header">
-        Rejoignez L'Espoir asbl
+        Rejoignez <span style="position:relative;display:inline-block;">L'Espoir<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span> asbl
       </h2>
       <p class="text-[#002626]/65 leading-relaxed max-w-2xl mb-12 candid-header" id="candidatureLead">
         Remplissez le formulaire ci-dessous pour déposer votre candidature, spontanée ou pour une offre précise. La direction vous recontacte sous 10 à 15 jours ouvrables.
@@ -1114,13 +1115,14 @@ h1, h2, h3, h4, h5, h6,
     </div>
   </section>
 
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 20 Q240 48 720 24 Q1080 4 1440 36 L1440 48 L0 48 Z" fill="#002626"/></svg></div>
+
+  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-3px;margin-bottom:-5px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;"><path d="M0 20 Q240 48 720 24 Q1080 4 1440 36 L1440 48 L0 48 Z" fill="#002626"/></svg></div>
 
   <!-- ── CTA: Soutien (V3 unified) ── -->
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden relative">
     <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.12) 0%, transparent 70%);"></div>
     <div class="relative max-w-4xl mx-auto text-center">
-      <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-5">Merci pour votre soutien</span>
+      <div class="inline-flex items-center gap-2.5 mb-5"><div class="w-7" style="height:3px;background:#C04B72;border-radius:2px;flex-shrink:0;"></div><span class="text-[#C04B72] font-black tracking-widest text-sm uppercase">Merci pour votre soutien</span></div>
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight">
         Ensemble, on continue.
       </h2>
@@ -1272,6 +1274,9 @@ h1, h2, h3, h4, h5, h6,
     }, { threshold: 0.07 });
 
     revealItems.forEach(function(item) { observer.observe(item.el); });
+
+    // Safeguard: reveal anything still hidden after 1.5s
+    setTimeout(function() { revealItems.forEach(function(item) { if (!item.el.classList.contains("revealed")) { item.el.classList.add("revealed"); observer.unobserve(item.el); } }); }, 1500);
   }
 
   /* ── BLUR-UP IMAGES ── */

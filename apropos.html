@@ -46,8 +46,7 @@
 @font-face { font-family: 'Pally'; src: url('fonts/Pally-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
 h1, h2, h3, h4, h5, h6,
   [class~="font-black"]:not(.material-symbols-outlined),
-  [class~="font-extrabold"]:not(.material-symbols-outlined),
-  .hero-stat-num { font-family: 'Pally', sans-serif !important; }
+  [class~="font-extrabold"]:not(.material-symbols-outlined) { font-family: 'Pally', sans-serif !important; }
 </style>
 <script id="tailwind-config">
   tailwind.config = {
@@ -303,30 +302,19 @@ h1, h2, h3, h4, h5, h6,
   .service-img-wrap {
     border-radius: 1rem; overflow: hidden; height: 400px;
     box-shadow: 0 20px 60px rgba(0,38,38,0.12);
+    transform: rotate(-1.5deg);
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.5s ease;
   }
+  .service-img-wrap.revealed { transform: rotate(-1.5deg); }
+  .service-img-wrap.tilt-right.revealed { transform: rotate(1.5deg); }
+  .service-img-wrap:hover, .service-img-wrap.revealed:hover {
+    transform: rotate(0deg) translateY(-4px);
+    box-shadow: 0 28px 70px rgba(0,38,38,0.18);
+  }
+  .service-img-wrap.tilt-right { transform: rotate(1.5deg); }
+  .service-img-wrap.tilt-right:hover { transform: rotate(0deg) translateY(-4px); }
   @media (min-width: 768px) { .service-img-wrap { height: 480px; } }
   .service-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-  /* ── Hero stats bar ── */
-  .hero-stats-bar {
-    display: flex; justify-content: center;
-    gap: 0; flex-wrap: wrap;
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 1rem; overflow: hidden;
-    background: rgba(255,255,255,0.04);
-  }
-  .hero-stat-item {
-    flex: 1; min-width: 110px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 0.2rem; padding: 1.25rem 1rem;
-    border-right: 1px solid rgba(255,255,255,0.10);
-  }
-  .hero-stat-item:last-child { border-right: none; }
-  .hero-stat-num { font-size: 1.75rem; font-weight: 900; line-height: 1; color: #C04B72; }
-  .hero-stat-label {
-    font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.09em; color: rgba(255,255,255,0.5); text-align: center;
-  }
 
   /* ── Timeline ── */
   .timeline-item { display: flex; gap: 1.5rem; }
@@ -569,12 +557,10 @@ h1, h2, h3, h4, h5, h6,
   <nav class="m-nav">
     <a href="homepage.html" class="m-link">Accueil</a>
     <div class="m-accordion">
-      <div class="m-link-row">
-        <a href="#" class="m-link m-link-main" onclick="event.preventDefault(); this.nextElementSibling.click();">Services</a>
-        <button class="m-accordion-trigger m-chevron-btn" aria-expanded="false" aria-label="Voir les sous-pages de Services">
-          <span class="m-chevron material-symbols-outlined">expand_more</span>
-        </button>
-      </div>
+      <button class="m-accordion-trigger m-link m-link-main" aria-expanded="false" aria-label="Voir les sous-pages de Services">
+        <span>Services</span>
+        <span class="m-chevron material-symbols-outlined" aria-hidden="true">expand_more</span>
+      </button>
       <div class="m-accordion-body">
         <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#E58346">SRG</span><span class="name">Service Résidentiel Général</span></a>
         <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#C04B72">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
@@ -593,87 +579,51 @@ h1, h2, h3, h4, h5, h6,
 
 <main id="main" class="flex-grow">
 
-  <!-- ── HERO ── -->
-  <section class="relative bg-[#002626] pt-20 pb-16 md:pt-28 md:pb-24 px-6 md:px-8 overflow-hidden blob-parent">
-    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(192,75,114,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
-    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,131,70,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
-    <img
-      src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1600&q=80&auto=format&fit=crop"
-      alt="" aria-hidden="true"
-      class="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none select-none"
-      style="position:absolute"
-      loading="eager"
-    />
-    <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.12) 0%, transparent 70%);position:absolute;"></div>
+  <!-- ── HEADER ── -->
+  <section class="relative bg-[#EFE7DA] pt-16 pb-16 md:pt-24 md:pb-24 px-6 md:px-8 overflow-hidden">
+    <div aria-hidden="true" style="font-family:'Pally',sans-serif; position:absolute; right:-3vw; top:50%; transform:translateY(-46%); font-weight:700; font-size:clamp(13rem,22vw,26rem); line-height:0.85; color:#002626; opacity:0.07; letter-spacing:-0.05em; pointer-events:none; user-select:none; white-space:nowrap;">
+      1985
+    </div>
 
     <div class="relative max-w-4xl mx-auto">
-      <!-- Breadcrumb -->
-      <nav class="flex items-center gap-2 text-sm text-white/40 mb-8" aria-label="Fil d'Ariane">
-        <a href="homepage.html" class="hover:text-white/70 transition-colors">Accueil</a>
-        <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
-        <span class="text-[#C04B72] font-semibold">À propos</span>
-      </nav>
-
-      <!-- Badge -->
-      <span class="inline-flex items-center gap-2 bg-[#C04B72]/20 text-[#C04B72] border border-[#C04B72]/30 rounded-full px-4 py-1.5 text-sm font-bold mb-6">
-        <span class="w-2 h-2 rounded-full bg-[#C04B72] inline-block"></span>
-        L'Espoir asbl · Huy, Belgique
-      </span>
-
-      <!-- Headline -->
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-6">
-        Une association au service<br class="hidden sm:block"/> des <span style="position:relative;display:inline-block;">jeunes<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span> depuis 1985
-      </h1>
-      <p class="text-lg text-white/70 leading-relaxed mb-10 max-w-2xl">
-        Fondée dans la région de Huy par des travailleurs du secteur social, L'Espoir asbl accompagne des centaines de familles et de jeunes depuis quarante ans. Trois services agréés, une seule conviction : chaque enfant mérite un endroit sûr pour grandir.
-      </p>
-
-      <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row flex-wrap gap-4 mb-14">
-        <a href="#histoire" class="btn btn-accent btn-lg">
-          Notre histoire
-          <span class="material-symbols-outlined" style="font-size:20px;">arrow_downward</span>
-        </a>
-        <a href="contact.html" class="btn btn-outline-light btn-lg">
-          <span class="material-symbols-outlined" style="font-size:20px;">mail</span>
-          Nous contacter
-        </a>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
+        <div style="width:28px;height:3px;background:#C04B72;border-radius:2px;flex-shrink:0;"></div>
+        <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(0,38,38,0.5);">L'Espoir asbl · Huy, Belgique</span>
       </div>
 
-      <!-- Stats bar -->
-      <div class="hero-stats-bar">
-        <div class="hero-stat-item">
-          <span class="hero-stat-num">40+</span>
-          <span class="hero-stat-label">Ans d'existence</span>
-        </div>
-        <div class="hero-stat-item">
-          <span class="hero-stat-num">3</span>
-          <span class="hero-stat-label">Services agréés</span>
-        </div>
-        <div class="hero-stat-item">
-          <span class="hero-stat-num">~60</span>
-          <span class="hero-stat-label">Jeunes par an</span>
-        </div>
-        <div class="hero-stat-item">
-          <span class="hero-stat-num">1985</span>
-          <span class="hero-stat-label">Fondée en</span>
-        </div>
+      <h1 style="font-family:'Pally',sans-serif; font-weight:700; font-size:clamp(2.6rem,5.2vw,4.4rem); line-height:1.02; margin-bottom:24px; max-width:780px;">
+        <span style="font-weight:500; color:rgba(0,38,38,0.45); font-size:0.6em; display:block; margin-bottom:8px; letter-spacing:0.02em;">Notre métier&nbsp;?</span>
+        Aider les <span style="position:relative;display:inline-block;">jeunes<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span><br/>
+        <span style="color:rgba(0,38,38,0.45); font-weight:500;">qui en ont besoin.</span>
+      </h1>
+
+      <p style="font-size:17px; color:rgba(0,38,38,0.62); line-height:1.7; max-width:520px; margin-bottom:28px;">
+        Trois services agréés par la Fédération Wallonie-Bruxelles, à Huy et Amay, pour les familles et les jeunes en difficulté.
+      </p>
+
+      <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+        <a href="#histoire" class="btn btn-accent btn-lg">
+          Notre histoire
+          <span class="material-symbols-outlined" style="font-size:18px;">arrow_downward</span>
+        </a>
+        <span style="display:inline-flex; align-items:baseline; gap:6px;">
+          <span style="font-family:'Pally',sans-serif; font-weight:500; color:rgba(0,38,38,0.45); font-size:13px; letter-spacing:0.08em; text-transform:uppercase;">Depuis</span>
+          <span style="font-family:'Pally',sans-serif; font-weight:700; color:#C04B72; font-size:18px;">40 ans</span>
+        </span>
       </div>
     </div>
   </section>
 
-  <div aria-hidden="true" style="background:#002626;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 32 Q360 8 720 44 Q1080 48 1440 16 L1440 48 L0 48 Z" fill="#fbf9f8"/></svg></div>
-
   <!-- ── NOTRE HISTOIRE ── -->
-  <section id="histoire" class="py-20 md:py-28 px-6 md:px-8 bg-surface blob-parent">
+  <section id="histoire" class="py-16 md:py-24 px-6 md:px-8 bg-surface blob-parent">
     <div class="blob" aria-hidden="true" style="width:200px;height:200px;background:rgba(229,131,70,0.07);top:20px;left:-50px;border-radius:45% 55% 40% 60% / 60% 40% 60% 40%;"></div>
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
       <!-- Text + timeline -->
       <div class="section-text">
-        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Notre histoire</span>
+        <div class="inline-flex items-center gap-2.5 mb-4"><div class="w-7" style="height:3px;background:#C04B72;border-radius:2px;flex-shrink:0;"></div><span class="text-[#C04B72] font-black tracking-widest text-sm uppercase">Notre histoire</span></div>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          Quarante ans de présence dans la région de Huy
+          Quarante ans <span style="color:rgba(0,38,38,0.45); font-weight:500;">de présence dans la région de</span> <span style="position:relative;display:inline-block;">Huy<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
         </h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-4">
           L'Espoir asbl existe depuis 1985. Au départ, c'était surtout une maison d'accueil pour les jeunes qui n'avaient nulle part où aller. L'association a grandi au fil des années et développé deux autres services pour répondre à des besoins différents : un accompagnement à domicile pour les familles et un service de parrainage pour créer des liens bénévoles durables.
@@ -743,15 +693,16 @@ h1, h2, h3, h4, h5, h6,
     </div>
   </section>
 
-  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 24 Q480 48 720 16 Q1080 0 1440 40 L1440 48 L0 48 Z" fill="#002626"/></svg></div>
+
+  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-top:-3px;margin-bottom:-5px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;"><path d="M0 24 Q480 48 720 16 Q1080 0 1440 40 L1440 48 L0 48 Z" fill="#002626"/></svg></div>
 
   <!-- ── MISSIONS & VALEURS ── -->
-  <section id="valeurs" class="py-20 md:py-28 px-6 md:px-8 bg-[#002626]">
+  <section id="valeurs" class="py-16 md:py-24 px-6 md:px-8 bg-[#002626]">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12 md:mb-16">
-        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Valeurs</span>
+        <div class="inline-flex items-center gap-2.5 mb-4"><div class="w-7" style="height:3px;background:#C04B72;border-radius:2px;flex-shrink:0;"></div><span class="text-[#C04B72] font-black tracking-widest text-sm uppercase">Valeurs</span></div>
         <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight max-w-2xl mx-auto mb-6">
-          Ce qui nous guide au quotidien
+          Ce qui nous guide <span style="color:rgba(255,255,255,0.5); font-weight:500;">au</span> <span style="position:relative;display:inline-block;">quotidien<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span>
         </h2>
         <p class="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
           Ce qui rend une équipe différente, c'est rarement les méthodes : c'est l'esprit dans lequel elles sont mises en œuvre. Quatre engagements reviennent dans toutes nos décisions, qu'on travaille au SRG, au SASE ou au SAPA.
@@ -804,16 +755,17 @@ h1, h2, h3, h4, h5, h6,
     </div>
   </section>
 
-  <div aria-hidden="true" style="background:#002626;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 40 Q360 16 720 44 Q1080 48 1440 8 L1440 48 L0 48 Z" fill="#EFE7DA"/></svg></div>
+
+  <div aria-hidden="true" style="background:#002626;line-height:0;display:block;margin-top:-3px;margin-bottom:-5px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;"><path d="M0 40 Q360 16 720 44 Q1080 48 1440 8 L1440 48 L0 48 Z" fill="#EFE7DA"/></svg></div>
 
   <!-- ── NOTRE ÉQUIPE ── -->
-  <section id="equipe" class="py-20 md:py-28 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
+  <section id="equipe" class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
     <div class="blob" aria-hidden="true" style="width:240px;height:240px;background:rgba(17,157,164,0.09);bottom:40px;right:-60px;border-radius:50% 50% 70% 30% / 40% 60% 40% 60%;"></div>
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-14">
-        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Notre équipe</span>
+        <div class="inline-flex items-center gap-2.5 mb-4"><div class="w-7" style="height:3px;background:#C04B72;border-radius:2px;flex-shrink:0;"></div><span class="text-[#C04B72] font-black tracking-widest text-sm uppercase">Notre équipe</span></div>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] leading-tight">
-          Les gens derrière L'Espoir
+          <span style="color:rgba(0,38,38,0.45); font-weight:500;">Les gens derrière</span> <span style="position:relative;display:inline-block;">L'Espoir<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
         </h2>
         <p class="text-[#002626]/80 mt-4 max-w-xl mx-auto text-base leading-relaxed">
           Une vingtaine de personnes, plusieurs métiers, un seul projet. Chaque service a sa propre équipe, mais tout le monde se connaît et travaille souvent ensemble.
@@ -1047,13 +999,14 @@ h1, h2, h3, h4, h5, h6,
     </div>
   </section>
 
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 16 Q360 48 720 12 Q1080 0 1440 44 L1440 48 L0 48 Z" fill="#002626"/></svg></div>
+
+  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-3px;margin-bottom:-5px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;"><path d="M0 16 Q360 48 720 12 Q1080 0 1440 44 L1440 48 L0 48 Z" fill="#002626"/></svg></div>
 
   <!-- ── CTA: Soutien (V3 unified) ── -->
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden relative">
     <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.12) 0%, transparent 70%);"></div>
     <div class="relative max-w-4xl mx-auto text-center">
-      <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-5">Merci pour votre soutien</span>
+      <div class="inline-flex items-center gap-2.5 mb-5"><div class="w-7" style="height:3px;background:#C04B72;border-radius:2px;flex-shrink:0;"></div><span class="text-[#C04B72] font-black tracking-widest text-sm uppercase">Merci pour votre soutien</span></div>
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight">
         Ensemble, on continue.
       </h2>
@@ -1211,6 +1164,9 @@ h1, h2, h3, h4, h5, h6,
     }, { threshold: 0.1 });
 
     revealItems.forEach(function(item) { observer.observe(item.el); });
+
+    // Safeguard: reveal anything still hidden after 1.5s
+    setTimeout(function() { revealItems.forEach(function(item) { if (!item.el.classList.contains("revealed")) { item.el.classList.add("revealed"); observer.unobserve(item.el); } }); }, 1500);
   }
 
   /* ── NAV DROPDOWNS ── */

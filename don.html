@@ -47,8 +47,7 @@
 @font-face { font-family: 'Pally'; src: url('fonts/Pally-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
 h1, h2, h3, h4, h5, h6,
   [class~="font-black"]:not(.material-symbols-outlined),
-  [class~="font-extrabold"]:not(.material-symbols-outlined),
-  .hero-stat-num { font-family: 'Pally', sans-serif !important; }
+  [class~="font-extrabold"]:not(.material-symbols-outlined) { font-family: 'Pally', sans-serif !important; }
 </style>
 <script id="tailwind-config">
   tailwind.config = {
@@ -320,6 +319,16 @@ h1, h2, h3, h4, h5, h6,
     .method-card.revealed.is-active { transform: translateY(-3px); }
   }
 
+  /* ── Header way-row (editorial reasons list) ── */
+  .way-row {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(0,38,38,0.1);
+  }
+  .way-row:last-child { border-bottom: none; }
+  .way-label { font-family: 'Pally', sans-serif; font-weight: 700; font-size: 18px; color: #002626; }
+  .way-detail { font-size: 14px; color: rgba(0,38,38,0.55); }
+
 </style>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
@@ -379,12 +388,10 @@ h1, h2, h3, h4, h5, h6,
   <nav class="m-nav">
     <a href="homepage.html" class="m-link">Accueil</a>
     <div class="m-accordion">
-      <div class="m-link-row">
-        <a href="#" class="m-link m-link-main" onclick="event.preventDefault(); this.nextElementSibling.click();">Services</a>
-        <button class="m-accordion-trigger m-chevron-btn" aria-expanded="false" aria-label="Voir les sous-pages de Services">
-          <span class="m-chevron material-symbols-outlined">expand_more</span>
-        </button>
-      </div>
+      <button class="m-accordion-trigger m-link m-link-main" aria-expanded="false" aria-label="Voir les sous-pages de Services">
+        <span>Services</span>
+        <span class="m-chevron material-symbols-outlined" aria-hidden="true">expand_more</span>
+      </button>
       <div class="m-accordion-body">
         <a href="srg.html" class="m-sublink"><span class="abbr" style="color:#E58346">SRG</span><span class="name">Service Résidentiel Général</span></a>
         <a href="sase.html" class="m-sublink"><span class="abbr" style="color:#C04B72">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
@@ -403,45 +410,42 @@ h1, h2, h3, h4, h5, h6,
 
 <main id="main" class="flex-grow">
 
-  <!-- ── HERO ── -->
-  <section class="relative bg-[#002626] pt-16 pb-16 md:pt-24 md:pb-24 px-6 md:px-8 overflow-hidden blob-parent">
-    <div class="blob" aria-hidden="true" style="width:300px;height:300px;background:rgba(192,75,114,0.12);top:20px;right:-80px;border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;"></div>
-    <div class="blob" aria-hidden="true" style="width:220px;height:220px;background:rgba(229,131,70,0.08);bottom:30px;left:-60px;border-radius:40% 60% 35% 65% / 55% 35% 65% 45%;"></div>
-    <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.15) 0%, transparent 70%);position:absolute;"></div>
-    <div class="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(229,131,70,0.08) 0%, transparent 70%);position:absolute;"></div>
+  <!-- ── HEADER ── -->
+  <section class="bg-[#EFE7DA] pt-16 pb-16 md:pt-24 md:pb-24 px-6 md:px-8 blob-parent">
+    <div class="blob" aria-hidden="true" style="width:320px;height:320px;background:rgba(192,75,114,0.10);top:-80px;right:-100px;border-radius:55% 45% 65% 35% / 50% 50% 50% 50%;"></div>
+    <div class="blob" aria-hidden="true" style="width:240px;height:240px;background:rgba(229,131,70,0.08);bottom:-60px;left:-60px;border-radius:50% 50% 70% 30% / 40% 60% 40% 60%;"></div>
+
     <div class="relative max-w-4xl mx-auto">
-      <nav class="flex items-center gap-2 text-sm text-white/40 mb-8" aria-label="Fil d'Ariane">
-        <a href="homepage.html" class="hover:text-white/70 transition-colors">Accueil</a>
-        <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
-        <span class="text-[#C04B72] font-semibold">Faire un don</span>
-      </nav>
-      <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-5">Nous soutenir</span>
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.08] tracking-tight mb-6">
-        Votre don, <br class="hidden sm:block"/>leur <span style="position:relative;display:inline-block;">avenir<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>.
-      </h1>
-      <p class="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mb-10">
-        Depuis 1985, L'Espoir accompagne des jeunes et des familles qui traversent des moments difficiles. Grâce à vous, on peut continuer à leur offrir un cadre, une écoute et un vrai coup de pouce.
-      </p>
-      <div class="flex flex-col sm:flex-row flex-wrap gap-4">
-        <a href="#methodes" class="btn btn-accent btn-lg">
-          <span class="material-symbols-outlined" style="font-size:20px;">favorite</span>
-          Je fais un don
-        </a>
-        <a href="#comment" class="btn btn-outline-light btn-lg">Comment ça marche ?</a>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
+        <div style="width:28px;height:3px;background:#C04B72;border-radius:2px;flex-shrink:0;"></div>
+        <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(0,38,38,0.5);">Soutenir L'Espoir · depuis 1985</span>
       </div>
-      <p class="text-white/50 text-sm mt-8">Dons ≥ 40 € déductibles fiscalement · Via le Service Arc-en-Ciel</p>
+      <h1 style="font-family:'Pally',sans-serif; font-weight:700; font-size:clamp(2.6rem,5vw,4.2rem); line-height:1.02; color:#002626; margin-bottom:26px; max-width:780px;">
+        Donner, c'est nous aider à <span style="position:relative;display:inline-block;">continuer<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>.
+      </h1>
+      <p style="font-size:18px; color:#002626; line-height:1.7; max-width:620px; margin-bottom:14px;">
+        Un repas chaud, une chambre repeinte, une famille qui souffle un weekend. Voilà ce que devient votre don, concrètement.
+      </p>
+      <p style="font-size:14px; color:rgba(0,38,38,0.55); line-height:1.7; max-width:620px; margin-bottom:32px;">
+        100&nbsp;% va sur le terrain (l'administration est couverte par les subsides). Déductible dès 40&nbsp;€ via le Service Arc-en-Ciel. Une asbl à taille humaine, agréée par la Fédération Wallonie-Bruxelles.
+      </p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a href="#methodes" class="btn btn-accent btn-lg">
+          <span class="material-symbols-outlined" style="font-size:18px;">favorite</span>
+          Faire un don
+        </a>
+        <a href="#comment" class="btn btn-outline btn-lg">Comment ça marche</a>
+      </div>
     </div>
   </section>
-
-  <div aria-hidden="true" style="background:#002626;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 8 Q360 48 720 20 Q1080 0 1440 32 L1440 48 L0 48 Z" fill="#EFE7DA"/></svg></div>
 
   <!-- ── POURQUOI DONNER ── -->
   <section class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
     <div class="blob" aria-hidden="true" style="width:240px;height:240px;background:rgba(17,157,164,0.09);bottom:40px;right:-60px;border-radius:50% 50% 70% 30% / 40% 60% 40% 60%;"></div>
     <div class="max-w-7xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-3">Votre impact</span>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight">Ce que votre don change concrètement</h2>
+        <div class="inline-flex items-center gap-2.5 mb-3"><div class="w-7" style="height:3px;background:#C04B72;border-radius:2px;flex-shrink:0;"></div><span class="text-[#C04B72] font-black tracking-widest text-sm uppercase">Votre impact</span></div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight"><span style="color:rgba(0,38,38,0.45); font-weight:500;">Ce que votre don change</span> <span style="position:relative;display:inline-block;">concrètement<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed">
           Chaque euro reçu est investi directement dans les projets qui améliorent le quotidien des jeunes accompagnés. Voici à quoi ça ressemble.
         </p>
@@ -466,14 +470,15 @@ h1, h2, h3, h4, h5, h6,
     </div>
   </section>
 
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 36 Q480 0 720 40 Q960 48 1440 12 L1440 48 L0 48 Z" fill="#fbf9f8"/></svg></div>
+
+  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-3px;margin-bottom:-5px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;"><path d="M0 36 Q480 0 720 40 Q960 48 1440 12 L1440 48 L0 48 Z" fill="#EFE7DA"/></svg></div>
 
   <!-- ── MÉTHODES DE DON ── -->
   <section id="methodes" class="py-16 md:py-24 px-6 md:px-8">
     <div class="max-w-6xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-3">Comment donner</span>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight">Par virement, simple et déductible</h2>
+        <div class="inline-flex items-center gap-2.5 mb-3"><div class="w-7" style="height:3px;background:#C04B72;border-radius:2px;flex-shrink:0;"></div><span class="text-[#C04B72] font-black tracking-widest text-sm uppercase">Comment donner</span></div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight">Par virement, <span style="color:rgba(0,38,38,0.45); font-weight:500;">simple et</span> <span style="position:relative;display:inline-block;">déductible<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed">
           Virement ponctuel ou ordre permanent, via le compte du Service Arc-en-Ciel. Vous recevez une attestation fiscale automatique dès 40 € par an.
         </p>
@@ -536,14 +541,15 @@ h1, h2, h3, h4, h5, h6,
     </div>
   </section>
 
-  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 24 Q360 48 720 16 Q1080 0 1440 36 L1440 48 L0 48 Z" fill="#EFE7DA"/></svg></div>
+
+  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-3px;margin-bottom:-5px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;"><path d="M0 24 Q360 48 720 16 Q1080 0 1440 36 L1440 48 L0 48 Z" fill="#EFE7DA"/></svg></div>
 
   <!-- ── COMMENT ÇA MARCHE / FAQ ── -->
   <section id="comment" class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
     <div class="blob" aria-hidden="true" style="width:280px;height:280px;background:rgba(192,75,114,0.10);top:20px;right:-80px;border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;"></div>
     <div class="max-w-4xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="text-[#119DA4] font-black tracking-widest text-sm uppercase block mb-3">Comment ça marche ?</span>
+        <div class="inline-flex items-center gap-2.5 mb-3"><div class="w-7" style="height:3px;background:#119DA4;border-radius:2px;flex-shrink:0;"></div><span class="text-[#119DA4] font-black tracking-widest text-sm uppercase">Comment ça marche ?</span></div>
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight">Questions fréquentes</h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed">
           Tout ce qu'il faut savoir avant de faire votre premier don.
@@ -597,13 +603,14 @@ h1, h2, h3, h4, h5, h6,
     </div>
   </section>
 
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-bottom:-1px;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:48px;"><path d="M0 4 Q360 48 720 8 Q1080 0 1440 40 L1440 48 L0 48 Z" fill="#002626"/></svg></div>
+
+  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-3px;margin-bottom:-5px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;"><path d="M0 4 Q360 48 720 8 Q1080 0 1440 40 L1440 48 L0 48 Z" fill="#002626"/></svg></div>
 
   <!-- ── CTA FINAL ── -->
   <section class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden relative">
     <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style="background:radial-gradient(circle, rgba(192,75,114,0.12) 0%, transparent 70%);"></div>
     <div class="relative max-w-4xl mx-auto text-center">
-      <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-5">Merci pour votre soutien</span>
+      <div class="inline-flex items-center gap-2.5 mb-5"><div class="w-7" style="height:3px;background:#C04B72;border-radius:2px;flex-shrink:0;"></div><span class="text-[#C04B72] font-black tracking-widest text-sm uppercase">Merci pour votre soutien</span></div>
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight">
         Ensemble, on continue.
       </h2>
@@ -792,6 +799,9 @@ h1, h2, h3, h4, h5, h6,
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.scroll-reveal').forEach(function(el) { observer.observe(el); });
+
+    // Safeguard: reveal anything still hidden after 1.5s
+    setTimeout(function() { document.querySelectorAll('.scroll-reveal:not(.revealed)').forEach(function(el) { el.classList.add('revealed'); observer.unobserve(el); }); }, 1500);
   }
 
   if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
