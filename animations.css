@@ -332,6 +332,43 @@ button:hover .icon-send {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   12b. TRUST-STRIP · scannable trust badges (don.html hero etc.)
+        Used in place of disclaimer-style paragraphs for fast-read
+        credibility cues. Reusable on any page.
+   ═══════════════════════════════════════════════════════════════ */
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.7rem;
+  margin-bottom: 32px;
+  max-width: 620px;
+}
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: rgba(0,38,38,0.78);
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(0,38,38,0.10);
+  border-radius: 100px;
+  padding: 0.42rem 0.85rem;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.trust-badge:hover {
+  background: #fff;
+  border-color: rgba(0,38,38,0.18);
+  transform: translateY(-1px);
+}
+.trust-badge .material-symbols-outlined {
+  font-size: 16px;
+  color: #C04B72;
+  font-variation-settings: 'FILL' 1;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
    13. METHOD-CARD icon (don.html) · slight tilt on hover
    ═══════════════════════════════════════════════════════════════ */
 .method-card .material-symbols-outlined {

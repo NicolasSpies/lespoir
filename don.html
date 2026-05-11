@@ -410,12 +410,14 @@ h1, h2, h3, h4, h5, h6,
       <h1 style="font-family:'Pally',sans-serif; font-weight:700; font-size:clamp(2.6rem,5vw,4.2rem); line-height:1.02; color:#002626; margin-bottom:26px; max-width:780px;">
         Donner, c'est nous aider à <span style="position:relative;display:inline-block;">continuer<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>.
       </h1>
-      <p style="font-size:18px; color:#002626; line-height:1.7; max-width:620px; margin-bottom:14px;">
+      <p style="font-size:18px; color:#002626; line-height:1.7; max-width:620px; margin-bottom:24px;">
         Un repas chaud, une chambre repeinte, une famille qui souffle un weekend. Voilà ce que devient votre don, concrètement.
       </p>
-      <p style="font-size:14px; color:rgba(0,38,38,0.55); line-height:1.7; max-width:620px; margin-bottom:32px;">
-        100&nbsp;% va sur le terrain (l'administration est couverte par les subsides). Déductible dès 40&nbsp;€ via le Service Arc-en-Ciel. Une asbl à taille humaine, agréée par la Fédération Wallonie-Bruxelles.
-      </p>
+      <div class="trust-strip">
+        <span class="trust-badge"><span class="material-symbols-outlined">check_circle</span>100&nbsp;% sur le terrain</span>
+        <span class="trust-badge"><span class="material-symbols-outlined">check_circle</span>Déductible 45&nbsp;%</span>
+        <span class="trust-badge"><span class="material-symbols-outlined">verified</span>Agréée FWB</span>
+      </div>
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
         <a href="#methodes" class="btn btn-accent btn-lg">
           <span class="material-symbols-outlined icon-heart" style="font-size:18px;">favorite</span>
@@ -426,16 +428,17 @@ h1, h2, h3, h4, h5, h6,
     </div>
   </section>
 
-  <!-- ── POURQUOI DONNER ── -->
-  <section class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
-    <div class="blob" aria-hidden="true" style="width:240px;height:240px;background:rgba(17,157,164,0.09);bottom:40px;right:-60px;border-radius:50% 50% 70% 30% / 40% 60% 40% 60%;"></div>
+  <!-- Wave: Hero (#EFE7DA) → Votre Impact (#fbf9f8) -->
+  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-1px;margin-bottom:-1px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;"><path d="M0 28 Q360 4 720 24 Q1080 44 1440 12 L1440 50 L0 50 Z" fill="#fbf9f8"/></svg></div>
+
+  <!-- ── VOTRE IMPACT ── -->
+  <section class="py-16 md:py-24 px-6 md:px-8 bg-[#fbf9f8] blob-parent">
+    <div class="blob" aria-hidden="true" style="width:240px;height:240px;background:rgba(17,157,164,0.06);bottom:40px;right:-60px;border-radius:50% 50% 70% 30% / 40% 60% 40% 60%;"></div>
     <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-        <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-3">Votre impact</span>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight"><span style="color:rgba(0,38,38,0.45); font-weight:500;">Ce que votre don change</span> <span style="position:relative;display:inline-block;">concrètement<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
-        <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed">
-          Chaque euro reçu est investi directement dans les projets qui améliorent le quotidien des jeunes accompagnés. Voici à quoi ça ressemble.
-        </p>
+      <div class="text-center max-w-2xl mx-auto mb-10 md:mb-14">
+        <h2 class="text-2xl md:text-3xl font-bold text-[#002626] leading-tight">
+          <span style="color:rgba(0,38,38,0.45); font-weight:500;">Ce que votre don change</span> concrètement
+        </h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="impact-card">
@@ -456,9 +459,6 @@ h1, h2, h3, h4, h5, h6,
       </div>
     </div>
   </section>
-
-
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-1px;margin-bottom:-1px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;"><path d="M0 36 Q480 0 720 40 Q960 48 1440 12 L1440 50 L0 50 Z" fill="#EFE7DA"/></svg></div>
 
   <!-- ── MÉTHODES DE DON ── -->
   <section id="methodes" class="py-16 md:py-24 px-6 md:px-8">
