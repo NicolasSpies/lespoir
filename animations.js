@@ -106,7 +106,93 @@
     });
   }
 
-  // ── 4. Form validation messages in French ──
+  // ── 4. Checklist · sequential item reveal on scroll ──
+  if ('IntersectionObserver' in window && !prefersReducedMotion) {
+    var checklists = document.querySelectorAll('.checklist');
+    if (checklists.length > 0) {
+      var checklistObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            checklistObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      checklists.forEach(function(cl) { checklistObs.observe(cl); });
+      // Safety reveal after 2s in case scroll never triggers
+      setTimeout(function() {
+        document.querySelectorAll('.checklist:not(.revealed)').forEach(function(cl) {
+          cl.classList.add('revealed');
+        });
+      }, 2200);
+    }
+  } else {
+    document.querySelectorAll('.checklist').forEach(function(cl) {
+      cl.classList.add('revealed');
+    });
+  }
+
+  // ── 5. FAQ <details> · smooth height animation on open/close ──
+  // Native <details> snaps; we hook the toggle event and animate .faq-body height.
+  (function() {
+    var items = document.querySelectorAll('.faq-item');
+    if (items.length === 0) return;
+
+    items.forEach(function(item) {
+      var body = item.querySelector('.faq-body');
+      if (!body) return;
+
+      // Set initial height to 0 if not open
+      if (!item.open) body.style.height = '0px';
+      else body.style.height = 'auto';
+
+      // Intercept the user click on summary so we control the animation timing
+      var summary = item.querySelector('summary');
+      if (!summary) return;
+
+      summary.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (prefersReducedMotion) {
+          item.open = !item.open;
+          body.style.height = item.open ? 'auto' : '0px';
+          return;
+        }
+
+        if (item.open) {
+          // ── CLOSE ──
+          // Lock current height, flip [open] attr (chevron rotates immediately),
+          // then animate height to 0. Content's opacity transition is CSS-controlled.
+          var startH = body.scrollHeight;
+          body.style.height = startH + 'px';
+          body.offsetHeight; // reflow
+          item.open = false;
+          // Re-set height=0 in next frame so [open] removal doesn't snap-close
+          requestAnimationFrame(function() {
+            body.style.height = '0px';
+          });
+        } else {
+          // ── OPEN ──
+          // Set [open] attr first (chevron + content becomes visible),
+          // measure target height, then animate from 0 → target.
+          item.open = true;
+          var endH = body.scrollHeight;
+          body.style.height = '0px';
+          body.offsetHeight; // reflow
+          requestAnimationFrame(function() {
+            body.style.height = endH + 'px';
+          });
+          var onEnd = function(ev) {
+            if (ev.propertyName !== 'height') return;
+            body.removeEventListener('transitionend', onEnd);
+            body.style.height = 'auto';
+          };
+          body.addEventListener('transitionend', onEnd);
+        }
+      });
+    });
+  })();
+
+  // ── 6. Form validation messages in French ──
   var translations = {
     valueMissing:      'Ce champ est obligatoire.',
     typeMismatch:      'Veuillez saisir une adresse correcte.',
