@@ -114,6 +114,163 @@ button:hover .icon-send {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   10. UNIVERSAL CARD HOVER · subtle lift + shadow
+        Applies to every card-like surface across all pages.
+        Uses cubic-bezier(0.4,0,0.2,1) for material-like motion.
+   ═══════════════════════════════════════════════════════════════ */
+.value-pill,
+.why-item,
+.actu-card,
+.person-card,
+.method-card,
+.maison-feature,
+.info-card,
+.don-card,
+.quick-card,
+.valeur-card,
+.impact-card,
+.featured-card,
+.stat-card,
+.service-contact-card {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.35s ease,
+              border-color 0.35s ease;
+  will-change: transform;
+}
+
+/* Specificity bumps for cards inside .scroll-reveal.revealed (which sets transform: none) */
+.value-pill:hover,
+.why-item:hover,
+.actu-card:hover,
+.person-card:hover,
+.method-card:hover,
+.maison-feature:hover,
+.info-card:hover,
+.don-card:hover,
+.quick-card:hover,
+.valeur-card:hover,
+.impact-card:hover,
+.featured-card:hover,
+.stat-card:hover,
+.service-contact-card:hover,
+.scroll-reveal.revealed.value-pill:hover,
+.scroll-reveal.revealed.why-item:hover,
+.scroll-reveal.revealed.actu-card:hover,
+.scroll-reveal.revealed.person-card:hover,
+.scroll-reveal.revealed.method-card:hover,
+.scroll-reveal.revealed.valeur-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(0, 38, 38, 0.10);
+}
+/* Slightly deeper lift on key cards */
+.featured-card:hover { transform: translateY(-6px); box-shadow: 0 20px 44px rgba(0, 38, 38, 0.12); }
+
+/* Featured-article inner image · subtle zoom on hover */
+.featured-card-img img,
+.featured-article img {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+.featured-card:hover .featured-card-img img,
+.featured-article:hover img {
+  transform: scale(1.04);
+}
+
+/* ── Value-pill icon · gentle wobble when card lifts ── */
+.value-pill .material-symbols-outlined,
+.why-item .material-symbols-outlined {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.value-pill:hover .material-symbols-outlined,
+.why-item:hover .material-symbols-outlined {
+  transform: scale(1.12) rotate(-6deg);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   11. TIMELINE · line draw-in + dot pop-in animation
+        On apropos.html · activated via .in-view on each item
+   ═══════════════════════════════════════════════════════════════ */
+.timeline-item {
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateX(-20px);
+  will-change: transform, opacity;
+}
+.timeline-item.timeline-revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.timeline-item .timeline-dot {
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s,
+              box-shadow 0.4s ease 0.15s;
+  transform: scale(0);
+  transform-origin: center;
+}
+.timeline-item.timeline-revealed .timeline-dot {
+  transform: scale(1);
+  box-shadow: 0 0 0 4px rgba(192, 75, 114, 0.12);
+}
+.timeline-item .timeline-line {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.25s;
+  transform: scaleY(0);
+  transform-origin: top center;
+}
+.timeline-item.timeline-revealed .timeline-line {
+  transform: scaleY(1);
+}
+.timeline-item .timeline-year,
+.timeline-item .timeline-marker + div > * {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.15s,
+              opacity 0.5s ease 0.15s;
+  opacity: 0;
+  transform: translateY(8px);
+}
+.timeline-item.timeline-revealed .timeline-year,
+.timeline-item.timeline-revealed .timeline-marker + div > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.timeline-item:hover .timeline-dot {
+  transform: scale(1.18);
+  box-shadow: 0 0 0 6px rgba(192, 75, 114, 0.18);
+}
+@media (prefers-reduced-motion: reduce) {
+  .timeline-item,
+  .timeline-item .timeline-dot,
+  .timeline-item .timeline-line,
+  .timeline-item .timeline-year,
+  .timeline-item .timeline-marker + div > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   12. PERSON-CARD avatar · subtle scale on card hover
+   ═══════════════════════════════════════════════════════════════ */
+.person-card .person-initials,
+.person-card img {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.person-card:hover .person-initials,
+.person-card:hover img {
+  transform: scale(1.06);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   13. METHOD-CARD icon (don.html) · slight tilt on hover
+   ═══════════════════════════════════════════════════════════════ */
+.method-card .material-symbols-outlined {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.method-card:hover .material-symbols-outlined {
+  transform: rotate(-8deg) scale(1.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
    Scroll-margin · Sticky navbar offset for anchor jumps
    ═══════════════════════════════════════════════════════════════ */
 :where([id]) {
@@ -121,10 +278,11 @@ button:hover .icon-send {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   Touch · auto-reveal hover/active states on mobile when in view
+   Touch · auto-reveal hover states on mobile when in view
    (no hover events on touch devices, so we simulate the state)
    ═══════════════════════════════════════════════════════════════ */
 @media (hover: none) {
+  /* Lift effect mirrors :hover on touch devices when centered in viewport */
   .service-card.in-view,
   .stat-card.in-view,
   .actu-card.in-view,
@@ -133,10 +291,44 @@ button:hover .icon-send {
   .info-card.in-view,
   .method-card.in-view,
   .don-card.in-view,
-  .service-contact-card.in-view {
-    box-shadow: 0 12px 32px rgba(0,38,38,0.10);
-    transform: translateY(-3px);
+  .service-contact-card.in-view,
+  .value-pill.in-view,
+  .why-item.in-view,
+  .person-card.in-view,
+  .valeur-card.in-view,
+  .impact-card.in-view {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 36px rgba(0, 38, 38, 0.10);
   }
+  .featured-card.in-view {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 44px rgba(0, 38, 38, 0.12);
+  }
+  /* Featured image zoom */
+  .featured-card.in-view .featured-card-img img,
+  .featured-article.in-view img {
+    transform: scale(1.04);
+  }
+  /* Service-card icon wobble */
+  .service-card.in-view .material-symbols-outlined,
+  .service-card.in-view .service-icon {
+    transform: rotate(-8deg) scale(1.12);
+  }
+  /* Value-pill icon wobble */
+  .value-pill.in-view .material-symbols-outlined,
+  .why-item.in-view .material-symbols-outlined {
+    transform: scale(1.12) rotate(-6deg);
+  }
+  /* Method-card icon tilt */
+  .method-card.in-view .material-symbols-outlined {
+    transform: rotate(-8deg) scale(1.1);
+  }
+  /* Person-card avatar scale */
+  .person-card.in-view .person-initials,
+  .person-card.in-view img {
+    transform: scale(1.06);
+  }
+  /* Service-img-wrap straightens + lifts */
   .service-img-wrap.in-view,
   .tilt-img.in-view {
     transform: rotate(0deg) translateY(-3px);
@@ -144,6 +336,16 @@ button:hover .icon-send {
   .service-img-wrap.in-view.tilt-right,
   .tilt-img.in-view.tilt-right {
     transform: rotate(0deg) translateY(-3px);
+  }
+  /* Service-img zoom */
+  .service-img-wrap.in-view img,
+  .tilt-img.in-view img {
+    transform: scale(1.04);
+  }
+  /* Timeline dot pulse */
+  .timeline-item.in-view .timeline-dot {
+    transform: scale(1.18);
+    box-shadow: 0 0 0 6px rgba(192, 75, 114, 0.18);
   }
 }
 
