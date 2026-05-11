@@ -367,6 +367,7 @@ h1, h2, h3, h4, h5, h6,
   }
 
 </style>
+<link rel="stylesheet" href="animations.css"/>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
 </div>
@@ -478,7 +479,7 @@ h1, h2, h3, h4, h5, h6,
           <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(0,38,38,0.5);">Actualités · L'Espoir asbl</span>
         </div>
         <h1 style="font-family:'Pally',sans-serif; font-weight:700; font-size:clamp(2.2rem,4.4vw,3.6rem); line-height:1.05; color:#002626; margin:0;">
-          Ce qu'on <span style="position:relative;display:inline-block;">fait<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>, <span style="color:rgba(0,38,38,0.45); font-weight:500;">ce qu'on vit.</span>
+          Ce qu'on <span style="position:relative;display:inline-block;">fait<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>, <span style="color:rgba(0,38,38,0.45); font-weight:500;">ce qu'on vit.</span>
         </h1>
       </div>
 
@@ -513,11 +514,11 @@ h1, h2, h3, h4, h5, h6,
       <!-- Filters row -->
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:28px; flex-wrap:wrap; gap:14px;">
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <span style="background:#002626; color:#EFE7DA; border-radius:100px; padding:6px 14px; font-size:11px; font-weight:700; letter-spacing:0.05em; cursor:pointer;">Tout</span>
-          <span style="background:transparent; color:#002626; border:1px solid rgba(0,38,38,0.15); border-radius:100px; padding:6px 14px; font-size:11px; font-weight:700; letter-spacing:0.05em; cursor:pointer;">SAPA</span>
-          <span style="background:transparent; color:#002626; border:1px solid rgba(0,38,38,0.15); border-radius:100px; padding:6px 14px; font-size:11px; font-weight:700; letter-spacing:0.05em; cursor:pointer;">SASE</span>
-          <span style="background:transparent; color:#002626; border:1px solid rgba(0,38,38,0.15); border-radius:100px; padding:6px 14px; font-size:11px; font-weight:700; letter-spacing:0.05em; cursor:pointer;">SRG</span>
-          <span style="background:transparent; color:#002626; border:1px solid rgba(0,38,38,0.15); border-radius:100px; padding:6px 14px; font-size:11px; font-weight:700; letter-spacing:0.05em; cursor:pointer;">Projets</span>
+          <span class="actu-filter" style="background:#002626; color:#EFE7DA; border-radius:100px; padding:6px 14px; font-size:11px; font-weight:700; letter-spacing:0.05em; cursor:pointer;">Tout</span>
+          <span class="actu-filter" style="background:transparent; color:#002626; border:1px solid rgba(0,38,38,0.15); border-radius:100px; padding:6px 14px; font-size:11px; font-weight:700; letter-spacing:0.05em; cursor:pointer;">SAPA</span>
+          <span class="actu-filter" style="background:transparent; color:#002626; border:1px solid rgba(0,38,38,0.15); border-radius:100px; padding:6px 14px; font-size:11px; font-weight:700; letter-spacing:0.05em; cursor:pointer;">SASE</span>
+          <span class="actu-filter" style="background:transparent; color:#002626; border:1px solid rgba(0,38,38,0.15); border-radius:100px; padding:6px 14px; font-size:11px; font-weight:700; letter-spacing:0.05em; cursor:pointer;">SRG</span>
+          <span class="actu-filter" style="background:transparent; color:#002626; border:1px solid rgba(0,38,38,0.15); border-radius:100px; padding:6px 14px; font-size:11px; font-weight:700; letter-spacing:0.05em; cursor:pointer;">Projets</span>
         </div>
         <div style="position:relative;">
           <span class="material-symbols-outlined" style="position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:18px; color:rgba(0,38,38,0.4);">search</span>
@@ -535,7 +536,7 @@ h1, h2, h3, h4, h5, h6,
         <span class="text-[#002626]/50 font-black tracking-widest text-xs uppercase">Projets actifs</span>
       </div>
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-[#002626] leading-tight mb-3 max-w-3xl">
-        <span style="color:rgba(0,38,38,0.45); font-weight:500;">Ce qu'on construit</span> <span style="position:relative;display:inline-block;">en ce moment<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+        <span style="color:rgba(0,38,38,0.45); font-weight:500;">Ce qu'on construit</span> <span style="position:relative;display:inline-block;">en ce moment<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
       </h2>
       <p class="text-[#002626]/80 leading-relaxed max-w-2xl mb-12 md:mb-14">
         Trois chantiers en cours qui ont besoin de votre soutien, matériel, financier ou humain, pour voir le jour. Chaque projet transforme concrètement le quotidien des jeunes que nous accompagnons.
@@ -667,7 +668,7 @@ h1, h2, h3, h4, h5, h6,
           <span class="text-[#002626]/50 font-black tracking-widest text-xs uppercase">News</span>
         </div>
         <h2 class="text-3xl md:text-4xl font-black text-[#002626] leading-tight">
-          Dernières <span style="position:relative;display:inline-block;">nouvelles<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+          Dernières <span style="position:relative;display:inline-block;">nouvelles<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
         </h2>
       </div>
 
@@ -1149,5 +1150,6 @@ h1, h2, h3, h4, h5, h6,
 })();
 </script>
 
+<script src="animations.js" defer></script>
 </body>
 </html>

@@ -147,6 +147,7 @@ h1, h2, h3, h4, h5, h6,
   .quick-card .q-desc { font-size: 0.8rem; color: rgba(0,38,38,0.6); line-height: 1.5; }
   .quick-card .q-arrow { margin-top: auto; padding-top: 0.4rem; display: flex; align-items: center; gap: 0.3rem; color: var(--accent, #C04B72); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
 </style>
+<link rel="stylesheet" href="animations.css"/>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
 </div>
@@ -246,7 +247,7 @@ h1, h2, h3, h4, h5, h6,
   <!-- ── ERREUR 404 ── -->
   <section class="bg-[#EFE7DA]">
     <div class="err-wrap">
-      <div class="err-big" aria-hidden="true">404</div>
+      <div class="err-big icon-wackel" aria-hidden="true">404</div>
       <h1 class="text-2xl md:text-3xl font-black text-[#002626] mb-4">Oups… cette page a pris la poudre d'escampette.</h1>
       <p class="err-lead">
         La page que vous cherchez n'existe pas, a été déplacée ou renommée. Pas de panique, on vous remet sur le bon chemin en un clic.
@@ -378,5 +379,6 @@ h1, h2, h3, h4, h5, h6,
 })();
 </script>
 
+<script src="animations.js" defer></script>
 </body>
 </html>

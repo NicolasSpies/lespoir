@@ -431,6 +431,7 @@ h1, h2, h3, h4, h5, h6,
   }
 
 </style>
+<link rel="stylesheet" href="animations.css"/>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
 <style>.skip-link{position:absolute;top:-48px;left:0;background:#002626;color:#fff;padding:10px 16px;font-weight:600;z-index:9999;text-decoration:none;border-radius:0 0 8px 0;transition:top .2s ease}.skip-link:focus{top:0;outline:2px solid #C04B72;outline-offset:2px}  /* ── Heartbeat animation for don/favorite icons ── */
@@ -552,7 +553,7 @@ h1, h2, h3, h4, h5, h6,
 
           <!-- H1 -->
           <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#002626] leading-[1.02] tracking-tight mb-6 md:mb-8">
-            Un <span style="position:relative;display:inline-block;white-space:nowrap;">lien<svg viewBox="0 0 100 10" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:-8px;left:0;width:100%;height:14px;" aria-hidden="true"><path d="M1 7 Q25 1 50 7 Q75 13 99 4" stroke="#119DA4" stroke-width="2.5" stroke-linecap="round"/></svg></span> privilégié,<br/>une présence bénévole.
+            Un <span style="position:relative;display:inline-block;white-space:nowrap;">lien<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:-8px;left:0;width:100%;height:14px;" aria-hidden="true"><path d="M1 7 Q25 1 50 7 Q75 13 99 4" stroke="#119DA4" stroke-width="2.5" stroke-linecap="round"/></svg></span> privilégié,<br/>une présence bénévole.
           </h1>
 
           <!-- Description -->
@@ -597,7 +598,7 @@ h1, h2, h3, h4, h5, h6,
       <div class="section-text">
         <div class="inline-flex items-center gap-2.5 mb-4"><div class="w-7" style="height:3px;background:#119DA4;border-radius:2px;flex-shrink:0;"></div><span class="text-[#119DA4] font-black tracking-widest text-sm uppercase">Le concept</span></div>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          Le parrainage familial, <span style="color:rgba(0,38,38,0.45); font-weight:500;">un engagement simple et</span> <span style="position:relative;display:inline-block;">profond<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#119DA4" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+          Le parrainage familial, <span style="color:rgba(0,38,38,0.45); font-weight:500;">un engagement simple et</span> <span style="position:relative;display:inline-block;">profond<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#119DA4" stroke-width="2.5" stroke-linecap="round"/></svg></span>
         </h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-5">
           Le parrainage familial, c'est simple : un enfant rencontre une famille bénévole, et ils se voient régulièrement dans la durée. La famille bénévole, c'est le parrain ou la marraine.
@@ -886,7 +887,7 @@ h1, h2, h3, h4, h5, h6,
     <div class="max-w-4xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12">
         <div class="inline-flex items-center gap-2.5 mb-3"><div class="w-7" style="height:3px;background:#119DA4;border-radius:2px;flex-shrink:0;"></div><span class="text-[#119DA4] font-black tracking-widest text-sm uppercase">Questions fréquentes</span></div>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight"><span style="color:rgba(0,38,38,0.45); font-weight:500;">Ce qu'on nous demande souvent</span> <span style="position:relative;display:inline-block;">sur le SAPA<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#119DA4" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight"><span style="color:rgba(0,38,38,0.45); font-weight:500;">Ce qu'on nous demande souvent</span> <span style="position:relative;display:inline-block;">sur le SAPA<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#119DA4" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed">Les questions qui reviennent le plus souvent de la part des familles candidates au parrainage et des intervenants de l'aide à la jeunesse.</p>
       </div>
       <div class="space-y-3">
@@ -1139,5 +1140,6 @@ h1, h2, h3, h4, h5, h6,
 })();
 </script>
 
+<script src="animations.js" defer></script>
 </body>
 </html>

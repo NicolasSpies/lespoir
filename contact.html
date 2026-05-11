@@ -434,6 +434,7 @@ h1, h2, h3, h4, h5, h6,
   .way-row:hover .way-arrow { transform: translateX(4px); color: #C04B72; }
 
 </style>
+<link rel="stylesheet" href="animations.css"/>
 </head>
 <body class="min-h-screen flex flex-col text-on-surface">
 </div>
@@ -549,7 +550,7 @@ h1, h2, h3, h4, h5, h6,
           <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(0,38,38,0.5);">Nous joindre</span>
         </div>
         <h1 style="font-family:'Pally',sans-serif; font-weight:700; font-size:clamp(2.4rem,4.8vw,3.8rem); line-height:1.05; color:#002626; margin-bottom:22px;">
-          Comment on peut <span style="position:relative;display:inline-block;">t'aider<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>&nbsp;?
+          Comment on peut <span style="position:relative;display:inline-block;">t'aider<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>&nbsp;?
         </h1>
         <p style="font-size:17px; color:rgba(0,38,38,0.62); line-height:1.7; max-width:560px;">
           Une question, une orientation, ou juste pour discuter. On répond toujours, sous 2 à 3 jours ouvrables.
@@ -611,7 +612,7 @@ h1, h2, h3, h4, h5, h6,
           <!-- Submit -->
           <div class="flex items-center gap-4 pt-1">
             <button type="submit" class="btn btn-primary btn-lg">
-              <span class="material-symbols-outlined" style="font-size:20px;">send</span>
+              <span class="material-symbols-outlined icon-send" style="font-size:20px;">send</span>
               Envoyer le message
             </button>
           </div>
@@ -672,7 +673,7 @@ h1, h2, h3, h4, h5, h6,
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-12">
         <div class="inline-flex items-center gap-2.5 mb-3"><div class="w-7" style="height:3px;background:#C04B72;border-radius:2px;flex-shrink:0;"></div><span class="text-[#C04B72] font-black tracking-widest text-sm uppercase">Nos sites</span></div>
-        <h2 class="text-2xl md:text-3xl font-bold text-[#002626]">Six maisons, <span style="color:rgba(0,38,38,0.45); font-weight:500;">une même</span> <span style="position:relative;display:inline-block;">équipe<svg viewBox="0 0 100 10" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-[#002626]">Six maisons, <span style="color:rgba(0,38,38,0.45); font-weight:500;">une même</span> <span style="position:relative;display:inline-block;">équipe<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
         <p class="text-[#002626]/55 mt-3 max-w-lg mx-auto text-sm leading-relaxed">
           L'ASBL rayonne depuis Amay et Huy. Chaque service a son adresse, son téléphone et son email direct.
         </p>
@@ -968,5 +969,6 @@ h1, h2, h3, h4, h5, h6,
 })();
 </script>
 
+<script src="animations.js" defer></script>
 </body>
 </html>
