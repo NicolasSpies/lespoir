@@ -192,7 +192,11 @@
     });
   })();
 
-  // ── 6. Form validation messages in French ──
+  // ── 6. Dynamic copyright year in footer ──
+  var yearEl = document.getElementById('footer-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // ── 7. Form validation messages in French ──
   var translations = {
     valueMissing:      'Ce champ est obligatoire.',
     typeMismatch:      'Veuillez saisir une adresse correcte.',
