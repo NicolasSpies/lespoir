@@ -932,6 +932,36 @@ h1, h2, h3, h4, h5, h6,
     touchTargets.forEach(function(el) { touchObs.observe(el); });
   }
 
+  // ── Pre-select form subject from URL param: ?objet=don|srg|sase|sapa|... ──
+  // Used by cross-page CTAs (e.g. "Nous contacter" on don/srg/sase/sapa pages)
+  // to drop the user directly into a pre-filled form.
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var objet = params.get('objet');
+    if (!objet) return;
+    var select = document.getElementById('objet');
+    if (!select) return;
+    var validValues = ['general','srg','sase','sapa','don','emploi','partenariat','autre'];
+    if (validValues.indexOf(objet) === -1) return;
+    select.value = objet;
+    // Brief highlight so the user notices the pre-fill
+    select.style.boxShadow = '0 0 0 3px rgba(192,75,114,0.20)';
+    select.style.borderColor = '#C04B72';
+    setTimeout(function() {
+      select.style.transition = 'box-shadow 0.6s ease, border-color 0.6s ease';
+      select.style.boxShadow = '';
+      select.style.borderColor = '';
+    }, 1800);
+    // Smooth-scroll to form so user sees it immediately on tall mobile screens
+    var firstInput = document.getElementById('prenom');
+    if (firstInput) {
+      setTimeout(function() {
+        var form = firstInput.closest('form');
+        if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 200);
+    }
+  })();
+
 })();
 </script>
 
