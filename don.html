@@ -616,40 +616,46 @@ h1, h2, h3, h4, h5, h6,
 
 <!-- ── FOOTER ── -->
 <footer class="bg-[#001a1a] w-full text-[#EFE7DA]" style="background-image:radial-gradient(ellipse at 20% 30%,rgba(192,75,114,0.10),transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(17,157,164,0.09),transparent 65%);">
-  <div class="max-w-7xl mx-auto px-6 md:px-8 pt-10 lg:pt-16 pb-8">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-6 lg:gap-12 mb-8 lg:mb-12">
-      <div class="sm:col-span-2 md:col-span-1 space-y-3">
-        <div class="text-lg lg:text-xl font-bold">L'Espoir asbl</div>
+  <div class="max-w-7xl mx-auto px-6 md:px-8 pt-10 md:pt-10 lg:pt-16 pb-6 md:pb-6 lg:pb-8">
+    <!-- mobile: 1 col stacked · tablet: 2 col (brand + sections w/ horizontal links) · desktop: brand + 3-col link grid -->
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_2.5fr] gap-6 md:gap-8 lg:gap-12 mb-6 md:mb-6 lg:mb-12">
+      <div class="space-y-2">
+        <div class="text-base lg:text-xl font-bold">L'Espoir asbl</div>
+        <p class="opacity-70 text-sm leading-relaxed">Rue de Biber 11 · 4540 Amay, Belgique</p>
         <p class="opacity-70 text-sm leading-relaxed">
-          Rue de Biber 11<br/>4540 Amay, Belgique
+          <a href="tel:+3285235814" class="hover:text-white transition-colors">085 23 58 14</a> ·
+          <a href="mailto:direction@asbl-espoir.be" class="hover:text-white transition-colors">direction@asbl-espoir.be</a>
         </p>
-        <p class="opacity-70 text-sm leading-relaxed">
-          <a href="tel:+3285235814" class="hover:text-white transition-colors">085 23 58 14</a><br/>
-          <a href="mailto:direction@asbl-espoir.be" class="hover:text-white transition-colors">direction@asbl-espoir.be</a><br/>
-          <a href="mailto:a.lakrary@asbl-espoir.be" class="hover:text-white transition-colors">a.lakrary@asbl-espoir.be</a>
-        </p>
-        <p class="opacity-50 text-xs">N° entreprise : 0431 081 064<br/>Agréé Fédération Wallonie-Bruxelles</p>
+        <p class="opacity-50 text-xs">N° entreprise 0431 081 064 · Agréé FWB</p>
       </div>
-      <div class="flex flex-col gap-2 lg:gap-3">
-        <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Navigation</span>
-        <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="homepage">Accueil</a>
-        <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="apropos">À propos</a>
-        <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="actualites">Actualités</a>
-      </div>
-      <div class="flex flex-col gap-2 lg:gap-3">
-        <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Engagement</span>
-        <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="emploi">Offres d'emploi</a>
-        <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="don">Faire un don</a>
-        <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="contact">Contact</a>
-      </div>
-      <div class="flex flex-col gap-2 lg:gap-3">
-        <span class="font-bold text-[#C04B72] uppercase tracking-widest text-xs mb-1">Services</span>
-        <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="srg">SRG · Résidentiel</a>
-        <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sase">SASE · Accompagnement</a>
-        <a class="opacity-70 hover:opacity-100 text-sm transition-opacity" href="sapa">SAPA · Parrainage</a>
+      <div class="space-y-3 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8">
+        <div>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-[10px] lg:text-xs block mb-1 lg:mb-2">Navigation</span>
+          <div class="flex flex-wrap gap-x-3 gap-y-1 text-sm lg:flex-col lg:gap-2">
+            <a class="opacity-70 hover:opacity-100 transition-opacity" href="homepage">Accueil</a>
+            <a class="opacity-70 hover:opacity-100 transition-opacity" href="apropos">À propos</a>
+            <a class="opacity-70 hover:opacity-100 transition-opacity" href="actualites">Actualités</a>
+          </div>
+        </div>
+        <div>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-[10px] lg:text-xs block mb-1 lg:mb-2">Engagement</span>
+          <div class="flex flex-wrap gap-x-3 gap-y-1 text-sm lg:flex-col lg:gap-2">
+            <a class="opacity-70 hover:opacity-100 transition-opacity" href="emploi">Offres d'emploi</a>
+            <a class="opacity-70 hover:opacity-100 transition-opacity" href="don">Faire un don</a>
+            <a class="opacity-70 hover:opacity-100 transition-opacity" href="contact">Contact</a>
+          </div>
+        </div>
+        <div>
+          <span class="font-bold text-[#C04B72] uppercase tracking-widest text-[10px] lg:text-xs block mb-1 lg:mb-2">Services</span>
+          <div class="flex flex-wrap gap-x-3 gap-y-1 text-sm lg:flex-col lg:gap-2">
+            <a class="opacity-70 hover:opacity-100 transition-opacity" href="srg">SRG · Résidentiel</a>
+            <a class="opacity-70 hover:opacity-100 transition-opacity" href="sase">SASE · Accompagnement</a>
+            <a class="opacity-70 hover:opacity-100 transition-opacity" href="sapa">SAPA · Parrainage</a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="border-t border-white/10 pt-6 lg:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4 text-xs opacity-40">
+    <div class="border-t border-white/10 pt-4 md:pt-4 lg:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4 text-xs opacity-40">
       <p>© <span id="footer-year">2026</span> L'Espoir asbl. Tous droits réservés.</p>
       <div class="flex flex-wrap justify-center md:justify-end gap-3 md:gap-6">
         <a href="mentions-legales">Mentions légales</a>
