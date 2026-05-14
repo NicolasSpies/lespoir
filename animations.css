@@ -114,6 +114,41 @@ button:hover .icon-send {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   9e. PAGE TRANSITION OVERLAY · soft fade + slide between pages
+        Created dynamically by JS · no HTML changes needed.
+        - On link click: overlay fades in (cream), then browser navigates
+        - On new page load: overlay fades out, content slides up + fades in
+   ═══════════════════════════════════════════════════════════════ */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  background: #EFE7DA;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.page-transition.is-active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Content slide-in when arriving from a transition */
+body.is-entering main {
+  animation: page-enter 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes page-enter {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Reduced motion · skip all transition animation */
+@media (prefers-reduced-motion: reduce) {
+  .page-transition { transition: none; }
+  body.is-entering main { animation: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
    9d. READING PROGRESS BAR · for long-form pages
         Activated only on pages that include the .reading-progress div.
    ═══════════════════════════════════════════════════════════════ */

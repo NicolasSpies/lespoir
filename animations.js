@@ -192,6 +192,91 @@
     });
   })();
 
+  // ── 4a. Page transition overlay · soft fade + slide between pages ──
+  // Provides SPA-like perceived UX without full Barba refactor.
+  // - On internal link click: cream overlay fades in, then browser navigates
+  // - On arriving page: overlay fades out, main content slides up + fades in
+  (function() {
+    // Create overlay dynamically · no HTML changes needed
+    var overlay = document.createElement('div');
+    overlay.className = 'page-transition';
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(overlay);
+
+    var STORAGE_KEY = '_lespoir_transitioning';
+    var FADE_DURATION = 250;
+
+    // ── Arrival: if coming from a transition, fade out overlay + animate content in
+    if (sessionStorage.getItem(STORAGE_KEY) === '1') {
+      sessionStorage.removeItem(STORAGE_KEY);
+      // Start with overlay visible
+      overlay.classList.add('is-active');
+      document.body.classList.add('is-entering');
+      // Then fade out
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          overlay.classList.remove('is-active');
+          // Clean up the is-entering class after animation completes
+          setTimeout(function() {
+            document.body.classList.remove('is-entering');
+          }, 500);
+        });
+      });
+    }
+
+    if (prefersReducedMotion) return; // No transition on reduced-motion · normal nav
+
+    // ── Departure: intercept clicks on internal links
+    document.addEventListener('click', function(e) {
+      // Find clicked link (might be nested)
+      var link = e.target.closest('a[href]');
+      if (!link) return;
+
+      var href = link.getAttribute('href');
+      if (!href) return;
+
+      // Skip if modifier keys (open in new tab/window)
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+      if (link.target === '_blank') return;
+
+      // Skip external links · mailto, tel, hash, javascript:
+      if (href.startsWith('http') && !href.includes(window.location.host)) return;
+      if (href.startsWith('mailto:') || href.startsWith('tel:')) return;
+      if (href.startsWith('#')) return;
+      if (href.startsWith('javascript:')) return;
+      if (link.hasAttribute('download')) return;
+
+      // Same page? skip
+      var targetUrl = new URL(href, window.location.href);
+      if (targetUrl.pathname === window.location.pathname && targetUrl.search === window.location.search) return;
+
+      // Initiate transition
+      e.preventDefault();
+      sessionStorage.setItem(STORAGE_KEY, '1');
+      overlay.classList.add('is-active');
+
+      // Close mobile drawer if open (smooth exit)
+      var drawer = document.getElementById('mobileDrawer');
+      if (drawer && drawer.classList.contains('is-open')) {
+        drawer.classList.remove('is-open');
+      }
+
+      setTimeout(function() {
+        window.location.href = href;
+      }, FADE_DURATION);
+    });
+
+    // ── Safety: if navigation gets cancelled (back button to cached page), clear overlay
+    window.addEventListener('pageshow', function(e) {
+      if (e.persisted) {
+        // Page restored from bfcache · ensure overlay is clean
+        overlay.classList.remove('is-active');
+        document.body.classList.remove('is-entering');
+        sessionStorage.removeItem(STORAGE_KEY);
+      }
+    });
+  })();
+
   // ── 4b. Parallax · subtle vertical drift on [data-parallax] elements ──
   // Decorative blobs etc. that drift at fractional scroll-speed for depth.
   // Skipped on touch (no scroll-driven feel), reduced-motion, small viewports.
