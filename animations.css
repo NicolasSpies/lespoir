@@ -114,6 +114,21 @@ button:hover .icon-send {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   9c. VANILLA-TILT · subtle 3D parallax on key cards
+        Mobile uses .in-view system (no hover), so Tilt is desktop-only.
+        Init logic in animations.js · respects prefers-reduced-motion.
+   ═══════════════════════════════════════════════════════════════ */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .service-card,
+  .maison-feature,
+  .impact-card,
+  .featured-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
    9b. MATERIAL SYMBOLS · filled modifier
         Replaces repetitive inline style font-variation-settings:'FILL' 1
    ═══════════════════════════════════════════════════════════════ */

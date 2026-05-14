@@ -192,7 +192,29 @@
     });
   })();
 
-  // ── 6. Form validation messages in French ──
+  // ── 6. Vanilla-Tilt · subtle 3D parallax on key cards (desktop only) ──
+  // Skip on touch devices (they use .in-view CSS), reduced-motion, or missing lib.
+  if (window.matchMedia('(hover: hover)').matches
+      && !prefersReducedMotion
+      && typeof VanillaTilt !== 'undefined') {
+    var tiltTargets = document.querySelectorAll(
+      '.service-card, .maison-feature, .impact-card, .featured-card'
+    );
+    if (tiltTargets.length > 0) {
+      VanillaTilt.init(tiltTargets, {
+        max: 5,                  // very subtle · asbl-soft not corporate-pop
+        perspective: 2400,       // low intensity
+        speed: 700,              // slow, soothing return
+        scale: 1,                // no scale — translateY on hover handles depth
+        glare: false,            // matte, no shiny corporate-y reflection
+        reset: true,
+        'reset-to-start': true,
+        gyroscope: false         // mobile is handled by in-view CSS instead
+      });
+    }
+  }
+
+  // ── 7. Form validation messages in French ──
   var translations = {
     valueMissing:      'Ce champ est obligatoire.',
     typeMismatch:      'Veuillez saisir une adresse correcte.',
