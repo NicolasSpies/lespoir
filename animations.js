@@ -192,6 +192,86 @@
     });
   })();
 
+  // ── 4b. Parallax · subtle vertical drift on [data-parallax] elements ──
+  // Decorative blobs etc. that drift at fractional scroll-speed for depth.
+  // Skipped on touch (no scroll-driven feel), reduced-motion, small viewports.
+  if (window.matchMedia('(hover: hover)').matches && !prefersReducedMotion && window.innerWidth >= 1024) {
+    var parallaxEls = document.querySelectorAll('[data-parallax]');
+    if (parallaxEls.length > 0) {
+      var pTicking = false;
+      function updateParallax() {
+        var scrollY = window.scrollY;
+        parallaxEls.forEach(function(el) {
+          var speed = parseFloat(el.getAttribute('data-parallax')) || 0;
+          var rect = el.getBoundingClientRect();
+          // Only update if element is in/near viewport
+          if (rect.bottom > -100 && rect.top < window.innerHeight + 100) {
+            var offset = scrollY * speed;
+            el.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
+          }
+        });
+        pTicking = false;
+      }
+      window.addEventListener('scroll', function() {
+        if (!pTicking) {
+          requestAnimationFrame(updateParallax);
+          pTicking = true;
+        }
+      }, { passive: true });
+      updateParallax();
+    }
+  }
+
+  // ── 5a. Reading progress bar · for long-form pages (article/legal) ──
+  var progressBar = document.querySelector('.reading-progress-bar');
+  if (progressBar) {
+    var ticking = false;
+    function updateProgress() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+      progressBar.style.width = pct + '%';
+      ticking = false;
+    }
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(updateProgress);
+        ticking = true;
+      }
+    }, { passive: true });
+    updateProgress();
+  }
+
+  // ── 5b. Number counters · animate from 0 to target when in viewport ──
+  if ('IntersectionObserver' in window) {
+    var counters = document.querySelectorAll('.counter[data-counter]');
+    if (counters.length > 0) {
+      var counterObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var el = entry.target;
+            var target = parseInt(el.getAttribute('data-counter'), 10);
+            if (prefersReducedMotion) {
+              el.textContent = target;
+            } else {
+              var duration = Math.min(1200 + target * 15, 1800);
+              var start = performance.now();
+              function tick(now) {
+                var t = Math.min((now - start) / duration, 1);
+                var eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+                el.textContent = Math.round(target * eased);
+                if (t < 1) requestAnimationFrame(tick);
+              }
+              requestAnimationFrame(tick);
+            }
+            counterObs.unobserve(el);
+          }
+        });
+      }, { threshold: 0.6 });
+      counters.forEach(function(c) { counterObs.observe(c); });
+    }
+  }
+
   // ── 6. Vanilla-Tilt · subtle 3D parallax on key cards (desktop only) ──
   // Skip on touch devices (they use .in-view CSS), reduced-motion, or missing lib.
   if (window.matchMedia('(hover: hover)').matches
