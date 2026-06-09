@@ -1,5 +1,5 @@
 module.exports = {
-  content: ['./*.html'],
+  content: ['./src/**/*.{astro,html,js,ts}'],
   darkMode: 'class',
   theme: {
     extend: {

@@ -1,7 +1,10 @@
 .claude/
 .DS_Store
 node_modules/
+dist/
+.astro/
 agentdb.rvf
 agentdb.rvf.lock
 fonts/agentdb.rvf
 fonts/agentdb.rvf.lock
+*.log

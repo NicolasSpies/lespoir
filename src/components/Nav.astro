@@ -1,0 +1,40 @@
+---
+interface Props {
+  activeNav?: string | null;
+}
+const { activeNav = null } = Astro.props;
+const isActive = (key: string) => activeNav === key ? ' is-active' : '';
+---
+<nav class="w-full top-0 sticky bg-[#EFE7DA] z-50">
+  <div class="flex justify-between items-center max-w-7xl mx-auto px-6 lg:px-8 py-4 lg:py-6">
+    <a href="/"><img src="/lespoir-logo.svg" alt="L'Espoir asbl" class="nav-logo h-10 lg:h-14" width="901" height="338" fetchpriority="high" /></a>
+
+    <!-- Desktop nav -->
+    <div class="hidden lg:flex gap-7 text-sm tracking-tight items-center">
+      <a class={`nav-link${isActive('home')}`} href="/">Accueil</a>
+      <div class="nav-item">
+        <a class={`nav-link cursor-default${activeNav && ['srg','sase','sapa'].includes(activeNav) ? ' is-active' : ''}`} href="#" onclick="event.preventDefault()">Services ▾</a>
+        <div class="nav-dropdown">
+          <a href="/srg" data-hover-color="#E58346"><span class="dd-abbr" style="color:#E58346">SRG</span><span class="dd-name">Service Résidentiel Général</span></a>
+          <a href="/sase" data-hover-color="#C04B72"><span class="dd-abbr" style="color:#C04B72">SASE</span><span class="dd-name">Service d'Accompagnement Socio-Éducatif</span></a>
+          <a href="/sapa" data-hover-color="#119DA4"><span class="dd-abbr" style="color:#119DA4">SAPA</span><span class="dd-name">Service d'Accompagnement du Parrainage</span></a>
+        </div>
+      </div>
+      <a class={`nav-link${isActive('apropos')}`} href="/apropos">À propos</a>
+      <a class={`nav-link${isActive('actualites')}`} href="/actualites">Actualités</a>
+      <a class={`nav-link${isActive('emploi')}`} href="/emploi">Offres d'emploi</a>
+      <a class={`nav-link${isActive('contact')}`} href="/contact">Contact</a>
+    </div>
+
+    <!-- Right side actions -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <a href="/don" class="btn btn-accent btn-sm">
+        <span class="material-symbols-outlined icon-heart" style="font-size:18px;">favorite</span>
+        <span class="hidden min-[420px]:inline">Faire un don</span>
+      </a>
+      <button id="hamburgerBtn" class="hamburger lg:hidden" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileDrawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>

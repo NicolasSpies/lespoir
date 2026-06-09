@@ -1,0 +1,100 @@
+---
+interface Props {
+  activeNav?: string | null;
+}
+const { activeNav = null } = Astro.props;
+const isActive = (key: string) => activeNav === key ? ' is-active' : '';
+---
+<div id="drawerBackdrop" class="mobile-drawer-backdrop lg:hidden" aria-hidden="true"></div>
+<div id="mobileDrawer" class="mobile-drawer lg:hidden" role="dialog" aria-modal="true" aria-label="Menu de navigation" aria-hidden="true">
+
+  <!-- Header with close btn -->
+  <div class="m-drawer-header">
+    <button id="drawerCloseBtn" class="m-close-btn" aria-label="Fermer le menu">
+      <span class="material-symbols-outlined" style="font-size:20px;">close</span>
+    </button>
+  </div>
+
+  <!-- Nav links -->
+  <nav class="m-nav">
+    <a href="/" class={`m-link${isActive('home')}`}>Accueil</a>
+
+    <!-- Services accordion -->
+    <div class="m-accordion">
+      <button class="m-accordion-trigger m-link m-link-main" aria-expanded="false" aria-label="Voir les sous-pages de Services">
+        <span>Services</span>
+        <span class="m-chevron material-symbols-outlined" aria-hidden="true">expand_more</span>
+      </button>
+      <div class="m-accordion-body">
+        <a href="/srg" class="m-sublink"><span class="abbr" style="color:#E58346">SRG</span><span class="name">Service Résidentiel Général</span></a>
+        <a href="/sase" class="m-sublink"><span class="abbr" style="color:#C04B72">SASE</span><span class="name">Service d'Accompagnement Socio-Éducatif</span></a>
+        <a href="/sapa" class="m-sublink"><span class="abbr" style="color:#119DA4">SAPA</span><span class="name">Service d'Accompagnement du Parrainage</span></a>
+      </div>
+    </div>
+
+    <a href="/apropos" class={`m-link${isActive('apropos')}`}>À propos</a>
+    <a href="/actualites" class={`m-link${isActive('actualites')}`}>Actualités</a>
+    <a href="/emploi" class={`m-link${isActive('emploi')}`}>Offres d'emploi</a>
+    <a href="/contact" class={`m-link${isActive('contact')}`}>Contact</a>
+  </nav>
+
+  <!-- Footer CTA -->
+  <div class="m-drawer-footer">
+    <a href="/don" class="btn btn-accent"><span class="material-symbols-outlined icon-heart" style="font-size:18px;">favorite</span>Faire un don</a>
+  </div>
+</div>
+
+<script is:inline>
+  // Hamburger + Drawer · runs once on initial DOM load (persistent across page-transitions)
+  (function() {
+    var btn = document.getElementById('hamburgerBtn');
+    var drawer = document.getElementById('mobileDrawer');
+    var backdrop = document.getElementById('drawerBackdrop');
+    var closeBtn = document.getElementById('drawerCloseBtn');
+    if (!btn || !drawer || !backdrop) return;
+
+    function openDrawer() {
+      drawer.classList.add('is-open');
+      backdrop.classList.add('is-open');
+      btn.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('drawer-open');
+    }
+    function closeDrawer() {
+      drawer.classList.remove('is-open');
+      backdrop.classList.remove('is-open');
+      btn.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('drawer-open');
+    }
+    btn.addEventListener('click', function() {
+      drawer.classList.contains('is-open') ? closeDrawer() : openDrawer();
+    });
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    backdrop.addEventListener('click', closeDrawer);
+
+    // Accordion in drawer
+    drawer.querySelectorAll('.m-accordion-trigger').forEach(function(trigger) {
+      trigger.addEventListener('click', function() {
+        var accordion = trigger.closest('.m-accordion');
+        var isOpen = accordion.classList.contains('is-open');
+        drawer.querySelectorAll('.m-accordion.is-open').forEach(function(a) {
+          a.classList.remove('is-open');
+          a.querySelector('.m-accordion-trigger').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) { accordion.classList.add('is-open'); trigger.setAttribute('aria-expanded', 'true'); }
+      });
+    });
+
+    // Nav shrink on scroll
+    var nav = document.querySelector('nav');
+    if (nav) {
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 30) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      }, { passive: true });
+    }
+  })();
+</script>

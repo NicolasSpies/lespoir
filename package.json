@@ -1,10 +1,18 @@
 {
-  "name": "lespoir-build",
-  "version": "1.0.0",
+  "name": "lespoir",
+  "version": "2.0.0",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
-    "build:css": "tailwindcss -i input.css -o tailwind.css --minify"
+    "dev": "astro dev",
+    "build": "npm run build:css && astro build",
+    "build:css": "tailwindcss -i input.css -o public/tailwind.css --minify",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.18.2",
+    "@astrojs/sitemap": "^3.7.3"
   },
   "devDependencies": {
     "tailwindcss": "3.4.17",
