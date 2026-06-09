@@ -8,3 +8,6 @@ agentdb.rvf.lock
 fonts/agentdb.rvf
 fonts/agentdb.rvf.lock
 *.log
+.playwright-mcp/
+*.jpg
+*.png
