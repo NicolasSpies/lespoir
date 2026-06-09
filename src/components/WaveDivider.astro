@@ -1,0 +1,27 @@
+---
+/**
+ * WaveDivider · SVG wave between two background colors.
+ *
+ * @prop from   Source section background (the wrapper bg, what's above the wave)
+ * @prop to     Destination section background (path fill, what's below the wave)
+ * @prop path   Wave-path d-attribute · optional custom curve (defaults to gentle wave)
+ *
+ * Path extends 10 units past viewBox bottom to eliminate AA hairline at edge
+ * (overflow:visible on SVG + overflow:hidden on wrapper · clips at pixel boundary).
+ */
+interface Props {
+  from: string;
+  to: string;
+  path?: string;
+}
+const {
+  from,
+  to,
+  path = 'M0 24 Q360 4 720 28 Q1080 48 1440 16 L1440 60 L0 60 Z',
+} = Astro.props;
+---
+<div aria-hidden="true" style={`background:${from};line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;`}>
+  <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;">
+    <path d={path} fill={to} />
+  </svg>
+</div>

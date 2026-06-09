@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import WaveDivider from '../components/WaveDivider.astro';
 
 const title = "Faire un don · Déduction fiscale 45% · L'Espoir asbl, Huy";
 const description = "Soutenez l'aide à la jeunesse : don ponctuel ou récurrent à L'Espoir asbl. Attestation fiscale de 45 % dès 40 € via le Fonds Arc-en-Ciel. IBAN BE41 6300 1180 0010.";
@@ -332,7 +333,7 @@ const activeNav = "don";
   </section>
 
   <!-- Wave: Hero (#EFE7DA) → Votre Impact (#fbf9f8) -->
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 28 Q360 4 720 24 Q1080 44 1440 12 L1440 60 L0 60 Z" fill="#fbf9f8"/></svg></div>
+  <WaveDivider from="#EFE7DA" to="#fbf9f8" path="M0 28 Q360 4 720 24 Q1080 44 1440 12 L1440 60 L0 60 Z" />
 
   <!-- ── VOTRE IMPACT ── -->
   <section class="py-16 md:py-24 px-6 md:px-8 bg-[#fbf9f8] blob-parent">
@@ -340,7 +341,7 @@ const activeNav = "don";
     <div class="max-w-7xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-10 md:mb-14">
         <h2 class="text-2xl md:text-3xl font-bold text-[#002626] leading-tight">
-          <span style="color:rgba(0,38,38,0.45); font-weight:500;">Ce que votre don change</span> concrètement
+          <span style="font-weight:500;">Ce que votre don change</span> concrètement
         </h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -368,7 +369,7 @@ const activeNav = "don";
     <div class="max-w-6xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-3">Comment donner</span>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight">Par virement, <span style="color:rgba(0,38,38,0.45); font-weight:500;">simple et</span> <span style="position:relative;display:inline-block;">déductible<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight">Par virement, <span style="font-weight:500;">simple et</span> <span style="position:relative;display:inline-block;">déductible<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed">
           Virement ponctuel ou ordre permanent, via le compte du Service Arc-en-Ciel. Vous recevez une attestation fiscale automatique dès 40 € par an.
         </p>
@@ -431,7 +432,7 @@ const activeNav = "don";
   </section>
 
 
-  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 24 Q360 48 720 16 Q1080 0 1440 36 L1440 60 L0 60 Z" fill="#EFE7DA"/></svg></div>
+  <WaveDivider from="#fbf9f8" to="#EFE7DA" path="M0 24 Q360 48 720 16 Q1080 0 1440 36 L1440 60 L0 60 Z" />
 
   <!-- ── COMMENT ÇA MARCHE / FAQ ── -->
   <section id="comment" class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
@@ -493,7 +494,7 @@ const activeNav = "don";
   </section>
 
 
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 4 Q360 48 720 8 Q1080 0 1440 40 L1440 60 L0 60 Z" fill="#002626"/></svg></div>
+  <WaveDivider from="#EFE7DA" to="#002626" path="M0 4 Q360 48 720 8 Q1080 0 1440 40 L1440 60 L0 60 Z" />
 
   <!-- ── CTA FINAL ── -->
   <section class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden relative">

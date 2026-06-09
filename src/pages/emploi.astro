@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import WaveDivider from '../components/WaveDivider.astro';
 
 const title = "Offres d'emploi · Éducateur spécialisé aide à la jeunesse, Huy";
 const description = "Rejoignez L'Espoir asbl : offres d'emploi en aide à la jeunesse à Huy et Amay. Éducateur spécialisé SRG, éducateur à domicile SASE, famille bénévole SAPA. Candidature en ligne.";
@@ -458,7 +459,7 @@ const activeNav = "emploi";
           <span aria-hidden="true" style="position:absolute; bottom:6px; left:0; right:0; height:2px; background:repeating-linear-gradient(90deg, rgba(192,75,114,0.55) 0, rgba(192,75,114,0.55) 4px, transparent 4px, transparent 8px);"></span>
         </span>
         postes ouverts<br/>
-        <span style="color:rgba(0,38,38,0.45); font-weight:500;">pour quelqu'un comme toi.</span>
+        <span style="font-weight:500;">pour quelqu'un comme toi.</span>
       </h1>
 
       <p style="font-size:16px; color:rgba(0,38,38,0.62); line-height:1.7; max-width:520px; margin-bottom:28px;">
@@ -556,7 +557,7 @@ const activeNav = "emploi";
   </section>
 
 
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 12 Q360 0 720 36 Q1080 48 1440 20 L1440 60 L0 60 Z" fill="#fbf9f8"/></svg></div>
+  <WaveDivider from="#EFE7DA" to="#fbf9f8" path="M0 12 Q360 0 720 36 Q1080 48 1440 20 L1440 60 L0 60 Z" />
 
   <!-- ── OFFRES ── -->
   <section id="offres" class="py-16 md:py-24 px-6 md:px-8 bg-surface">
@@ -686,7 +687,7 @@ const activeNav = "emploi";
   </section>
 
 
-  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 24 Q480 48 720 16 Q1080 0 1440 40 L1440 60 L0 60 Z" fill="#002626"/></svg></div>
+  <WaveDivider from="#fbf9f8" to="#002626" path="M0 24 Q480 48 720 16 Q1080 0 1440 40 L1440 60 L0 60 Z" />
 
   <!-- ── PROFILS RECHERCHÉS ── -->
   <section class="py-16 md:py-24 px-6 md:px-8 bg-[#002626]">
@@ -762,7 +763,7 @@ const activeNav = "emploi";
   </section>
 
 
-  <div aria-hidden="true" style="background:#002626;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 40 Q360 16 720 44 Q1080 48 1440 8 L1440 60 L0 60 Z" fill="#EFE7DA"/></svg></div>
+  <WaveDivider from="#002626" to="#EFE7DA" path="M0 40 Q360 16 720 44 Q1080 48 1440 8 L1440 60 L0 60 Z" />
 
   <!-- ── CANDIDATURE SPONTANÉE ── -->
   <section id="candidature" class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
@@ -990,7 +991,7 @@ const activeNav = "emploi";
   </section>
 
 
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 20 Q240 48 720 24 Q1080 4 1440 36 L1440 60 L0 60 Z" fill="#002626"/></svg></div>
+  <WaveDivider from="#EFE7DA" to="#002626" path="M0 20 Q240 48 720 24 Q1080 4 1440 36 L1440 60 L0 60 Z" />
 
   <!-- ── CTA: Soutien (V3 unified) ── -->
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden relative">

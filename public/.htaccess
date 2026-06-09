@@ -16,7 +16,7 @@ RewriteCond %{HTTP_HOST} ^www\.asbl-espoir\.be [NC]
 RewriteRule ^(.*)$ https://asbl-espoir.be/$1 [R=301,L]
 
 # ─────── Default homepage ───────
-DirectoryIndex homepage.html
+DirectoryIndex index.html
 
 # ─────── Hide .html extension ───────
 # 1) If user requests /foo.html → redirect to clean /foo (SEO canonical)

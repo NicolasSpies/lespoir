@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import WaveDivider from '../components/WaveDivider.astro';
 
 const title = "SRG · Hébergement résidentiel jeunes 3-18 ans, Huy · Amay";
 const description = "Service Résidentiel Général de L'Espoir asbl : trois maisons à Amay et Couthuin qui accueillent des enfants et adolescents de 3 à 18 ans ne pouvant pas rester dans leur famille. Agréé FWB.";
@@ -518,7 +519,7 @@ const activeNav = "srg";
   </section>
 
 
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 32 Q360 8 720 44 Q1080 48 1440 16 L1440 60 L0 60 Z" fill="#fbf9f8"/></svg></div>
+  <WaveDivider from="#EFE7DA" to="#fbf9f8" path="M0 32 Q360 8 720 44 Q1080 48 1440 16 L1440 60 L0 60 Z" />
 
   <!-- ── POUR QUI ── -->
   <section id="pour-qui" class="py-16 md:py-24 px-6 md:px-8 bg-surface">
@@ -528,7 +529,7 @@ const activeNav = "srg";
       <div class="section-text">
         <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-4">Pour qui ?</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          <span style="color:rgba(0,38,38,0.45); font-weight:500;">Des enfants qui ont besoin d'un vrai</span> <span style="position:relative;display:inline-block;">chez-soi<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+          <span style="font-weight:500;">Des enfants qui ont besoin d'un vrai</span> <span style="position:relative;display:inline-block;">chez-soi<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span>
         </h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-5">
           Le SRG accueille des enfants et des jeunes de <strong class="text-[#002626]">3 à 18 ans</strong> dont la situation familiale ne leur permet pas de rester chez eux pour le moment. Les admissions se font sur <strong class="text-[#002626]">mandat du SPJ ou du Tribunal de la Jeunesse</strong>.
@@ -569,7 +570,7 @@ const activeNav = "srg";
   </section>
 
 
-  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 24 Q480 48 720 16 Q1080 0 1440 40 L1440 60 L0 60 Z" fill="#EFE7DA"/></svg></div>
+  <WaveDivider from="#fbf9f8" to="#EFE7DA" path="M0 24 Q480 48 720 16 Q1080 0 1440 40 L1440 60 L0 60 Z" />
 
   <!-- ── NOS MAISONS ── -->
   <section id="maisons" class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
@@ -579,7 +580,7 @@ const activeNav = "srg";
         <div>
           <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-4">Nos maisons</span>
           <h2 class="text-3xl md:text-4xl font-bold text-[#002626] leading-tight">
-            Trois maisons, <span style="color:rgba(0,38,38,0.45); font-weight:500;">un même</span> <span style="position:relative;display:inline-block;">engagement<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+            Trois maisons, <span style="font-weight:500;">un même</span> <span style="position:relative;display:inline-block;">engagement<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span>
           </h2>
         </div>
         <p class="text-[#002626]/65 max-w-sm text-sm leading-relaxed">
@@ -711,7 +712,7 @@ const activeNav = "srg";
   </section>
 
 
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 16 Q360 48 720 8 Q1200 0 1440 44 L1440 60 L0 60 Z" fill="#E58346"/></svg></div>
+  <WaveDivider from="#EFE7DA" to="#E58346" path="M0 16 Q360 48 720 8 Q1200 0 1440 44 L1440 60 L0 60 Z" />
 
   <!-- ── NOTRE APPROCHE ── -->
   <section id="approche" class="py-16 md:py-24 px-6 md:px-8 bg-[#E58346] blob-parent">
@@ -768,7 +769,7 @@ const activeNav = "srg";
   </section>
 
 
-  <div aria-hidden="true" style="background:#E58346;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 28 Q480 4 720 40 Q960 48 1440 20 L1440 60 L0 60 Z" fill="#fbf9f8"/></svg></div>
+  <WaveDivider from="#E58346" to="#fbf9f8" path="M0 28 Q480 4 720 40 Q960 48 1440 20 L1440 60 L0 60 Z" />
 
   <!-- ── NOTRE ÉQUIPE ── -->
   <section id="equipe" class="py-16 md:py-24 px-6 md:px-8 bg-surface">
@@ -828,7 +829,7 @@ const activeNav = "srg";
   </section>
 
 
-  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 36 Q360 0 720 40 Q1080 48 1440 12 L1440 60 L0 60 Z" fill="#EFE7DA"/></svg></div>
+  <WaveDivider from="#fbf9f8" to="#EFE7DA" path="M0 36 Q360 0 720 40 Q1080 48 1440 12 L1440 60 L0 60 Z" />
 
   <!-- ── ORIENTATION & CONTACT ── -->
   <section id="orientation" class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
@@ -932,14 +933,14 @@ const activeNav = "srg";
   </section>
 
 
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 44 Q360 16 720 36 Q1080 48 1440 8 L1440 60 L0 60 Z" fill="#fbf9f8"/></svg></div>
+  <WaveDivider from="#EFE7DA" to="#fbf9f8" path="M0 44 Q360 16 720 36 Q1080 48 1440 8 L1440 60 L0 60 Z" />
 
   <!-- ⚠️ FAQ À VALIDER PAR L'ÉQUIPE L'ESPOIR · contenus rédigés sur base du site et des pratiques FWB standard -->
   <section id="faq" class="py-16 md:py-24 px-6 md:px-8 bg-surface">
     <div class="max-w-4xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12">
         <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-3">Questions fréquentes</span>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight"><span style="color:rgba(0,38,38,0.45); font-weight:500;">Ce qu'on nous demande souvent</span> <span style="position:relative;display:inline-block;">sur le SRG<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight"><span style="font-weight:500;">Ce qu'on nous demande souvent</span> <span style="position:relative;display:inline-block;">sur le SRG<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed">Les questions qui reviennent le plus souvent de la part des familles, des intervenants et des professionnels de l'aide à la jeunesse.</p>
       </div>
       <div class="space-y-3">
@@ -979,7 +980,7 @@ const activeNav = "srg";
   </section>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Qui peut être accueilli au SRG ?","acceptedAnswer":{"@type":"Answer","text":"Le SRG accueille des enfants et adolescents de 3 à 18 ans qui ne peuvent temporairement pas vivre dans leur famille. L'accueil se fait dans trois maisons à taille humaine à Amay et Couthuin, agréées par la Fédération Wallonie-Bruxelles."}},{"@type":"Question","name":"Comment un jeune arrive-t-il dans une de vos maisons ?","acceptedAnswer":{"@type":"Answer","text":"L'orientation passe toujours par un mandat officiel : le Service de l'Aide à la Jeunesse (SAJ), le Service de Protection de la Jeunesse (SPJ) ou le Tribunal de la Jeunesse. Une famille ne peut pas placer directement son enfant. Le passage par ces instances est obligatoire."}},{"@type":"Question","name":"Les parents gardent-ils le contact avec leur enfant ?","acceptedAnswer":{"@type":"Answer","text":"Oui, systématiquement. Le maintien du lien familial est l'un des objectifs centraux du SRG : visites régulières, retours en famille quand la situation le permet, travail éducatif avec les parents pour préparer un retour à la maison."}},{"@type":"Question","name":"Combien de temps dure un séjour au SRG ?","acceptedAnswer":{"@type":"Answer","text":"La durée dépend de chaque situation et du mandat. Elle peut aller de quelques semaines à plusieurs années. Le projet éducatif est revu régulièrement avec le jeune, sa famille et le service mandant."}},{"@type":"Question","name":"Comment se passe la scolarité des jeunes accueillis ?","acceptedAnswer":{"@type":"Answer","text":"Les jeunes restent dans leur école d'origine ou sont inscrits dans une école de la région. Les éducateurs assurent le suivi scolaire au quotidien : devoirs, rencontres avec les enseignants, soutien en cas de difficulté."}},{"@type":"Question","name":"Le SRG est-il payant pour les familles ?","acceptedAnswer":{"@type":"Answer","text":"Non. Le SRG est un service public gratuit, entièrement subsidié par la Fédération Wallonie-Bruxelles. Aucune contribution financière n'est demandée aux familles."}}]}</script>
 
-  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 40 Q480 12 720 44 Q960 48 1440 16 L1440 60 L0 60 Z" fill="#002626"/></svg></div>
+  <WaveDivider from="#fbf9f8" to="#002626" path="M0 40 Q480 12 720 44 Q960 48 1440 16 L1440 60 L0 60 Z" />
 
   <!-- ── CTA: Soutien (V3 unified) ── -->
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden relative">

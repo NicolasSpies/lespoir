@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import WaveDivider from '../components/WaveDivider.astro';
 
 const title = "Actualités · Projets et événements · L'Espoir asbl, Huy";
 const description = "Suivez l'actualité de L'Espoir asbl : projets, événements, rapports d'activité, témoignages du terrain de l'aide à la jeunesse dans la région de Huy et d'Amay.";
@@ -385,7 +386,7 @@ const activeNav = "actualites";
         <span class="text-[#002626]/50 font-black tracking-widest text-xs uppercase">Projets actifs</span>
       </div>
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-[#002626] leading-tight mb-3 max-w-3xl">
-        <span style="color:rgba(0,38,38,0.45); font-weight:500;">Ce qu'on construit</span> <span style="position:relative;display:inline-block;">en ce moment<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+        <span style="font-weight:500;">Ce qu'on construit</span> <span style="position:relative;display:inline-block;">en ce moment<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
       </h2>
       <p class="text-[#002626]/80 leading-relaxed max-w-2xl mb-12 md:mb-14">
         Trois chantiers en cours qui ont besoin de votre soutien, matériel, financier ou humain, pour voir le jour. Chaque projet transforme concrètement le quotidien des jeunes que nous accompagnons.
@@ -504,7 +505,7 @@ const activeNav = "actualites";
       </div>
     </div>
   </section>
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 12 Q360 0 720 36 Q1080 48 1440 20 L1440 60 L0 60 Z" fill="#fbf9f8"/></svg></div>
+  <WaveDivider from="#EFE7DA" to="#fbf9f8" path="M0 12 Q360 0 720 36 Q1080 48 1440 20 L1440 60 L0 60 Z" />
 
   <!-- ── NEWS ── -->
   <section class="py-16 md:py-24 px-6 md:px-8 bg-surface">
@@ -771,7 +772,7 @@ const activeNav = "actualites";
 
     </div>
   </section>
-  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 36 Q360 0 720 40 Q1080 48 1440 12 L1440 60 L0 60 Z" fill="#002626"/></svg></div>
+  <WaveDivider from="#fbf9f8" to="#002626" path="M0 36 Q360 0 720 40 Q1080 48 1440 12 L1440 60 L0 60 Z" />
 
   <!-- ── CTA: Soutien (V3 unified) ── -->
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden relative">

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import WaveDivider from '../components/WaveDivider.astro';
 
 const title = "L'Espoir asbl · Aide à la jeunesse à Huy depuis 1985";
 const description = "Depuis 1985, L'Espoir asbl accompagne enfants et jeunes en difficulté dans la région de Huy et Amay via trois services agréés par la Fédération Wallonie-Bruxelles : SRG, SASE, SAPA.";
@@ -854,7 +855,7 @@ const activeNav = "home";
   </section>
 
   <!-- Wave: Hero → Services -->
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 8 Q360 48 720 20 Q1080 0 1440 32 L1440 60 L0 60 Z" fill="#fbf9f8"/></svg></div>
+  <WaveDivider from="#EFE7DA" to="#fbf9f8" path="M0 8 Q360 48 720 20 Q1080 0 1440 32 L1440 60 L0 60 Z" />
 
 
   <!-- ── SERVICES (V2, farbige Cards) ── -->
@@ -906,7 +907,7 @@ const activeNav = "home";
   </section>
 
   <!-- Wave: Services → About -->
-  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 32 Q360 0 720 28 Q1080 48 1440 16 L1440 60 L0 60 Z" fill="#EFE7DA"/></svg></div>
+  <WaveDivider from="#fbf9f8" to="#EFE7DA" path="M0 32 Q360 0 720 28 Q1080 48 1440 16 L1440 60 L0 60 Z" />
 
   <!-- ── ABOUT + STATS (V1 style, V2 texte) ── -->
   <section id="about" class="blob-parent bg-[#EFE7DA] py-16 md:py-24 px-6 md:px-8">
@@ -914,7 +915,7 @@ const activeNav = "home";
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div>
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Notre histoire</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 md:mb-8 leading-tight">Plus de <span class="counter" data-counter="40">40</span> ans au service<br/><span style="color:rgba(0,38,38,0.45); font-weight:500;">de la jeunesse à</span> <span style="position:relative;display:inline-block;">Huy<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 md:mb-8 leading-tight">Plus de <span class="counter" data-counter="40">40</span> ans au service<br/><span style="font-weight:500;">de la jeunesse à</span> <span style="position:relative;display:inline-block;">Huy<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
         <p class="text-base md:text-lg text-[#002626] opacity-80 leading-relaxed mb-6">
           Fondée en 1985 suite à la fermeture du home d'enfants de la Maison-Dieu à Antheit, L'Espoir asbl perpétue depuis plus de 40 ans une mission d'accueil et d'accompagnement des jeunes en difficulté.
         </p>
@@ -981,7 +982,7 @@ const activeNav = "home";
   </section>
 
   <!-- Wave: Partners → Don -->
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 16 Q360 48 720 24 Q1080 4 1440 40 L1440 60 L0 60 Z" fill="#002626"/></svg></div>
+  <WaveDivider from="#EFE7DA" to="#002626" path="M0 16 Q360 48 720 24 Q1080 4 1440 40 L1440 60 L0 60 Z" />
 
   <!-- ── CTA: Soutien (V3 unified) ── -->
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden relative">

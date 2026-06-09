@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import WaveDivider from '../components/WaveDivider.astro';
 
 const title = "À propos · L'Espoir asbl, aide à la jeunesse depuis 1985";
 const description = "Découvrez l’histoire, l’équipe et nos valeurs de L'Espoir asbl, acteur de l'aide à la jeunesse à Huy depuis 1985, agréé par la Fédération Wallonie-Bruxelles.";
@@ -466,9 +467,9 @@ const activeNav = "apropos";
       <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(0,38,38,0.5);display:block;margin-bottom:22px;">L'Espoir asbl · Huy, Belgique</span>
 
       <h1 style="font-family:'Pally',sans-serif; font-weight:700; font-size:clamp(2.6rem,5.2vw,4.4rem); line-height:1.02; margin-bottom:24px; max-width:780px;">
-        <span style="font-weight:500; color:rgba(0,38,38,0.45); font-size:0.6em; display:block; margin-bottom:8px; letter-spacing:0.02em;">Notre métier&nbsp;?</span>
+        <span style="font-weight:500; font-size:0.6em; display:block; margin-bottom:8px; letter-spacing:0.02em;">Notre métier&nbsp;?</span>
         Aider les <span style="position:relative;display:inline-block;">jeunes<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span><br/>
-        <span style="color:rgba(0,38,38,0.45); font-weight:500;">qui en ont besoin.</span>
+        <span style="font-weight:500;">qui en ont besoin.</span>
       </h1>
 
       <p style="font-size:17px; color:rgba(0,38,38,0.62); line-height:1.7; max-width:520px; margin-bottom:28px;">
@@ -497,7 +498,7 @@ const activeNav = "apropos";
       <div class="section-text">
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Notre histoire</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          Quarante ans <span style="color:rgba(0,38,38,0.45); font-weight:500;">de présence dans la région de</span> <span style="position:relative;display:inline-block;">Huy<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+          Quarante ans <span style="font-weight:500;">de présence dans la région de</span> <span style="position:relative;display:inline-block;">Huy<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
         </h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-4">
           L'Espoir asbl existe depuis 1985. Au départ, c'était surtout une maison d'accueil pour les jeunes qui n'avaient nulle part où aller. L'association a grandi au fil des années et développé deux autres services pour répondre à des besoins différents : un accompagnement à domicile pour les familles et un service de parrainage pour créer des liens bénévoles durables.
@@ -568,7 +569,7 @@ const activeNav = "apropos";
   </section>
 
 
-  <div aria-hidden="true" style="background:#fbf9f8;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 24 Q480 48 720 16 Q1080 0 1440 40 L1440 60 L0 60 Z" fill="#002626"/></svg></div>
+  <WaveDivider from="#fbf9f8" to="#002626" path="M0 24 Q480 48 720 16 Q1080 0 1440 40 L1440 60 L0 60 Z" />
 
   <!-- ── NOS VALEURS ── -->
   <section id="valeurs" class="py-16 md:py-24 px-6 md:px-8 bg-[#002626]">
@@ -609,7 +610,7 @@ const activeNav = "apropos";
   </section>
 
 
-  <div aria-hidden="true" style="background:#002626;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 40 Q360 16 720 44 Q1080 48 1440 8 L1440 60 L0 60 Z" fill="#EFE7DA"/></svg></div>
+  <WaveDivider from="#002626" to="#EFE7DA" path="M0 40 Q360 16 720 44 Q1080 48 1440 8 L1440 60 L0 60 Z" />
 
   <!-- ── NOTRE ÉQUIPE ── -->
   <section id="equipe" class="py-16 md:py-24 px-6 md:px-8 bg-[#EFE7DA] blob-parent">
@@ -618,7 +619,7 @@ const activeNav = "apropos";
       <div class="text-center mb-14">
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Notre équipe</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] leading-tight">
-          <span style="color:rgba(0,38,38,0.45); font-weight:500;">Les gens derrière</span> <span style="position:relative;display:inline-block;">L'Espoir<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+          <span style="font-weight:500;">Les gens derrière</span> <span style="position:relative;display:inline-block;">L'Espoir<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
         </h2>
         <p class="text-[#002626]/80 mt-4 max-w-xl mx-auto text-base leading-relaxed">
           Une vingtaine de personnes, plusieurs métiers, un seul projet. Chaque service a sa propre équipe, mais tout le monde se connaît et travaille souvent ensemble.
@@ -853,7 +854,7 @@ const activeNav = "apropos";
   </section>
 
 
-  <div aria-hidden="true" style="background:#EFE7DA;line-height:0;display:block;margin-top:-1px;margin-bottom:-2px;position:relative;z-index:2;overflow:hidden;"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;overflow:visible;"><path d="M0 16 Q360 48 720 12 Q1080 0 1440 44 L1440 60 L0 60 Z" fill="#002626"/></svg></div>
+  <WaveDivider from="#EFE7DA" to="#002626" path="M0 16 Q360 48 720 12 Q1080 0 1440 44 L1440 60 L0 60 Z" />
 
   <!-- ── CTA: Soutien (V3 unified) ── -->
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden relative">
