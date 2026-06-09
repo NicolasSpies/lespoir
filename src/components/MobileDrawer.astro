@@ -80,6 +80,21 @@ const isActive = (key: string) => activeNav === key ? ' is-active' : '';
     if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
     backdrop.addEventListener('click', closeDrawer);
 
+    // Close drawer when user clicks any nav link inside
+    drawer.querySelectorAll('a.m-link, a.m-sublink, a.m-link-main, .m-drawer-footer .btn').forEach(function(el) {
+      el.addEventListener('click', closeDrawer);
+    });
+
+    // ESC closes drawer
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && drawer.classList.contains('is-open')) closeDrawer();
+    });
+
+    // Resize > lg breakpoint auto-closes drawer
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1024 && drawer.classList.contains('is-open')) closeDrawer();
+    });
+
     // Accordion in drawer
     drawer.querySelectorAll('.m-accordion-trigger').forEach(function(trigger) {
       trigger.addEventListener('click', function() {
