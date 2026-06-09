@@ -53,12 +53,16 @@ const isActive = (key: string) => activeNav === key ? ' is-active' : '';
     var closeBtn = document.getElementById('drawerCloseBtn');
     if (!btn || !drawer || !backdrop) return;
 
+    // Initialize · drawer is closed by default
+    drawer.inert = true;
+
     function openDrawer() {
       drawer.classList.add('is-open');
       backdrop.classList.add('is-open');
       btn.classList.add('is-open');
       btn.setAttribute('aria-expanded', 'true');
       drawer.setAttribute('aria-hidden', 'false');
+      drawer.inert = false;
       document.body.classList.add('drawer-open');
     }
     function closeDrawer() {
@@ -67,6 +71,7 @@ const isActive = (key: string) => activeNav === key ? ' is-active' : '';
       btn.classList.remove('is-open');
       btn.setAttribute('aria-expanded', 'false');
       drawer.setAttribute('aria-hidden', 'true');
+      drawer.inert = true;
       document.body.classList.remove('drawer-open');
     }
     btn.addEventListener('click', function() {
