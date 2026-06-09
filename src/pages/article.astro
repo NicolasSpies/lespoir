@@ -237,12 +237,18 @@ html { scroll-behavior: smooth; }
   .hero-meta-avatar {
     width: 20px; height: 20px; border-radius: 50%;
     background: linear-gradient(135deg, #d4789a, #8b2a4e);
-    color: #fff; display: inline-flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 0.5rem; letter-spacing: 0.02em;
     box-shadow: 0 2px 5px rgba(192,75,114,0.3);
     flex-shrink: 0; overflow: hidden;
+    display: inline-flex; align-items: center; justify-content: center;
+    position: relative;
   }
-  .hero-meta-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-meta-avatar::after {
+    content: ''; display: block;
+    width: 60%; aspect-ratio: 261/294;
+    background: #fff; opacity: 0.55;
+    -webkit-mask: url('/logo-mark.svg') no-repeat center / contain;
+            mask: url('/logo-mark.svg') no-repeat center / contain;
+  }
 
   .article-cover {
     position: relative; margin-top: -5rem; z-index: 2;
@@ -659,7 +665,7 @@ html { scroll-behavior: smooth; }
         <span class="hero-meta-sep"></span>
         <span class="hero-meta-item"><span class="material-symbols-outlined">visibility</span>1 240 vues</span>
         <span class="hero-meta-sep"></span>
-        <span class="hero-meta-item"><span class="hero-meta-avatar" aria-hidden="true"><Placeholder alt='' aspectRatio='16/9' /></span>Asmaa Lakrary</span>
+        <span class="hero-meta-item"><span class="hero-meta-avatar" aria-hidden="true"></span>Asmaa Lakrary</span>
       </div>
     </div>
   </section>

@@ -348,11 +348,17 @@ const activeNav = "apropos";
   }
   .person-card:hover .person-photo img { transform: scale(1.06); }
   .person-initials {
-    position: absolute; inset: 0; z-index: 0;
+    /* Uniform photo placeholder · service color bg + L'Espoir logo mark centered */
+    position: absolute; inset: 0; z-index: 1;
     display: flex; align-items: center; justify-content: center;
-    color: #fff; font-weight: 800; font-size: 2.75rem;
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, var(--svc-color, #C04B72), rgba(0,0,0,0.25));
+    background: linear-gradient(135deg, var(--svc-color, #C04B72), rgba(0,0,0,0.18));
+  }
+  .person-initials::after {
+    content: ''; display: block;
+    width: 40%; aspect-ratio: 261/294;
+    background: #fff; opacity: 0.42;
+    -webkit-mask: url('/logo-mark.svg') no-repeat center / contain;
+            mask: url('/logo-mark.svg') no-repeat center / contain;
   }
   .person-badge {
     position: absolute; top: 0.75rem; left: 0.75rem; z-index: 2;
@@ -638,7 +644,7 @@ const activeNav = "apropos";
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
           <div class="person-card" style="--svc-color:#002626;">
             <div class="person-photo">
-              <div class="person-initials">AL</div>
+              <div class="person-initials"></div>
               <Placeholder alt='Asmaa Lakrary' aspectRatio='1/1' />
               <span class="person-badge"><span class="material-symbols-outlined">star</span>Direction</span>
             </div>
@@ -652,7 +658,7 @@ const activeNav = "apropos";
           </div>
           <div class="person-card" style="--svc-color:#002626;">
             <div class="person-photo">
-              <div class="person-initials">MD</div>
+              <div class="person-initials"></div>
               <Placeholder alt='Marie D.' aspectRatio='1/1' />
               <span class="person-badge"><span class="material-symbols-outlined">star</span>Direction</span>
             </div>
@@ -664,7 +670,7 @@ const activeNav = "apropos";
           </div>
           <div class="person-card" style="--svc-color:#002626;">
             <div class="person-photo">
-              <div class="person-initials">TL</div>
+              <div class="person-initials"></div>
               <Placeholder alt='Thomas L.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
@@ -690,7 +696,7 @@ const activeNav = "apropos";
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
           <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
-              <div class="person-initials">SM</div>
+              <div class="person-initials"></div>
               <Placeholder alt='Sophie M.' aspectRatio='1/1' />
               <span class="person-badge"><span class="material-symbols-outlined">workspace_premium</span>Cheffe</span>
             </div>
@@ -702,7 +708,7 @@ const activeNav = "apropos";
           </div>
           <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
-              <div class="person-initials">JB</div>
+              <div class="person-initials"></div>
               <Placeholder alt='Julien B.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
@@ -712,7 +718,7 @@ const activeNav = "apropos";
           </div>
           <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
-              <div class="person-initials">LC</div>
+              <div class="person-initials"></div>
               <Placeholder alt='Léa C.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
@@ -722,7 +728,7 @@ const activeNav = "apropos";
           </div>
           <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
-              <div class="person-initials">CV</div>
+              <div class="person-initials"></div>
               <Placeholder alt='Caroline V.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
@@ -732,7 +738,7 @@ const activeNav = "apropos";
           </div>
           <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
-              <div class="person-initials">AK</div>
+              <div class="person-initials"></div>
               <Placeholder alt='Aïcha K.' aspectRatio='16/9' />
             </div>
             <div class="person-info">
@@ -742,7 +748,7 @@ const activeNav = "apropos";
           </div>
           <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
-              <div class="person-initials">MT</div>
+              <div class="person-initials"></div>
               <Placeholder alt='Marianne T.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
@@ -768,7 +774,7 @@ const activeNav = "apropos";
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
           <div class="person-card" style="--svc-color:#C04B72;">
             <div class="person-photo">
-              <div class="person-initials">NR</div>
+              <div class="person-initials"></div>
               <Placeholder alt='Nicolas R.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
@@ -779,7 +785,7 @@ const activeNav = "apropos";
           </div>
           <div class="person-card" style="--svc-color:#C04B72;">
             <div class="person-photo">
-              <div class="person-initials">EG</div>
+              <div class="person-initials"></div>
               <Placeholder alt='Élodie G.' aspectRatio='16/9' />
             </div>
             <div class="person-info">
@@ -789,7 +795,7 @@ const activeNav = "apropos";
           </div>
           <div class="person-card" style="--svc-color:#C04B72;">
             <div class="person-photo">
-              <div class="person-initials">SP</div>
+              <div class="person-initials"></div>
               <Placeholder alt='Sébastien P.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
@@ -815,7 +821,7 @@ const activeNav = "apropos";
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
           <div class="person-card" style="--svc-color:#119DA4;">
             <div class="person-photo">
-              <div class="person-initials">EW</div>
+              <div class="person-initials"></div>
               <Placeholder alt='Emma W.' aspectRatio='1/1' />
               <span class="person-badge"><span class="material-symbols-outlined">hub</span>Coord.</span>
             </div>
