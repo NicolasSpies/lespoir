@@ -3,11 +3,6 @@ User-agent: *
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 # AI crawlers — explicitly allowed (Generative Engine Optimization)
 # OpenAI
@@ -15,155 +10,80 @@ User-agent: GPTBot
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 User-agent: OAI-SearchBot
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 User-agent: ChatGPT-User
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 # Anthropic
 User-agent: ClaudeBot
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 User-agent: Claude-Web
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 User-agent: anthropic-ai
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 # Perplexity
 User-agent: PerplexityBot
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 User-agent: Perplexity-User
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 # Google AI
 User-agent: Google-Extended
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 # Apple Intelligence
 User-agent: Applebot-Extended
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 # Microsoft / Meta / DuckDuckGo / Amazon / You.com / Mistral
 User-agent: Meta-ExternalAgent
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 User-agent: DuckAssistBot
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 User-agent: Amazonbot
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 User-agent: YouBot
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 User-agent: Mistral-User
 Allow: /
 Disallow: /404
 Disallow: /404.html
-Disallow: /briefing
-Disallow: /briefing.html
-Disallow: /palettes
-Disallow: /palettes.html
-Disallow: /index.html
 
 Sitemap: https://asbl-espoir.be/sitemap.xml

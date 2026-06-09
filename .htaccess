@@ -92,12 +92,3 @@ ErrorDocument 404 /404.html
 Options -Indexes
 
 # Block hidden internal pages from being indexed via direct access
-<Files "briefing.html">
-  Header set X-Robots-Tag "noindex, nofollow"
-</Files>
-<Files "palettes.html">
-  Header set X-Robots-Tag "noindex, nofollow"
-</Files>
-<Files "index.html">
-  Header set X-Robots-Tag "noindex, nofollow"
-</Files>
