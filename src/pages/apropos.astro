@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
 
 const title = "À propos · L'Espoir asbl, aide à la jeunesse depuis 1985";
@@ -558,11 +559,7 @@ const activeNav = "apropos";
 
       <!-- Image -->
       <div class="section-img service-img-wrap lg:sticky lg:top-28">
-        <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?fm=webp&w=1200&q=80&auto=format&fit=crop"
-          alt="L'équipe de L'Espoir asbl"
-          class="blur-up" fetchpriority="high"
-         width="1200" height="800"/>
+        <Placeholder alt="L'équipe de L'Espoir asbl" aspectRatio='4/3' />
       </div>
 
     </div>
@@ -642,7 +639,7 @@ const activeNav = "apropos";
           <div class="person-card" style="--svc-color:#002626;">
             <div class="person-photo">
               <div class="person-initials">AL</div>
-              <img src="/asmaa.jpg" alt="Asmaa Lakrary" loading="lazy" onerror="this.style.display='none'" width="800" height="800"/>
+              <Placeholder alt='Asmaa Lakrary' aspectRatio='1/1' />
               <span class="person-badge"><span class="material-symbols-outlined">star</span>Direction</span>
             </div>
             <div class="person-info">
@@ -656,7 +653,7 @@ const activeNav = "apropos";
           <div class="person-card" style="--svc-color:#002626;">
             <div class="person-photo">
               <div class="person-initials">MD</div>
-              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?fm=webp&w=500&q=80&auto=format&fit=crop" alt="Marie D." loading="lazy" width="1200" height="800"/>
+              <Placeholder alt='Marie D.' aspectRatio='1/1' />
               <span class="person-badge"><span class="material-symbols-outlined">star</span>Direction</span>
             </div>
             <div class="person-info">
@@ -668,7 +665,7 @@ const activeNav = "apropos";
           <div class="person-card" style="--svc-color:#002626;">
             <div class="person-photo">
               <div class="person-initials">TL</div>
-              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?fm=webp&w=500&q=80&auto=format&fit=crop" alt="Thomas L." loading="lazy" width="1200" height="800"/>
+              <Placeholder alt='Thomas L.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
               <div class="person-name">Thomas L.</div>
@@ -694,7 +691,7 @@ const activeNav = "apropos";
           <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
               <div class="person-initials">SM</div>
-              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=webp&w=500&q=80&auto=format&fit=crop" alt="Sophie M." loading="lazy" width="1200" height="800"/>
+              <Placeholder alt='Sophie M.' aspectRatio='1/1' />
               <span class="person-badge"><span class="material-symbols-outlined">workspace_premium</span>Cheffe</span>
             </div>
             <div class="person-info">
@@ -706,7 +703,7 @@ const activeNav = "apropos";
           <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
               <div class="person-initials">JB</div>
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=webp&w=500&q=80&auto=format&fit=crop" alt="Julien B." loading="lazy" width="1200" height="800"/>
+              <Placeholder alt='Julien B.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
               <div class="person-name">Julien B.</div>
@@ -716,7 +713,7 @@ const activeNav = "apropos";
           <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
               <div class="person-initials">LC</div>
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?fm=webp&w=500&q=80&auto=format&fit=crop" alt="Léa C." loading="lazy" width="1200" height="800"/>
+              <Placeholder alt='Léa C.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
               <div class="person-name">Léa C.</div>
@@ -726,7 +723,7 @@ const activeNav = "apropos";
           <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
               <div class="person-initials">CV</div>
-              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?fm=webp&w=500&q=80&auto=format&fit=crop" alt="Caroline V." loading="lazy" width="1200" height="800"/>
+              <Placeholder alt='Caroline V.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
               <div class="person-name">Caroline V.</div>
@@ -736,7 +733,7 @@ const activeNav = "apropos";
           <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
               <div class="person-initials">AK</div>
-              <img src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?fm=webp&w=500&q=80&auto=format&fit=crop" alt="Aïcha K." loading="lazy" width="1200" height="800"/>
+              <Placeholder alt='Aïcha K.' aspectRatio='16/9' />
             </div>
             <div class="person-info">
               <div class="person-name">Aïcha K.</div>
@@ -746,7 +743,7 @@ const activeNav = "apropos";
           <div class="person-card" style="--svc-color:#E58346;">
             <div class="person-photo">
               <div class="person-initials">MT</div>
-              <img src="https://images.unsplash.com/photo-1584467735871-8297329f8d9b?fm=webp&w=500&q=80&auto=format&fit=crop" alt="Marianne T." loading="lazy" width="1200" height="800"/>
+              <Placeholder alt='Marianne T.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
               <div class="person-name">Marianne T.</div>
@@ -772,7 +769,7 @@ const activeNav = "apropos";
           <div class="person-card" style="--svc-color:#C04B72;">
             <div class="person-photo">
               <div class="person-initials">NR</div>
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?fm=webp&w=500&q=80&auto=format&fit=crop" alt="Nicolas R." loading="lazy" width="1200" height="800"/>
+              <Placeholder alt='Nicolas R.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
               <div class="person-name">Nicolas R.</div>
@@ -783,7 +780,7 @@ const activeNav = "apropos";
           <div class="person-card" style="--svc-color:#C04B72;">
             <div class="person-photo">
               <div class="person-initials">EG</div>
-              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?fm=webp&w=500&q=80&auto=format&fit=crop" alt="Élodie G." loading="lazy" width="1200" height="800"/>
+              <Placeholder alt='Élodie G.' aspectRatio='16/9' />
             </div>
             <div class="person-info">
               <div class="person-name">Élodie G.</div>
@@ -793,7 +790,7 @@ const activeNav = "apropos";
           <div class="person-card" style="--svc-color:#C04B72;">
             <div class="person-photo">
               <div class="person-initials">SP</div>
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?fm=webp&w=500&q=80&auto=format&fit=crop" alt="Sébastien P." loading="lazy" width="1200" height="800"/>
+              <Placeholder alt='Sébastien P.' aspectRatio='1/1' />
             </div>
             <div class="person-info">
               <div class="person-name">Sébastien P.</div>
@@ -819,7 +816,7 @@ const activeNav = "apropos";
           <div class="person-card" style="--svc-color:#119DA4;">
             <div class="person-photo">
               <div class="person-initials">EW</div>
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?fm=webp&w=500&q=80&auto=format&fit=crop" alt="Emma W." loading="lazy" width="1200" height="800"/>
+              <Placeholder alt='Emma W.' aspectRatio='1/1' />
               <span class="person-badge"><span class="material-symbols-outlined">hub</span>Coord.</span>
             </div>
             <div class="person-info">

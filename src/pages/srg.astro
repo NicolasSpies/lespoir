@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
 
 const title = "SRG · Hébergement résidentiel jeunes 3-18 ans, Huy · Amay";
@@ -559,11 +560,7 @@ const activeNav = "srg";
 
       <!-- Image -->
       <div class="section-img service-img-wrap">
-        <img
-          src="https://images.unsplash.com/photo-1529390079861-591de354faf5?fm=webp&w=1200&q=80&auto=format&fit=crop"
-          alt="Enfants accueillis au sein du SRG de L'Espoir asbl"
-          class="blur-up" fetchpriority="high"
-        />
+        <Placeholder alt="Enfants accueillis au sein du SRG de L'Espoir asbl" aspectRatio='16/9' />
       </div>
 
     </div>
@@ -594,9 +591,9 @@ const activeNav = "srg";
         <div class="maison-feature" id="maison-couthuin">
           <div class="maison-feature-img">
             <div class="maison-slider" data-house="La Maison de Couthuin" role="button" tabindex="0" aria-label="Voir la galerie de La Maison de Couthuin">
-              <img class="ms-slide active" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?fm=webp&w=1200&q=80&auto=format&fit=crop" alt="La Maison de Couthuin, vue extérieure" loading="lazy"/>
-              <img class="ms-slide" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?fm=webp&w=1200&q=80&auto=format&fit=crop" alt="La Maison de Couthuin, jardin et nature" loading="lazy"/>
-              <img class="ms-slide" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=webp&w=1200&q=80&auto=format&fit=crop" alt="La Maison de Couthuin, espace de vie" loading="lazy"/>
+              <Placeholder alt='La Maison de Couthuin, vue extérieure' aspectRatio='16/9' />
+              <Placeholder alt='La Maison de Couthuin, jardin et nature' aspectRatio='16/9' />
+              <Placeholder alt='La Maison de Couthuin, espace de vie' aspectRatio='16/9' />
               <div class="ms-zoom" aria-hidden="true"><span class="material-symbols-outlined">zoom_in</span></div>
               <div class="ms-dots" aria-hidden="true">
                 <span class="ms-dot active"></span><span class="ms-dot"></span><span class="ms-dot"></span>
@@ -633,9 +630,9 @@ const activeNav = "srg";
         <div class="maison-feature reversed" id="maison-erables">
           <div class="maison-feature-img">
             <div class="maison-slider" data-house="La Maison des Érables" role="button" tabindex="0" aria-label="Voir la galerie de La Maison des Érables">
-              <img class="ms-slide active" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?fm=webp&w=1200&q=80&auto=format&fit=crop" alt="La Maison des Érables, façade" loading="lazy"/>
-              <img class="ms-slide" src="https://images.unsplash.com/photo-1416331108676-a22ccb276e35?fm=webp&w=1200&q=80&auto=format&fit=crop" alt="La Maison des Érables, jardin et ateliers" loading="lazy"/>
-              <img class="ms-slide" src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?fm=webp&w=1200&q=80&auto=format&fit=crop" alt="La Maison des Érables, salon" loading="lazy"/>
+              <Placeholder alt='La Maison des Érables, façade' aspectRatio='16/9' />
+              <Placeholder alt='La Maison des Érables, jardin et ateliers' aspectRatio='16/9' />
+              <Placeholder alt='La Maison des Érables, salon' aspectRatio='16/9' />
               <div class="ms-zoom" aria-hidden="true"><span class="material-symbols-outlined">zoom_in</span></div>
               <div class="ms-dots" aria-hidden="true">
                 <span class="ms-dot active"></span><span class="ms-dot"></span><span class="ms-dot"></span>
@@ -672,9 +669,9 @@ const activeNav = "srg";
         <div class="maison-feature" id="maison-escale">
           <div class="maison-feature-img">
             <div class="maison-slider" data-house="L'Escale" role="button" tabindex="0" aria-label="Voir la galerie de L'Escale">
-              <img class="ms-slide active" src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?fm=webp&w=1200&q=80&auto=format&fit=crop" alt="L'Escale, façade" loading="lazy"/>
-              <img class="ms-slide" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?fm=webp&w=1200&q=80&auto=format&fit=crop" alt="L'Escale, espace de travail" loading="lazy"/>
-              <img class="ms-slide" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?fm=webp&w=1200&q=80&auto=format&fit=crop" alt="L'Escale, salon partagé" loading="lazy"/>
+              <Placeholder alt="L'Escale, façade" aspectRatio='16/9' />
+              <Placeholder alt="L'Escale, espace de travail" aspectRatio='16/9' />
+              <Placeholder alt="L'Escale, salon partagé" aspectRatio='16/9' />
               <div class="ms-zoom" aria-hidden="true"><span class="material-symbols-outlined">zoom_in</span></div>
               <div class="ms-dots" aria-hidden="true">
                 <span class="ms-dot active"></span><span class="ms-dot"></span><span class="ms-dot"></span>
@@ -777,11 +774,7 @@ const activeNav = "srg";
 
       <!-- Image -->
       <div class="section-img service-img-wrap">
-        <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?fm=webp&w=1200&q=80&auto=format&fit=crop"
-          alt="L'équipe pluridisciplinaire du SRG de L'Espoir asbl"
-          class="blur-up" loading="lazy"
-        />
+        <Placeholder alt="L'équipe pluridisciplinaire du SRG de L'Espoir asbl" aspectRatio='4/3' />
       </div>
 
       <!-- Text -->

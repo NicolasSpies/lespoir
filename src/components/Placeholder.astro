@@ -1,0 +1,99 @@
+---
+/**
+ * Placeholder · branded image placeholder used everywhere a real photo
+ * is missing or not yet available. To be replaced wholesale once
+ * Contentcore CMS feeds in real images via API.
+ *
+ * Design:
+ *   - Cream gradient background (#EFE7DA → #E8DFCE), brand-aligned
+ *   - Subtle cassis radial glow (very low opacity, decorative)
+ *   - L'Espoir logo mark centered (currentColor, 22% opacity, dark brand color)
+ *   - Tiny uppercase label below mark
+ *   - Border-radius matches card aesthetic (default 1.5rem)
+ *
+ * Aspect ratio is fluid · pass `aspectRatio` prop ("16/9", "4/3", "1/1", etc).
+ * For square portraits (person cards) use "1/1".
+ *
+ * Accessibility: takes `alt` prop describing what the real image should show.
+ * Renders as role="img" with that as aria-label so screenreaders announce
+ * "image: portrait of Asmaa Lakrary" even though no real photo is loaded.
+ */
+interface Props {
+  alt?: string;
+  aspectRatio?: string;
+  rounded?: string;       // tailwind class · default "rounded-3xl"
+  label?: string;         // tiny text below mark · default "Visuel à venir"
+  showLabel?: boolean;
+  class?: string;
+}
+
+const {
+  alt = "Visuel à venir",
+  aspectRatio = "16/9",
+  rounded = "rounded-3xl",
+  label = "Visuel à venir",
+  showLabel = true,
+  class: className = "",
+} = Astro.props;
+---
+
+<div
+  class:list={['placeholder', rounded, className]}
+  style={`aspect-ratio: ${aspectRatio};`}
+  role="img"
+  aria-label={alt}
+>
+  <div class="placeholder-mark" aria-hidden="true"></div>
+  {showLabel && (
+    <span class="placeholder-label">{label}</span>
+  )}
+</div>
+
+<style>
+  .placeholder {
+    position: relative;
+    width: 100%;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(192, 75, 114, 0.06) 0%, transparent 55%),
+      radial-gradient(circle at 70% 70%, rgba(229, 131, 70, 0.05) 0%, transparent 55%),
+      linear-gradient(135deg, #EFE7DA 0%, #E5DCC9 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    overflow: hidden;
+    border: 1px solid rgba(0, 38, 38, 0.06);
+  }
+  .placeholder::after {
+    /* very subtle dotted noise (decorative) */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(0, 38, 38, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .placeholder-mark {
+    width: clamp(40px, 22%, 88px);
+    aspect-ratio: 261/294;        /* matches logo-mark viewBox */
+    background: #002626;
+    opacity: 0.22;
+    -webkit-mask: url('/logo-mark.svg') no-repeat center / contain;
+            mask: url('/logo-mark.svg') no-repeat center / contain;
+    position: relative;
+    z-index: 1;
+  }
+  .placeholder-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: rgba(0, 38, 38, 0.4);
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+</style>

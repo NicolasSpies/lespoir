@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Placeholder from '../components/Placeholder.astro';
 
 const title = "Rapport d'activités 2025 · 40 ans au service des jeunes";
 const description = "Retour sur une année intense de L'Espoir asbl : 120 jeunes accompagnés, trois services agréés, une équipe engagée dans l'aide à la jeunesse à Huy et Amay. Rapport d'activités 2025.";
@@ -658,7 +659,7 @@ html { scroll-behavior: smooth; }
         <span class="hero-meta-sep"></span>
         <span class="hero-meta-item"><span class="material-symbols-outlined">visibility</span>1 240 vues</span>
         <span class="hero-meta-sep"></span>
-        <span class="hero-meta-item"><span class="hero-meta-avatar" aria-hidden="true"><img src="/asmaa.jpg" alt="" loading="lazy" decoding="async"/></span>Asmaa Lakrary</span>
+        <span class="hero-meta-item"><span class="hero-meta-avatar" aria-hidden="true"><Placeholder alt='' aspectRatio='16/9' /></span>Asmaa Lakrary</span>
       </div>
     </div>
   </section>
@@ -667,12 +668,7 @@ html { scroll-behavior: smooth; }
   <div class="article-cover px-0 md:px-8">
     <div class="max-w-5xl mx-auto">
       <figure class="article-cover-figure">
-        <img
-          src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?fm=webp&w=1600&q=80&auto=format&fit=crop"
-          fetchpriority="high"
-          alt="Rapport d'activités L'Espoir asbl 2025"
-          style="max-height: 560px; object-fit: cover;"
-        />
+        <Placeholder alt="Rapport d'activités L'Espoir asbl 2025" aspectRatio='16/9' />
       </figure>
       <p class="article-cover-caption">
         <span class="material-symbols-outlined">photo_camera</span>
@@ -740,7 +736,7 @@ html { scroll-behavior: smooth; }
 
       <!-- INLINE IMAGE -->
       <figure class="article-figure">
-        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?fm=webp&w=1400&q=80&auto=format&fit=crop" alt="Réunion d'équipe autour d'un cahier" loading="lazy" decoding="async"/>
+        <Placeholder alt="Réunion d'équipe autour d'un cahier" aspectRatio='4/3' />
         <figcaption>Réunion hebdomadaire d'équipe au SRG · novembre 2025.</figcaption>
       </figure>
 
@@ -796,8 +792,8 @@ html { scroll-behavior: smooth; }
       <!-- BEFORE / AFTER -->
       <figure class="article-figure">
         <div class="article-ba" aria-label="Comparaison avant/après du terrain">
-          <img src="https://images.unsplash.com/photo-1433838552652-f9a46b332c40?fm=webp&w=1600&q=80&auto=format&fit=crop" alt="Terrain en friche avant les travaux" class="ba-before" loading="lazy" decoding="async"/>
-          <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?fm=webp&w=1600&q=80&auto=format&fit=crop" alt="Potager aménagé après les travaux" class="ba-after" loading="lazy" decoding="async"/>
+          <Placeholder alt='Terrain en friche avant les travaux' aspectRatio='16/9' />
+          <Placeholder alt='Potager aménagé après les travaux' aspectRatio='16/9' />
           <div class="ba-label ba-label-before">Avant · Mars</div>
           <div class="ba-label ba-label-after">Après · Juin</div>
           <div class="ba-divider"></div>
@@ -814,34 +810,34 @@ html { scroll-behavior: smooth; }
       <!-- GALLERY -->
       <div class="article-gallery" role="list">
         <div class="gallery-item" role="listitem" data-caption="Préparation des carrés de culture · avril 2025">
-          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?fm=webp&w=900&q=80&auto=format&fit=crop" alt="Préparation du sol" loading="lazy" decoding="async"/>
+          <Placeholder alt='Préparation du sol' aspectRatio='16/9' />
           <div class="gallery-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
         </div>
         <div class="gallery-item" role="listitem" data-caption="Plantation des premières tomates · mai 2025">
-          <img src="https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?fm=webp&w=900&q=80&auto=format&fit=crop" alt="Mains plantant" loading="lazy" decoding="async"/>
+          <Placeholder alt='Mains plantant' aspectRatio='16/9' />
           <div class="gallery-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
         </div>
         <div class="gallery-item" role="listitem" data-caption="Outils du jardin partagé">
-          <img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?fm=webp&w=900&q=80&auto=format&fit=crop" alt="Outils de jardinage" loading="lazy" decoding="async"/>
+          <Placeholder alt='Outils de jardinage' aspectRatio='16/9' />
           <div class="gallery-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
         </div>
         <div class="gallery-item" role="listitem" data-caption="Première récolte · juillet 2025">
-          <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?fm=webp&w=900&q=80&auto=format&fit=crop" alt="Récolte de légumes" loading="lazy" decoding="async"/>
+          <Placeholder alt='Récolte de légumes' aspectRatio='16/9' />
           <div class="gallery-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
         </div>
         <div class="gallery-item" role="listitem" data-caption="Repas partagé au potager · août 2025">
-          <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?fm=webp&w=900&q=80&auto=format&fit=crop" alt="Table partagée" loading="lazy" decoding="async"/>
+          <Placeholder alt='Table partagée' aspectRatio='16/9' />
           <div class="gallery-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
         </div>
         <div class="gallery-item" role="listitem" data-caption="Atelier cuisine au potager">
-          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?fm=webp&w=900&q=80&auto=format&fit=crop" alt="Cuisine collective" loading="lazy" decoding="async"/>
+          <Placeholder alt='Cuisine collective' aspectRatio='16/9' />
           <div class="gallery-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
         </div>
       </div>
 
       <!-- 2-COLUMN -->
       <div class="article-two-col">
-        <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?fm=webp&w=900&q=80&auto=format&fit=crop" alt="Accompagnement au domicile" loading="lazy" decoding="async"/>
+        <Placeholder alt='Accompagnement au domicile' aspectRatio='16/9' />
         <div class="two-col-text">
           <span class="text-[#C04B72] font-black tracking-widest text-xs uppercase block mb-3">Focus · SASE</span>
           <h3>Un accompagnement au plus près des familles</h3>
@@ -1013,7 +1009,7 @@ html { scroll-behavior: smooth; }
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <a href="/article" class="related-card">
-          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?fm=webp&w=800&q=80&auto=format&fit=crop" alt="Formation continue" loading="lazy" decoding="async"/>
+          <Placeholder alt='Formation continue' aspectRatio='16/9' />
           <div class="p-5">
             <div class="flex items-center gap-2 mb-3">
               <span class="actu-tag" style="background:rgba(229,131,70,0.15);color:#E58346;">Formation</span>
@@ -1023,7 +1019,7 @@ html { scroll-behavior: smooth; }
           </div>
         </a>
         <a href="/article" class="related-card">
-          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?fm=webp&w=800&q=80&auto=format&fit=crop" alt="Potager communautaire" loading="lazy" decoding="async"/>
+          <Placeholder alt='Potager communautaire' aspectRatio='16/9' />
           <div class="p-5">
             <div class="flex items-center gap-2 mb-3">
               <span class="actu-tag" style="background:rgba(192,75,114,0.15);color:#8b2a4e;">Projet</span>
@@ -1033,7 +1029,7 @@ html { scroll-behavior: smooth; }
           </div>
         </a>
         <a href="/article" class="related-card">
-          <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?fm=webp&w=800&q=80&auto=format&fit=crop" alt="Portes ouvertes" loading="lazy" decoding="async"/>
+          <Placeholder alt='Portes ouvertes' aspectRatio='16/9' />
           <div class="p-5">
             <div class="flex items-center gap-2 mb-3">
               <span class="actu-tag" style="background:rgba(17,157,164,0.15);color:#0a6e73;">Événement</span>

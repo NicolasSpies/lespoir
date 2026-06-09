@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
 
 const title = "L'Espoir asbl · Aide à la jeunesse à Huy depuis 1985";
@@ -22,7 +23,6 @@ const activeNav = "home";
   canonicalPath={canonicalPath}
   ogImage={ogImage}
   ogImageAlt={ogImageAlt}
-  preloadTags={preloadTags}
   schemaOrg={schemaOrg}
   activeNav={activeNav}
 >
@@ -797,40 +797,16 @@ const activeNav = "home";
         <div class="hero-img-card">
           <div class="hero-slider" role="region" aria-roledescription="carousel" aria-label="Galerie L'Espoir asbl">
             <div class="hero-slide active">
-              <picture>
-                <source type="image/webp"
-                  srcset="/1-xs.webp 480w, /1-sm.webp 768w, /1-md.webp 1024w, /1.webp 1080w"
-                  sizes="(max-width: 1023px) 100vw, 50vw"/>
-                <img src="/1.webp" alt="L'Espoir asbl, aide à la jeunesse à Huy et Amay depuis 1985"
-                  class="hero-img blur-up" fetchpriority="high" width="1080" height="1080"/>
-              </picture>
+              <Placeholder alt="L'Espoir asbl, aide à la jeunesse à Huy et Amay depuis 1985" aspectRatio='16/9' />
             </div>
             <div class="hero-slide">
-              <picture>
-                <source type="image/webp"
-                  srcset="/2-xs.webp 480w, /2-sm.webp 768w, /2-md.webp 1024w, /2.webp 1200w"
-                  sizes="(max-width: 1023px) 100vw, 50vw"/>
-                <img src="/2.webp" alt="SRG L'Espoir asbl, hébergement résidentiel pour enfants à Amay et Couthuin"
-                  class="hero-img blur-up" decoding="async" width="1200" height="801"/>
-              </picture>
+              <Placeholder alt="SRG L'Espoir asbl, hébergement résidentiel pour enfants à Amay et Couthuin" aspectRatio='16/9' />
             </div>
             <div class="hero-slide">
-              <picture>
-                <source type="image/webp"
-                  srcset="/3-xs.webp 320w, /3-sm.webp 512w, /3-md.webp 682w, /3.webp 800w"
-                  sizes="(max-width: 1023px) 100vw, 50vw"/>
-                <img src="/3.webp" alt="SASE L'Espoir asbl, accompagnement socio-éducatif à domicile dans la région de Huy"
-                  class="hero-img blur-up" decoding="async" width="800" height="1200"/>
-              </picture>
+              <Placeholder alt="SASE L'Espoir asbl, accompagnement socio-éducatif à domicile dans la région de Huy" aspectRatio='16/9' />
             </div>
             <div class="hero-slide">
-              <picture>
-                <source type="image/webp"
-                  srcset="/4-xs.webp 320w, /4-sm.webp 512w, /4-md.webp 682w, /4.webp 800w"
-                  sizes="(max-width: 1023px) 100vw, 50vw"/>
-                <img src="/4.webp" alt="SAPA L'Espoir asbl, parrainage familial à Huy, Waremme et Hannut"
-                  class="hero-img blur-up" decoding="async" width="800" height="1200"/>
-              </picture>
+              <Placeholder alt="SAPA L'Espoir asbl, parrainage familial à Huy, Waremme et Hannut" aspectRatio='16/9' />
             </div>
           </div>
         </div>
