@@ -618,21 +618,7 @@ const activeNav = "home";
      0a. IMAGE BLUR-UP LOADING
      ══════════════════════════════════════ */
 
-  (function() {
-    var imgs = document.querySelectorAll('img.blur-up');
-    imgs.forEach(function(img) {
-      if (img.complete && img.naturalWidth > 0) {
-        img.classList.add('is-loaded');
-      } else {
-        img.addEventListener('load', function() {
-          img.classList.add('is-loaded');
-        }, { once: true });
-        img.addEventListener('error', function() {
-          img.classList.add('is-loaded');
-        }, { once: true });
-      }
-    });
-  })();
+  
 
   /* ══════════════════════════════════════
      0b. HERO ENTRANCE ANIMATION
@@ -828,40 +814,7 @@ const activeNav = "home";
      2. NAVIGATION DROPDOWNS
      ══════════════════════════════════════ */
 
-  document.querySelectorAll('.nav-item').forEach(function(item) {
-    var closeTimer = null;
-
-    // Dropdown item hover colors
-    var dropdownLinks = item.querySelectorAll('.nav-dropdown a');
-    dropdownLinks.forEach(function(link) {
-      var color = link.getAttribute('data-hover-color');
-      if (color) {
-        link.addEventListener('mouseenter', function() {
-          link.style.borderLeftColor = color;
-        });
-        link.addEventListener('mouseleave', function() {
-          link.style.borderLeftColor = 'transparent';
-        });
-      }
-    });
-
-    item.addEventListener('mouseenter', function() {
-      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
-      // Close other open dropdowns
-      document.querySelectorAll('.nav-item.dropdown-open').forEach(function(other) {
-        if (other !== item) other.classList.remove('dropdown-open');
-      });
-      item.classList.add('dropdown-open');
-    });
-
-    item.addEventListener('mouseleave', function() {
-      closeTimer = setTimeout(function() {
-        item.classList.remove('dropdown-open');
-      }, 120);
-    });
-
-    // The dropdown trigger link now navigates on click, don't preventDefault
-  });
+  
 
   // ── Mobile: auto-activate hover state when element enters viewport center ──
   if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {

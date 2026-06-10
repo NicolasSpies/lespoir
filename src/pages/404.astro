@@ -118,18 +118,11 @@ const activeNav = null;
 (function() {
   'use strict';
 
-
   /* ── NAV SHRINK ── */
   var nav = document.querySelector('nav');
   if (nav) window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive:true });
 
-  /* ── NAV DROPDOWNS ── */
-  document.querySelectorAll('.nav-item').forEach(function(item) {
-    var t;
-    item.addEventListener('mouseenter', function(){ if(t){clearTimeout(t);t=null;} document.querySelectorAll('.nav-item.dropdown-open').forEach(function(o){ if(o!==item) o.classList.remove('dropdown-open'); }); item.classList.add('dropdown-open'); });
-    item.addEventListener('mouseleave', function(){ t=setTimeout(function(){ item.classList.remove('dropdown-open'); },120); });
-  });
-})();
+  })();
 </script>
 
 

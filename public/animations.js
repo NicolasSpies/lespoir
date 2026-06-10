@@ -412,3 +412,18 @@
   });
 
 })();
+
+/* ══════════════════════════════════════
+   IMAGE BLUR-UP LOADING (global)
+   Adds .is-loaded to img.blur-up once the image is decoded,
+   so the CSS blur(14px) → blur(0) transition fires.
+   Centralised here · was duplicated in every page script.
+   ══════════════════════════════════════ */
+(function() {
+  'use strict';
+  document.querySelectorAll('img.blur-up').forEach(function(img) {
+    if (img.complete && img.naturalWidth > 0) { img.classList.add('is-loaded'); return; }
+    img.addEventListener('load',  function() { img.classList.add('is-loaded'); }, { once: true });
+    img.addEventListener('error', function() { img.classList.add('is-loaded'); }, { once: true });
+  });
+})();
