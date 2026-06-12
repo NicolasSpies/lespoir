@@ -239,7 +239,31 @@ const activeNav = "sapa";
   </section>
 
 
-  <WaveDivider from="#EFE7DA" to="#fbf9f8" path="M0 32 Q360 8 720 44 Q1080 48 1440 16 L1440 60 L0 60 Z" />
+  <WaveDivider from="#EFE7DA" to="#1246AF" path="M0 32 Q360 8 720 44 Q1080 48 1440 16 L1440 60 L0 60 Z" />
+
+  <!-- ── ESCAPADE · marque du service ── -->
+  <section id="escapade" class="py-16 md:py-24 px-6 md:px-8 blob-parent" style="background:#1246AF;">
+    <div aria-hidden="true" class="blob" style="width:300px;height:300px;background:rgba(255,255,255,0.06);top:-40px;right:-60px;border-radius:55% 45% 60% 40% / 50% 60% 40% 50%;"></div>
+    <div aria-hidden="true" class="blob" style="width:180px;height:180px;background:rgba(0,206,163,0.16);bottom:-30px;left:-40px;border-radius:60% 40% 50% 50%;"></div>
+    <div class="max-w-4xl mx-auto text-center relative">
+      <span class="font-black tracking-widest text-xs uppercase block mb-8" style="color:rgba(255,255,255,0.6);">Le SAPA porte un nom</span>
+
+      <!-- Logo sur carte blanche pour rester lisible sur le bleu -->
+      <div class="inline-flex items-center justify-center bg-white rounded-3xl mb-8" style="padding:2.25rem 2.75rem;box-shadow:0 24px 60px rgba(0,0,0,0.18);">
+        <img src="/escapade-logo.png" alt="Escapade · Service d'Accompagnement du Parrainage de L'Espoir asbl" style="width:clamp(180px,42vw,260px);height:auto;display:block;" loading="lazy" />
+      </div>
+
+      <p class="font-bold text-white leading-tight mb-6" style="font-size:clamp(1.5rem,3.2vw,2.4rem);">
+        « Les liens humains qui nous façonnent »
+      </p>
+      <p class="text-base md:text-lg leading-relaxed max-w-2xl mx-auto" style="color:rgba(255,255,255,0.82);">
+        Notre Service d'Accompagnement du Parrainage porte un nom que les familles et les partenaires de la région connaissent bien : <strong class="text-white">Escapade</strong>. C'est sous cette identité que nous créons, accompagnons et faisons durer chaque parrainage.
+      </p>
+    </div>
+  </section>
+
+
+  <WaveDivider from="#1246AF" to="#fbf9f8" path="M0 32 Q360 8 720 44 Q1080 48 1440 16 L1440 60 L0 60 Z" />
 
   <!-- ── LE PARRAINAGE, C'EST QUOI ? ── -->
   <section id="concept" class="blob-parent py-16 md:py-24 px-6 md:px-8 bg-surface">
@@ -351,15 +375,15 @@ const activeNav = "sapa";
             </li>
             <li class="flex items-center gap-2 text-sm text-white/80">
               <span class="w-1.5 h-1.5 rounded-full bg-white inline-block flex-shrink-0"></span>
-              Environ 2 à 4 heures par mois minimum
+              Un accueil ponctuel mais régulier
             </li>
             <li class="flex items-center gap-2 text-sm text-white/80">
               <span class="w-1.5 h-1.5 rounded-full bg-white inline-block flex-shrink-0"></span>
-              Formation et accompagnement SAPA fournis
+              Une séance d'informations pour bien démarrer
             </li>
             <li class="flex items-center gap-2 text-sm text-white/80">
               <span class="w-1.5 h-1.5 rounded-full bg-white inline-block flex-shrink-0"></span>
-              Casier judiciaire demandé (modèle 2)
+              L'accompagnement de l'équipe à chaque étape
             </li>
           </ul>
           <a href="#benevole" class="btn bg-[#119DA4] text-white hover:bg-[#119DA4]/90 mt-auto">
@@ -388,78 +412,105 @@ const activeNav = "sapa";
           Le chemin pour devenir parrain ou marraine
         </h2>
         <p class="text-base text-[#002626]/70 leading-relaxed mb-10">
-          On vous accompagne de bout en bout, du premier coup de téléphone jusqu'au moment où vous rencontrez votre filleul.
+          On vous accompagne de bout en bout, du premier contact jusqu'au moment où le parrainage prend vie et au-delà.
         </p>
         <div class="space-y-8">
           <div class="process-step">
             <div class="process-num">1</div>
             <div>
               <div class="font-bold text-[#002626] mb-1">Prise de contact</div>
-              <p class="text-sm text-[#002626]/65 leading-relaxed">Appelez-nous ou envoyez un mail pour vous manifester. On organise un premier échange informel pour répondre à vos questions.</p>
+              <p class="text-sm text-[#002626]/65 leading-relaxed">Joignez-nous par téléphone ou par mail pour vous manifester. On répond à vos premières questions et on vous explique la suite.</p>
             </div>
           </div>
           <div class="process-step">
             <div class="process-num">2</div>
             <div>
-              <div class="font-bold text-[#002626] mb-1">Entretien d'orientation</div>
-              <p class="text-sm text-[#002626]/65 leading-relaxed">Un travailleur du SAPA vous rencontre chez vous ou dans nos locaux pour mieux vous connaître et voir si votre profil correspond aux jeunes qu'on accompagne.</p>
+              <div class="font-bold text-[#002626] mb-1">Séance d'informations</div>
+              <p class="text-sm text-[#002626]/65 leading-relaxed">Une séance d'informations est proposée aux parrains et marraines potentiels, pour bien comprendre ce qu'est le parrainage avant de s'engager.</p>
             </div>
           </div>
           <div class="process-step">
             <div class="process-num">3</div>
             <div>
-              <div class="font-bold text-[#002626] mb-1">Formation &amp; préparation</div>
-              <p class="text-sm text-[#002626]/65 leading-relaxed">Avant de rencontrer votre filleul, vous suivez une courte formation pour vous préparer à ce que vous allez vivre et comprendre la réalité des jeunes qu'on accompagne.</p>
+              <div class="font-bold text-[#002626] mb-1">Rendez-vous &amp; visite à domicile</div>
+              <p class="text-sm text-[#002626]/65 leading-relaxed">S'ensuivent deux rendez-vous dans nos locaux et une visite à votre domicile, pour apprendre à se connaître et préparer la rencontre au plus juste.</p>
             </div>
           </div>
           <div class="process-step">
             <div class="process-num">4</div>
             <div>
               <div class="font-bold text-[#002626] mb-1">Mise en relation &amp; suivi</div>
-              <p class="text-sm text-[#002626]/65 leading-relaxed">Une fois le parrainage lancé, on reste là. On fait le point régulièrement avec vous et on est disponibles si quelque chose se complique en cours de route.</p>
+              <p class="text-sm text-[#002626]/65 leading-relaxed">Tout au long du processus, notre équipe reste présente à vos côtés pour initier, instaurer, poursuivre et faire durer le parrainage.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Côté jeune -->
+        <div class="mt-8 bg-white rounded-2xl p-6 border border-[#002626]/08">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-[#119DA4] mt-0.5 is-filled" style="font-size:20px">child_care</span>
+            <div>
+              <div class="font-bold text-[#002626] text-sm mb-1">Et pour le jeune à parrainer ?</div>
+              <p class="text-xs text-[#002626]/60 leading-relaxed">Nous le rencontrons à domicile pour un premier rendez-vous, puis nous échangeons autour de son projet et évaluons sa pertinence lors de deux rendez-vous supplémentaires.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Zone + Contact -->
+      <!-- Séance d'info + Contact -->
       <div class="benevole-card space-y-4">
-        <!-- Zone d'intervention -->
+        <!-- Séance d'informations -->
         <div class="bg-white rounded-2xl p-8 border border-[#002626]/08">
-          <h3 class="text-lg font-bold text-[#002626] mb-4">Zone d'intervention</h3>
-          <p class="text-sm text-[#002626]/60 leading-relaxed mb-5">Le SAPA couvre actuellement trois arrondissements de la province de Liège :</p>
-          <div class="flex flex-wrap gap-2">
-            <span class="zone-pill"><span class="material-symbols-outlined" style="font-size:14px;">location_on</span>Huy</span>
-            <span class="zone-pill"><span class="material-symbols-outlined" style="font-size:14px;">location_on</span>Waremme</span>
-            <span class="zone-pill"><span class="material-symbols-outlined" style="font-size:14px;">location_on</span>Hannut</span>
+          <div class="flex items-start gap-3">
+            <div class="w-11 h-11 rounded-full bg-[#119DA4]/15 flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-[#119DA4] is-filled" style="font-size:22px">event</span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-[#002626] mb-1">Une séance d'informations par mois</h3>
+              <p class="text-sm text-[#002626]/65 leading-relaxed">Chaque <strong class="text-[#002626]">1<sup>er</sup> lundi du mois, de 18h à 20h</strong>. L'occasion de tout comprendre du parrainage avant de vous lancer.</p>
+            </div>
           </div>
         </div>
 
-        <!-- Contact -->
-        <div class="bg-[#002626] rounded-2xl p-8 text-white overflow-hidden" style="background-image:radial-gradient(ellipse at 15% 20%,rgba(17,157,164,0.22),transparent 55%),radial-gradient(ellipse at 85% 80%,rgba(192,75,114,0.14),transparent 60%);">
-          <h3 class="text-xl font-bold mb-2">Intéressé(e) ?</h3>
-          <p class="text-white/60 text-sm mb-6">Que vous souhaitiez devenir bénévole ou demander un parrainage pour votre enfant, contactez-nous.</p>
-          <div class="flex flex-wrap gap-4 mb-6">
-            <a href="tel:+3285235814" class="flex items-center gap-4 group" style="flex:1 1 200px;">
-              <div class="w-10 h-10 rounded-full bg-[#119DA4]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#119DA4]/30 transition-colors">
-                <span class="material-symbols-outlined text-[#119DA4]" style="font-size:18px;">phone</span>
-              </div>
-              <div>
-                <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">Téléphone</div>
-                <div class="text-white font-semibold text-sm">085 23 58 14</div>
-              </div>
-            </a>
-            <a href="mailto:direction@asbl-espoir.be" class="flex items-center gap-4 group" style="flex:1 1 240px;">
+        <!-- Contact Escapade -->
+        <div class="bg-[#002626] rounded-2xl p-8 text-white overflow-hidden" style="background-image:radial-gradient(ellipse at 15% 20%,rgba(17,157,164,0.22),transparent 55%),radial-gradient(ellipse at 85% 80%,rgba(18,70,175,0.22),transparent 60%);">
+          <h3 class="text-xl font-bold mb-2">Contacter Escapade</h3>
+          <p class="text-white/60 text-sm mb-6">Que vous souhaitiez devenir bénévole ou demander un parrainage pour votre enfant, l'équipe vous répond.</p>
+          <div class="space-y-4 mb-6">
+            <a href="mailto:escapade@asbl-espoir.be" class="flex items-center gap-4 group">
               <div class="w-10 h-10 rounded-full bg-[#119DA4]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#119DA4]/30 transition-colors">
                 <span class="material-symbols-outlined text-[#119DA4]" style="font-size:18px;">mail</span>
               </div>
               <div>
                 <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">E-mail</div>
-                <div class="text-white font-semibold text-sm">direction@asbl-espoir.be</div>
+                <div class="text-white font-semibold text-sm">escapade@asbl-espoir.be</div>
               </div>
             </a>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-[#119DA4]/20 flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-[#119DA4]" style="font-size:18px;">location_on</span>
+              </div>
+              <div>
+                <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">Adresse</div>
+                <div class="text-white font-semibold text-sm">Rue Joseph Wauters 12, 4540 Amay</div>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-x-6 gap-y-3 pt-1">
+              <a href="tel:+32499716129" class="flex items-center gap-3 group">
+                <span class="material-symbols-outlined text-[#119DA4]" style="font-size:18px;">phone</span>
+                <span><span class="block text-xs text-white/40 font-bold">Lucas Randolet</span><span class="text-white font-semibold text-sm">0499 71 61 29</span></span>
+              </a>
+              <a href="tel:+32493270790" class="flex items-center gap-3 group">
+                <span class="material-symbols-outlined text-[#119DA4]" style="font-size:18px;">phone</span>
+                <span><span class="block text-xs text-white/40 font-bold">Roxane Burton</span><span class="text-white font-semibold text-sm">0493 27 07 90</span></span>
+              </a>
+            </div>
+            <div class="flex items-center gap-2 pt-1 text-xs text-white/50">
+              <span class="material-symbols-outlined" style="font-size:16px;">schedule</span>
+              Du lundi au vendredi, 9h à 17h
+            </div>
           </div>
-          <a href="mailto:direction@asbl-espoir.be" class="btn btn-accent w-full">
+          <a href="mailto:escapade@asbl-espoir.be" class="btn btn-accent w-full">
             <span class="material-symbols-outlined" style="font-size:18px;">send</span>
             Nous écrire
           </a>
