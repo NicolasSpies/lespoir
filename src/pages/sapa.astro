@@ -239,31 +239,7 @@ const activeNav = "sapa";
   </section>
 
 
-  <WaveDivider from="#EFE7DA" to="#1246AF" path="M0 32 Q360 8 720 44 Q1080 48 1440 16 L1440 60 L0 60 Z" />
-
-  <!-- ── ESCAPADE · marque du service ── -->
-  <section id="escapade" class="py-16 md:py-24 px-6 md:px-8 blob-parent" style="background:#1246AF;">
-    <div aria-hidden="true" class="blob" style="width:300px;height:300px;background:rgba(255,255,255,0.06);top:-40px;right:-60px;border-radius:55% 45% 60% 40% / 50% 60% 40% 50%;"></div>
-    <div aria-hidden="true" class="blob" style="width:180px;height:180px;background:rgba(0,206,163,0.16);bottom:-30px;left:-40px;border-radius:60% 40% 50% 50%;"></div>
-    <div class="max-w-4xl mx-auto text-center relative">
-      <span class="font-black tracking-widest text-xs uppercase block mb-8" style="color:rgba(255,255,255,0.6);">Le SAPA porte un nom</span>
-
-      <!-- Logo sur carte blanche pour rester lisible sur le bleu -->
-      <div class="inline-flex items-center justify-center bg-white rounded-3xl mb-8" style="padding:2.25rem 2.75rem;box-shadow:0 24px 60px rgba(0,0,0,0.18);">
-        <img src="/escapade-logo.png" alt="Escapade · Service d'Accompagnement du Parrainage de L'Espoir asbl" style="width:clamp(180px,42vw,260px);height:auto;display:block;" loading="lazy" />
-      </div>
-
-      <p class="font-bold text-white leading-tight mb-6" style="font-size:clamp(1.5rem,3.2vw,2.4rem);">
-        « Les liens humains qui nous façonnent »
-      </p>
-      <p class="text-base md:text-lg leading-relaxed max-w-2xl mx-auto" style="color:rgba(255,255,255,0.82);">
-        Notre Service d'Accompagnement du Parrainage porte un nom que les familles et les partenaires de la région connaissent bien : <strong class="text-white">Escapade</strong>. C'est sous cette identité que nous créons, accompagnons et faisons durer chaque parrainage.
-      </p>
-    </div>
-  </section>
-
-
-  <WaveDivider from="#1246AF" to="#fbf9f8" path="M0 32 Q360 8 720 44 Q1080 48 1440 16 L1440 60 L0 60 Z" />
+  <WaveDivider from="#EFE7DA" to="#fbf9f8" path="M0 32 Q360 8 720 44 Q1080 48 1440 16 L1440 60 L0 60 Z" />
 
   <!-- ── LE PARRAINAGE, C'EST QUOI ? ── -->
   <section id="concept" class="blob-parent py-16 md:py-24 px-6 md:px-8 bg-surface">
@@ -307,6 +283,17 @@ const activeNav = "sapa";
         <Placeholder alt='Parrainage familial, lien entre un jeune et une famille bénévole' aspectRatio='4/3' />
       </div>
 
+    </div>
+
+    <!-- ── ESCAPADE · marque du service (discret) ── -->
+    <div class="max-w-3xl mx-auto mt-14 md:mt-20">
+      <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 bg-white rounded-2xl p-6 md:p-7 border border-[#002626]/08" style="box-shadow:0 8px 24px rgba(0,38,38,0.05);">
+        <img src="/escapade-logo.png" alt="Escapade · Service d'Accompagnement du Parrainage de L'Espoir asbl" class="flex-shrink-0" style="width:128px;height:auto;display:block;" loading="lazy" />
+        <div class="text-center sm:text-left">
+          <p class="font-bold mb-1.5" style="color:#1246AF;">« Les liens humains qui nous façonnent »</p>
+          <p class="text-sm text-[#002626]/65 leading-relaxed">Notre Service d'Accompagnement du Parrainage est aussi connu, dans la région, sous le nom d'<strong class="text-[#002626]">Escapade</strong>. C'est sous cette identité que nous créons et accompagnons chaque parrainage.</p>
+        </div>
+      </div>
     </div>
   </section>
 
