@@ -96,6 +96,18 @@ export async function getEntry(type: string, slug: string, vis: Record<string, s
   catch { return null; }
 }
 
+// ── Site data (global settings) ────────────────────────────────────────────────
+export interface SiteData {
+  company_name?: string | null; address?: string | null;
+  contact_email?: string | null; contact_phone?: string | null;
+  footer_text?: string | null; legal_text?: string | null;
+  default_og_image?: string | null; social_links?: Record<string, string>;
+}
+export async function getSiteData(vis: Record<string, string> = {}): Promise<SiteData | null> {
+  try { return (await fetchJson('/site-data', {}, vis)) as SiteData; }
+  catch { return null; }
+}
+
 // ── SEO ────────────────────────────────────────────────────────────────────────
 export async function getSeo(type: 'post' | 'page', slug: string, vis: Record<string, string> = {}): Promise<Record<string, unknown> | null> {
   try {

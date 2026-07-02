@@ -8,6 +8,7 @@ import DOMPurify from 'isomorphic-dompurify';
 const vis = extractVisitorHeaders(Astro.request);
 const page = await getPage('srg-service-residentiel-general', vis);
 const d = sectionData(page, 'srg');
+const faqs = page?.faqs ?? [];
 
 // notre_equipe_repeater_srg → équipe roles. Wire when non-empty (maps to the 4 role rows).
 type EquipeItem = { titre_notre_equipe_srg?: string; description_notre_equipe_srg?: string };
@@ -867,30 +868,39 @@ const activeNav = "srg";
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed">Les questions qui reviennent le plus souvent de la part des familles, des intervenants et des professionnels de l'aide à la jeunesse.</p>
       </div>
       <div class="space-y-3">
-        <details class="faq-item">
-          <summary>Qui peut être accueilli au SRG ?<span class="material-symbols-outlined">expand_more</span></summary>
-          <div class="faq-body">Le SRG accueille des enfants et adolescents de <strong>3 à 18 ans</strong> qui ne peuvent temporairement pas vivre dans leur famille. L'accueil se fait dans trois maisons à taille humaine à <strong>Amay et Couthuin</strong>, agréées par la Fédération Wallonie-Bruxelles.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Comment un jeune arrive-t-il dans une de vos maisons ?<span class="material-symbols-outlined">expand_more</span></summary>
-          <div class="faq-body">L'orientation passe toujours par un mandat officiel : le <strong>Service de l'Aide à la Jeunesse (SAJ)</strong>, le <strong>Service de Protection de la Jeunesse (SPJ)</strong> ou le <strong>Tribunal de la Jeunesse</strong>. Une famille ne peut pas placer directement son enfant chez nous. Le passage par ces instances est obligatoire.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Les parents gardent-ils le contact avec leur enfant ?<span class="material-symbols-outlined">expand_more</span></summary>
-          <div class="faq-body">Oui, systématiquement. Le <strong>maintien du lien familial</strong> est l'un des objectifs centraux du SRG : visites régulières, retours en famille quand la situation le permet, travail éducatif avec les parents pour préparer, à terme, un retour à la maison.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Combien de temps dure un séjour ?<span class="material-symbols-outlined">expand_more</span></summary>
-          <div class="faq-body">La durée dépend de chaque situation et du mandat. Elle peut aller de <strong>quelques semaines à plusieurs années</strong>. Le projet éducatif est revu régulièrement avec le jeune, sa famille et le service mandant.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Comment se passe la scolarité des jeunes accueillis ?<span class="material-symbols-outlined">expand_more</span></summary>
-          <div class="faq-body">Les jeunes restent dans leur école d'origine ou sont inscrits dans une école de la région. Les éducateurs assurent le suivi scolaire au quotidien : devoirs, rencontres avec les enseignants, soutien en cas de difficulté.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Le service est-il payant pour les familles ?<span class="material-symbols-outlined">expand_more</span></summary>
-          <div class="faq-body">Non. Le SRG est un <strong>service public gratuit</strong>, entièrement subsidié par la Fédération Wallonie-Bruxelles. Aucune contribution financière n'est demandée aux familles.</div>
-        </details>
+        {faqs.length > 0
+          ? faqs.map((f) => (
+              <details class="faq-item">
+                <summary>{f.question}<span class="material-symbols-outlined">expand_more</span></summary>
+                <div class="faq-body"><Fragment set:html={DOMPurify.sanitize(f.answer)} /></div>
+              </details>
+            ))
+          : (<Fragment>
+              <details class="faq-item">
+                <summary>Qui peut être accueilli au SRG ?<span class="material-symbols-outlined">expand_more</span></summary>
+                <div class="faq-body">Le SRG accueille des enfants et adolescents de <strong>3 à 18 ans</strong> qui ne peuvent temporairement pas vivre dans leur famille. L'accueil se fait dans trois maisons à taille humaine à <strong>Amay et Couthuin</strong>, agréées par la Fédération Wallonie-Bruxelles.</div>
+              </details>
+              <details class="faq-item">
+                <summary>Comment un jeune arrive-t-il dans une de vos maisons ?<span class="material-symbols-outlined">expand_more</span></summary>
+                <div class="faq-body">L'orientation passe toujours par un mandat officiel : le <strong>Service de l'Aide à la Jeunesse (SAJ)</strong>, le <strong>Service de Protection de la Jeunesse (SPJ)</strong> ou le <strong>Tribunal de la Jeunesse</strong>. Une famille ne peut pas placer directement son enfant chez nous. Le passage par ces instances est obligatoire.</div>
+              </details>
+              <details class="faq-item">
+                <summary>Les parents gardent-ils le contact avec leur enfant ?<span class="material-symbols-outlined">expand_more</span></summary>
+                <div class="faq-body">Oui, systématiquement. Le <strong>maintien du lien familial</strong> est l'un des objectifs centraux du SRG : visites régulières, retours en famille quand la situation le permet, travail éducatif avec les parents pour préparer, à terme, un retour à la maison.</div>
+              </details>
+              <details class="faq-item">
+                <summary>Combien de temps dure un séjour ?<span class="material-symbols-outlined">expand_more</span></summary>
+                <div class="faq-body">La durée dépend de chaque situation et du mandat. Elle peut aller de <strong>quelques semaines à plusieurs années</strong>. Le projet éducatif est revu régulièrement avec le jeune, sa famille et le service mandant.</div>
+              </details>
+              <details class="faq-item">
+                <summary>Comment se passe la scolarité des jeunes accueillis ?<span class="material-symbols-outlined">expand_more</span></summary>
+                <div class="faq-body">Les jeunes restent dans leur école d'origine ou sont inscrits dans une école de la région. Les éducateurs assurent le suivi scolaire au quotidien : devoirs, rencontres avec les enseignants, soutien en cas de difficulté.</div>
+              </details>
+              <details class="faq-item">
+                <summary>Le service est-il payant pour les familles ?<span class="material-symbols-outlined">expand_more</span></summary>
+                <div class="faq-body">Non. Le SRG est un <strong>service public gratuit</strong>, entièrement subsidié par la Fédération Wallonie-Bruxelles. Aucune contribution financière n'est demandée aux familles.</div>
+              </details>
+            </Fragment>)}
       </div>
       <div class="mt-10 text-center">
         <p class="text-[#002626]/70 text-sm md:text-base mb-4">Une autre question ?</p>
@@ -901,7 +911,9 @@ const activeNav = "srg";
       </div>
     </div>
   </section>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Qui peut être accueilli au SRG ?","acceptedAnswer":{"@type":"Answer","text":"Le SRG accueille des enfants et adolescents de 3 à 18 ans qui ne peuvent temporairement pas vivre dans leur famille. L'accueil se fait dans trois maisons à taille humaine à Amay et Couthuin, agréées par la Fédération Wallonie-Bruxelles."}},{"@type":"Question","name":"Comment un jeune arrive-t-il dans une de vos maisons ?","acceptedAnswer":{"@type":"Answer","text":"L'orientation passe toujours par un mandat officiel : le Service de l'Aide à la Jeunesse (SAJ), le Service de Protection de la Jeunesse (SPJ) ou le Tribunal de la Jeunesse. Une famille ne peut pas placer directement son enfant. Le passage par ces instances est obligatoire."}},{"@type":"Question","name":"Les parents gardent-ils le contact avec leur enfant ?","acceptedAnswer":{"@type":"Answer","text":"Oui, systématiquement. Le maintien du lien familial est l'un des objectifs centraux du SRG : visites régulières, retours en famille quand la situation le permet, travail éducatif avec les parents pour préparer un retour à la maison."}},{"@type":"Question","name":"Combien de temps dure un séjour au SRG ?","acceptedAnswer":{"@type":"Answer","text":"La durée dépend de chaque situation et du mandat. Elle peut aller de quelques semaines à plusieurs années. Le projet éducatif est revu régulièrement avec le jeune, sa famille et le service mandant."}},{"@type":"Question","name":"Comment se passe la scolarité des jeunes accueillis ?","acceptedAnswer":{"@type":"Answer","text":"Les jeunes restent dans leur école d'origine ou sont inscrits dans une école de la région. Les éducateurs assurent le suivi scolaire au quotidien : devoirs, rencontres avec les enseignants, soutien en cas de difficulté."}},{"@type":"Question","name":"Le SRG est-il payant pour les familles ?","acceptedAnswer":{"@type":"Answer","text":"Non. Le SRG est un service public gratuit, entièrement subsidié par la Fédération Wallonie-Bruxelles. Aucune contribution financière n'est demandée aux familles."}}]}</script>
+  {faqs.length > 0
+    ? <script type="application/ld+json" set:html={JSON.stringify({ "@context":"https://schema.org","@type":"FAQPage","mainEntity": faqs.map(f => ({ "@type":"Question","name":f.question,"acceptedAnswer":{ "@type":"Answer","text": (f.answer||'').replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim() } })) })} />
+    : <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Qui peut être accueilli au SRG ?","acceptedAnswer":{"@type":"Answer","text":"Le SRG accueille des enfants et adolescents de 3 à 18 ans qui ne peuvent temporairement pas vivre dans leur famille. L'accueil se fait dans trois maisons à taille humaine à Amay et Couthuin, agréées par la Fédération Wallonie-Bruxelles."}},{"@type":"Question","name":"Comment un jeune arrive-t-il dans une de vos maisons ?","acceptedAnswer":{"@type":"Answer","text":"L'orientation passe toujours par un mandat officiel : le Service de l'Aide à la Jeunesse (SAJ), le Service de Protection de la Jeunesse (SPJ) ou le Tribunal de la Jeunesse. Une famille ne peut pas placer directement son enfant. Le passage par ces instances est obligatoire."}},{"@type":"Question","name":"Les parents gardent-ils le contact avec leur enfant ?","acceptedAnswer":{"@type":"Answer","text":"Oui, systématiquement. Le maintien du lien familial est l'un des objectifs centraux du SRG : visites régulières, retours en famille quand la situation le permet, travail éducatif avec les parents pour préparer un retour à la maison."}},{"@type":"Question","name":"Combien de temps dure un séjour au SRG ?","acceptedAnswer":{"@type":"Answer","text":"La durée dépend de chaque situation et du mandat. Elle peut aller de quelques semaines à plusieurs années. Le projet éducatif est revu régulièrement avec le jeune, sa famille et le service mandant."}},{"@type":"Question","name":"Comment se passe la scolarité des jeunes accueillis ?","acceptedAnswer":{"@type":"Answer","text":"Les jeunes restent dans leur école d'origine ou sont inscrits dans une école de la région. Les éducateurs assurent le suivi scolaire au quotidien : devoirs, rencontres avec les enseignants, soutien en cas de difficulté."}},{"@type":"Question","name":"Le SRG est-il payant pour les familles ?","acceptedAnswer":{"@type":"Answer","text":"Non. Le SRG est un service public gratuit, entièrement subsidié par la Fédération Wallonie-Bruxelles. Aucune contribution financière n'est demandée aux familles."}}]}</script>}
 
   <WaveDivider from="#fbf9f8" to="#002626" path="M0 40 Q480 12 720 44 Q960 48 1440 16 L1440 60 L0 60 Z" />
 
