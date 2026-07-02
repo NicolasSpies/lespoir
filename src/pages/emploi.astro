@@ -621,9 +621,9 @@ const activeNav = "emploi";
 
             {jobOtherFields.map((f) => (
               <label class="flex items-start gap-3 cursor-pointer">
-                <input type="checkbox" name={f.name} required={f.required} value="true" class="mt-1 h-4 w-4 rounded border-[#002626]/30 text-[#C04B72] focus:ring-[#C04B72] shrink-0" />
+                <input type="checkbox" name={f.name} required={f.required || f.type === 'consent'} class="mt-1 h-4 w-4 rounded border-[#002626]/30 text-[#C04B72] focus:ring-[#C04B72] shrink-0" />
                 <span class="text-sm text-[#002626]/75 leading-relaxed">
-                  {f.consent_label_html ? <Fragment set:html={f.consent_label_html} /> : <Fragment>{f.label}{f.required && ' *'}</Fragment>}
+                  {f.consent_label_html ? <Fragment set:html={f.consent_label_html} /> : <Fragment>{f.label}</Fragment>}
                 </span>
               </label>
             ))}
@@ -828,6 +828,8 @@ const activeNav = "emploi";
                       if (k === 'cv_au_format_pdf_ou_doc') return; // file handled separately
                       body[k] = v;
                     });
+                    // Consent/checkbox fields must go as real booleans (CC rejects "true" string).
+                    form.querySelectorAll('input[type="checkbox"]').forEach(function (cb) { body[cb.name] = cb.checked; });
                     if (cvValue) body.cv_au_format_pdf_ou_doc = cvValue;
 
                     var res = await fetch(api + '/forms/offre_demploi/submit', { method: 'POST', cache: 'no-store', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
