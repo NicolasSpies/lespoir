@@ -9,12 +9,28 @@
 #   Short micro-cache in front of SSR HTML (snippets/astro-cache.conf) — CMS
 #   changes visible within ~30s; session/preview requests bypass it.
 #
-# Certbot manages the :443 vhost + 80->443 redirect:
-#   ln -s /etc/nginx/sites-available/lespoir.laconis.be /etc/nginx/sites-enabled/
-#   certbot --nginx -d lespoir.laconis.be
+# TLS: uses the shared acme.sh WILDCARD cert *.laconis.be (no per-domain certbot,
+# consistent with the other laconis subdomains). An exact server_name matches
+# BEFORE the *.laconis.be wildcard fallback block, so this vhost wins on :443.
 
+# --- HTTP :80 — ACME + redirect to HTTPS ---
 server {
+    listen 80;
+    listen [::]:80;
     server_name lespoir.laconis.be;
+
+    location ^~ /.well-known/acme-challenge/ { root /var/www/certbot; default_type "text/plain"; }
+    location / { return 301 https://$host$request_uri; }
+}
+
+# --- HTTPS :443 — SSR ---
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name lespoir.laconis.be;
+
+    ssl_certificate     /etc/ssl/laconis-wildcard/fullchain.pem;
+    ssl_certificate_key /etc/ssl/laconis-wildcard/key.pem;
 
     root /var/www/lespoir/client;
 
@@ -23,9 +39,6 @@ server {
     add_header Referrer-Policy          "strict-origin-when-cross-origin" always;
     add_header Permissions-Policy       "geolocation=(), microphone=(), camera=(), interest-cohort=()" always;
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
-
-    # ACME HTTP-01 renewals (shared webroot)
-    location ^~ /.well-known/acme-challenge/ { root /var/www/certbot; default_type "text/plain"; }
 
     # Hashed, content-addressed build assets — immutable
     location /assets/ {
@@ -51,7 +64,4 @@ server {
         proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
-
-    listen 80;
-    listen [::]:80;
 }
