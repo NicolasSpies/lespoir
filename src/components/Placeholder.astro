@@ -38,7 +38,7 @@ const {
   role="img"
   aria-label={alt}
 >
-  <div class="placeholder-mark" aria-hidden="true"></div>
+  <img src="/placeholder.webp" alt="" aria-hidden="true" class="placeholder-img" loading="lazy" decoding="async" />
 </div>
 
 <style>
@@ -46,17 +46,12 @@ const {
     position: relative;
     width: 100%;
     background: #EAE9E5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
   }
-  .placeholder-mark {
-    width: clamp(36px, 20%, 76px);
-    aspect-ratio: 901/338;        /* matches logo-mark viewBox */
-    background: #002626;
-    opacity: 0.22;
-    -webkit-mask: url('/lespoir-logo.svg') no-repeat center / contain;
-            mask: url('/lespoir-logo.svg') no-repeat center / contain;
+  /* Neutral WebP cover-fills any aspect ratio (the old SVG logo mask broke on non-1:1). */
+  .placeholder-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
   }
 </style>
