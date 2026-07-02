@@ -29,20 +29,18 @@ const personSvg = (bg) => `
   </g>
 </svg>`;
 
-// Neutral placeholder: warm-grey bg + centred logo mark (from logo-mark.svg), low opacity.
+// Neutral placeholder: a clean "image coming" tile — warm mid-grey + a simple
+// centred picture icon (no wordmark/text), reads clearly at any crop.
 function neutralSvg() {
-  const raw = readFileSync(join(pub, 'logo-mark.svg'), 'utf8');
-  const inner = raw.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>[\s\S]*$/, '')
-    .replace(/currentColor/g, '#002626');
-  const S = 1000;
-  // logo-mark viewBox: 261.46 × 293.98 → scale to ~300px tall, centre it.
-  const scale = 300 / 293.98;
-  const w = 261.46 * scale, h = 293.98 * scale;
-  const tx = (S - w) / 2, ty = (S - h) / 2;
+  const S = 1000, bg = '#D7D5CE', ink = '#ADA99E';
   return `
 <svg xmlns="http://www.w3.org/2000/svg" width="${S}" height="${S}" viewBox="0 0 ${S} ${S}">
-  <rect width="${S}" height="${S}" fill="#EAE9E5"/>
-  <g transform="translate(${tx.toFixed(1)} ${ty.toFixed(1)}) scale(${scale.toFixed(4)})" opacity="0.16">${inner}</g>
+  <rect width="${S}" height="${S}" fill="${bg}"/>
+  <g fill="none" stroke="${ink}" stroke-width="24" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="330" y="360" width="340" height="280" rx="28"/>
+  </g>
+  <circle cx="425" cy="452" r="34" fill="${ink}"/>
+  <path d="M356 636 L470 512 L548 588 L628 500 L644 516 L644 616 a20 20 0 0 1 -20 20 H356 Z" fill="${ink}"/>
 </svg>`;
 }
 
