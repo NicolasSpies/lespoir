@@ -177,10 +177,10 @@ export function link(v: unknown): { text: string; url: string } | null {
 
 // ── Images ───────────────────────────────────────────────────────────────────
 export function asImage(raw: unknown): ExpandedImage | null {
-  if (raw == null) return null;
+  if (raw == null || raw === '') return null;   // empty CC image field = no image
   if (typeof raw === 'object' && Array.isArray((raw as ExpandedImage).variants)) return raw as ExpandedImage;
   const id = typeof raw === 'object' ? ((raw as Record<string, unknown>)['id'] ?? null) : raw;
-  return id != null ? { id: id as number | string, slug: null, alt: null, width: null, height: null, focus_x: null, focus_y: null, variants: [] } : null;
+  return (id != null && id !== '') ? { id: id as number | string, slug: null, alt: null, width: null, height: null, focus_x: null, focus_y: null, variants: [] } : null;
 }
 
 /** gallery field → ExpandedImage[] (already-expanded objects; raw ids tolerated). */

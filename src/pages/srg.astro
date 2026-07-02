@@ -383,16 +383,12 @@ const activeNav = "srg";
                 ? asGallery(d.galerie_maison_1_srg).map((img, i) => (
                     <img class:list={['ms-slide', { active: i === 0 }]} src={imageUrl(img, 'lg')} srcset={imageSrcSet(img)} sizes="(min-width: 1024px) 55vw, 100vw" alt={img.alt ?? 'La Maison de Couthuin'} style={`object-position:${focusPosition(img.focus_x, img.focus_y)}`} loading="lazy" decoding="async" />
                   ))
-                : (<Fragment>
-                    <Placeholder alt='La Maison de Couthuin, vue extérieure' aspectRatio='16/9' />
-                    <Placeholder alt='La Maison de Couthuin, jardin et nature' aspectRatio='16/9' />
-                    <Placeholder alt='La Maison de Couthuin, espace de vie' aspectRatio='16/9' />
-                  </Fragment>)}
+                : (<img class="ms-slide active" src="/placeholder.webp" alt="Photo à venir" style="object-fit:cover;" />)}
               <div class="ms-zoom" aria-hidden="true"><span class="material-symbols-outlined">zoom_in</span></div>
               <div class="ms-dots" aria-hidden="true">
                 {asGallery(d.galerie_maison_1_srg).length
                   ? asGallery(d.galerie_maison_1_srg).map((_, i) => <span class:list={['ms-dot', { active: i === 0 }]}></span>)
-                  : (<Fragment><span class="ms-dot active"></span><span class="ms-dot"></span><span class="ms-dot"></span></Fragment>)}
+                  : null}
               </div>
             </div>
           </div>
@@ -430,16 +426,12 @@ const activeNav = "srg";
                 ? asGallery(d.galerie_maison_2_srg).map((img, i) => (
                     <img class:list={['ms-slide', { active: i === 0 }]} src={imageUrl(img, 'lg')} srcset={imageSrcSet(img)} sizes="(min-width: 1024px) 55vw, 100vw" alt={img.alt ?? "La Maison d'Amay"} style={`object-position:${focusPosition(img.focus_x, img.focus_y)}`} loading="lazy" decoding="async" />
                   ))
-                : (<Fragment>
-                    <Placeholder alt="La Maison d'Amay, façade de l'ancien hôtel" aspectRatio='16/9' />
-                    <Placeholder alt="La Maison d'Amay, séjour et salle de jeux" aspectRatio='16/9' />
-                    <Placeholder alt="La Maison d'Amay, jardin avec module de jeux" aspectRatio='16/9' />
-                  </Fragment>)}
+                : (<img class="ms-slide active" src="/placeholder.webp" alt="Photo à venir" style="object-fit:cover;" />)}
               <div class="ms-zoom" aria-hidden="true"><span class="material-symbols-outlined">zoom_in</span></div>
               <div class="ms-dots" aria-hidden="true">
                 {asGallery(d.galerie_maison_2_srg).length
                   ? asGallery(d.galerie_maison_2_srg).map((_, i) => <span class:list={['ms-dot', { active: i === 0 }]}></span>)
-                  : (<Fragment><span class="ms-dot active"></span><span class="ms-dot"></span><span class="ms-dot"></span></Fragment>)}
+                  : null}
               </div>
             </div>
           </div>
@@ -477,16 +469,12 @@ const activeNav = "srg";
                 ? asGallery(d.galerie_maison_3_srg).map((img, i) => (
                     <img class:list={['ms-slide', { active: i === 0 }]} src={imageUrl(img, 'lg')} srcset={imageSrcSet(img)} sizes="(min-width: 1024px) 55vw, 100vw" alt={img.alt ?? "L'Escale"} style={`object-position:${focusPosition(img.focus_x, img.focus_y)}`} loading="lazy" decoding="async" />
                   ))
-                : (<Fragment>
-                    <Placeholder alt="L'Escale, façade" aspectRatio='16/9' />
-                    <Placeholder alt="L'Escale, espace de travail" aspectRatio='16/9' />
-                    <Placeholder alt="L'Escale, salon partagé" aspectRatio='16/9' />
-                  </Fragment>)}
+                : (<img class="ms-slide active" src="/placeholder.webp" alt="Photo à venir" style="object-fit:cover;" />)}
               <div class="ms-zoom" aria-hidden="true"><span class="material-symbols-outlined">zoom_in</span></div>
               <div class="ms-dots" aria-hidden="true">
                 {asGallery(d.galerie_maison_3_srg).length
                   ? asGallery(d.galerie_maison_3_srg).map((_, i) => <span class:list={['ms-dot', { active: i === 0 }]}></span>)
-                  : (<Fragment><span class="ms-dot active"></span><span class="ms-dot"></span><span class="ms-dot"></span></Fragment>)}
+                  : null}
               </div>
             </div>
           </div>
