@@ -6,7 +6,7 @@ import { getPage, sectionData, str, strList, asImage, imageUrl, imageSrcSet, foc
 import DOMPurify from 'isomorphic-dompurify';
 
 const vis = extractVisitorHeaders(Astro.request);
-const page = await getPage('sase', vis);
+const page = await getPage('sase-service-accompagnement-socio-educatif', vis);
 const d = sectionData(page, 'srg-1');
 const equipeRepeater = Array.isArray(d.notre_equipe_repeater_sase) ? d.notre_equipe_repeater_sase as Array<Record<string, unknown>> : [];
 const deroulementPoints = Array.isArray(d.deroulement_points_sase) ? d.deroulement_points_sase as Array<Record<string, unknown>> : [];

@@ -6,7 +6,7 @@ import { getPage, sectionData, str, strList, asImage, imageUrl, imageSrcSet, foc
 import DOMPurify from 'isomorphic-dompurify';
 
 const vis = extractVisitorHeaders(Astro.request);
-const page = await getPage('sapa', vis);
+const page = await getPage('sapa-service-accompagnement-du-parrainage', vis);
 const d = sectionData(page, 'srg-1-1');
 const faqs = page?.faqs ?? [];
 
