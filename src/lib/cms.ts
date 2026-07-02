@@ -123,6 +123,24 @@ export function serviceColor(slug: string | null | undefined): string {
   return slug === 'srg' ? '#E58346' : slug === 'sapa' ? '#119DA4' : slug === 'sase' ? '#C04B72' : '#002626';
 }
 
+// ── Forms ────────────────────────────────────────────────────────────────────
+export interface FormFieldDef {
+  id: string; name: string; type: string; label: string; required: boolean;
+  placeholder?: string | null;
+  options?: Array<{ label: string; value: string }>;
+  accept?: string | null; max_size_mb?: number | null;
+  consent_label_html?: string | null;
+}
+export interface FormDef {
+  key: string; name?: string; fields: FormFieldDef[];
+  success_message?: string; redirect_url?: string | null;
+  submit_button_label?: string; honeypot_field_name: string;
+}
+export async function getForm(key: string, vis: Record<string, string> = {}): Promise<FormDef | null> {
+  try { return (await fetchJson(`/forms/${encodeURIComponent(key)}`, { lang: LANG }, vis)) as FormDef; }
+  catch { return null; }
+}
+
 // ── SEO ────────────────────────────────────────────────────────────────────────
 export async function getSeo(type: 'post' | 'page', slug: string, vis: Record<string, string> = {}): Promise<Record<string, unknown> | null> {
   try {
