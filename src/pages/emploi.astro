@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
-import { getPage, getList, sectionData, str, strList, link, asImage, imageUrl, imageSrcSet, extractVisitorHeaders } from '../lib/cms';
+import { getPage, getList, serviceColor, sectionData, str, strList, link, asImage, imageUrl, imageSrcSet, extractVisitorHeaders } from '../lib/cms';
 import DOMPurify from 'isomorphic-dompurify';
 
 const vis = extractVisitorHeaders(Astro.request);
@@ -14,6 +14,12 @@ const critereList = (Array.isArray(d.liste_ce_qu_on_cherche) ? d.liste_ce_qu_on_
 // Active job offers (offres-demploi) — drive the hero count, the cards, and the form select.
 const offres = await getList('offres-demploi', vis);
 const offresCount = offres.length;
+// First `service` taxonomy term of an offre (helper kept in frontmatter — TS generics
+// like Array<{…}> break Astro's JSX parser when written inside the template).
+const firstService = (o: unknown): { slug?: string; label?: string } | undefined => {
+  const terms = (o as { taxonomy_terms?: Array<{ slug?: string; label?: string }> })?.taxonomy_terms;
+  return Array.isArray(terms) ? terms[0] : undefined;
+};
 
 const title = "Offres d'emploi · Éducateur spécialisé aide à la jeunesse, Huy";
 const description = "Rejoignez L'Espoir asbl : offres d'emploi en aide à la jeunesse à Huy et Amay. Éducateur spécialisé SRG, éducateur à domicile SASE, famille bénévole SAPA. Candidature en ligne.";
@@ -50,7 +56,7 @@ const activeNav = "emploi";
   .job-card {
     background: #fff; border-radius: 1.25rem;
     border: 1px solid rgba(0,38,38,0.08);
-    padding: 1.75rem 2rem;
+    padding: 1.75rem 2rem 1rem;
     transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     display: flex; flex-direction: column; gap: 1rem;
   }
@@ -372,20 +378,22 @@ const activeNav = "emploi";
           const diplome = str(od.diplome_poste);
           const horaires = str(od.horaires_poste);
           const desc = str(od.description);
+          const svc = firstService(o);
           return (
             <div class="job-card is-open-position offre-item">
               <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                 <div class="flex-1">
-                  {type && (
+                  {(svc?.slug || type) && (
                     <div class="flex flex-wrap items-center gap-2 mb-2">
-                      <span class="job-tag job-tag-cdi">{type}</span>
+                      {svc?.slug && <span class="job-tag" style={`background:${serviceColor(svc.slug)};color:#fff;`}>{svc.label ?? svc.slug.toUpperCase()}</span>}
+                      {type && <span class="job-tag" style="background:#002626;color:#fff;">{type}</span>}
                     </div>
                   )}
                   <h3 class="text-lg font-black text-[#002626] leading-snug mb-1">{o.title}</h3>
                   {desc && <p class="text-sm text-[#002626]/80 leading-relaxed">{desc}</p>}
                 </div>
               </div>
-              <div class="flex flex-wrap gap-3 items-center pt-1 border-t border-[#002626]/06">
+              <div class="flex flex-wrap gap-3 items-center pt-4 border-t border-[#002626]/06">
                 {horaires && (<div class="flex items-center gap-1.5 text-xs text-[#002626]/50"><span class="material-symbols-outlined" style="font-size:15px;">schedule</span>{horaires}</div>)}
                 {region && (<div class="flex items-center gap-1.5 text-xs text-[#002626]/50"><span class="material-symbols-outlined" style="font-size:15px;">location_on</span>{region}</div>)}
                 {diplome && (<div class="flex items-center gap-1.5 text-xs text-[#002626]/50"><span class="material-symbols-outlined" style="font-size:15px;">school</span>{diplome}</div>)}
