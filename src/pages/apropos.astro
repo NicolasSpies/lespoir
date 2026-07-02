@@ -16,12 +16,24 @@ const team = await getList('equipe', vis);
 const serviceTerms = await getTaxonomyTerms('service', vis);
 const termSlugs = (e: CmsEntry): string[] =>
   ((e as unknown as { taxonomy_terms?: Array<{ slug?: string }> }).taxonomy_terms ?? []).map(t => t.slug ?? '');
-const teamGroups = serviceTerms.map(t => ({ term: t, members: team.filter(e => termSlugs(e).includes(t.slug)) }));
-const teamUngrouped = team.filter(e => !serviceTerms.some(t => termSlugs(e).includes(t.slug)));
-const teamSections = [
-  ...teamGroups.map(g => ({ label: g.term.label, color: serviceColor(g.term.slug), members: g.members })),
-  ...(teamUngrouped.length ? [{ label: 'Équipe', color: '#002626', members: teamUngrouped }] : []),
-];
+const DIR = 'direction';
+const hasTerm = (e: CmsEntry, slug: string): boolean => termSlugs(e).includes(slug);
+// A member with `direction` shows ONLY in the Direction group; their service term(s)
+// (SRG/SASE/SAPA) surface as coloured bubbles on the photo instead.
+const teamSections: Array<{ slug: string; label: string; color: string; members: CmsEntry[] }> =
+  serviceTerms.map(t => ({
+    slug: t.slug,
+    label: t.label,
+    color: serviceColor(t.slug),
+    members: team.filter(e => hasTerm(e, t.slug) && (t.slug === DIR || !hasTerm(e, DIR))),
+  }));
+const teamUngrouped = team.filter(e => !serviceTerms.some(t => hasTerm(e, t.slug)));
+if (teamUngrouped.length) teamSections.push({ slug: '', label: 'Équipe', color: '#002626', members: teamUngrouped });
+// Photo bubbles = the member's service terms other than the current group (and not `direction`).
+const badgesFor = (e: CmsEntry, groupSlug: string): Array<{ label: string; color: string }> =>
+  termSlugs(e)
+    .filter(s => s && s !== groupSlug && s !== DIR)
+    .map(s => ({ label: serviceTerms.find(t => t.slug === s)?.label ?? s, color: serviceColor(s) }));
 
 // Timeline repeater (ligne_de_temps_a_propos): map to existing markup when present.
 type TimelineItem = { annee_notre_histoire?: string; titre_ligne_de_temps?: string; description_ligne_de_temps?: string };
@@ -160,7 +172,7 @@ const activeNav = "apropos";
     box-shadow: 0 20px 40px -10px rgba(0,38,38,0.18);
   }
   .person-photo {
-    position: relative; aspect-ratio: 4/5; overflow: hidden;
+    position: relative; aspect-ratio: 1/1; overflow: hidden;
     background: var(--svc-color, #C04B72);
   }
   .person-photo::after {
@@ -200,6 +212,12 @@ const activeNav = "apropos";
   .person-badge .material-symbols-outlined {
     font-size: 14px; font-variation-settings: 'FILL' 1;
   }
+  /* stack of service bubbles on a photo (e.g. a Direction member's SRG/SAPA) */
+  .person-badges {
+    position: absolute; top: 0.75rem; left: 0.75rem; z-index: 2;
+    display: flex; flex-direction: column; gap: 0.35rem; align-items: flex-start;
+  }
+  .person-badges .person-badge { position: static; top: auto; left: auto; }
   .person-info {
     padding: 1.1rem 1.15rem 1.25rem;
     flex: 1; display: flex; flex-direction: column;
@@ -555,6 +573,7 @@ const activeNav = "apropos";
                   const tel = str(ed.telephone);
                   const mail = str(ed.mail);
                   const quote = str(ed.description_quote);
+                  const badges = badgesFor(e, sec.slug);
                   return (
                     <div class="person-card" style={`--svc-color:${sec.color};`}>
                       <div class="person-photo">
@@ -563,6 +582,11 @@ const activeNav = "apropos";
                           <img src={imageUrl(img, 'md')} srcset={imageSrcSet(img)} sizes="(max-width:768px) 50vw, 220px" alt={img.alt ?? e.title ?? ''} loading="lazy" style={`width:100%;height:100%;object-fit:cover;object-position:${focusPosition(img.focus_x, img.focus_y)};`} />
                         ) : (
                           <Placeholder alt={e.title ?? "Membre de l'équipe"} aspectRatio='1/1' />
+                        )}
+                        {badges.length > 0 && (
+                          <div class="person-badges">
+                            {badges.map((b) => (<span class="person-badge" style={`color:${b.color};`}>{b.label}</span>))}
+                          </div>
                         )}
                       </div>
                       <div class="person-info">
