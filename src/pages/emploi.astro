@@ -2,12 +2,24 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
-import { getPage, getList, serviceColor, sectionData, str, strList, link, asImage, imageUrl, imageSrcSet, extractVisitorHeaders } from '../lib/cms';
+import { getPage, getList, getForm, serviceColor, sectionData, str, strList, link, asImage, imageUrl, imageSrcSet, extractVisitorHeaders, CMS_API_BASE } from '../lib/cms';
 import DOMPurify from 'isomorphic-dompurify';
 
 const vis = extractVisitorHeaders(Astro.request);
 const page = await getPage('offres-d-emploi', vis);
 const d = sectionData(page, 'offre_d_emploi_page');
+
+// Job-application form is defined in ContentCore — render its fields exactly
+// (removed fields disappear automatically). poste_vise + textarea + file span
+// full width; short inputs pair up in a 2-col grid.
+const jobForm = await getForm('offre_demploi', vis);
+const jobFields = jobForm?.fields ?? [];
+const posteField = jobFields.find((f) => f.name === 'poste_vise');
+const pairFields = jobFields.filter((f) => ['prenom', 'nom', 'email', 'telephone'].includes(f.name));
+const dispoField = jobFields.find((f) => f.name === 'disponibilite');
+const lettreField = jobFields.find((f) => f.name === 'lettre_de_motivation');
+const cvField = jobFields.find((f) => f.name === 'cv_au_format_pdf_ou_doc');
+const lettreMax = (lettreField as { validation?: { max_length?: number } } | undefined)?.validation?.max_length ?? 800;
 
 const critereList = (Array.isArray(d.liste_ce_qu_on_cherche) ? d.liste_ce_qu_on_cherche : []) as Array<Record<string, unknown>>;
 
@@ -118,6 +130,7 @@ const activeNav = "emploi";
     --tw-ring-offset-shadow: 0 0 #0000;
   }
   textarea.form-field { resize: vertical; min-height: 140px; }
+  .form-field--hidden { display: none; }
   select.form-field { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23002626' opacity='.5' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 2.5rem; }
   .form-hint { font-size: 0.78rem; color: rgba(0,38,38,0.55); margin-top: 0.45rem; line-height: 1.55; }
   .form-error { font-size: 0.8rem; color: #c0392b; margin-top: 0.45rem; display: none; font-weight: 600; }
@@ -274,7 +287,7 @@ const activeNav = "emploi";
           <span class="material-symbols-outlined" style="font-size:18px;">work</span>
           Voir les offres
         </a>
-        <a href="#candidature" data-poste="spontanee" class="btn btn-outline">Candidature spontanée</a>
+        <a href="#candidature" data-poste="Candidature spontanée" class="btn btn-outline">Candidature spontanée</a>
       </div>
     </div>
   </section>
@@ -397,7 +410,7 @@ const activeNav = "emploi";
                 {horaires && (<div class="flex items-center gap-1.5 text-xs text-[#002626]/50"><span class="material-symbols-outlined" style="font-size:15px;">schedule</span>{horaires}</div>)}
                 {region && (<div class="flex items-center gap-1.5 text-xs text-[#002626]/50"><span class="material-symbols-outlined" style="font-size:15px;">location_on</span>{region}</div>)}
                 {diplome && (<div class="flex items-center gap-1.5 text-xs text-[#002626]/50"><span class="material-symbols-outlined" style="font-size:15px;">school</span>{diplome}</div>)}
-                <a href="#candidature" data-poste={o.slug} class="btn btn-primary btn-sm ml-auto">
+                <a href="#candidature" data-poste={o.title} class="btn btn-primary btn-sm ml-auto">
                   Postuler
                   <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
                 </a>
@@ -524,118 +537,92 @@ const activeNav = "emploi";
         <!-- FORM (3/5) -->
         <div class="lg:col-span-3 candid-form" id="formWrapper">
 
-          <form id="postulerForm" action="#" method="post" enctype="multipart/form-data" class="space-y-5" novalidate>
+          {jobForm ? (
+          <form id="postulerForm" class="space-y-5" novalidate>
 
             <p class="text-[#002626]/55 text-sm leading-relaxed">
               Les champs marqués d'un <span class="text-[#E58346] font-bold">*</span> sont obligatoires.
             </p>
 
-            <!-- Poste visé -->
-            <div>
-              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="poste">Poste visé <span class="text-[#E58346]">*</span></label>
-              <select id="poste" name="poste" class="form-field" required>
-                <option value="">Sélectionnez un poste -</option>
-                {offres.map((o) => (<option value={o.slug}>{o.title}</option>))}
-                <option value="spontanee">Candidature spontanée</option>
-              </select>
-              <p class="form-hint" id="posteHint">Sélectionnez l'offre à laquelle vous souhaitez postuler ou choisissez « Candidature spontanée ».</p>
-            </div>
+            {/* Poste visé — TEXT field (prefilled by Postuler / ?poste=) */}
+            {posteField && (
+              <div>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="poste_vise">Poste visé{posteField.required && <span class="text-[#E58346]"> *</span>}</label>
+                <input id="poste_vise" name="poste_vise" type="text" placeholder={posteField.placeholder ?? ''} required={posteField.required} class="form-field" />
+              </div>
+            )}
 
-            <!-- Identité -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="prenom">Prénom <span class="text-[#E58346]">*</span></label>
-                <input id="prenom" name="prenom" type="text" placeholder="Marie" class="form-field" autocomplete="given-name" required/>
+            {/* Prénom + Nom, Email + Téléphone — 2-col grid */}
+            {pairFields.length > 0 && (
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {pairFields.map((f) => (
+                  <div>
+                    <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for={f.name}>{f.label}{f.required && <span class="text-[#E58346]"> *</span>}</label>
+                    <input id={f.name} name={f.name} type={f.type === 'phone' || f.type === 'tel' ? 'tel' : f.type === 'email' ? 'email' : 'text'} placeholder={f.placeholder ?? ''} required={f.required} class="form-field" />
+                  </div>
+                ))}
               </div>
-              <div>
-                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="nom">Nom <span class="text-[#E58346]">*</span></label>
-                <input id="nom" name="nom" type="text" placeholder="Dupont" class="form-field" autocomplete="family-name" required/>
-              </div>
-            </div>
+            )}
 
-            <!-- Contact -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Disponibilité — select */}
+            {dispoField && (
               <div>
-                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="email">E-mail <span class="text-[#E58346]">*</span></label>
-                <input id="email" name="email" type="email" placeholder="marie@exemple.be" class="form-field" autocomplete="email" required/>
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="tel">Téléphone <span class="text-[#E58346]">*</span></label>
-                <input id="tel" name="tel" type="tel" placeholder="04xx xx xx xx" class="form-field" autocomplete="tel" required/>
-              </div>
-            </div>
-
-            <!-- Localisation + disponibilité -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="ville">Ville / Code postal</label>
-                <input id="ville" name="ville" type="text" placeholder="4500 Huy" class="form-field" autocomplete="address-level2"/>
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="dispo">Disponibilité</label>
-                <select id="dispo" name="dispo" class="form-field">
-                  <option value="">À préciser -</option>
-                  <option value="immediate">Immédiate</option>
-                  <option value="1-mois">Dans le mois</option>
-                  <option value="preavis">Après préavis (2 à 3 mois)</option>
-                  <option value="flexible">Flexible</option>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="disponibilite">{dispoField.label}{dispoField.required && <span class="text-[#E58346]"> *</span>}</label>
+                <select id="disponibilite" name="disponibilite" required={dispoField.required} class="form-field">
+                  <option value="" disabled selected>{dispoField.placeholder ?? 'Choisissez…'}</option>
+                  {(dispoField.options ?? []).map((o) => <option value={o.value}>{o.label}</option>)}
                 </select>
               </div>
-            </div>
+            )}
 
-            <!-- Formation -->
-            <div>
-              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="formation">Formation / diplôme principal</label>
-              <input id="formation" name="formation" type="text" placeholder="Bachelier éducateur spécialisé, HELMo (2022)" class="form-field"/>
-            </div>
-
-            <!-- Motivation -->
-            <div>
-              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="motivation">Lettre de motivation <span class="text-[#E58346]">*</span></label>
-              <textarea id="motivation" name="motivation" placeholder="Dites-nous en quelques lignes pourquoi vous souhaitez rejoindre L'Espoir, ce qui vous motive dans ce secteur et ce que vous pensez pouvoir apporter à l'équipe…" class="form-field" required></textarea>
-              <p class="form-hint">Minimum 100 caractères. Parlez-nous de vous, de votre parcours et de vos motivations.</p>
-            </div>
-
-            <!-- CV upload -->
-            <div>
-              <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2">CV au format PDF <span class="text-[#E58346]">*</span></label>
-              <div id="fileDrop" class="file-drop">
-                <input type="file" id="cv" name="cv" accept=".pdf,application/pdf" required aria-describedby="cvHint"/>
-                <div class="file-drop-content">
-                  <span class="material-symbols-outlined file-drop-icon">upload_file</span>
-                  <div class="file-drop-label"><strong>Cliquez</strong> ou glissez votre CV ici</div>
-                  <div class="file-drop-sub">PDF uniquement · max. 5 MB</div>
-                </div>
-                <div class="file-selected">
-                  <span class="material-symbols-outlined f-icon">description</span>
-                  <div class="flex-1 min-w-0">
-                    <div class="f-name" id="fileName">-</div>
-                    <div class="f-size" id="fileSize">-</div>
-                  </div>
-                  <button type="button" class="f-remove" id="fileRemove" aria-label="Retirer le fichier">
-                    <span class="material-symbols-outlined" style="font-size:18px;">close</span>
-                  </button>
-                </div>
+            {/* Lettre de motivation — textarea (maxlength) */}
+            {lettreField && (
+              <div>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="lettre_de_motivation">{lettreField.label}{lettreField.required && <span class="text-[#E58346]"> *</span>}</label>
+                <textarea id="lettre_de_motivation" name="lettre_de_motivation" placeholder={lettreField.placeholder ?? ''} required={lettreField.required} maxlength={lettreMax} class="form-field"></textarea>
+                <p class="form-hint">Maximum {lettreMax} caractères.</p>
               </div>
-              <p class="form-hint" id="cvHint">Format accepté : <strong>PDF</strong> · Taille maximale : <strong>5 MB</strong></p>
-              <p class="form-error" id="fileError"></p>
+            )}
+
+            {/* CV — file input with styled drop zone */}
+            {cvField && (
+              <div>
+                <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="cv_au_format_pdf_ou_doc">{cvField.label}{cvField.required && <span class="text-[#E58346]"> *</span>}</label>
+                <div id="fileDrop" class="file-drop">
+                  <input type="file" id="cv_au_format_pdf_ou_doc" name="cv_au_format_pdf_ou_doc" accept=".pdf,.doc,.docx" required={cvField.required} aria-describedby="cvHint" />
+                  <div class="file-drop-content">
+                    <span class="material-symbols-outlined file-drop-icon">upload_file</span>
+                    <div class="file-drop-label"><strong>Cliquez</strong> ou glissez votre CV ici</div>
+                    <div class="file-drop-sub">PDF, DOC ou DOCX · max. {cvField.max_size_mb ?? 5} MB</div>
+                  </div>
+                  <div class="file-selected">
+                    <span class="material-symbols-outlined f-icon">description</span>
+                    <div class="flex-1 min-w-0">
+                      <div class="f-name" id="fileName">-</div>
+                      <div class="f-size" id="fileSize">-</div>
+                    </div>
+                    <button type="button" class="f-remove" id="fileRemove" aria-label="Retirer le fichier">
+                      <span class="material-symbols-outlined" style="font-size:18px;">close</span>
+                    </button>
+                  </div>
+                </div>
+                <p class="form-hint" id="cvHint">Formats acceptés : <strong>PDF, DOC, DOCX</strong> · Taille maximale : <strong>{cvField.max_size_mb ?? 5} MB</strong></p>
+                <p class="form-error" id="fileError"></p>
+              </div>
+            )}
+
+            {/* Honeypot · CSS-hidden, submitted empty (spam guard) */}
+            <div class="form-field--hidden" aria-hidden="true">
+              <input type="text" name={jobForm.honeypot_field_name} tabindex="-1" autocomplete="off" value="" />
             </div>
 
-            <!-- RGPD consent -->
-            <label class="flex items-start gap-3 cursor-pointer">
-              <input type="checkbox" id="rgpd" name="rgpd" required class="mt-1 h-4 w-4 rounded border-[#002626]/30 text-[#C04B72] focus:ring-[#C04B72] shrink-0"/>
-              <span class="text-sm text-[#002626]/75 leading-relaxed">
-                J'accepte que mes données soient traitées dans le cadre de ma candidature conformément à la
-                <a href="/politique-confidentialite" class="text-[#C04B72] font-semibold underline" target="_blank" rel="noopener">Politique de confidentialité</a>
-                de L'Espoir asbl. Mes données seront conservées 2 ans maximum et ne seront partagées avec aucun tiers. <span class="text-[#E58346]">*</span>
-              </span>
-            </label>
+            <p id="postuler-msg" role="status" class="text-sm font-semibold" hidden></p>
 
-            <!-- Submit -->
+            {/* Submit */}
             <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-1">
               <button type="submit" id="submitBtn" class="btn btn-primary btn-lg">
                 <span class="material-symbols-outlined" style="font-size:20px;">send</span>
-                Envoyer ma candidature
+                {jobForm.submit_button_label ?? 'Envoyer ma candidature'}
               </button>
               <a href="#offres" class="text-sm text-[#002626]/55 hover:text-[#002626] transition-colors font-semibold">← Voir les offres</a>
             </div>
@@ -644,6 +631,9 @@ const activeNav = "emploi";
               En soumettant ce formulaire, vous confirmez l'exactitude des informations fournies. Un accusé de réception vous sera envoyé par e-mail sous 48 h.
             </p>
           </form>
+          ) : (
+            <p class="text-[#002626]/60">Le formulaire est momentanément indisponible. Écrivez-nous à <a class="text-[#C04B72] font-semibold underline" href="mailto:direction@asbl-espoir.be">direction@asbl-espoir.be</a> en joignant votre CV.</p>
+          )}
 
           <!-- Success card (hidden until submit) -->
           <div class="success-card" id="successCard">
@@ -665,6 +655,190 @@ const activeNav = "emploi";
               </a>
             </div>
           </div>
+
+          {jobForm && (
+            <script define:vars={{ api: CMS_API_BASE }}>
+              (function () {
+                var form = document.getElementById('postulerForm');
+                if (!form) return;
+
+                var posteInput = document.getElementById('poste_vise');
+                var candidLead = document.getElementById('candidatureLead');
+                var msg        = document.getElementById('postuler-msg');
+                var submitBtn  = document.getElementById('submitBtn');
+                var successCard = document.getElementById('successCard');
+
+                // ── Autofill poste_vise (readable job title) ──
+                function applyPoste(title) {
+                  if (!title || !posteInput) return;
+                  posteInput.value = title;
+                  posteInput.style.boxShadow = '0 0 0 3px rgba(192,75,114,0.20)';
+                  posteInput.style.borderColor = '#C04B72';
+                  setTimeout(function () {
+                    posteInput.style.transition = 'box-shadow 0.6s ease, border-color 0.6s ease';
+                    posteInput.style.boxShadow = '';
+                    posteInput.style.borderColor = '';
+                  }, 1800);
+                  if (candidLead && title !== 'Candidature spontanée') {
+                    candidLead.textContent = '';
+                    candidLead.appendChild(document.createTextNode('Vous postulez pour le poste de '));
+                    var strongEl = document.createElement('strong');
+                    strongEl.className = 'text-[#002626]';
+                    strongEl.textContent = title;
+                    candidLead.appendChild(strongEl);
+                    candidLead.appendChild(document.createTextNode('. Remplissez le formulaire ci-dessous pour finaliser votre candidature.'));
+                  }
+                }
+
+                // ?poste= URL param prefill
+                try {
+                  var poste = new URLSearchParams(window.location.search).get('poste');
+                  if (poste) applyPoste(poste);
+                } catch (e) { /* silent */ }
+
+                // In-page "Postuler" / "Candidature spontanée" clicks
+                document.querySelectorAll('a[data-poste][href^="#candidature"]').forEach(function (link) {
+                  link.addEventListener('click', function () {
+                    var title = link.getAttribute('data-poste');
+                    if (!title) return;
+                    applyPoste(title);
+                    setTimeout(function () { if (posteInput) posteInput.focus({ preventScroll: true }); }, 600);
+                  });
+                });
+
+                // ── File drop-zone UI ──
+                var dropZone     = document.getElementById('fileDrop');
+                var fileInput    = document.getElementById('cv_au_format_pdf_ou_doc');
+                var fileNameEl   = document.getElementById('fileName');
+                var fileSizeEl   = document.getElementById('fileSize');
+                var fileRemoveBtn = document.getElementById('fileRemove');
+                var fileError    = document.getElementById('fileError');
+                var MAX_SIZE = 5 * 1024 * 1024;
+                var ACCEPT_RE = /\.(pdf|doc|docx)$/i;
+
+                function formatBytes(b) {
+                  if (b < 1024) return b + ' B';
+                  if (b < 1024 * 1024) return (b / 1024).toFixed(1) + ' KB';
+                  return (b / (1024 * 1024)).toFixed(2) + ' MB';
+                }
+                function showFileError(m) {
+                  if (!fileError || !dropZone) return;
+                  fileError.textContent = m;
+                  fileError.classList.add('is-visible');
+                  dropZone.classList.add('has-error');
+                  dropZone.classList.remove('has-file');
+                }
+                function clearFileError() {
+                  if (!fileError || !dropZone) return;
+                  fileError.classList.remove('is-visible');
+                  fileError.textContent = '';
+                  dropZone.classList.remove('has-error');
+                }
+                function clearFile() {
+                  if (fileInput) fileInput.value = '';
+                  if (dropZone) dropZone.classList.remove('has-file');
+                  clearFileError();
+                }
+                function handleFile(file) {
+                  if (!file) return;
+                  clearFileError();
+                  if (!ACCEPT_RE.test(file.name)) { showFileError('Format non accepté. Merci d\'envoyer un fichier PDF, DOC ou DOCX.'); clearFile(); return; }
+                  if (file.size > MAX_SIZE) { showFileError('Fichier trop volumineux (' + formatBytes(file.size) + '). Taille maximale : 5 MB.'); clearFile(); return; }
+                  if (fileNameEl) fileNameEl.textContent = file.name;
+                  if (fileSizeEl) fileSizeEl.textContent = formatBytes(file.size);
+                  if (dropZone) dropZone.classList.add('has-file');
+                }
+
+                if (fileInput) fileInput.addEventListener('change', function (e) { handleFile(e.target.files && e.target.files[0]); });
+                if (fileRemoveBtn) fileRemoveBtn.addEventListener('click', function (e) { e.stopPropagation(); e.preventDefault(); clearFile(); });
+                if (dropZone) {
+                  ['dragenter', 'dragover'].forEach(function (evt) {
+                    dropZone.addEventListener(evt, function (e) { e.preventDefault(); e.stopPropagation(); dropZone.classList.add('is-dragover'); });
+                  });
+                  ['dragleave', 'drop'].forEach(function (evt) {
+                    dropZone.addEventListener(evt, function (e) { e.preventDefault(); e.stopPropagation(); dropZone.classList.remove('is-dragover'); });
+                  });
+                  dropZone.addEventListener('drop', function (e) {
+                    var files = e.dataTransfer && e.dataTransfer.files;
+                    if (files && files[0]) {
+                      try { var dt = new DataTransfer(); dt.items.add(files[0]); if (fileInput) fileInput.files = dt.files; } catch (err) { /* Safari */ }
+                      handleFile(files[0]);
+                    }
+                  });
+                }
+
+                // ── Submit: two-step (upload file → submit JSON) ──
+                form.addEventListener('submit', async function (e) {
+                  e.preventDefault();
+                  if (msg) { msg.hidden = true; }
+
+                  if (!form.checkValidity()) { form.reportValidity(); return; }
+
+                  var file = fileInput && fileInput.files && fileInput.files[0];
+                  if (file) {
+                    if (!ACCEPT_RE.test(file.name)) { showFileError('Format non accepté. Merci d\'envoyer un fichier PDF, DOC ou DOCX.'); return; }
+                    if (file.size > MAX_SIZE) { showFileError('Votre CV dépasse 5 MB.'); return; }
+                  }
+
+                  if (submitBtn) submitBtn.disabled = true;
+
+                  function fail(text) {
+                    if (msg) { msg.textContent = text; msg.style.color = '#C04B72'; msg.hidden = false; }
+                    if (submitBtn) submitBtn.disabled = false;
+                  }
+
+                  try {
+                    // Step 1 — upload the CV if present
+                    var cvValue = null;
+                    if (file) {
+                      var fd = new FormData();
+                      fd.append('file', file);
+                      var upRes = await fetch(api + '/forms/offre_demploi/fields/cv_au_format_pdf_ou_doc/upload', { method: 'POST', cache: 'no-store', body: fd });
+                      if (!upRes.ok) {
+                        if (upRes.status === 415) return fail('Format de CV non accepté. Merci d\'envoyer un PDF, DOC ou DOCX.');
+                        if (upRes.status === 413) return fail('Votre CV est trop volumineux (max. 5 MB).');
+                        if (upRes.status === 429) return fail('Trop de tentatives, patientez un instant puis réessayez.');
+                        var upErr = await upRes.json().catch(function () { return {}; });
+                        return fail(upErr.error || 'Échec de l\'envoi du CV, réessayez.');
+                      }
+                      var up = await upRes.json();
+                      cvValue = { upload_token: up.upload_token, original_filename: up.original_filename };
+                    }
+
+                    // Step 2 — submit the text fields + file reference as JSON
+                    var body = {};
+                    var fdAll = new FormData(form);
+                    fdAll.forEach(function (v, k) {
+                      if (k === 'cv_au_format_pdf_ou_doc') return; // file handled separately
+                      body[k] = v;
+                    });
+                    if (cvValue) body.cv_au_format_pdf_ou_doc = cvValue;
+
+                    var res = await fetch(api + '/forms/offre_demploi/submit', { method: 'POST', cache: 'no-store', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+                    var data = await res.json().catch(function () { return {}; });
+
+                    if (res.status === 201 || res.status === 200) {
+                      if (data.redirect_url) { window.location.href = data.redirect_url; return; }
+                      form.style.display = 'none';
+                      if (successCard) {
+                        successCard.classList.add('is-visible');
+                        successCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      } else if (msg) {
+                        msg.textContent = data.success_message || 'Merci, votre candidature a bien été envoyée.';
+                        msg.style.color = '#119DA4'; msg.hidden = false; form.reset();
+                      }
+                    } else if (res.status === 400) {
+                      fail((data.errors || []).map(function (x) { return x.message; }).join(' · ') || data.error || 'Merci de vérifier les champs du formulaire.');
+                    } else {
+                      fail(data.error || 'Une erreur est survenue, réessayez.');
+                    }
+                  } catch (err) {
+                    fail('Erreur réseau, réessayez.');
+                  }
+                });
+              })();
+            </script>
+          )}
 
         </div>
 
@@ -789,187 +963,6 @@ const activeNav = "emploi";
 
     // Safeguard: reveal anything still hidden after 1.5s
     setTimeout(function() { revealItems.forEach(function(item) { if (!item.el.classList.contains("revealed")) { item.el.classList.add("revealed"); observer.unobserve(item.el); } }); }, 1500);
-  }
-
-      /* ══════════════════════════════════════
-     CANDIDATURE FORM
-     ══════════════════════════════════════ */
-
-  // Poste value → label map, derived at runtime from the (CC-driven) select options
-  // so a "Postuler" click can prefill by the offer's slug and show its title.
-  var POSTES_MAP = {};
-  (function () {
-    var sel = document.getElementById('poste');
-    if (sel) Array.prototype.forEach.call(sel.options, function (o) { if (o.value) POSTES_MAP[o.value] = o.text; });
-  })();
-
-  var posteSelect = document.getElementById('poste');
-  var posteHint   = document.getElementById('posteHint');
-  var candidLead  = document.getElementById('candidatureLead');
-
-  function applyPoste(poste, opts) {
-    opts = opts || {};
-    if (!poste || !POSTES_MAP[poste] || !posteSelect) return false;
-    posteSelect.value = poste;
-    if (posteHint) {
-      if (poste === 'spontanee') {
-        posteHint.innerHTML = '✓ <strong>Candidature spontanée</strong> sélectionnée, parlez-nous de votre profil idéal ci-dessous.';
-      } else {
-        posteHint.innerHTML = '✓ Vous postulez pour : <strong>' + POSTES_MAP[poste] + '</strong>. Vous pouvez modifier ce choix ci-dessus.';
-      }
-      posteHint.style.color = '#5a7420';
-    }
-    if (candidLead && poste !== 'spontanee') {
-      candidLead.innerHTML = 'Vous postulez pour le poste de <strong class="text-[#002626]">' + POSTES_MAP[poste] + '</strong>. Remplissez le formulaire ci-dessous pour finaliser votre candidature.';
-    }
-    return true;
-  }
-
-  /* 1. Prefill from URL query (?poste=…) on first load */
-  (function prefillFromUrl() {
-    try {
-      var params = new URLSearchParams(window.location.search);
-      var poste = params.get('poste');
-      if (poste) applyPoste(poste);
-    } catch (e) { /* silent */ }
-  })();
-
-  /* 2. Intercept in-page Postuler/spontanée clicks → prefill + smooth scroll */
-  document.querySelectorAll('a[data-poste][href="#candidature"], a[data-poste][href^="#candidature"]').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      var poste = link.getAttribute('data-poste');
-      if (!poste) return;
-      applyPoste(poste);
-      // Let the hash navigation do the scroll; html { scroll-padding-top } handles the sticky nav offset.
-      // Focus poste select after a beat so users see the selection land.
-      setTimeout(function() {
-        if (posteSelect) posteSelect.focus({ preventScroll: true });
-      }, 600);
-    });
-  });
-
-  /* 3. File upload validation */
-  var MAX_SIZE = 5 * 1024 * 1024; // 5 MB
-  var dropZone     = document.getElementById('fileDrop');
-  var fileInput    = document.getElementById('cv');
-  var fileNameEl   = document.getElementById('fileName');
-  var fileSizeEl   = document.getElementById('fileSize');
-  var fileRemoveBtn = document.getElementById('fileRemove');
-  var fileError    = document.getElementById('fileError');
-
-  function formatBytes(b) {
-    if (b < 1024) return b + ' B';
-    if (b < 1024 * 1024) return (b / 1024).toFixed(1) + ' KB';
-    return (b / (1024 * 1024)).toFixed(2) + ' MB';
-  }
-  function showFileError(msg) {
-    if (!fileError || !dropZone) return;
-    fileError.textContent = msg;
-    fileError.classList.add('is-visible');
-    dropZone.classList.add('has-error');
-    dropZone.classList.remove('has-file');
-  }
-  function clearFileError() {
-    if (!fileError || !dropZone) return;
-    fileError.classList.remove('is-visible');
-    fileError.textContent = '';
-    dropZone.classList.remove('has-error');
-  }
-  function clearFile() {
-    if (fileInput) fileInput.value = '';
-    if (dropZone) dropZone.classList.remove('has-file');
-    clearFileError();
-  }
-  function handleFile(file) {
-    if (!file) return;
-    clearFileError();
-    var isPdf = file.type === 'application/pdf' || /\.pdf$/i.test(file.name);
-    if (!isPdf) { showFileError('Format non accepté. Merci d\'envoyer un fichier PDF.'); clearFile(); return; }
-    if (file.size > MAX_SIZE) { showFileError('Fichier trop volumineux (' + formatBytes(file.size) + '). Taille maximale : 5 MB.'); clearFile(); return; }
-    if (fileNameEl) fileNameEl.textContent = file.name;
-    if (fileSizeEl) fileSizeEl.textContent = formatBytes(file.size);
-    if (dropZone)   dropZone.classList.add('has-file');
-  }
-
-  if (fileInput) {
-    fileInput.addEventListener('change', function(e) {
-      handleFile(e.target.files && e.target.files[0]);
-    });
-  }
-  if (fileRemoveBtn) {
-    fileRemoveBtn.addEventListener('click', function(e) {
-      e.stopPropagation(); e.preventDefault(); clearFile();
-    });
-  }
-  if (dropZone) {
-    ['dragenter','dragover'].forEach(function(evt) {
-      dropZone.addEventListener(evt, function(e) {
-        e.preventDefault(); e.stopPropagation();
-        dropZone.classList.add('is-dragover');
-      });
-    });
-    ['dragleave','drop'].forEach(function(evt) {
-      dropZone.addEventListener(evt, function(e) {
-        e.preventDefault(); e.stopPropagation();
-        dropZone.classList.remove('is-dragover');
-      });
-    });
-    dropZone.addEventListener('drop', function(e) {
-      var files = e.dataTransfer && e.dataTransfer.files;
-      if (files && files[0]) {
-        try {
-          var dt = new DataTransfer();
-          dt.items.add(files[0]);
-          if (fileInput) fileInput.files = dt.files;
-        } catch (err) { /* Safari fallback */ }
-        handleFile(files[0]);
-      }
-    });
-  }
-
-  /* 4. Form submit, placeholder (real integration via ContentCore API) */
-  var form        = document.getElementById('postulerForm');
-  var submitBtn   = document.getElementById('submitBtn');
-  var successCard = document.getElementById('successCard');
-
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      var motivation = document.getElementById('motivation');
-      if (motivation && motivation.value.trim().length < 100) {
-        alert('Votre lettre de motivation doit contenir au moins 100 caractères.');
-        motivation.focus();
-        return;
-      }
-      var file = fileInput && fileInput.files && fileInput.files[0];
-      if (!file) { showFileError('Merci d\'ajouter votre CV au format PDF.'); return; }
-      if (file.size > MAX_SIZE) { showFileError('Votre CV dépasse 5 MB.'); return; }
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size:20px;">hourglass_empty</span>Envoi en cours…';
-
-      /* ★ API HOOK ★
-         Replace the setTimeout below with a real fetch() to your ContentCore endpoint.
-         Example:
-           var fd = new FormData(form);
-           fetch('/api/postuler', { method: 'POST', body: fd })
-             .then(r => r.ok ? showSuccess() : showFailure())
-             .catch(showFailure);
-      */
-      setTimeout(function() {
-        form.style.display = 'none';
-        if (successCard) {
-          successCard.classList.add('is-visible');
-          successCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 900);
-    });
   }
 
   if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
