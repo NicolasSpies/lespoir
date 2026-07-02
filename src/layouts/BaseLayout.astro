@@ -25,6 +25,8 @@ interface Props {
   activeNav?: 'home' | 'apropos' | 'srg' | 'sase' | 'sapa' | 'actualites' | 'emploi' | 'contact' | 'don' | null;
   /** ContentCore entry id — when set, fires the browser /track view beacon (humans). */
   trackEntryId?: number | string | null;
+  /** ContentCore entry slug — when set, fires the /click beacon (phone/email/donate). */
+  trackSlug?: string | null;
 }
 
 const {
@@ -43,6 +45,7 @@ const {
   bodyClass = 'min-h-screen flex flex-col text-on-surface',
   activeNav = null,
   trackEntryId = null,
+  trackSlug = null,
 } = Astro.props;
 
 const SITE = 'https://asbl-espoir.be';
@@ -353,6 +356,28 @@ const CMS_API = 'https://lespoir.contentcore.app/api/v1';
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ entry_id: entryId, lang: 'fr' }), keepalive: true,
     }).catch(() => {});
+  </script>
+)}
+
+{trackSlug && (
+  <script type="module" define:vars={{ slug: trackSlug, api: CMS_API }}>
+    // ContentCore click beacon — tracks phone / email / donate CTA clicks (Most Clicked).
+    document.addEventListener('click', (e) => {
+      const a = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!a) return;
+      const href = a.getAttribute('href') || '';
+      let type = a.dataset.click || null;
+      if (!type) {
+        if (href.startsWith('tel:')) type = 'phone';
+        else if (href.startsWith('mailto:')) type = 'email';
+        else if (href === '/don' || href.startsWith('/don?') || href.startsWith('/don#') || href === '#don') type = 'donate';
+      }
+      if (!type) return;
+      fetch(api + '/click', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: slug, element_type: type }), keepalive: true,
+      }).catch(() => {});
+    }, { passive: true });
   </script>
 )}
 
