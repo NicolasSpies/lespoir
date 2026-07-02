@@ -3,11 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
 import DOMPurify from 'isomorphic-dompurify';
-import { getHome, sectionData, str, asImage, imageUrl, imageSrcSet, extractVisitorHeaders } from '../lib/cms';
+import { getHome, sectionData, str, asImage, asGallery, imageUrl, imageSrcSet, focusPosition, extractVisitorHeaders } from '../lib/cms';
 
 const vis = extractVisitorHeaders(Astro.request);
 const page = await getHome(vis);
 const d = sectionData(page, 'startseite');
+const heroSlides = asGallery(d.galerie);
 
 const title = "L'Espoir asbl · Aide à la jeunesse à Huy depuis 1985";
 const description = "Depuis 1985, L'Espoir asbl accompagne enfants et jeunes en difficulté dans la région de Huy et Amay via trois services agréés par la Fédération Wallonie-Bruxelles : SRG, SASE, SAPA.";
@@ -431,6 +432,11 @@ const activeNav = "home";
         <div class="hero-img-deco-2" aria-hidden="true"></div>
         <div class="hero-img-card">
           <div class="hero-slider" role="region" aria-roledescription="carousel" aria-label="Galerie L'Espoir asbl">
+            {heroSlides.length > 0 ? heroSlides.map((img, i) => (
+              <div class={i === 0 ? 'hero-slide active' : 'hero-slide'}>
+                <img class="hero-img" src={imageUrl(img, 'lg')} srcset={imageSrcSet(img)} sizes="(max-width:1024px) 100vw, 42vw" alt={img.alt ?? ''} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" style={`width:100%;height:100%;object-fit:cover;object-position:${focusPosition(img.focus_x, img.focus_y)};`} />
+              </div>
+            )) : (<Fragment>
             <div class="hero-slide active">
               <Placeholder alt="L'Espoir asbl, aide à la jeunesse à Huy et Amay depuis 1985" aspectRatio='16/9' />
             </div>
@@ -443,6 +449,7 @@ const activeNav = "home";
             <div class="hero-slide">
               <Placeholder alt="SAPA L'Espoir asbl, parrainage familial à Huy, Waremme et Hannut" aspectRatio='16/9' />
             </div>
+            </Fragment>)}
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
-import { getPage, getList, sectionData, str, asImage, imageUrl, imageSrcSet, focusPosition, extractVisitorHeaders } from '../lib/cms';
+import { getPage, getList, getTaxonomyTerms, serviceColor, sectionData, str, asImage, imageUrl, imageSrcSet, focusPosition, extractVisitorHeaders } from '../lib/cms';
 import type { CmsEntry } from '../lib/cms';
 import DOMPurify from 'isomorphic-dompurify';
 
@@ -10,16 +10,18 @@ const vis = extractVisitorHeaders(Astro.request);
 const page = await getPage('a-propos', vis);
 const d = sectionData(page, 'a_propos');
 
-// Team: render ONLY the `equipe` entries set in ContentCore (Simple Grid).
+// Team: grouped by the `service` taxonomy (SRG/SASE/SAPA) — headers always shown,
+// even when a category has no members yet. Members come from the `equipe` entries.
 const team = await getList('equipe', vis);
-const svcColor = (e: CmsEntry): string => {
-  const terms = ((e as unknown as { taxonomy_terms?: Array<{ slug?: string }> }).taxonomy_terms ?? [])
-    .map(t => t.slug);
-  if (terms.includes('srg')) return '#E58346';
-  if (terms.includes('sapa')) return '#119DA4';
-  if (terms.includes('sase')) return '#C04B72';
-  return '#002626';
-};
+const serviceTerms = await getTaxonomyTerms('service', vis);
+const termSlugs = (e: CmsEntry): string[] =>
+  ((e as unknown as { taxonomy_terms?: Array<{ slug?: string }> }).taxonomy_terms ?? []).map(t => t.slug ?? '');
+const teamGroups = serviceTerms.map(t => ({ term: t, members: team.filter(e => termSlugs(e).includes(t.slug)) }));
+const teamUngrouped = team.filter(e => !serviceTerms.some(t => termSlugs(e).includes(t.slug)));
+const teamSections = [
+  ...teamGroups.map(g => ({ label: g.term.label, color: serviceColor(g.term.slug), members: g.members })),
+  ...(teamUngrouped.length ? [{ label: 'Équipe', color: '#002626', members: teamUngrouped }] : []),
+];
 
 // Timeline repeater (ligne_de_temps_a_propos): map to existing markup when present.
 type TimelineItem = { annee_notre_histoire?: string; titre_ligne_de_temps?: string; description_ligne_de_temps?: string };
@@ -535,47 +537,49 @@ const activeNav = "apropos";
         </p>
       </div>
 
-      <!-- Team · rendered from the ContentCore `equipe` Simple Grid (only CC entries) -->
-      {team.length > 0 && (
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-          {team.map((e) => {
-            const ed = sectionData(e, 'equipe');
-            const img = asImage(e.featured_image);
-            const poste = str(ed.poste);
-            const tel = str(ed.telephone);
-            const mail = str(ed.mail);
-            const quote = str(ed.description_quote);
-            const color = svcColor(e);
-            return (
-              <div class="person-card" style={`--svc-color:${color};`}>
-                <div class="person-photo">
-                  <div class="person-initials"></div>
-                  {img ? (
-                    <img src={imageUrl(img, 'md')} srcset={imageSrcSet(img)} sizes="(max-width:768px) 50vw, 220px" alt={img.alt ?? e.title ?? ''} loading="lazy" style={`width:100%;height:100%;object-fit:cover;object-position:${focusPosition(img.focus_x, img.focus_y)};`} />
-                  ) : (
-                    <Placeholder alt={e.title ?? "Membre de l'équipe"} aspectRatio='1/1' />
-                  )}
-                </div>
-                <div class="person-info">
-                  <div class="person-name">{e.title}</div>
-                  {poste && <div class="person-role">{poste}</div>}
-                  {tel && (
-                    <a href={`tel:${tel.replace(/\s+/g, '')}`} class="person-phone">
-                      <span class="material-symbols-outlined">call</span>{tel}
-                    </a>
-                  )}
-                  {mail && (
-                    <a href={`mailto:${mail.trim()}`} class="person-phone">
-                      <span class="material-symbols-outlined">mail</span>{mail.trim()}
-                    </a>
-                  )}
-                  {quote && <div class="person-quote">{quote}</div>}
-                </div>
+      <!-- Team · grouped by the ContentCore `service` taxonomy; group headers always shown -->
+      <div class="space-y-10">
+        {teamSections.map((sec) => (
+          <div class="service-group team-col">
+            <div class="service-banner" style={`background:${sec.color};color:#fff;`}>
+              <div class="banner-icon-wrap"><span class="material-symbols-outlined" style="font-size:24px;">groups</span></div>
+              <div><div class="banner-abbr">{sec.label}</div></div>
+              <div class="banner-count">{sec.members.length} {sec.members.length === 1 ? 'PERSONNE' : 'PERSONNES'}</div>
+            </div>
+            {sec.members.length > 0 && (
+              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 mt-4">
+                {sec.members.map((e) => {
+                  const ed = sectionData(e, 'equipe');
+                  const img = asImage(e.featured_image);
+                  const poste = str(ed.poste);
+                  const tel = str(ed.telephone);
+                  const mail = str(ed.mail);
+                  const quote = str(ed.description_quote);
+                  return (
+                    <div class="person-card" style={`--svc-color:${sec.color};`}>
+                      <div class="person-photo">
+                        <div class="person-initials"></div>
+                        {img ? (
+                          <img src={imageUrl(img, 'md')} srcset={imageSrcSet(img)} sizes="(max-width:768px) 50vw, 220px" alt={img.alt ?? e.title ?? ''} loading="lazy" style={`width:100%;height:100%;object-fit:cover;object-position:${focusPosition(img.focus_x, img.focus_y)};`} />
+                        ) : (
+                          <Placeholder alt={e.title ?? "Membre de l'équipe"} aspectRatio='1/1' />
+                        )}
+                      </div>
+                      <div class="person-info">
+                        <div class="person-name">{e.title}</div>
+                        {poste && <div class="person-role">{poste}</div>}
+                        {tel && (<a href={`tel:${tel.replace(/\s+/g, '')}`} class="person-phone"><span class="material-symbols-outlined">call</span>{tel}</a>)}
+                        {mail && (<a href={`mailto:${mail.trim()}`} class="person-phone"><span class="material-symbols-outlined">mail</span>{mail.trim()}</a>)}
+                        {quote && <div class="person-quote">{quote}</div>}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
-        </div>
-      )}
+            )}
+          </div>
+        ))}
+      </div>
 
     </div>
   </section>

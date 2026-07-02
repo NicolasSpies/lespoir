@@ -108,6 +108,21 @@ export async function getSiteData(vis: Record<string, string> = {}): Promise<Sit
   catch { return null; }
 }
 
+// ── Taxonomy terms ──────────────────────────────────────────────────────────────
+export interface TaxonomyTerm { id: number; label: string; slug: string; filter_slug?: string }
+export async function getTaxonomyTerms(taxonomy: string, vis: Record<string, string> = {}): Promise<TaxonomyTerm[]> {
+  try {
+    const data = await fetchJson(`/taxonomies/${encodeURIComponent(taxonomy)}/terms`, { lang: LANG }, vis) as unknown;
+    const raw = Array.isArray(data) ? data : ((data as Record<string, unknown>)?.['terms'] ?? (data as Record<string, unknown>)?.['data'] ?? []);
+    return raw as TaxonomyTerm[];
+  } catch { return []; }
+}
+
+/** service slugs → brand color (team grouping, service accents). */
+export function serviceColor(slug: string | null | undefined): string {
+  return slug === 'srg' ? '#E58346' : slug === 'sapa' ? '#119DA4' : slug === 'sase' ? '#C04B72' : '#002626';
+}
+
 // ── SEO ────────────────────────────────────────────────────────────────────────
 export async function getSeo(type: 'post' | 'page', slug: string, vis: Record<string, string> = {}): Promise<Record<string, unknown> | null> {
   try {

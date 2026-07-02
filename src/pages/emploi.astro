@@ -11,8 +11,9 @@ const d = sectionData(page, 'offre_d_emploi_page');
 
 const critereList = (Array.isArray(d.liste_ce_qu_on_cherche) ? d.liste_ce_qu_on_cherche : []) as Array<Record<string, unknown>>;
 
-// Live count of active job offers (offres-demploi post type) — shown in the hero.
-const offresCount = (await getList('offres-demploi', vis)).length;
+// Active job offers (offres-demploi) — drive the hero count, the cards, and the form select.
+const offres = await getList('offres-demploi', vis);
+const offresCount = offres.length;
 
 const title = "Offres d'emploi · Éducateur spécialisé aide à la jeunesse, Huy";
 const description = "Rejoignez L'Espoir asbl : offres d'emploi en aide à la jeunesse à Huy et Amay. Éducateur spécialisé SRG, éducateur à domicile SASE, famille bénévole SAPA. Candidature en ligne.";
@@ -364,119 +365,44 @@ const activeNav = "emploi";
       </div>
 
       <div class="space-y-5">
-
-        <!-- Offre 1 -->
-        <div class="job-card is-open-position offre-item">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex flex-wrap items-center gap-2 mb-2">
-                <span class="job-tag job-tag-cdi">CDI</span>
-                <span class="job-tag job-tag-stage" style="background:rgba(192,75,114,0.12);color:#5a7420;">SRG</span>
-                <span class="text-[#002626]/35 text-xs font-semibold">Publié le 10 avril 2026</span>
+        {offres.length > 0 ? offres.map((o) => {
+          const od = sectionData(o, 'offres_d_emplois');
+          const type = str(od.type_de_poste);
+          const region = str(od.region_poste);
+          const diplome = str(od.diplome_poste);
+          const horaires = str(od.horaires_poste);
+          const desc = str(od.description);
+          return (
+            <div class="job-card is-open-position offre-item">
+              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                <div class="flex-1">
+                  {type && (
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                      <span class="job-tag job-tag-cdi">{type}</span>
+                    </div>
+                  )}
+                  <h3 class="text-lg font-black text-[#002626] leading-snug mb-1">{o.title}</h3>
+                  {desc && <p class="text-sm text-[#002626]/80 leading-relaxed">{desc}</p>}
+                </div>
               </div>
-              <h3 class="text-lg font-black text-[#002626] leading-snug mb-1">Éducateur·trice spécialisé·e, SRG</h3>
-              <p class="text-sm text-[#002626]/80 leading-relaxed">
-                Accompagnement d'enfants et d'adolescents en hébergement résidentiel. Vous contribuez à la vie quotidienne dans nos maisons, co-construisez les projets éducatifs individuels et travaillez en lien étroit avec les familles et le SPJ.
-              </p>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-3 items-center pt-1 border-t border-[#002626]/06">
-            <div class="flex items-center gap-1.5 text-xs text-[#002626]/50">
-              <span class="material-symbols-outlined" style="font-size:15px;">schedule</span>
-              Temps plein (38h/sem)
-            </div>
-            <div class="flex items-center gap-1.5 text-xs text-[#002626]/50">
-              <span class="material-symbols-outlined" style="font-size:15px;">location_on</span>
-              Amay
-            </div>
-            <div class="flex items-center gap-1.5 text-xs text-[#002626]/50">
-              <span class="material-symbols-outlined" style="font-size:15px;">school</span>
-              Bachelier éducateur spécialisé ou équivalent
-            </div>
-            <a href="#candidature" data-poste="srg-educateur" class="btn btn-primary btn-sm ml-auto">
-              Postuler
-              <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Offre 2 -->
-        <div class="job-card is-open-position offre-item">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex flex-wrap items-center gap-2 mb-2">
-                <span class="job-tag job-tag-cdd">CDD 6 mois</span>
-                <span class="job-tag" style="background:rgba(229,131,70,0.12);color:#b44410;">SASE</span>
-                <span class="text-[#002626]/35 text-xs font-semibold">Publié le 5 avril 2026</span>
+              <div class="flex flex-wrap gap-3 items-center pt-1 border-t border-[#002626]/06">
+                {horaires && (<div class="flex items-center gap-1.5 text-xs text-[#002626]/50"><span class="material-symbols-outlined" style="font-size:15px;">schedule</span>{horaires}</div>)}
+                {region && (<div class="flex items-center gap-1.5 text-xs text-[#002626]/50"><span class="material-symbols-outlined" style="font-size:15px;">location_on</span>{region}</div>)}
+                {diplome && (<div class="flex items-center gap-1.5 text-xs text-[#002626]/50"><span class="material-symbols-outlined" style="font-size:15px;">school</span>{diplome}</div>)}
+                <a href="#candidature" data-poste={o.slug} class="btn btn-primary btn-sm ml-auto">
+                  Postuler
+                  <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
+                </a>
               </div>
-              <h3 class="text-lg font-black text-[#002626] leading-snug mb-1">Éducateur·trice à domicile, SASE</h3>
-              <p class="text-sm text-[#002626]/80 leading-relaxed">
-                Visites à domicile auprès de familles en difficulté dans la région hutoise. Soutien à la parentalité, travail sur le quotidien familial et coordination avec les mandants (SPJ, SAJ).
-              </p>
             </div>
+          );
+        }) : (
+          <div class="text-center py-16 mt-4">
+            <span class="material-symbols-outlined text-[#002626]/20 block mb-4" style="font-size:48px;">inbox</span>
+            <p class="text-[#002626]/40 font-semibold">Aucun poste ouvert en ce moment.</p>
+            <p class="text-[#002626]/35 text-sm mt-1">Envoyez quand même votre candidature spontanée, on la garde précieusement.</p>
           </div>
-          <div class="flex flex-wrap gap-3 items-center pt-1 border-t border-[#002626]/06">
-            <div class="flex items-center gap-1.5 text-xs text-[#002626]/50">
-              <span class="material-symbols-outlined" style="font-size:15px;">schedule</span>
-              Temps plein ou 4/5e
-            </div>
-            <div class="flex items-center gap-1.5 text-xs text-[#002626]/50">
-              <span class="material-symbols-outlined" style="font-size:15px;">location_on</span>
-              Région de Huy
-            </div>
-            <div class="flex items-center gap-1.5 text-xs text-[#002626]/50">
-              <span class="material-symbols-outlined" style="font-size:15px;">school</span>
-              Bachelier en travail social / éducation
-            </div>
-            <a href="#candidature" data-poste="sase-educateur" class="btn btn-primary btn-sm ml-auto">
-              Postuler
-              <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Offre 3 -->
-        <div class="job-card is-open-position offre-item">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex flex-wrap items-center gap-2 mb-2">
-                <span class="job-tag job-tag-volunteer">Bénévolat</span>
-                <span class="job-tag" style="background:rgba(17,157,164,0.12);color:#0b6e74;">SAPA</span>
-                <span class="text-[#002626]/35 text-xs font-semibold">Offre permanente</span>
-              </div>
-              <h3 class="text-lg font-black text-[#002626] leading-snug mb-1">Famille bénévole, SAPA</h3>
-              <p class="text-sm text-[#002626]/80 leading-relaxed">
-                Accueillez un jeune le week-end ou pendant les vacances scolaires pour lui offrir un espace familial chaleureux. Pas besoin d'être professionnel du secteur : il faut surtout de la disponibilité, de la bienveillance et l'envie d'ouvrir votre porte.
-              </p>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-3 items-center pt-1 border-t border-[#002626]/06">
-            <div class="flex items-center gap-1.5 text-xs text-[#002626]/50">
-              <span class="material-symbols-outlined" style="font-size:15px;">schedule</span>
-              Weekends et vacances scolaires
-            </div>
-            <div class="flex items-center gap-1.5 text-xs text-[#002626]/50">
-              <span class="material-symbols-outlined" style="font-size:15px;">location_on</span>
-              Région de Huy / Amay
-            </div>
-            <div class="flex items-center gap-1.5 text-xs text-[#002626]/50">
-              <span class="material-symbols-outlined" style="font-size:15px;">info</span>
-              Accompagnement assuré par l'équipe SAPA
-            </div>
-            <a href="/sapa#benevole" class="btn btn-primary btn-sm ml-auto">
-              En savoir plus
-              <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Aucune offre (état vide, caché pour l'instant) -->
-      <div class="hidden text-center py-16 mt-4">
-        <span class="material-symbols-outlined text-[#002626]/20 block mb-4" style="font-size:48px;">inbox</span>
-        <p class="text-[#002626]/40 font-semibold">Aucun poste ouvert en ce moment.</p>
-        <p class="text-[#002626]/35 text-sm mt-1">Envoyez quand même votre candidature spontanée, on la garde précieusement.</p>
+        )}
       </div>
 
     </div>
@@ -603,14 +529,8 @@ const activeNav = "emploi";
               <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="poste">Poste visé <span class="text-[#E58346]">*</span></label>
               <select id="poste" name="poste" class="form-field" required>
                 <option value="">Sélectionnez un poste -</option>
-                <option value="srg-educateur">Éducateur·trice spécialisé·e, SRG (CDI)</option>
-                <option value="sase-educateur">Éducateur·trice à domicile, SASE (CDD 6 mois)</option>
-                <option value="sapa-benevole">Famille bénévole, SAPA (Bénévolat)</option>
-                <option value="coordinateur">Coordinateur·trice</option>
-                <option value="psychologue">Psychologue</option>
-                <option value="administratif">Administratif / Logistique</option>
+                {offres.map((o) => (<option value={o.slug}>{o.title}</option>))}
                 <option value="spontanee">Candidature spontanée</option>
-                <option value="autre">Autre</option>
               </select>
               <p class="form-hint" id="posteHint">Sélectionnez l'offre à laquelle vous souhaitez postuler ou choisissez « Candidature spontanée ».</p>
             </div>
@@ -869,16 +789,13 @@ const activeNav = "emploi";
      CANDIDATURE FORM
      ══════════════════════════════════════ */
 
-  var POSTES_MAP = {
-    'srg-educateur': 'Éducateur·trice spécialisé·e, SRG',
-    'sase-educateur': 'Éducateur·trice à domicile, SASE',
-    'sapa-benevole': 'Famille bénévole, SAPA',
-    'coordinateur': 'Coordinateur·trice',
-    'psychologue': 'Psychologue',
-    'administratif': 'Administratif / Logistique',
-    'spontanee': 'Candidature spontanée',
-    'autre': 'Autre'
-  };
+  // Poste value → label map, derived at runtime from the (CC-driven) select options
+  // so a "Postuler" click can prefill by the offer's slug and show its title.
+  var POSTES_MAP = {};
+  (function () {
+    var sel = document.getElementById('poste');
+    if (sel) Array.prototype.forEach.call(sel.options, function (o) { if (o.value) POSTES_MAP[o.value] = o.text; });
+  })();
 
   var posteSelect = document.getElementById('poste');
   var posteHint   = document.getElementById('posteHint');
