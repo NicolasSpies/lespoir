@@ -2,6 +2,27 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
+import { getPage, sectionData, str, strList, extractVisitorHeaders } from '../lib/cms';
+import DOMPurify from 'isomorphic-dompurify';
+
+const vis = extractVisitorHeaders(Astro.request);
+const page = await getPage('sapa', vis);
+const d = sectionData(page, 'srg-1-1');
+
+// description_concept_sapa is a textarea; split blank-line-separated blocks into <p> then sanitize.
+const conceptDescHtml = str(d.description_concept_sapa)
+  ? DOMPurify.sanitize(
+      String(d.description_concept_sapa)
+        .split(/\n\s*\n/)
+        .map((p) => '<p>' + p.trim() + '</p>')
+        .join('')
+    )
+  : null;
+
+// Repeater: steps to become a parrain/marraine. Cast in frontmatter (TS generics can't sit inside JSX expressions).
+const benevolePoints = Array.isArray(d.benevole_points_sase)
+  ? (d.benevole_points_sase as Array<Record<string, unknown>>)
+  : [];
 
 const title = "SAPA · Parrainage familial et famille bénévole, Huy · Waremme";
 const description = "Service d'Accompagnement du Parrainage : nous relions jeunes en difficulté et familles bénévoles prêtes à s'engager dans la durée. Actif depuis 2022 sur Huy, Waremme et Hannut.";
@@ -25,6 +46,7 @@ const activeNav = "sapa";
   ogImageAlt={ogImageAlt}
   schemaOrg={schemaOrg}
   activeNav={activeNav}
+  trackEntryId={page?.id ?? page?.entry_id ?? null}
 >
 
 <style is:global>
@@ -181,7 +203,7 @@ const activeNav = "sapa";
 
 </style>
 
-<main id="main" class="flex-grow">
+<main id="main" class="flex-grow" style="--curly-color:#119DA4;">
 
   <!-- ── HERO ── -->
   <section class="relative overflow-hidden bg-[#EFE7DA]">
@@ -205,12 +227,14 @@ const activeNav = "sapa";
 
           <!-- H1 -->
           <h1 class="font-black text-[#002626] leading-[1.05] tracking-tight mb-6 md:mb-8" style="font-size:clamp(2.2rem,4.6vw,4rem);">
-            Un <span style="position:relative;display:inline-block;white-space:nowrap;">lien<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:-4px;left:0;width:100%;height:12px;" aria-hidden="true"><path d="M1 7 Q25 1 50 7 Q75 13 99 4" stroke="#119DA4" stroke-width="2.5" stroke-linecap="round"/></svg></span> privilégié,<br/>une présence bénévole.
+            {str(d.titre_h1_sapa)
+              ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_h1_sapa))} />
+              : (<>Un <span style="position:relative;display:inline-block;white-space:nowrap;">lien<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:-4px;left:0;width:100%;height:12px;" aria-hidden="true"><path d="M1 7 Q25 1 50 7 Q75 13 99 4" stroke="#119DA4" stroke-width="2.5" stroke-linecap="round"/></svg></span> privilégié,<br/>une présence bénévole.</>)}
           </h1>
 
           <!-- Description -->
           <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-8 md:mb-10 max-w-xl">
-            Le SAPA met en relation des enfants qui ont besoin de repères avec des familles bénévoles prêtes à s'engager. Ce lien, qu'on appelle le parrainage, offre au jeune une présence régulière et des expériences qui comptent vraiment.
+            {str(d.description_hero_sapa) ?? "Le SAPA met en relation des enfants qui ont besoin de repères avec des familles bénévoles prêtes à s'engager. Ce lien, qu'on appelle le parrainage, offre au jeune une présence régulière et des expériences qui comptent vraiment."}
           </p>
 
           <!-- CTAs -->
@@ -250,15 +274,29 @@ const activeNav = "sapa";
       <div class="section-text">
         <span class="text-[#119DA4] font-black tracking-widest text-sm uppercase block mb-4">Le concept</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          Le parrainage familial, <span style="font-weight:500;">un engagement simple et</span> <span style="position:relative;display:inline-block;">profond<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#119DA4" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+          {str(d.titre_concept_sapa)
+            ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_concept_sapa))} />
+            : (<>Le parrainage familial, <span style="font-weight:500;">un engagement simple et</span> <span style="position:relative;display:inline-block;">profond<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#119DA4" stroke-width="2.5" stroke-linecap="round"/></svg></span></>)}
         </h2>
+        {conceptDescHtml
+          ? <div class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-8 [&>p]:mb-5 [&>p:last-child]:mb-0" set:html={conceptDescHtml} />
+          : (<>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-5">
           Le parrainage familial, c'est simple : un enfant rencontre une famille bénévole, et ils se voient régulièrement dans la durée. La famille bénévole, c'est le parrain ou la marraine.
         </p>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-8">
           Ce n'est pas un placement, ni une famille d'accueil. C'est un lien affectif supplémentaire : un week-end par mois, une sortie, des moments du quotidien partagés. Des petites choses qui, pour un enfant qui manque de repères, peuvent vraiment changer la donne.
         </p>
+          </>)}
         <div class="checklist flex flex-col gap-3">
+          {strList(d.liste_concept_sapa).length
+            ? strList(d.liste_concept_sapa).map(x => (
+              <div class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-[#119DA4] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
+                <span class="text-[#002626]/80 text-base">{x}</span>
+              </div>
+            ))
+            : (<>
           <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-[#119DA4] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
             <span class="text-[#002626]/80 text-base">Agréé par la Fédération Wallonie-Bruxelles depuis 2022</span>
@@ -275,6 +313,7 @@ const activeNav = "sapa";
             <span class="material-symbols-outlined text-[#119DA4] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
             <span class="text-[#002626]/80 text-base">Pour les jeunes de 6 à 18 ans</span>
           </div>
+            </>)}
         </div>
       </div>
 
@@ -307,7 +346,7 @@ const activeNav = "sapa";
       <div class="text-center mb-14">
         <span class="text-[#002626] font-black tracking-widest text-sm uppercase block mb-4">Qui est concerné ?</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] leading-tight max-w-2xl mx-auto">
-          Le SAPA s'adresse à deux types de familles
+          {str(d.titre_qui_est_concerne) ?? "Le SAPA s'adresse à deux types de familles"}
         </h2>
       </div>
 
@@ -318,11 +357,19 @@ const activeNav = "sapa";
           <div class="w-14 h-14 rounded-2xl bg-[#119DA4]/15 flex items-center justify-center mb-6">
             <span class="material-symbols-outlined text-[#119DA4] is-filled" style="font-size:32px">child_care</span>
           </div>
-          <h3 class="text-xl font-bold mb-3">Vous cherchez un parrain pour votre enfant</h3>
+          <h3 class="text-xl font-bold mb-3">{str(d.titre_box_1_sapa) ?? "Vous cherchez un parrain pour votre enfant"}</h3>
           <p class="text-[#002626]/65 leading-relaxed mb-6 text-sm">
-            Vous êtes une famille suivie par un service social ou le SPJ et vous souhaitez que votre enfant ait une présence bénévole dans sa vie ? Le SAPA peut vous aider à trouver la famille marraine qui correspond.
+            {str(d.description_box_1_sapa) ?? "Vous êtes une famille suivie par un service social ou le SPJ et vous souhaitez que votre enfant ait une présence bénévole dans sa vie ? Le SAPA peut vous aider à trouver la famille marraine qui correspond."}
           </p>
           <ul class="space-y-2 mb-8">
+            {strList(d.liste_box_1_sapa).length
+              ? strList(d.liste_box_1_sapa).map(x => (
+                <li class="flex items-center gap-2 text-sm text-[#002626]/75">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#119DA4] inline-block flex-shrink-0"></span>
+                  {x}
+                </li>
+              ))
+              : (<>
             <li class="flex items-center gap-2 text-sm text-[#002626]/75">
               <span class="w-1.5 h-1.5 rounded-full bg-[#119DA4] inline-block flex-shrink-0"></span>
               Enfant ou jeune de 6 à 18 ans
@@ -339,6 +386,7 @@ const activeNav = "sapa";
               <span class="w-1.5 h-1.5 rounded-full bg-[#119DA4] inline-block flex-shrink-0"></span>
               Zone Huy, Waremme ou Hannut
             </li>
+              </>)}
           </ul>
           <a href="#orientation" class="btn btn-primary mt-auto">
             Demander un parrainage
@@ -351,11 +399,19 @@ const activeNav = "sapa";
           <div class="w-14 h-14 rounded-2xl bg-[#119DA4]/25 flex items-center justify-center mb-6">
             <span class="material-symbols-outlined text-[#119DA4] is-filled" style="font-size:32px">volunteer_activism</span>
           </div>
-          <h3 class="text-xl font-bold mb-3">Vous souhaitez devenir parrain ou marraine</h3>
+          <h3 class="text-xl font-bold mb-3">{str(d.titre_box_2_sapa) ?? "Vous souhaitez devenir parrain ou marraine"}</h3>
           <p class="text-white/80 leading-relaxed mb-6 text-sm">
-            Vous avez envie de vous engager et d'apporter quelque chose à un jeune qui en a besoin ? Le parrainage bénévole est une aventure humaine comme peu d'autres. Pas besoin d'être parent ou spécialiste, juste de la disponibilité et du cœur.
+            {str(d.description_box_2_sapa) ?? "Vous avez envie de vous engager et d'apporter quelque chose à un jeune qui en a besoin ? Le parrainage bénévole est une aventure humaine comme peu d'autres. Pas besoin d'être parent ou spécialiste, juste de la disponibilité et du cœur."}
           </p>
           <ul class="space-y-2 mb-8">
+            {strList(d.liste_box_2_sapa).length
+              ? strList(d.liste_box_2_sapa).map(x => (
+                <li class="flex items-center gap-2 text-sm text-white/80">
+                  <span class="w-1.5 h-1.5 rounded-full bg-white inline-block flex-shrink-0"></span>
+                  {x}
+                </li>
+              ))
+              : (<>
             <li class="flex items-center gap-2 text-sm text-white/80">
               <span class="w-1.5 h-1.5 rounded-full bg-white inline-block flex-shrink-0"></span>
               Toute configuration familiale bienvenue
@@ -372,6 +428,7 @@ const activeNav = "sapa";
               <span class="w-1.5 h-1.5 rounded-full bg-white inline-block flex-shrink-0"></span>
               L'accompagnement de l'équipe à chaque étape
             </li>
+              </>)}
           </ul>
           <a href="#benevole" class="btn bg-[#119DA4] text-white hover:bg-[#119DA4]/90 mt-auto">
             Devenir bénévole
@@ -396,12 +453,23 @@ const activeNav = "sapa";
       <div class="benevole-text">
         <span class="text-[#119DA4] font-black tracking-widest text-sm uppercase block mb-4">Devenir bénévole</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          Le chemin pour devenir parrain ou marraine
+          {str(d.titre_benevole_sase) ?? "Le chemin pour devenir parrain ou marraine"}
         </h2>
         <p class="text-base text-[#002626]/70 leading-relaxed mb-10">
-          On vous accompagne de bout en bout, du premier contact jusqu'au moment où le parrainage prend vie et au-delà.
+          {str(d.description_benevole_sase) ?? "On vous accompagne de bout en bout, du premier contact jusqu'au moment où le parrainage prend vie et au-delà."}
         </p>
         <div class="space-y-8">
+          {benevolePoints.length
+            ? benevolePoints.map((pt, i) => (
+              <div class="process-step">
+                <div class="process-num">{i + 1}</div>
+                <div>
+                  <div class="font-bold text-[#002626] mb-1">{str(pt.titre_points_benevole_sase)}</div>
+                  <p class="text-sm text-[#002626]/65 leading-relaxed">{str(pt.description_points_benevole_sase)}</p>
+                </div>
+              </div>
+            ))
+            : (<>
           <div class="process-step">
             <div class="process-num">1</div>
             <div>
@@ -430,6 +498,7 @@ const activeNav = "sapa";
               <p class="text-sm text-[#002626]/65 leading-relaxed">Tout au long du processus, notre équipe reste présente à vos côtés pour initier, instaurer, poursuivre et faire durer le parrainage.</p>
             </div>
           </div>
+            </>)}
         </div>
 
         <!-- Côté jeune -->
@@ -437,8 +506,8 @@ const activeNav = "sapa";
           <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-[#119DA4] mt-0.5 is-filled" style="font-size:20px">child_care</span>
             <div>
-              <div class="font-bold text-[#002626] text-sm mb-1">Et pour le jeune à parrainer ?</div>
-              <p class="text-xs text-[#002626]/60 leading-relaxed">Nous le rencontrons à domicile pour un premier rendez-vous, puis nous échangeons autour de son projet et évaluons sa pertinence lors de deux rendez-vous supplémentaires.</p>
+              <div class="font-bold text-[#002626] text-sm mb-1">{str(d['titre_infobox_sase_contact-1']) ?? "Et pour le jeune à parrainer ?"}</div>
+              <p class="text-xs text-[#002626]/60 leading-relaxed">{str(d['description_infobox_sase_contact-1']) ?? "Nous le rencontrons à domicile pour un premier rendez-vous, puis nous échangeons autour de son projet et évaluons sa pertinence lors de deux rendez-vous supplémentaires."}</p>
             </div>
           </div>
         </div>
@@ -521,7 +590,7 @@ const activeNav = "sapa";
         <span class="text-[#002626]/60 font-black tracking-widest text-xs uppercase">Pourquoi s'engager ?</span>
       </div>
       <h2 class="font-black text-[#002626] leading-tight mb-16 max-w-xl" style="font-size:clamp(1.9rem,3.5vw,2.8rem);">
-        Un engagement qui change deux vies
+        {str(d.titre_pourquoi_engager_sapa) ?? "Un engagement qui change deux vies"}
       </h2>
 
       <!-- Steps -->
@@ -532,9 +601,9 @@ const activeNav = "sapa";
           <div style="width:52px;height:52px;border-radius:50%;background:#002626;display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1;">
             <span class="material-symbols-outlined is-filled" style="color:#119DA4;font-size:24px">child_care</span>
           </div>
-          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">Pour le jeune</h3>
+          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">{str(d.titre_pourquoi_engager_1_sapa) ?? "Pour le jeune"}</h3>
           <p class="text-[#002626]/65 leading-relaxed text-sm">
-            Un adulte de confiance en plus, des sorties, des découvertes. Le parrainage donne au filleul des repères positifs et une ouverture sur un monde qu'il n'aurait pas forcément rencontré autrement.
+            {str(d.description_pourquoi_engager_1_sapa) ?? "Un adulte de confiance en plus, des sorties, des découvertes. Le parrainage donne au filleul des repères positifs et une ouverture sur un monde qu'il n'aurait pas forcément rencontré autrement."}
           </p>
         </div>
 
@@ -543,9 +612,9 @@ const activeNav = "sapa";
           <div style="width:52px;height:52px;border-radius:50%;background:#002626;display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1;">
             <span class="material-symbols-outlined is-filled" style="color:#119DA4;font-size:24px">family_restroom</span>
           </div>
-          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">Pour la famille</h3>
+          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">{str(d.titre_pourquoi_engager_2_sapa) ?? "Pour la famille"}</h3>
           <p class="text-[#002626]/65 leading-relaxed text-sm">
-            Un regard extérieur, un temps de répit pour les parents, et parfois un vrai coup de pouce. Quand le filleul revient d'un week-end chez son parrain, ça détend souvent la maison entière.
+            {str(d.description_pourquoi_engager_2_sapa) ?? "Un regard extérieur, un temps de répit pour les parents, et parfois un vrai coup de pouce. Quand le filleul revient d'un week-end chez son parrain, ça détend souvent la maison entière."}
           </p>
         </div>
 
@@ -554,9 +623,9 @@ const activeNav = "sapa";
           <div style="width:52px;height:52px;border-radius:50%;background:#002626;display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1;">
             <span class="material-symbols-outlined is-filled" style="color:#119DA4;font-size:24px">volunteer_activism</span>
           </div>
-          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">Pour le bénévole</h3>
+          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">{str(d.titre_pourquoi_engager_3_sapa) ?? "Pour le bénévole"}</h3>
           <p class="text-[#002626]/65 leading-relaxed text-sm">
-            Tous les parrains et marraines vous le diront : ils reçoivent au moins autant qu'ils donnent. C'est une relation vraie, qui dure dans le temps et qui marque.
+            {str(d.description_pourquoi_engager_3_sapa) ?? "Tous les parrains et marraines vous le diront : ils reçoivent au moins autant qu'ils donnent. C'est une relation vraie, qui dure dans le temps et qui marque."}
           </p>
         </div>
 

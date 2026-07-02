@@ -2,6 +2,30 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
+import { getPage, getList, sectionData, str, asImage, imageUrl, imageSrcSet, focusPosition, extractVisitorHeaders } from '../lib/cms';
+import type { CmsEntry } from '../lib/cms';
+import DOMPurify from 'isomorphic-dompurify';
+
+const vis = extractVisitorHeaders(Astro.request);
+const page = await getPage('a-propos', vis);
+const d = sectionData(page, 'a_propos');
+
+// Team: render ONLY the `equipe` entries set in ContentCore (Simple Grid).
+const team = await getList('equipe', vis);
+const svcColor = (e: CmsEntry): string => {
+  const terms = ((e as unknown as { taxonomy_terms?: Array<{ slug?: string }> }).taxonomy_terms ?? [])
+    .map(t => t.slug);
+  if (terms.includes('srg')) return '#E58346';
+  if (terms.includes('sapa')) return '#119DA4';
+  if (terms.includes('sase')) return '#C04B72';
+  return '#002626';
+};
+
+// Timeline repeater (ligne_de_temps_a_propos): map to existing markup when present.
+type TimelineItem = { annee_notre_histoire?: string; titre_ligne_de_temps?: string; description_ligne_de_temps?: string };
+const timeline = Array.isArray((d as Record<string, unknown>).ligne_de_temps_a_propos)
+  ? ((d as Record<string, unknown>).ligne_de_temps_a_propos as TimelineItem[])
+  : [];
 
 const title = "À propos · L'Espoir asbl, aide à la jeunesse depuis 1985";
 const description = "Découvrez l’histoire, l’équipe et nos valeurs de L'Espoir asbl, acteur de l'aide à la jeunesse à Huy depuis 1985, agréé par la Fédération Wallonie-Bruxelles.";
@@ -24,6 +48,7 @@ const activeNav = "apropos";
   ogImageAlt={ogImageAlt}
   schemaOrg={schemaOrg}
   activeNav={activeNav}
+  trackEntryId={page?.id ?? page?.entry_id ?? null}
 >
 
 <style is:global>
@@ -257,13 +282,17 @@ const activeNav = "apropos";
       <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(0,38,38,0.5);display:block;margin-bottom:22px;">L'Espoir asbl · Huy, Belgique</span>
 
       <h1 style="font-family:'Pally',sans-serif; font-weight:700; font-size:clamp(2.6rem,5.2vw,4.4rem); line-height:1.02; margin-bottom:24px; max-width:780px;">
-        <span style="font-weight:500; font-size:0.6em; display:block; margin-bottom:8px; letter-spacing:0.02em;">Notre métier&nbsp;?</span>
-        Aider les <span style="position:relative;display:inline-block;">jeunes<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span><br/>
-        <span style="font-weight:500;">qui en ont besoin.</span>
+        {str(d.titre_a_propos)
+          ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_a_propos))} />
+          : (<Fragment>
+              <span style="font-weight:500; font-size:0.6em; display:block; margin-bottom:8px; letter-spacing:0.02em;">Notre métier&nbsp;?</span>
+              Aider les <span style="position:relative;display:inline-block;">jeunes<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span><br/>
+              <span style="font-weight:500;">qui en ont besoin.</span>
+            </Fragment>)}
       </h1>
 
       <p style="font-size:17px; color:rgba(0,38,38,0.62); line-height:1.7; max-width:520px; margin-bottom:28px;">
-        Trois services agréés par la Fédération Wallonie-Bruxelles, à Huy et Amay, pour les familles et les jeunes en difficulté.
+        {str(d.description_a_propos) ?? `Trois services agréés par la Fédération Wallonie-Bruxelles, à Huy et Amay, pour les familles et les jeunes en difficulté.`}
       </p>
 
       <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
@@ -288,17 +317,40 @@ const activeNav = "apropos";
       <div class="section-text">
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Notre histoire</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          Quarante ans <span style="font-weight:500;">de présence dans la région de</span> <span style="position:relative;display:inline-block;">Huy<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+          {str(d.titre_notre_histoire_a_propos)
+            ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_notre_histoire_a_propos))} />
+            : (<Fragment>Quarante ans <span style="font-weight:500;">de présence dans la région de</span> <span style="position:relative;display:inline-block;">Huy<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></Fragment>)}
         </h2>
-        <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-4">
-          L'Espoir asbl existe depuis 1985. Au départ, c'était surtout une maison d'accueil pour les jeunes qui n'avaient nulle part où aller. L'association a grandi au fil des années et développé deux autres services pour répondre à des besoins différents : un accompagnement à domicile pour les familles et un service de parrainage pour créer des liens bénévoles durables.
-        </p>
-        <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-10">
-          Aujourd'hui, L'Espoir asbl est reconnue par la Fédération Wallonie-Bruxelles et travaille en lien étroit avec le Service de Protection de la Jeunesse et les communes de l'arrondissement de Huy.
-        </p>
+        {str(d.description_notre_histoire_a_propos)
+          ? String(d.description_notre_histoire_a_propos).split(/\n\s*\n/).filter(p => p.trim()).map((p, i, arr) => (
+              <p class={`text-base md:text-lg text-[#002626]/75 leading-relaxed ${i === arr.length - 1 ? 'mb-10' : 'mb-4'}`}>{p.trim()}</p>
+            ))
+          : (<Fragment>
+              <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-4">
+                L'Espoir asbl existe depuis 1985. Au départ, c'était surtout une maison d'accueil pour les jeunes qui n'avaient nulle part où aller. L'association a grandi au fil des années et développé deux autres services pour répondre à des besoins différents : un accompagnement à domicile pour les familles et un service de parrainage pour créer des liens bénévoles durables.
+              </p>
+              <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-10">
+                Aujourd'hui, L'Espoir asbl est reconnue par la Fédération Wallonie-Bruxelles et travaille en lien étroit avec le Service de Protection de la Jeunesse et les communes de l'arrondissement de Huy.
+              </p>
+            </Fragment>)}
 
         <!-- Timeline -->
         <div class="space-y-0">
+          {timeline.length
+            ? timeline.map((item, i) => (
+                <div class="timeline-item">
+                  <div class="timeline-marker">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-line"></div>
+                  </div>
+                  <div class={i === timeline.length - 1 ? 'pb-2' : 'pb-8'}>
+                    {str(item.annee_notre_histoire) && <div class="timeline-year">{item.annee_notre_histoire}</div>}
+                    {str(item.titre_ligne_de_temps) && <div class="font-bold text-[#002626] text-sm mb-1">{item.titre_ligne_de_temps}</div>}
+                    {str(item.description_ligne_de_temps) && <p class="text-xs text-[#002626]/80 leading-relaxed">{item.description_ligne_de_temps}</p>}
+                  </div>
+                </div>
+              ))
+            : (<Fragment>
           <div class="timeline-item">
             <div class="timeline-marker">
               <div class="timeline-dot"></div>
@@ -409,12 +461,15 @@ const activeNav = "apropos";
               <p class="text-xs text-[#002626]/80 leading-relaxed">L'Espoir asbl réunit éducateurs, psychologues, assistante sociale, infirmière et bénévoles autour d'un projet commun : que chaque jeune trouve sa voie.</p>
             </div>
           </div>
+            </Fragment>)}
         </div>
       </div>
 
       <!-- Image -->
       <div class="section-img service-img-wrap lg:sticky lg:top-28">
-        <Placeholder alt="L'équipe de L'Espoir asbl" aspectRatio='4/3' />
+        {asImage(d.foto_notre_histoire_a_propos)
+          ? <img src={imageUrl(asImage(d.foto_notre_histoire_a_propos), 'lg')} srcset={imageSrcSet(asImage(d.foto_notre_histoire_a_propos))} sizes="(min-width: 1024px) 40vw, 100vw" alt={asImage(d.foto_notre_histoire_a_propos)?.alt ?? "L'équipe de L'Espoir asbl"} loading="lazy" decoding="async" />
+          : (<Placeholder alt="L'équipe de L'Espoir asbl" aspectRatio='4/3' />)}
       </div>
 
     </div>
@@ -429,33 +484,35 @@ const activeNav = "apropos";
       <div class="text-center mb-12 md:mb-16">
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Nos valeurs</span>
         <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight max-w-2xl mx-auto mb-6">
-          Comment on <span style="position:relative;display:inline-block;">travaille<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>, concrètement.
+          {str(d.titre_nos_valeurs_a_propos)
+            ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_nos_valeurs_a_propos))} />
+            : (<Fragment>Comment on <span style="position:relative;display:inline-block;">travaille<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>, concrètement.</Fragment>)}
         </h2>
         <p class="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-          Pas de grandes théories. Quatre principes qui guident nos décisions au quotidien.
+          {str(d.description_nos_valeurs_a_propos) ?? `Pas de grandes théories. Quatre principes qui guident nos décisions au quotidien.`}
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         <div class="valeur-card bg-white/5 border border-white/10 rounded-3xl p-7 md:p-9 hover:bg-white/[0.07] transition-colors">
-          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">Constance</div>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">On reste, même quand ça dure.</h3>
-          <p class="text-white/65 leading-relaxed text-sm md:text-base">Un suivi dure parfois des années. La constance fait la différence, plus que les méthodes.</p>
+          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">{str(d.titre_rose_nos_valeurs_a_propos_1) ?? `Constance`}</div>
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">{str(d.titre_nos_valeurs_a_propos_1) ?? `On reste, même quand ça dure.`}</h3>
+          <p class="text-white/65 leading-relaxed text-sm md:text-base">{str(d.description_nos_valeurs_a_propos_1) ?? `Un suivi dure parfois des années. La constance fait la différence, plus que les méthodes.`}</p>
         </div>
         <div class="valeur-card bg-white/5 border border-white/10 rounded-3xl p-7 md:p-9 hover:bg-white/[0.07] transition-colors">
-          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">Présence</div>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">On va chez eux, pas l'inverse.</h3>
-          <p class="text-white/65 leading-relaxed text-sm md:text-base">Nos éducateurs se déplacent : chez les familles, dans leur quartier, à leur rythme.</p>
+          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">{str(d.titre_rose_nos_valeurs_a_propos_2) ?? `Présence`}</div>
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">{str(d.titre_nos_valeurs_a_propos_2) ?? `On va chez eux, pas l'inverse.`}</h3>
+          <p class="text-white/65 leading-relaxed text-sm md:text-base">{str(d.description_nos_valeurs_a_propos_2) ?? `Nos éducateurs se déplacent : chez les familles, dans leur quartier, à leur rythme.`}</p>
         </div>
         <div class="valeur-card bg-white/5 border border-white/10 rounded-3xl p-7 md:p-9 hover:bg-white/[0.07] transition-colors">
-          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">Co-construction</div>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">Les décisions se prennent ensemble.</h3>
-          <p class="text-white/65 leading-relaxed text-sm md:text-base">Les familles connaissent leur situation mieux que nous. On laisse de la place au désaccord.</p>
+          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">{str(d.titre_rose_nos_valeurs_a_propos_3) ?? `Co-construction`}</div>
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">{str(d.titre_nos_valeurs_a_propos_3) ?? `Les décisions se prennent ensemble.`}</h3>
+          <p class="text-white/65 leading-relaxed text-sm md:text-base">{str(d.description_nos_valeurs_a_propos_3) ?? `Les familles connaissent leur situation mieux que nous. On laisse de la place au désaccord.`}</p>
         </div>
         <div class="valeur-card bg-white/5 border border-white/10 rounded-3xl p-7 md:p-9 hover:bg-white/[0.07] transition-colors">
-          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">Singularité</div>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">On regarde la personne, pas le dossier.</h3>
-          <p class="text-white/65 leading-relaxed text-sm md:text-base">Pas de cas types, pas de protocoles automatiques. Chaque jeune a son rythme.</p>
+          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">{str(d.titre_rose_nos_valeurs_a_propos_4) ?? `Singularité`}</div>
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">{str(d.titre_nos_valeurs_a_propos_4) ?? `On regarde la personne, pas le dossier.`}</h3>
+          <p class="text-white/65 leading-relaxed text-sm md:text-base">{str(d.description_nos_valeurs_a_propos_4) ?? `Pas de cas types, pas de protocoles automatiques. Chaque jeune a son rythme.`}</p>
         </div>
       </div>
     </div>
@@ -478,229 +535,47 @@ const activeNav = "apropos";
         </p>
       </div>
 
-      <!-- ═══ DIRECTION ═══ -->
-      <div class="service-group team-col">
-        <div class="service-banner" style="background:#002626;">
-          <div class="banner-icon-wrap">
-            <span class="material-symbols-outlined" style="font-size:24px;">business_center</span>
-          </div>
-          <div>
-            <div class="banner-abbr">Direction</div>
-            <div class="banner-name">Coordination générale · agrément FWB</div>
-          </div>
-          <div class="banner-count"><span class="counter" data-counter="3">3</span> PERSONNES</div>
-        </div>
+      <!-- Team · rendered from the ContentCore `equipe` Simple Grid (only CC entries) -->
+      {team.length > 0 && (
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-          <div class="person-card" style="--svc-color:#002626;">
-            <div class="person-photo">
-              <div class="person-initials"></div>
-              <Placeholder alt='Asmaa Lakrary' aspectRatio='1/1' />
-              <span class="person-badge"><span class="material-symbols-outlined">star</span>Direction</span>
-            </div>
-            <div class="person-info">
-              <div class="person-name">Asmaa Lakrary</div>
-              <div class="person-role">Directrice SASE &amp; SAPA</div>
-              <a href="tel:+32471946097" class="person-phone">
-                <span class="material-symbols-outlined">call</span>0471 94 60 97
-              </a>
-            </div>
-          </div>
-          <div class="person-card" style="--svc-color:#002626;">
-            <div class="person-photo">
-              <div class="person-initials"></div>
-              <Placeholder alt='Marie D.' aspectRatio='1/1' />
-              <span class="person-badge"><span class="material-symbols-outlined">star</span>Direction</span>
-            </div>
-            <div class="person-info">
-              <div class="person-name">Marie D.</div>
-              <div class="person-role">Directrice</div>
-              <div class="person-quote">Ma mission, c'est que chaque jeune reparte d'ici avec quelque chose en plus.</div>
-            </div>
-          </div>
-          <div class="person-card" style="--svc-color:#002626;">
-            <div class="person-photo">
-              <div class="person-initials"></div>
-              <Placeholder alt='Thomas L.' aspectRatio='1/1' />
-            </div>
-            <div class="person-info">
-              <div class="person-name">Thomas L.</div>
-              <div class="person-role">Responsable administration</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══ SRG ═══ -->
-      <div class="service-group team-col">
-        <div class="service-banner" style="background:#E58346; color:#fff;">
-          <div class="banner-icon-wrap" style="background:rgba(0,38,38,0.12);">
-            <span class="material-symbols-outlined is-filled" style="font-size:24px">home</span>
-          </div>
-          <div>
-            <div class="banner-abbr">SRG</div>
-            <div class="banner-name" style="opacity:0.75;">Service Résidentiel Général · <span class="counter" data-counter="12">12</span> jeunes accueillis</div>
-          </div>
-          <div class="banner-count" style="background:rgba(0,38,38,0.12);"><span class="counter" data-counter="6">6</span> PERSONNES</div>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-          <div class="person-card" style="--svc-color:#E58346;">
-            <div class="person-photo">
-              <div class="person-initials"></div>
-              <Placeholder alt='Sophie M.' aspectRatio='1/1' />
-              <span class="person-badge"><span class="material-symbols-outlined">workspace_premium</span>Cheffe</span>
-            </div>
-            <div class="person-info">
-              <div class="person-name">Sophie M.</div>
-              <div class="person-role">Éducatrice cheffe</div>
-              <div class="person-quote">On construit le quotidien avec eux, pas pour eux.</div>
-            </div>
-          </div>
-          <div class="person-card" style="--svc-color:#E58346;">
-            <div class="person-photo">
-              <div class="person-initials"></div>
-              <Placeholder alt='Julien B.' aspectRatio='1/1' />
-            </div>
-            <div class="person-info">
-              <div class="person-name">Julien B.</div>
-              <div class="person-role">Éducateur spécialisé</div>
-            </div>
-          </div>
-          <div class="person-card" style="--svc-color:#E58346;">
-            <div class="person-photo">
-              <div class="person-initials"></div>
-              <Placeholder alt='Léa C.' aspectRatio='1/1' />
-            </div>
-            <div class="person-info">
-              <div class="person-name">Léa C.</div>
-              <div class="person-role">Éducatrice spécialisée</div>
-            </div>
-          </div>
-          <div class="person-card" style="--svc-color:#E58346;">
-            <div class="person-photo">
-              <div class="person-initials"></div>
-              <Placeholder alt='Caroline V.' aspectRatio='1/1' />
-            </div>
-            <div class="person-info">
-              <div class="person-name">Caroline V.</div>
-              <div class="person-role">Psychologue</div>
-            </div>
-          </div>
-          <div class="person-card" style="--svc-color:#E58346;">
-            <div class="person-photo">
-              <div class="person-initials"></div>
-              <Placeholder alt='Aïcha K.' aspectRatio='16/9' />
-            </div>
-            <div class="person-info">
-              <div class="person-name">Aïcha K.</div>
-              <div class="person-role">Assistante sociale</div>
-            </div>
-          </div>
-          <div class="person-card" style="--svc-color:#E58346;">
-            <div class="person-photo">
-              <div class="person-initials"></div>
-              <Placeholder alt='Marianne T.' aspectRatio='1/1' />
-            </div>
-            <div class="person-info">
-              <div class="person-name">Marianne T.</div>
-              <div class="person-role">Infirmière</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══ SASE ═══ -->
-      <div class="service-group team-col">
-        <div class="service-banner" style="background:#C04B72;">
-          <div class="banner-icon-wrap">
-            <span class="material-symbols-outlined is-filled" style="font-size:24px">home_work</span>
-          </div>
-          <div>
-            <div class="banner-abbr">SASE</div>
-            <div class="banner-name">Accompagnement Socio-Éducatif · <span class="counter" data-counter="25">25</span> familles suivies</div>
-          </div>
-          <div class="banner-count"><span class="counter" data-counter="3">3</span> PERSONNES</div>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-          <div class="person-card" style="--svc-color:#C04B72;">
-            <div class="person-photo">
-              <div class="person-initials"></div>
-              <Placeholder alt='Nicolas R.' aspectRatio='1/1' />
-            </div>
-            <div class="person-info">
-              <div class="person-name">Nicolas R.</div>
-              <div class="person-role">Éducateur spécialisé</div>
-              <div class="person-quote">Entrer chez les gens, c'est un privilège qui demande du respect.</div>
-            </div>
-          </div>
-          <div class="person-card" style="--svc-color:#C04B72;">
-            <div class="person-photo">
-              <div class="person-initials"></div>
-              <Placeholder alt='Élodie G.' aspectRatio='16/9' />
-            </div>
-            <div class="person-info">
-              <div class="person-name">Élodie G.</div>
-              <div class="person-role">Éducatrice spécialisée</div>
-            </div>
-          </div>
-          <div class="person-card" style="--svc-color:#C04B72;">
-            <div class="person-photo">
-              <div class="person-initials"></div>
-              <Placeholder alt='Sébastien P.' aspectRatio='1/1' />
-            </div>
-            <div class="person-info">
-              <div class="person-name">Sébastien P.</div>
-              <div class="person-role">Psychologue</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══ SAPA ═══ -->
-      <div class="service-group team-col">
-        <div class="service-banner" style="background:#119DA4;">
-          <div class="banner-icon-wrap">
-            <span class="material-symbols-outlined is-filled" style="font-size:24px">volunteer_activism</span>
-          </div>
-          <div>
-            <div class="banner-abbr">SAPA</div>
-            <div class="banner-name">Parrainage · <span class="counter" data-counter="18">18</span> familles bénévoles actives</div>
-          </div>
-          <div class="banner-count"><span class="counter" data-counter="1">1</span> COORD. + BÉNÉVOLES</div>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-          <div class="person-card" style="--svc-color:#119DA4;">
-            <div class="person-photo">
-              <div class="person-initials"></div>
-              <Placeholder alt='Emma W.' aspectRatio='1/1' />
-              <span class="person-badge"><span class="material-symbols-outlined">hub</span>Coord.</span>
-            </div>
-            <div class="person-info">
-              <div class="person-name">Emma W.</div>
-              <div class="person-role">Coordinatrice SAPA</div>
-              <div class="person-quote">Mettre en lien, c'est tout un art.</div>
-            </div>
-          </div>
-          <div class="person-card" style="--svc-color:#119DA4;">
-            <div class="person-photo">
-              <div class="person-initials" style="background:linear-gradient(135deg,#119DA4,#C04B72);">
-                <span class="material-symbols-outlined is-filled" style="font-size:56px">diversity_3</span>
+          {team.map((e) => {
+            const ed = sectionData(e, 'equipe');
+            const img = asImage(e.featured_image);
+            const poste = str(ed.poste);
+            const tel = str(ed.telephone);
+            const mail = str(ed.mail);
+            const quote = str(ed.description_quote);
+            const color = svcColor(e);
+            return (
+              <div class="person-card" style={`--svc-color:${color};`}>
+                <div class="person-photo">
+                  <div class="person-initials"></div>
+                  {img ? (
+                    <img src={imageUrl(img, 'md')} srcset={imageSrcSet(img)} sizes="(max-width:768px) 50vw, 220px" alt={img.alt ?? e.title ?? ''} loading="lazy" style={`width:100%;height:100%;object-fit:cover;object-position:${focusPosition(img.focus_x, img.focus_y)};`} />
+                  ) : (
+                    <Placeholder alt={e.title ?? "Membre de l'équipe"} aspectRatio='1/1' />
+                  )}
+                </div>
+                <div class="person-info">
+                  <div class="person-name">{e.title}</div>
+                  {poste && <div class="person-role">{poste}</div>}
+                  {tel && (
+                    <a href={`tel:${tel.replace(/\s+/g, '')}`} class="person-phone">
+                      <span class="material-symbols-outlined">call</span>{tel}
+                    </a>
+                  )}
+                  {mail && (
+                    <a href={`mailto:${mail.trim()}`} class="person-phone">
+                      <span class="material-symbols-outlined">mail</span>{mail.trim()}
+                    </a>
+                  )}
+                  {quote && <div class="person-quote">{quote}</div>}
+                </div>
               </div>
-            </div>
-            <div class="person-info">
-              <div class="person-name">18 familles bénévoles</div>
-              <div class="person-role">Sélectionnées, formées, accompagnées</div>
-            </div>
-          </div>
+            );
+          })}
         </div>
-      </div>
-
-      <!-- ── Note placeholder ── -->
-      <div class="mt-10 text-center">
-        <p class="text-xs text-[#002626]/45 italic max-w-xl mx-auto">
-          <span class="material-symbols-outlined align-middle" style="font-size:14px;">info</span>
-          Les prénoms et photos présentés ici sont des exemples de mise en forme. L'équipe pourra progressivement se présenter avec ses vrais visages et témoignages.
-        </p>
-      </div>
+      )}
 
     </div>
   </section>

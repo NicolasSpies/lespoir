@@ -23,6 +23,8 @@ interface Props {
   bodyClass?: string;
   /** Page-specific is-active markers · which nav item is highlighted */
   activeNav?: 'home' | 'apropos' | 'srg' | 'sase' | 'sapa' | 'actualites' | 'emploi' | 'contact' | 'don' | null;
+  /** ContentCore entry id — when set, fires the browser /track view beacon (humans). */
+  trackEntryId?: number | string | null;
 }
 
 const {
@@ -40,10 +42,12 @@ const {
   preloadTags = '',
   bodyClass = 'min-h-screen flex flex-col text-on-surface',
   activeNav = null,
+  trackEntryId = null,
 } = Astro.props;
 
 const SITE = 'https://asbl-espoir.be';
 const canonical = SITE + canonicalPath;
+const CMS_API = 'https://lespoir.contentcore.app/api/v1';
 ---
 
 <!DOCTYPE html>
@@ -95,6 +99,18 @@ const canonical = SITE + canonicalPath;
   h1, h2, h3, h4, h5, h6,
   [class~="font-black"]:not(.material-symbols-outlined),
   [class~="font-extrabold"]:not(.material-symbols-outlined) { font-family: 'Pally', sans-serif !important; }
+
+  /* ── CMS-managed titles: an <u> set in ContentCore renders as the brand
+     hand-drawn colored underline (NOT a plain font underline), placed exactly
+     under the underlined word. Color = per-page --curly-color (default cassis). ── */
+  h1 u, h2 u, h3 u, h4 u { text-decoration: none; position: relative; }
+  h1 u::after, h2 u::after, h3 u::after, h4 u::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -0.14em;
+    height: 0.34em; pointer-events: none;
+    background-color: var(--curly-color, #C04B72);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M1 7 Q25 2 50 7 Q75 12 99 5' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M1 7 Q25 2 50 7 Q75 12 99 5' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+  }
 
   /* ── Base ── */
   html { scroll-behavior: smooth; }
@@ -329,6 +345,16 @@ const canonical = SITE + canonicalPath;
 
 <script src="/vanilla-tilt.min.js" defer></script>
 <script src="/animations.js" defer></script>
+
+{trackEntryId && (
+  <script type="module" define:vars={{ entryId: trackEntryId, api: CMS_API }}>
+    // ContentCore human view beacon — fires once per load, bypasses caches (CFC Statistics).
+    fetch(api + '/track' + (document.referrer ? '?ref=' + encodeURIComponent(document.referrer) : ''), {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ entry_id: entryId, lang: 'fr' }), keepalive: true,
+    }).catch(() => {});
+  </script>
+)}
 
 <!-- Per-page inline scripts via named slot -->
 <slot name="scripts" />

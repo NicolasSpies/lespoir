@@ -2,6 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
+import DOMPurify from 'isomorphic-dompurify';
+import { getHome, sectionData, str, asImage, imageUrl, imageSrcSet, extractVisitorHeaders } from '../lib/cms';
+
+const vis = extractVisitorHeaders(Astro.request);
+const page = await getHome(vis);
+const d = sectionData(page, 'startseite');
 
 const title = "L'Espoir asbl · Aide à la jeunesse à Huy depuis 1985";
 const description = "Depuis 1985, L'Espoir asbl accompagne enfants et jeunes en difficulté dans la région de Huy et Amay via trois services agréés par la Fédération Wallonie-Bruxelles : SRG, SASE, SAPA.";
@@ -25,6 +31,7 @@ const activeNav = "home";
   ogImageAlt={ogImageAlt}
   schemaOrg={schemaOrg}
   activeNav={activeNav}
+  trackEntryId={page?.id ?? page?.entry_id ?? null}
 >
 
 <style is:global>
@@ -446,10 +453,12 @@ const activeNav = "home";
       <div class="blob" data-parallax="0.18" aria-hidden="true" style="width:200px;height:200px;background:rgba(229,131,70,0.07);bottom:30px;left:-40px;border-radius:30% 70% 40% 60% / 60% 30% 70% 40%;"></div>
       <span class="hero-reveal text-[#C04B72] font-bold tracking-widest text-sm uppercase mb-6">Bienvenue à L'Espoir</span>
       <h1 class="hero-reveal text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold text-[#002626] leading-[1.1] tracking-tight mb-6 md:mb-8">
-        Parce que chaque enfant mérite un endroit pour grandir en <span style="position:relative;display:inline-block;">sécurité<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+        {str(d.titre_page_accueil)
+          ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_page_accueil))} />
+          : (<Fragment>Parce que chaque enfant mérite un endroit pour grandir en <span style="position:relative;display:inline-block;">sécurité<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></Fragment>)}
       </h1>
       <p class="hero-reveal text-base md:text-lg lg:text-xl text-[#002626] opacity-80 leading-relaxed mb-8 md:mb-12 max-w-lg">
-        L'Espoir asbl accompagne des enfants et des jeunes en difficulté dans la région de Huy, à travers trois services agréés depuis 1985.
+        {str(d.description_page_accueil) ?? `L'Espoir asbl accompagne des enfants et des jeunes en difficulté dans la région de Huy, à travers trois services agréés depuis 1985.`}
       </p>
       <div class="hero-reveal flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
         <a href="#services" class="btn btn-primary btn-lg w-full sm:w-auto">Nos Services</a>
@@ -477,7 +486,7 @@ const activeNav = "home";
           </div>
           <h3 class="text-2xl font-bold mb-2">SRG</h3>
           <p class="text-xs font-bold uppercase tracking-wider opacity-75 mb-4">Service Résidentiel Général</p>
-          <p class="text-white/90 leading-relaxed mb-8 flex-grow">Des enfants de 3 à 18 ans qui ne peuvent pas rester chez eux trouvent ici un foyer stable. Trois maisons à Amay et Couthuin.</p>
+          <p class="text-white/90 leading-relaxed mb-8 flex-grow">{str(d.description_srg) ?? `Des enfants de 3 à 18 ans qui ne peuvent pas rester chez eux trouvent ici un foyer stable. Trois maisons à Amay et Couthuin.`}</p>
           <span class="service-cta mt-auto font-bold">
             En savoir plus <span class="arrow material-symbols-outlined">arrow_forward</span>
           </span>
@@ -489,7 +498,7 @@ const activeNav = "home";
           </div>
           <h3 class="text-2xl font-bold mb-2">SASE</h3>
           <p class="text-xs font-bold uppercase tracking-wider opacity-75 mb-4">Service d'Accompagnement Socio-Éducatif</p>
-          <p class="text-white/90 leading-relaxed mb-8 flex-grow">Nos éducateurs viennent chez les familles pour les aider à tenir le quotidien. Jusqu'à 17 situations accompagnées simultanément dans les arrondissements de Huy et Liège.</p>
+          <p class="text-white/90 leading-relaxed mb-8 flex-grow">{str(d.description_sase) ?? `Nos éducateurs viennent chez les familles pour les aider à tenir le quotidien. Jusqu'à 17 situations accompagnées simultanément dans les arrondissements de Huy et Liège.`}</p>
           <span class="service-cta mt-auto font-bold">
             En savoir plus <span class="arrow material-symbols-outlined">arrow_forward</span>
           </span>
@@ -501,7 +510,7 @@ const activeNav = "home";
           </div>
           <h3 class="text-2xl font-bold mb-2">SAPA</h3>
           <p class="text-xs font-bold uppercase tracking-wider opacity-75 mb-4">Service d'Accompagnement du Parrainage</p>
-          <p class="text-white/90 leading-relaxed mb-8 flex-grow">On met en relation des jeunes avec des familles bénévoles prêtes à s'engager dans la durée. Actif depuis 2022 dans les zones de Huy, Waremme et Hannut.</p>
+          <p class="text-white/90 leading-relaxed mb-8 flex-grow">{str(d.description_sapa) ?? `On met en relation des jeunes avec des familles bénévoles prêtes à s'engager dans la durée. Actif depuis 2022 dans les zones de Huy, Waremme et Hannut.`}</p>
           <span class="service-cta mt-auto font-bold">
             En savoir plus <span class="arrow material-symbols-outlined">arrow_forward</span>
           </span>
@@ -521,10 +530,10 @@ const activeNav = "home";
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Notre histoire</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 md:mb-8 leading-tight">Plus de <span class="counter" data-counter="40">40</span> ans au service<br/><span style="font-weight:500;">de la jeunesse à</span> <span style="position:relative;display:inline-block;">Huy<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
         <p class="text-base md:text-lg text-[#002626] opacity-80 leading-relaxed mb-6">
-          Fondée en 1985 suite à la fermeture du home d'enfants de la Maison-Dieu à Antheit, L'Espoir asbl perpétue depuis plus de 40 ans une mission d'accueil et d'accompagnement des jeunes en difficulté.
+          {str(d.description_notre_histoire)?.split('\n\n')[0]?.trim() ?? `Fondée en 1985 suite à la fermeture du home d'enfants de la Maison-Dieu à Antheit, L'Espoir asbl perpétue depuis plus de 40 ans une mission d'accueil et d'accompagnement des jeunes en difficulté.`}
         </p>
         <p class="text-base md:text-lg text-[#002626] opacity-80 leading-relaxed mb-8">
-          Agréée et subsidiée par la Fédération Wallonie-Bruxelles, nos équipes travaillent quotidiennement avec les familles, les services mandataires et les partenaires de la région.
+          {str(d.description_notre_histoire)?.split('\n\n').slice(1).join('\n\n').trim() || `Agréée et subsidiée par la Fédération Wallonie-Bruxelles, nos équipes travaillent quotidiennement avec les familles, les services mandataires et les partenaires de la région.`}
         </p>
         <a class="inline-flex items-center gap-2 font-bold text-[#002626] border-b-2 border-[#002626] pb-1 hover:text-[#E58346] hover:border-[#E58346] transition-colors" href="/apropos#histoire">
           Notre histoire complète <span class="material-symbols-outlined text-base">arrow_forward</span>
@@ -534,7 +543,9 @@ const activeNav = "home";
         <div aria-hidden="true" style="position:absolute;width:9rem;height:9rem;bottom:-1.25rem;right:-1rem;background:rgba(229,131,70,0.20);border-radius:60% 40% 70% 30% / 55% 60% 40% 45%;z-index:0;pointer-events:none;"></div>
         <div aria-hidden="true" style="position:absolute;width:6rem;height:6rem;top:-1rem;left:-1rem;background:rgba(192,75,114,0.18);border-radius:50% 50% 60% 40% / 60% 40% 60% 40%;z-index:0;pointer-events:none;"></div>
         <div class="tilt-img tilt-right relative overflow-hidden rounded-3xl" style="aspect-ratio:4/3;box-shadow:0 24px 50px -20px rgba(0,38,38,0.25),0 10px 24px -14px rgba(192,75,114,0.18);z-index:1;">
-          <img src="https://www.asbl-espoir.be/sites/default/files/u1/2013-maisondieu-delgaudine-01.jpg" alt="Maison-Dieu à Antheit, l'origine de L'Espoir asbl" class="w-full h-full object-cover blur-up" loading="lazy"/>
+          {asImage(d.image_notre_histoire)
+            ? <img src={imageUrl(asImage(d.image_notre_histoire), 'lg')} srcset={imageSrcSet(asImage(d.image_notre_histoire))} alt={asImage(d.image_notre_histoire)?.alt ?? "Maison-Dieu à Antheit, l'origine de L'Espoir asbl"} class="w-full h-full object-cover blur-up" loading="lazy"/>
+            : <img src="https://www.asbl-espoir.be/sites/default/files/u1/2013-maisondieu-delgaudine-01.jpg" alt="Maison-Dieu à Antheit, l'origine de L'Espoir asbl" class="w-full h-full object-cover blur-up" loading="lazy"/>}
         </div>
       </div>
     </div>
@@ -557,23 +568,23 @@ const activeNav = "home";
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
         <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-5 md:p-6 border border-[#002626]/8" style="transition: transform 0.25s ease, box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 30px rgba(0,38,38,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
           <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-3">Constance</div>
-          <h3 class="font-bold text-[#002626] text-lg md:text-xl leading-snug mb-2">Rester là.</h3>
-          <p class="text-[#002626]/65 text-sm leading-relaxed">Même quand un suivi dure des années.</p>
+          <h3 class="font-bold text-[#002626] text-lg md:text-xl leading-snug mb-2">{str(d.titre_valeur_1) ?? `Rester là.`}</h3>
+          <p class="text-[#002626]/65 text-sm leading-relaxed">{str(d.description_valeur_1) ?? `Même quand un suivi dure des années.`}</p>
         </div>
         <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-5 md:p-6 border border-[#002626]/8" style="transition: transform 0.25s ease, box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 30px rgba(0,38,38,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
           <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-3">Présence</div>
-          <h3 class="font-bold text-[#002626] text-lg md:text-xl leading-snug mb-2">Aller vers eux.</h3>
-          <p class="text-[#002626]/65 text-sm leading-relaxed">Chez les gens, dans leur quartier, à leur rythme.</p>
+          <h3 class="font-bold text-[#002626] text-lg md:text-xl leading-snug mb-2">{str(d.titre_valeur_2) ?? `Aller vers eux.`}</h3>
+          <p class="text-[#002626]/65 text-sm leading-relaxed">{str(d.description_valeur_2) ?? `Chez les gens, dans leur quartier, à leur rythme.`}</p>
         </div>
         <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-5 md:p-6 border border-[#002626]/8" style="transition: transform 0.25s ease, box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 30px rgba(0,38,38,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
           <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-3">Co-construction</div>
-          <h3 class="font-bold text-[#002626] text-lg md:text-xl leading-snug mb-2">Décider ensemble.</h3>
-          <p class="text-[#002626]/65 text-sm leading-relaxed">Les projets se construisent avec les familles, pas pour elles.</p>
+          <h3 class="font-bold text-[#002626] text-lg md:text-xl leading-snug mb-2">{str(d.titre_valeur_3) ?? `Décider ensemble.`}</h3>
+          <p class="text-[#002626]/65 text-sm leading-relaxed">{str(d.description_valeur_3) ?? `Les projets se construisent avec les familles, pas pour elles.`}</p>
         </div>
         <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-5 md:p-6 border border-[#002626]/8" style="transition: transform 0.25s ease, box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 30px rgba(0,38,38,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
           <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-3">Singularité</div>
-          <h3 class="font-bold text-[#002626] text-lg md:text-xl leading-snug mb-2">Voir la personne.</h3>
-          <p class="text-[#002626]/65 text-sm leading-relaxed">Derrière chaque dossier, une vraie histoire.</p>
+          <h3 class="font-bold text-[#002626] text-lg md:text-xl leading-snug mb-2">{str(d.titre_valeur_4) ?? `Voir la personne.`}</h3>
+          <p class="text-[#002626]/65 text-sm leading-relaxed">{str(d.description_valeur_4) ?? `Derrière chaque dossier, une vraie histoire.`}</p>
         </div>
       </div>
 

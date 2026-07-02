@@ -2,6 +2,17 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
+import { getPage, getList, sectionData, str, strList, link, asImage, imageUrl, imageSrcSet, extractVisitorHeaders } from '../lib/cms';
+import DOMPurify from 'isomorphic-dompurify';
+
+const vis = extractVisitorHeaders(Astro.request);
+const page = await getPage('offres-d-emploi', vis);
+const d = sectionData(page, 'offre_d_emploi_page');
+
+const critereList = (Array.isArray(d.liste_ce_qu_on_cherche) ? d.liste_ce_qu_on_cherche : []) as Array<Record<string, unknown>>;
+
+// Live count of active job offers (offres-demploi post type) — shown in the hero.
+const offresCount = (await getList('offres-demploi', vis)).length;
 
 const title = "Offres d'emploi · Éducateur spécialisé aide à la jeunesse, Huy";
 const description = "Rejoignez L'Espoir asbl : offres d'emploi en aide à la jeunesse à Huy et Amay. Éducateur spécialisé SRG, éducateur à domicile SASE, famille bénévole SAPA. Candidature en ligne.";
@@ -24,6 +35,7 @@ const activeNav = "emploi";
   ogImageAlt={ogImageAlt}
   schemaOrg={schemaOrg}
   activeNav={activeNav}
+  trackEntryId={page?.id ?? page?.entry_id ?? null}
 >
 
 <style is:global>
@@ -239,10 +251,10 @@ const activeNav = "emploi";
       <h1 style="font-family:'Pally',sans-serif; font-weight:700; font-size:clamp(2.4rem,4.6vw,3.8rem); line-height:1.05; color:#002626; margin-bottom:18px;">
         On a
         <span style="display:inline-block; position:relative; vertical-align:baseline;">
-          <span style="font-family:'Pally',sans-serif; font-weight:700; font-size:1.6em; color:#C04B72; line-height:0.8; letter-spacing:-0.03em; padding:0 0.08em;">3</span>
+          <span style="font-family:'Pally',sans-serif; font-weight:700; font-size:1.6em; color:#C04B72; line-height:0.8; letter-spacing:-0.03em; padding:0 0.08em;">{offresCount}</span>
           <span aria-hidden="true" style="position:absolute; bottom:6px; left:0; right:0; height:2px; background:repeating-linear-gradient(90deg, rgba(192,75,114,0.55) 0, rgba(192,75,114,0.55) 4px, transparent 4px, transparent 8px);"></span>
         </span>
-        postes ouverts<br/>
+        {offresCount === 1 ? 'poste ouvert' : 'postes ouverts'}<br/>
         <span style="font-weight:500;">pour quelqu'un comme toi.</span>
       </h1>
 
@@ -270,7 +282,7 @@ const activeNav = "emploi";
           <span class="text-[#002626]/50 font-black tracking-widest text-xs uppercase">Pourquoi nous ?</span>
         </div>
         <h2 class="text-2xl md:text-3xl font-black text-[#002626] leading-tight">
-          Une association où votre travail<br class="hidden md:block"/> fait vraiment la différence
+          {str(d.titre_pourquoi_nous) ?? (<Fragment>Une association où votre travail<br class="hidden md:block"/> fait vraiment la différence</Fragment>)}
         </h2>
       </div>
 
@@ -282,7 +294,7 @@ const activeNav = "emploi";
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Équipe soudée</div>
-            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">Une dizaine de collègues qui se connaissent et se soutiennent vraiment au quotidien.</p>
+            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_1) ?? `Une dizaine de collègues qui se connaissent et se soutiennent vraiment au quotidien.`}</p>
           </div>
         </div>
 
@@ -292,7 +304,7 @@ const activeNav = "emploi";
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Formation continue</div>
-            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">Des journées de formation régulières pour progresser et rester à jour dans vos pratiques.</p>
+            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_2) ?? `Des journées de formation régulières pour progresser et rester à jour dans vos pratiques.`}</p>
           </div>
         </div>
 
@@ -302,7 +314,7 @@ const activeNav = "emploi";
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Équilibre vie pro / perso</div>
-            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">Horaires adaptés, supervision d'équipe et espaces de parole pour ne pas s'épuiser seul.</p>
+            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_3) ?? `Horaires adaptés, supervision d'équipe et espaces de parole pour ne pas s'épuiser seul.`}</p>
           </div>
         </div>
 
@@ -312,7 +324,7 @@ const activeNav = "emploi";
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Sens au travail</div>
-            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">Vous savez chaque soir pourquoi vous vous êtes levé le matin. Le contact humain est au centre de tout.</p>
+            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_4) ?? `Vous savez chaque soir pourquoi vous vous êtes levé le matin. Le contact humain est au centre de tout.`}</p>
           </div>
         </div>
 
@@ -322,7 +334,7 @@ const activeNav = "emploi";
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Ancré dans la région</div>
-            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">Basé à Amay, on intervient dans la région de Huy. Pas de longs déplacements, un territoire connu.</p>
+            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_5) ?? `Basé à Amay, on intervient dans la région de Huy. Pas de longs déplacements, un territoire connu.`}</p>
           </div>
         </div>
 
@@ -332,7 +344,7 @@ const activeNav = "emploi";
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Agrément FWB</div>
-            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">Structure reconnue, barème CESS / AESI appliqué, avantages sectoriels aide à la jeunesse.</p>
+            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_6) ?? `Structure reconnue, barème CESS / AESI appliqué, avantages sectoriels aide à la jeunesse.`}</p>
           </div>
         </div>
 
@@ -484,9 +496,24 @@ const activeNav = "emploi";
             <span class="text-white/40 font-black tracking-widest text-xs uppercase">Ce qu'on cherche</span>
           </div>
           <h2 class="text-3xl md:text-4xl font-black text-white leading-tight mb-8">
-            <span style="color:rgba(255,255,255,0.5); font-weight:500;">Des personnes</span> <span style="position:relative;display:inline-block;">avant des CV<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+            {str(d.titre_ce_qu_on_cherche)
+              ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_ce_qu_on_cherche))} />
+              : (<Fragment><span style="color:rgba(255,255,255,0.5); font-weight:500;">Des personnes</span> <span style="position:relative;display:inline-block;">avant des CV<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span></Fragment>)}
           </h2>
           <div class="space-y-5">
+            {critereList.length > 0
+              ? critereList.map((item) => (
+                  <div class="flex items-start gap-4">
+                    <div class="w-8 h-8 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span class="material-symbols-outlined text-[#C04B72] is-filled" style="font-size:16px">check</span>
+                    </div>
+                    <div>
+                      <div class="text-white font-bold text-sm mb-1">{str(item.titre_liste_ce_qu_on_cherche)}</div>
+                      <p class="text-white/50 text-xs leading-relaxed">{str(item.description_liste_ce_qu_on_cherche)}</p>
+                    </div>
+                  </div>
+                ))
+              : (<Fragment>
             <div class="flex items-start gap-4">
               <div class="w-8 h-8 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <span class="material-symbols-outlined text-[#C04B72] is-filled" style="font-size:16px">check</span>
@@ -523,6 +550,7 @@ const activeNav = "emploi";
                 <p class="text-white/50 text-xs leading-relaxed">Pour les postes terrain (SASE, SAPA), un véhicule est souvent nécessaire pour les déplacements dans la région.</p>
               </div>
             </div>
+              </Fragment>)}
           </div>
         </div>
 
