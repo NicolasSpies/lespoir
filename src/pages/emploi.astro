@@ -19,6 +19,8 @@ const pairFields = jobFields.filter((f) => ['prenom', 'nom', 'email', 'telephone
 const dispoField = jobFields.find((f) => f.name === 'disponibilite');
 const lettreField = jobFields.find((f) => f.name === 'lettre_de_motivation');
 const cvField = jobFields.find((f) => f.name === 'cv_au_format_pdf_ou_doc');
+// Anything else (e.g. a consent / checkbox field added later) → rendered as a checkbox.
+const jobOtherFields = jobFields.filter((f) => !['poste_vise', 'prenom', 'nom', 'email', 'telephone', 'disponibilite', 'lettre_de_motivation', 'cv_au_format_pdf_ou_doc'].includes(f.name));
 const lettreMax = (lettreField as { validation?: { max_length?: number } } | undefined)?.validation?.max_length ?? 800;
 
 const critereList = (Array.isArray(d.liste_ce_qu_on_cherche) ? d.liste_ce_qu_on_cherche : []) as Array<Record<string, unknown>>;
@@ -617,6 +619,15 @@ const activeNav = "emploi";
               </div>
             )}
 
+            {jobOtherFields.map((f) => (
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name={f.name} required={f.required} value="true" class="mt-1 h-4 w-4 rounded border-[#002626]/30 text-[#C04B72] focus:ring-[#C04B72] shrink-0" />
+                <span class="text-sm text-[#002626]/75 leading-relaxed">
+                  {f.consent_label_html ? <Fragment set:html={f.consent_label_html} /> : <Fragment>{f.label}{f.required && ' *'}</Fragment>}
+                </span>
+              </label>
+            ))}
+
             {/* Honeypot · CSS-hidden, submitted empty (spam guard) */}
             <div class="form-field--hidden" aria-hidden="true">
               <input type="text" name={jobForm.honeypot_field_name} tabindex="-1" autocomplete="off" value="" />
@@ -630,7 +641,6 @@ const activeNav = "emploi";
                 <span class="material-symbols-outlined" style="font-size:20px;">send</span>
                 {jobForm.submit_button_label ?? 'Envoyer ma candidature'}
               </button>
-              <a href="#offres" class="text-sm text-[#002626]/55 hover:text-[#002626] transition-colors font-semibold">← Voir les offres</a>
             </div>
 
             <p class="text-xs text-[#002626]/45 leading-relaxed">

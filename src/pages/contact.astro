@@ -10,6 +10,8 @@ const vis = extractVisitorHeaders(Astro.request);
 const contactForm = await getForm('contact', vis);
 const shortFields = (contactForm?.fields ?? []).filter((f) => ['text', 'email', 'phone', 'tel', 'number'].includes(f.type));
 const longFields = (contactForm?.fields ?? []).filter((f) => ['select', 'textarea'].includes(f.type));
+// Anything else (e.g. a consent / checkbox field added later) → rendered as a checkbox.
+const otherFields = (contactForm?.fields ?? []).filter((f) => !['text', 'email', 'phone', 'tel', 'number', 'select', 'textarea'].includes(f.type));
 
 const title = "Contact · L'Espoir asbl · Rue de Biber 11, 4540 Amay";
 const description = "Contactez L'Espoir asbl : Rue de Biber 11, 4540 Amay. Téléphone 085 23 58 14, e-mail direction@asbl-espoir.be. Formulaire en ligne pour toute question sur nos services.";
@@ -237,6 +239,15 @@ const activeNav = "contact";
                   <textarea id={f.name} name={f.name} placeholder={f.placeholder ?? ''} required={f.required} class="form-field"></textarea>
                 )}
               </div>
+            ))}
+
+            {otherFields.map((f) => (
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name={f.name} required={f.required} value="true" class="mt-1 h-4 w-4 rounded border-[#002626]/30 text-[#C04B72] focus:ring-[#C04B72] shrink-0" />
+                <span class="text-sm text-[#002626]/75 leading-relaxed">
+                  {f.consent_label_html ? <Fragment set:html={f.consent_label_html} /> : <Fragment>{f.label}{f.required && ' *'}</Fragment>}
+                </span>
+              </label>
             ))}
 
             {/* Honeypot · CSS-hidden, submitted empty (spam guard) */}
