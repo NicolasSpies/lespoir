@@ -45,6 +45,10 @@ const {
   .placeholder {
     position: relative;
     width: 100%;
+    /* Fill a fixed-height container (e.g. .service-img-wrap = 480px) like an <img>
+       would, so no white strip shows below. In a content-height parent height:100%
+       resolves to auto and the inline aspect-ratio takes over (unchanged behaviour). */
+    height: 100%;
     background: #EAE9E5;
     overflow: hidden;
   }
