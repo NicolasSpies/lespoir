@@ -8,6 +8,10 @@ import { getHome, sectionData, str, asImage, asGallery, imageUrl, imageSrcSet, f
 const vis = extractVisitorHeaders(Astro.request);
 const page = await getHome(vis);
 const d = sectionData(page, 'startseite');
+
+// Notre-histoire image: honour the real API dimensions (avoid a forced-crop aspect).
+const histoImg = asImage(d.image_notre_histoire);
+const histoAspect = histoImg && histoImg.width && histoImg.height ? `${histoImg.width} / ${histoImg.height}` : '4 / 3';
 const heroSlides = asGallery(d.galerie);
 
 const title = "L'Espoir asbl · Aide à la jeunesse à Huy depuis 1985";
@@ -548,9 +552,9 @@ const activeNav = "home";
       <div class="relative">
         <div aria-hidden="true" style="position:absolute;width:9rem;height:9rem;bottom:-1.25rem;right:-1rem;background:rgba(229,131,70,0.20);border-radius:60% 40% 70% 30% / 55% 60% 40% 45%;z-index:0;pointer-events:none;"></div>
         <div aria-hidden="true" style="position:absolute;width:6rem;height:6rem;top:-1rem;left:-1rem;background:rgba(192,75,114,0.18);border-radius:50% 50% 60% 40% / 60% 40% 60% 40%;z-index:0;pointer-events:none;"></div>
-        <div class="tilt-img tilt-right relative overflow-hidden rounded-3xl" style="aspect-ratio:4/3;box-shadow:0 24px 50px -20px rgba(0,38,38,0.25),0 10px 24px -14px rgba(192,75,114,0.18);z-index:1;">
-          {asImage(d.image_notre_histoire)
-            ? <img src={imageUrl(asImage(d.image_notre_histoire), 'lg')} srcset={imageSrcSet(asImage(d.image_notre_histoire))} alt={asImage(d.image_notre_histoire)?.alt ?? "Maison-Dieu à Antheit, l'origine de L'Espoir asbl"} class="w-full h-full object-cover blur-up" loading="lazy"/>
+        <div class="tilt-img tilt-right relative overflow-hidden rounded-3xl" style={`aspect-ratio:${histoAspect};box-shadow:0 24px 50px -20px rgba(0,38,38,0.25),0 10px 24px -14px rgba(192,75,114,0.18);z-index:1;`}>
+          {histoImg
+            ? <img src={imageUrl(histoImg, 'lg')} srcset={imageSrcSet(histoImg)} alt={histoImg.alt ?? "Maison-Dieu à Antheit, l'origine de L'Espoir asbl"} class="w-full h-full object-cover blur-up" loading="lazy"/>
             : <img src="https://www.asbl-espoir.be/sites/default/files/u1/2013-maisondieu-delgaudine-01.jpg" alt="Maison-Dieu à Antheit, l'origine de L'Espoir asbl" class="w-full h-full object-cover blur-up" loading="lazy"/>}
         </div>
       </div>

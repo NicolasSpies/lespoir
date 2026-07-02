@@ -41,6 +41,10 @@ const timeline = Array.isArray((d as Record<string, unknown>).ligne_de_temps_a_p
   ? ((d as Record<string, unknown>).ligne_de_temps_a_propos as TimelineItem[])
   : [];
 
+// Notre-histoire image: use the real dimensions from the API (no forced crop).
+const histoImg = asImage(d.foto_notre_histoire_a_propos);
+const histoAspect = histoImg && histoImg.width && histoImg.height ? `${histoImg.width} / ${histoImg.height}` : null;
+
 const title = "À propos · L'Espoir asbl, aide à la jeunesse depuis 1985";
 const description = "Découvrez l’histoire, l’équipe et nos valeurs de L'Espoir asbl, acteur de l'aide à la jeunesse à Huy depuis 1985, agréé par la Fédération Wallonie-Bruxelles.";
 const keywords = "L'Espoir asbl histoire, aide à la jeunesse 1985, équipe éducative Huy, mission asbl, valeurs éducation spécialisée, asbl Amay Belgique";
@@ -99,19 +103,30 @@ const activeNav = "apropos";
   @media (min-width: 768px) { .service-img-wrap { height: 480px; } }
   .service-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  /* ── Timeline ── */
-  .timeline-item { display: flex; gap: 1.5rem; }
-  .timeline-marker { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
-  .timeline-dot {
-    width: 14px; height: 14px; border-radius: 50%;
-    background: #C04B72; flex-shrink: 0;
+  /* ── Notre histoire · image + scroll-animated timeline ── */
+  .histoire-media { position: relative; width: 100%; background: #EAE9E5; box-shadow: 0 20px 50px -22px rgba(0,38,38,0.28); }
+  .histoire-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  .histoire-timeline { position: relative; padding-left: 2.75rem; }
+  .tl-line-bg, .tl-line-fill { position: absolute; left: 7px; width: 3px; border-radius: 3px; }
+  .tl-line-bg { top: 10px; bottom: 10px; background: rgba(0,38,38,0.12); }
+  .tl-line-fill { top: 10px; height: 0; background: #C04B72; box-shadow: 0 0 10px rgba(192,75,114,0.45); transition: height 0.15s ease-out; }
+  .tl-item { position: relative; padding-bottom: 2.25rem; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: -2.75rem; top: 4px;
+    width: 17px; height: 17px; border-radius: 50%;
+    background: #fbf9f8; border: 3px solid rgba(0,38,38,0.22); z-index: 2;
+    transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
   }
-  .timeline-line {
-    width: 2px; flex: 1; background: rgba(0,38,38,0.1); margin-top: 6px; margin-bottom: 0;
-    min-height: 1.5rem;
-  }
-  .timeline-item:last-child .timeline-line { display: none; }
+  .tl-item.is-active .tl-dot { border-color: #C04B72; background: #C04B72; transform: scale(1.15); box-shadow: 0 0 0 5px rgba(192,75,114,0.14); }
+  .tl-body { opacity: 0.5; transform: translateY(2px); transition: opacity 0.4s ease, transform 0.4s ease; }
+  .tl-item.is-active .tl-body { opacity: 1; transform: none; }
   .timeline-year { font-size: 0.72rem; font-weight: 900; color: #C04B72; letter-spacing: 0.06em; margin-bottom: 0.25rem; text-transform: uppercase; }
+  @media (prefers-reduced-motion: reduce) {
+    .tl-line-fill { transition: none; }
+    .tl-body { opacity: 1; transform: none; }
+  }
 
   /* ── Value cards ── */
   .value-card {
@@ -326,41 +341,40 @@ const activeNav = "apropos";
   <!-- ── NOTRE HISTOIRE ── -->
   <section id="histoire" class="py-16 md:py-24 px-6 md:px-8 bg-surface blob-parent">
     <div class="blob" aria-hidden="true" style="width:200px;height:200px;background:rgba(229,131,70,0.07);top:20px;left:-50px;border-radius:45% 55% 40% 60% / 60% 40% 60% 40%;"></div>
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
-      <!-- Text + timeline -->
+      <!-- Left · intro text + image below it -->
       <div class="section-text">
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Notre histoire</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
           <Fragment set:html={DOMPurify.sanitize(String(d.titre_notre_histoire_a_propos))} />
         </h2>
         {String(d.description_notre_histoire_a_propos).split(/\n\s*\n/).filter(p => p.trim()).map((p, i, arr) => (
-          <p class={`text-base md:text-lg text-[#002626]/75 leading-relaxed ${i === arr.length - 1 ? 'mb-10' : 'mb-4'}`}>{p.trim()}</p>
+          <p class={`text-base md:text-lg text-[#002626]/75 leading-relaxed ${i === arr.length - 1 ? 'mb-8' : 'mb-4'}`}>{p.trim()}</p>
         ))}
 
-        <!-- Timeline -->
-        <div class="space-y-0">
-          {timeline.map((item, i) => (
-            <div class="timeline-item">
-              <div class="timeline-marker">
-                <div class="timeline-dot"></div>
-                <div class="timeline-line"></div>
-              </div>
-              <div class={i === timeline.length - 1 ? 'pb-2' : 'pb-8'}>
-                {str(item.annee_notre_histoire) && <div class="timeline-year">{item.annee_notre_histoire}</div>}
-                {str(item.titre_ligne_de_temps) && <div class="font-bold text-[#002626] text-sm mb-1">{item.titre_ligne_de_temps}</div>}
-                {str(item.description_ligne_de_temps) && <p class="text-xs text-[#002626]/80 leading-relaxed">{item.description_ligne_de_temps}</p>}
-              </div>
-            </div>
-          ))}
+        <!-- Image · under the text, real API dimensions (no forced crop) -->
+        <div class="histoire-media rounded-3xl overflow-hidden" style={histoAspect ? `aspect-ratio:${histoAspect}` : ''}>
+          {histoImg
+            ? <img src={imageUrl(histoImg, 'lg')} srcset={imageSrcSet(histoImg)} sizes="(min-width: 1024px) 45vw, 100vw" alt={histoImg.alt ?? "L'équipe de L'Espoir asbl"} loading="lazy" decoding="async" />
+            : (<Placeholder alt="L'équipe de L'Espoir asbl" aspectRatio='4/3' />)}
         </div>
       </div>
 
-      <!-- Image -->
-      <div class="section-img service-img-wrap lg:sticky lg:top-28">
-        {asImage(d.foto_notre_histoire_a_propos)
-          ? <img src={imageUrl(asImage(d.foto_notre_histoire_a_propos), 'lg')} srcset={imageSrcSet(asImage(d.foto_notre_histoire_a_propos))} sizes="(min-width: 1024px) 40vw, 100vw" alt={asImage(d.foto_notre_histoire_a_propos)?.alt ?? "L'équipe de L'Espoir asbl"} loading="lazy" decoding="async" />
-          : (<Placeholder alt="L'équipe de L'Espoir asbl" aspectRatio='4/3' />)}
+      <!-- Right · timeline with a scroll-following line -->
+      <div class="histoire-timeline" id="histoireTimeline">
+        <span class="tl-line-bg" aria-hidden="true"></span>
+        <span class="tl-line-fill" id="histoireTimelineFill" aria-hidden="true"></span>
+        {timeline.map((item) => (
+          <div class="tl-item">
+            <span class="tl-dot" aria-hidden="true"></span>
+            <div class="tl-body">
+              {str(item.annee_notre_histoire) && <div class="timeline-year">{item.annee_notre_histoire}</div>}
+              {str(item.titre_ligne_de_temps) && <div class="font-bold text-[#002626] text-base mb-1">{item.titre_ligne_de_temps}</div>}
+              {str(item.description_ligne_de_temps) && <p class="text-sm text-[#002626]/80 leading-relaxed">{item.description_ligne_de_temps}</p>}
+            </div>
+          </div>
+        ))}
       </div>
 
     </div>
@@ -557,6 +571,35 @@ const activeNav = "apropos";
     }, { threshold: [0.5], rootMargin: '-20% 0px -20% 0px' });
     touchTargets.forEach(function(el) { touchObs.observe(el); });
   }
+
+  /* ── NOTRE HISTOIRE · scroll-following timeline line ── */
+  (function () {
+    var tl = document.getElementById('histoireTimeline');
+    var fill = document.getElementById('histoireTimelineFill');
+    if (!tl || !fill) return;
+    var items = Array.prototype.slice.call(tl.querySelectorAll('.tl-item'));
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      fill.style.height = 'calc(100% - 20px)';
+      items.forEach(function (it) { it.classList.add('is-active'); });
+      return;
+    }
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var rect = tl.getBoundingClientRect();
+      var trigger = window.innerHeight * 0.5;
+      fill.style.height = Math.max(0, Math.min(rect.height - 20, trigger - rect.top - 10)) + 'px';
+      items.forEach(function (it) {
+        var dot = it.querySelector('.tl-dot');
+        var dr = (dot || it).getBoundingClientRect();
+        it.classList.toggle('is-active', (dr.top + dr.height / 2) <= trigger);
+      });
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  })();
 
 })();
 </script>
