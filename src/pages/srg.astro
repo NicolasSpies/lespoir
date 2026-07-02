@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
-import { getPage, sectionData, str, strList, asImage, asGallery, imageUrl, imageSrcSet, extractVisitorHeaders } from '../lib/cms';
+import { getPage, sectionData, str, strList, asImage, asGallery, imageUrl, imageSrcSet, focusPosition, extractVisitorHeaders } from '../lib/cms';
 import DOMPurify from 'isomorphic-dompurify';
 
 const vis = extractVisitorHeaders(Astro.request);
@@ -288,14 +288,12 @@ const activeNav = "srg";
 
           <!-- H1 -->
           <h1 class="font-black text-[#002626] leading-[1.05] tracking-tight mb-6 md:mb-8" style="font-size:clamp(2.2rem,4.6vw,4rem);">
-            {str(d.titre_h1_srg)
-              ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_h1_srg))} />
-              : (<Fragment>Un foyer sécurisant<br/>pour <span style="position:relative;display:inline-block;white-space:nowrap;">grandir<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:-4px;left:0;width:100%;height:12px;" aria-hidden="true"><path d="M1 7 Q25 1 50 7 Q75 13 99 4" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span> ensemble.</Fragment>)}
+            <Fragment set:html={DOMPurify.sanitize(String(d.titre_h1_srg))} />
           </h1>
 
           <!-- Description -->
           <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-8 md:mb-10 max-w-xl">
-            {str(d.description_hero_srg) ?? `Le SRG accueille des enfants et des jeunes de 3 à 18 ans qui ne peuvent pas rester chez eux pour le moment, dans un cadre où ils peuvent souffler et se reconstruire.`}
+            {str(d.description_hero_srg)}
           </p>
 
           <!-- CTAs -->
@@ -333,52 +331,24 @@ const activeNav = "srg";
       <div class="section-text">
         <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-4">Pour qui ?</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          {str(d.titre_pour_qui_srg)
-            ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_pour_qui_srg))} />
-            : (<Fragment><span style="font-weight:500;">Des enfants qui ont besoin d'un vrai</span> <span style="position:relative;display:inline-block;">chez-soi<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span></Fragment>)}
+          <Fragment set:html={DOMPurify.sanitize(String(d.titre_pour_qui_srg))} />
         </h2>
-        {str(d.description_pour_qui_srg)
-          ? <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-8" set:html={DOMPurify.sanitize(String(d.description_pour_qui_srg).replace(/\n\n/g, '<br/><br/>'))} />
-          : (<Fragment>
-              <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-5">
-                Le SRG accueille des enfants et des jeunes en rupture familiale, confiés par les autorités mandantes des <strong class="text-[#002626]">arrondissements de Huy et de Liège</strong>. Les admissions se font sur mandat du <strong class="text-[#002626]">SAJ, du SPJ ou du Tribunal de la Jeunesse</strong>, lorsque l'aide en famille n'est plus possible ou qu'un écartement du milieu de vie devient nécessaire.
-              </p>
-              <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-8">
-                Nous leur offrons un lieu où déposer leurs bagages et grandir en toute sérénité, le temps de quelques mois ou de quelques années. Quand la situation familiale le permet, la réinsertion de l'enfant dans son milieu de vie reste l'objectif principal.
-              </p>
-            </Fragment>)}
+        <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-8" set:html={DOMPurify.sanitize(String(d.description_pour_qui_srg).replace(/\n\n/g, '<br/><br/>'))} />
         <div class="checklist flex flex-col gap-3">
-          {strList(d.liste_pour_qui_srg).length
-            ? strList(d.liste_pour_qui_srg).map(x => (
-                <div class="flex items-start gap-3">
-                  <span class="material-symbols-outlined text-[#E58346] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
-                  <span class="text-[#002626]/80 text-base">{x}</span>
-                </div>
-              ))
-            : (<Fragment>
-                <div class="flex items-start gap-3">
-                  <span class="material-symbols-outlined text-[#E58346] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
-                  <span class="text-[#002626]/80 text-base">Agréé par la Fédération Wallonie-Bruxelles</span>
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="material-symbols-outlined text-[#E58346] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
-                  <span class="text-[#002626]/80 text-base">Admissions sur mandat du SAJ, du SPJ ou du Tribunal de la Jeunesse</span>
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="material-symbols-outlined text-[#E58346] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
-                  <span class="text-[#002626]/80 text-base">Une équipe présente à toute heure</span>
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="material-symbols-outlined text-[#E58346] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
-                  <span class="text-[#002626]/80 text-base">Projet pédagogique individualisé pour chaque jeune</span>
-                </div>
-              </Fragment>)}
+          {strList(d.liste_pour_qui_srg).map(x => (
+            <div class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-[#E58346] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
+              <span class="text-[#002626]/80 text-base">{x}</span>
+            </div>
+          ))}
         </div>
       </div>
 
       <!-- Image -->
       <div class="section-img service-img-wrap">
-        <Placeholder alt="Enfants accueillis au sein du SRG de L'Espoir asbl" aspectRatio='16/9' />
+        {asImage(d.foto_pour_qui_srg)
+          ? <img src={imageUrl(asImage(d.foto_pour_qui_srg), 'lg')} srcset={imageSrcSet(asImage(d.foto_pour_qui_srg))} sizes="(min-width: 1024px) 50vw, 100vw" alt={asImage(d.foto_pour_qui_srg)?.alt ?? "Enfants accueillis au sein du SRG de L'Espoir asbl"} style={`object-position:${focusPosition(asImage(d.foto_pour_qui_srg)?.focus_x, asImage(d.foto_pour_qui_srg)?.focus_y)}`} loading="lazy" decoding="async" />
+          : <Placeholder alt="Enfants accueillis au sein du SRG de L'Espoir asbl" aspectRatio='16/9' />}
       </div>
 
     </div>
@@ -395,13 +365,11 @@ const activeNav = "srg";
         <div>
           <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-4">Nos maisons</span>
           <h2 class="text-3xl md:text-4xl font-bold text-[#002626] leading-tight">
-            {str(d.titre_nos_maisons_srg)
-              ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_nos_maisons_srg))} />
-              : (<Fragment>Trois maisons, <span style="font-weight:500;">un même</span> <span style="position:relative;display:inline-block;">engagement<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span></Fragment>)}
+            <Fragment set:html={DOMPurify.sanitize(String(d.titre_nos_maisons_srg))} />
           </h2>
         </div>
         <p class="text-[#002626]/65 max-w-sm text-sm leading-relaxed">
-          {str(d.description_nos_maisons_srg) ?? `À Couthuin et Amay, nos maisons sont de vraies maisons de vie, pas des institutions. Chacune a ses habitudes, son ambiance, ses petits rituels.`}
+          {str(d.description_nos_maisons_srg)}
         </p>
       </div>
 
@@ -411,36 +379,44 @@ const activeNav = "srg";
         <div class="maison-feature" id="maison-couthuin">
           <div class="maison-feature-img">
             <div class="maison-slider" data-house="La Maison de Couthuin" role="button" tabindex="0" aria-label="Voir la galerie de La Maison de Couthuin">
-              <Placeholder alt='La Maison de Couthuin, vue extérieure' aspectRatio='16/9' />
-              <Placeholder alt='La Maison de Couthuin, jardin et nature' aspectRatio='16/9' />
-              <Placeholder alt='La Maison de Couthuin, espace de vie' aspectRatio='16/9' />
+              {asGallery(d.galerie_maison_1_srg).length
+                ? asGallery(d.galerie_maison_1_srg).map((img, i) => (
+                    <img class:list={['ms-slide', { active: i === 0 }]} src={imageUrl(img, 'lg')} srcset={imageSrcSet(img)} sizes="(min-width: 1024px) 55vw, 100vw" alt={img.alt ?? 'La Maison de Couthuin'} style={`object-position:${focusPosition(img.focus_x, img.focus_y)}`} loading="lazy" decoding="async" />
+                  ))
+                : (<Fragment>
+                    <Placeholder alt='La Maison de Couthuin, vue extérieure' aspectRatio='16/9' />
+                    <Placeholder alt='La Maison de Couthuin, jardin et nature' aspectRatio='16/9' />
+                    <Placeholder alt='La Maison de Couthuin, espace de vie' aspectRatio='16/9' />
+                  </Fragment>)}
               <div class="ms-zoom" aria-hidden="true"><span class="material-symbols-outlined">zoom_in</span></div>
               <div class="ms-dots" aria-hidden="true">
-                <span class="ms-dot active"></span><span class="ms-dot"></span><span class="ms-dot"></span>
+                {asGallery(d.galerie_maison_1_srg).length
+                  ? asGallery(d.galerie_maison_1_srg).map((_, i) => <span class:list={['ms-dot', { active: i === 0 }]}></span>)
+                  : (<Fragment><span class="ms-dot active"></span><span class="ms-dot"></span><span class="ms-dot"></span></Fragment>)}
               </div>
             </div>
           </div>
           <div class="maison-feature-body">
             <div class="flex items-center gap-2 mb-4">
-              <span class="bg-[#E58346]/15 text-[#E58346] rounded-full px-3 py-0.5 text-xs font-bold">{str(d.localisation_maison_1_srg) ?? `Couthuin`}</span>
-              <span class="text-xs text-[#002626]/40 font-medium">{str(d.nombre_de_jeunes_maison_1_srg) ?? `Jusqu'à 15 jeunes`}</span>
+              <span class="bg-[#E58346]/15 text-[#E58346] rounded-full px-3 py-0.5 text-xs font-bold">{str(d.localisation_maison_1_srg)}</span>
+              <span class="text-xs text-[#002626]/40 font-medium">{str(d.nombre_de_jeunes_maison_1_srg)}</span>
             </div>
-            <h3 class="text-2xl md:text-3xl font-black text-[#002626] mb-4 leading-tight">{str(d.titre_maison_1_srg) ?? `La Maison de Couthuin`}</h3>
+            <h3 class="text-2xl md:text-3xl font-black text-[#002626] mb-4 leading-tight">{str(d.titre_maison_1_srg)}</h3>
             <p class="text-[#002626]/65 leading-relaxed mb-6">
-              {str(d.description_maison_1_srg) ?? `Au cœur du village, une vaste demeure au caractère historique. Le rez-de-chaussée réunit salon, salle à manger, cuisine, salle de jeux, espace ados et bureaux de l'équipe. La maison ouvre directement sur un grand jardin de plus de 2 000 m², et les chambres, à l'étage, sont individuelles ou partagées selon les besoins. Elle sera entièrement rénovée en 2027.`}
+              {str(d.description_maison_1_srg)}
             </p>
             <div class="space-y-2.5 pt-5 border-t border-[#002626]/10">
               <div class="flex items-center gap-2 text-sm text-[#002626]/65">
                 <span class="material-symbols-outlined text-[#E58346] flex-shrink-0 is-filled" style="font-size:16px">location_on</span>
-                <span>{str(d.localisation_maison_1_srg) ?? `Couthuin`}</span>
+                <span>{str(d.localisation_maison_1_srg)}</span>
               </div>
               <div class="flex items-center gap-2 text-sm text-[#002626]/65">
                 <span class="material-symbols-outlined text-[#E58346] flex-shrink-0 is-filled" style="font-size:16px">phone</span>
-                <a class="hover:text-[#E58346] transition-colors" href={`tel:+32${(str(d.telephone_maison_1_srg) ?? '085 23 58 14').replace(/\D/g, '').replace(/^0/, '')}`}>{str(d.telephone_maison_1_srg) ?? `085 23 58 14`}</a>
+                <a class="hover:text-[#E58346] transition-colors" href={`tel:+32${String(str(d.telephone_maison_1_srg) ?? '').replace(/\D/g, '').replace(/^0/, '')}`}>{str(d.telephone_maison_1_srg)}</a>
               </div>
               <div class="flex items-center gap-2 text-sm text-[#002626]/65">
                 <span class="material-symbols-outlined text-[#E58346] flex-shrink-0 is-filled" style="font-size:16px">mail</span>
-                <a class="hover:text-[#E58346] transition-colors break-all" href={`mailto:${(str(d.mail_maison_1_srg) ?? 'couthuin@asbl-espoir.be').trim()}`}>{(str(d.mail_maison_1_srg) ?? `couthuin@asbl-espoir.be`).trim()}</a>
+                <a class="hover:text-[#E58346] transition-colors break-all" href={`mailto:${String(str(d.mail_maison_1_srg) ?? '').trim()}`}>{String(str(d.mail_maison_1_srg) ?? '').trim()}</a>
               </div>
             </div>
           </div>
@@ -450,36 +426,44 @@ const activeNav = "srg";
         <div class="maison-feature reversed" id="maison-amay">
           <div class="maison-feature-img">
             <div class="maison-slider" data-house="La Maison d'Amay" role="button" tabindex="0" aria-label="Voir la galerie de La Maison d'Amay">
-              <Placeholder alt="La Maison d'Amay, façade de l'ancien hôtel" aspectRatio='16/9' />
-              <Placeholder alt="La Maison d'Amay, séjour et salle de jeux" aspectRatio='16/9' />
-              <Placeholder alt="La Maison d'Amay, jardin avec module de jeux" aspectRatio='16/9' />
+              {asGallery(d.galerie_maison_2_srg).length
+                ? asGallery(d.galerie_maison_2_srg).map((img, i) => (
+                    <img class:list={['ms-slide', { active: i === 0 }]} src={imageUrl(img, 'lg')} srcset={imageSrcSet(img)} sizes="(min-width: 1024px) 55vw, 100vw" alt={img.alt ?? "La Maison d'Amay"} style={`object-position:${focusPosition(img.focus_x, img.focus_y)}`} loading="lazy" decoding="async" />
+                  ))
+                : (<Fragment>
+                    <Placeholder alt="La Maison d'Amay, façade de l'ancien hôtel" aspectRatio='16/9' />
+                    <Placeholder alt="La Maison d'Amay, séjour et salle de jeux" aspectRatio='16/9' />
+                    <Placeholder alt="La Maison d'Amay, jardin avec module de jeux" aspectRatio='16/9' />
+                  </Fragment>)}
               <div class="ms-zoom" aria-hidden="true"><span class="material-symbols-outlined">zoom_in</span></div>
               <div class="ms-dots" aria-hidden="true">
-                <span class="ms-dot active"></span><span class="ms-dot"></span><span class="ms-dot"></span>
+                {asGallery(d.galerie_maison_2_srg).length
+                  ? asGallery(d.galerie_maison_2_srg).map((_, i) => <span class:list={['ms-dot', { active: i === 0 }]}></span>)
+                  : (<Fragment><span class="ms-dot active"></span><span class="ms-dot"></span><span class="ms-dot"></span></Fragment>)}
               </div>
             </div>
           </div>
           <div class="maison-feature-body">
             <div class="flex items-center gap-2 mb-4">
-              <span class="bg-[#E58346]/15 text-[#E58346] rounded-full px-3 py-0.5 text-xs font-bold">{str(d.localisation_maison_2_srg) ?? `Amay`}</span>
-              <span class="text-xs text-[#002626]/40 font-medium">{str(d.nombre_de_jeunes_maison_2_srg) ?? `Jusqu'à 9 jeunes`}</span>
+              <span class="bg-[#E58346]/15 text-[#E58346] rounded-full px-3 py-0.5 text-xs font-bold">{str(d.localisation_maison_2_srg)}</span>
+              <span class="text-xs text-[#002626]/40 font-medium">{str(d.nombre_de_jeunes_maison_2_srg)}</span>
             </div>
-            <h3 class="text-2xl md:text-3xl font-black text-[#002626] mb-4 leading-tight">{str(d.titre_maison_2_srg) ?? `La Maison d'Amay`}</h3>
+            <h3 class="text-2xl md:text-3xl font-black text-[#002626] mb-4 leading-tight">{str(d.titre_maison_2_srg)}</h3>
             <p class="text-[#002626]/65 leading-relaxed mb-6">
-              {str(d.description_maison_2_srg) ?? `Installée dans un ancien hôtel réaménagé au cœur d'Amay, à deux pas des écoles et commerces. Au rez-de-chaussée, les espaces communs : cuisine, séjour convivial, salle de jeux et salle pour les devoirs, plus un petit jardin avec module de jeux et balançoire. Les chambres des filles occupent le premier étage, celles des garçons le deuxième. La maison est mitoyenne avec L'Escale, notre service de mise en autonomie.`}
+              {str(d.description_maison_2_srg)}
             </p>
             <div class="space-y-2.5 pt-5 border-t border-[#002626]/10">
               <div class="flex items-center gap-2 text-sm text-[#002626]/65">
                 <span class="material-symbols-outlined text-[#E58346] flex-shrink-0 is-filled" style="font-size:16px">location_on</span>
-                <span>{str(d.localisation_maison_2_srg) ?? `Amay`}</span>
+                <span>{str(d.localisation_maison_2_srg)}</span>
               </div>
               <div class="flex items-center gap-2 text-sm text-[#002626]/65">
                 <span class="material-symbols-outlined text-[#E58346] flex-shrink-0 is-filled" style="font-size:16px">phone</span>
-                <a class="hover:text-[#E58346] transition-colors" href={`tel:+32${(str(d.telephone_maison_2_srg) ?? '085 23 58 14').replace(/\D/g, '').replace(/^0/, '')}`}>{str(d.telephone_maison_2_srg) ?? `085 23 58 14`}</a>
+                <a class="hover:text-[#E58346] transition-colors" href={`tel:+32${String(str(d.telephone_maison_2_srg) ?? '').replace(/\D/g, '').replace(/^0/, '')}`}>{str(d.telephone_maison_2_srg)}</a>
               </div>
               <div class="flex items-center gap-2 text-sm text-[#002626]/65">
                 <span class="material-symbols-outlined text-[#E58346] flex-shrink-0 is-filled" style="font-size:16px">mail</span>
-                <a class="hover:text-[#E58346] transition-colors break-all" href={`mailto:${(str(d.mail_maison_2_srg) ?? 'amay@asbl-espoir.be').trim()}`}>{(str(d.mail_maison_2_srg) ?? `amay@asbl-espoir.be`).trim()}</a>
+                <a class="hover:text-[#E58346] transition-colors break-all" href={`mailto:${String(str(d.mail_maison_2_srg) ?? '').trim()}`}>{String(str(d.mail_maison_2_srg) ?? '').trim()}</a>
               </div>
             </div>
           </div>
@@ -489,36 +473,44 @@ const activeNav = "srg";
         <div class="maison-feature" id="maison-escale">
           <div class="maison-feature-img">
             <div class="maison-slider" data-house="L'Escale" role="button" tabindex="0" aria-label="Voir la galerie de L'Escale">
-              <Placeholder alt="L'Escale, façade" aspectRatio='16/9' />
-              <Placeholder alt="L'Escale, espace de travail" aspectRatio='16/9' />
-              <Placeholder alt="L'Escale, salon partagé" aspectRatio='16/9' />
+              {asGallery(d.galerie_maison_3_srg).length
+                ? asGallery(d.galerie_maison_3_srg).map((img, i) => (
+                    <img class:list={['ms-slide', { active: i === 0 }]} src={imageUrl(img, 'lg')} srcset={imageSrcSet(img)} sizes="(min-width: 1024px) 55vw, 100vw" alt={img.alt ?? "L'Escale"} style={`object-position:${focusPosition(img.focus_x, img.focus_y)}`} loading="lazy" decoding="async" />
+                  ))
+                : (<Fragment>
+                    <Placeholder alt="L'Escale, façade" aspectRatio='16/9' />
+                    <Placeholder alt="L'Escale, espace de travail" aspectRatio='16/9' />
+                    <Placeholder alt="L'Escale, salon partagé" aspectRatio='16/9' />
+                  </Fragment>)}
               <div class="ms-zoom" aria-hidden="true"><span class="material-symbols-outlined">zoom_in</span></div>
               <div class="ms-dots" aria-hidden="true">
-                <span class="ms-dot active"></span><span class="ms-dot"></span><span class="ms-dot"></span>
+                {asGallery(d.galerie_maison_3_srg).length
+                  ? asGallery(d.galerie_maison_3_srg).map((_, i) => <span class:list={['ms-dot', { active: i === 0 }]}></span>)
+                  : (<Fragment><span class="ms-dot active"></span><span class="ms-dot"></span><span class="ms-dot"></span></Fragment>)}
               </div>
             </div>
           </div>
           <div class="maison-feature-body">
             <div class="flex items-center gap-2 mb-4">
-              <span class="bg-[#E58346]/15 text-[#E58346] rounded-full px-3 py-0.5 text-xs font-bold">{str(d.localisation_maison_3_srg) ?? `Amay`}</span>
-              <span class="text-xs text-[#002626]/40 font-medium">{str(d.nombre_de_jeunes_maison_3_srg) ?? `Jusqu'à 6 jeunes · dès 16 ans`}</span>
+              <span class="bg-[#E58346]/15 text-[#E58346] rounded-full px-3 py-0.5 text-xs font-bold">{str(d.localisation_maison_3_srg)}</span>
+              <span class="text-xs text-[#002626]/40 font-medium">{str(d.nombre_de_jeunes_maison_3_srg)}</span>
             </div>
-            <h3 class="text-2xl md:text-3xl font-black text-[#002626] mb-4 leading-tight">{str(d.titre_maison_3_srg) ?? `L'Escale`}</h3>
+            <h3 class="text-2xl md:text-3xl font-black text-[#002626] mb-4 leading-tight">{str(d.titre_maison_3_srg)}</h3>
             <p class="text-[#002626]/65 leading-relaxed mb-6">
-              {str(d.description_maison_3_srg) ?? `Juste à côté de la maison d'Amay, L'Escale prépare les jeunes à la vie autonome dans un cadre à la fois sécurisant et responsabilisant. Chacun a son espace personnel et partage les lieux communs. La cuisine est au centre du projet : gérée collectivement avec l'équipe, elle fait de la préparation des repas, des courses et de l'entretien un véritable apprentissage. Une étape progressive entre la vie en institution et l'autonomie complète.`}
+              {str(d.description_maison_3_srg)}
             </p>
             <div class="space-y-2.5 pt-5 border-t border-[#002626]/10">
               <div class="flex items-center gap-2 text-sm text-[#002626]/65">
                 <span class="material-symbols-outlined text-[#E58346] flex-shrink-0 is-filled" style="font-size:16px">location_on</span>
-                <span>{str(d.localisation_maison_3_srg) ?? `Amay`}</span>
+                <span>{str(d.localisation_maison_3_srg)}</span>
               </div>
               <div class="flex items-center gap-2 text-sm text-[#002626]/65">
                 <span class="material-symbols-outlined text-[#E58346] flex-shrink-0 is-filled" style="font-size:16px">phone</span>
-                <a class="hover:text-[#E58346] transition-colors" href={`tel:+32${(str(d.telephone_maison_3_srg) ?? '085 23 58 14').replace(/\D/g, '').replace(/^0/, '')}`}>{str(d.telephone_maison_3_srg) ?? `085 23 58 14`}</a>
+                <a class="hover:text-[#E58346] transition-colors" href={`tel:+32${String(str(d.telephone_maison_3_srg) ?? '').replace(/\D/g, '').replace(/^0/, '')}`}>{str(d.telephone_maison_3_srg)}</a>
               </div>
               <div class="flex items-center gap-2 text-sm text-[#002626]/65">
                 <span class="material-symbols-outlined text-[#E58346] flex-shrink-0 is-filled" style="font-size:16px">mail</span>
-                <a class="hover:text-[#E58346] transition-colors break-all" href={`mailto:${(str(d.mail_maison_3_srg) ?? 'escale@asbl-espoir.be').trim()}`}>{(str(d.mail_maison_3_srg) ?? `escale@asbl-espoir.be`).trim()}</a>
+                <a class="hover:text-[#E58346] transition-colors break-all" href={`mailto:${String(str(d.mail_maison_3_srg) ?? '').trim()}`}>{String(str(d.mail_maison_3_srg) ?? '').trim()}</a>
               </div>
             </div>
           </div>
@@ -542,7 +534,7 @@ const activeNav = "srg";
         <span class="text-[#002626]/60 font-black tracking-widest text-xs uppercase">Notre approche</span>
       </div>
       <h2 class="font-black text-[#002626] leading-tight mb-16 max-w-xl" style="font-size:clamp(1.9rem,3.5vw,2.8rem);">
-        {str(d.titre_notre_approche_srg) ?? `Ce sur quoi on s'appuie chaque jour`}
+        {str(d.titre_notre_approche_srg)}
       </h2>
 
       <!-- Steps -->
@@ -553,9 +545,9 @@ const activeNav = "srg";
           <div style="width:52px;height:52px;border-radius:50%;background:#002626;display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1;">
             <span class="material-symbols-outlined is-filled" style="color:#E58346;font-size:24px">shield</span>
           </div>
-          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">{str(d.titre_approche_1_srg) ?? `Sécurité et stabilité`}</h3>
+          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">{str(d.titre_approche_1_srg)}</h3>
           <p class="text-[#002626]/65 leading-relaxed text-sm">
-            {str(d.description_approche_1_srg) ?? `Ici, les enfants savent à quoi s'attendre. Les mêmes adultes, les mêmes repas, les mêmes rituels du quotidien. Ce n'est pas grand-chose, mais pour un enfant qui a vécu de l'instabilité, ça change tout.`}
+            {str(d.description_approche_1_srg)}
           </p>
         </div>
 
@@ -564,9 +556,9 @@ const activeNav = "srg";
           <div style="width:52px;height:52px;border-radius:50%;background:#002626;display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1;">
             <span class="material-symbols-outlined is-filled" style="color:#E58346;font-size:24px">person_heart</span>
           </div>
-          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">{str(d.titre_approche_2_srg) ?? `Un projet propre à chacun`}</h3>
+          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">{str(d.titre_approche_2_srg)}</h3>
           <p class="text-[#002626]/65 leading-relaxed text-sm">
-            {str(d.description_approche_2_srg) ?? `Pour chaque enfant, on construit un projet à son image, avec lui, avec sa famille et le service mandataire. Ce projet n'est pas figé : il évolue au fil du temps et des avancées.`}
+            {str(d.description_approche_2_srg)}
           </p>
         </div>
 
@@ -575,9 +567,9 @@ const activeNav = "srg";
           <div style="width:52px;height:52px;border-radius:50%;background:#002626;display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1;">
             <span class="material-symbols-outlined is-filled" style="color:#E58346;font-size:24px">family_restroom</span>
           </div>
-          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">{str(d.titre_approche_3_srg) ?? `Garder le lien avec la famille`}</h3>
+          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">{str(d.titre_approche_3_srg)}</h3>
           <p class="text-[#002626]/65 leading-relaxed text-sm">
-            {str(d.description_approche_3_srg) ?? `Dans la plupart des situations, le contact avec la famille est préservé et travaillé. Quand c'est possible, l'objectif reste que l'enfant puisse un jour retourner chez lui dans de bonnes conditions.`}
+            {str(d.description_approche_3_srg)}
           </p>
         </div>
 
@@ -594,17 +586,19 @@ const activeNav = "srg";
 
       <!-- Image -->
       <div class="section-img service-img-wrap">
-        <Placeholder alt="L'équipe pluridisciplinaire du SRG de L'Espoir asbl" aspectRatio='4/3' />
+        {asImage(d.foto_equipe_srg)
+          ? <img src={imageUrl(asImage(d.foto_equipe_srg), 'lg')} srcset={imageSrcSet(asImage(d.foto_equipe_srg))} sizes="(min-width: 1024px) 50vw, 100vw" alt={asImage(d.foto_equipe_srg)?.alt ?? "L'équipe pluridisciplinaire du SRG de L'Espoir asbl"} style={`object-position:${focusPosition(asImage(d.foto_equipe_srg)?.focus_x, asImage(d.foto_equipe_srg)?.focus_y)}`} loading="lazy" decoding="async" />
+          : <Placeholder alt="L'équipe pluridisciplinaire du SRG de L'Espoir asbl" aspectRatio='4/3' />}
       </div>
 
       <!-- Text -->
       <div class="section-text">
         <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-4">Notre équipe</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          {str(d.titre_notre_equipe_srg) ?? `Qui prend soin des enfants au quotidien ?`}
+          {str(d.titre_notre_equipe_srg)}
         </h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-8">
-          {str(d.description_notre_equipe_srg) ?? `Plusieurs métiers travaillent ensemble pour accompagner chaque enfant. Ils se coordonnent régulièrement avec les familles et les services mandataires pour que rien ne se fasse en silo.`}
+          {str(d.description_notre_equipe_srg)}
         </p>
         <div class="space-y-4">
           {equipe.length
@@ -665,10 +659,10 @@ const activeNav = "srg";
       <div class="orientation-text">
         <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-4">Orientation</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          {str(d.titre_orientation_srg) ?? `Comment orienter un enfant vers le SRG ?`}
+          {str(d.titre_orientation_srg)}
         </h2>
         <p class="text-base text-[#002626]/70 leading-relaxed mb-10">
-          {str(d.description_orientation_srg) ?? `Les admissions se font toujours via un mandant : le Service de l'Aide à la Jeunesse (SAJ), le Service de Protection de la Jeunesse (SPJ) ou le Tribunal de la Jeunesse. Voici comment se déroule une admission en SRG, à Amay et à Couthuin :`}
+          {str(d.description_orientation_srg)}
         </p>
         <div class="space-y-8">
           {orientation.length
@@ -725,8 +719,8 @@ const activeNav = "srg";
           <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-[#E58346] mt-0.5 is-filled" style="font-size:20px">info</span>
             <div>
-              <div class="font-bold text-[#002626] text-sm mb-1">{str(d.titre_infobox_srg) ?? `À L'Escale, c'est un peu différent`}</div>
-              <p class="text-xs text-[#002626]/60 leading-relaxed">{str(d.description_infobox_srg) ?? `Le jeune et ses familiers sont présents dès le premier rendez-vous. Un second rendez-vous est fixé 10 jours plus tard : ce délai de réflexion est essentiel, car le projet de mise en autonomie ne peut jamais être imposé. Le jeune doit se sentir rassuré dès le départ, quel que soit son choix.`}</p>
+              <div class="font-bold text-[#002626] text-sm mb-1">{str(d.titre_infobox_srg)}</div>
+              <p class="text-xs text-[#002626]/60 leading-relaxed">{str(d.description_infobox_srg)}</p>
             </div>
           </div>
         </div>
@@ -777,10 +771,8 @@ const activeNav = "srg";
           <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-[#E58346] mt-0.5 is-filled" style="font-size:20px">emergency</span>
             <div>
-              <div class="font-bold text-[#002626] text-sm mb-1">{str(d.titre_infobox_contact_srg) ?? `Situation d'urgence ?`}</div>
-              {str(d.description_infobox_contact_srg)
-                ? <p class="text-xs text-[#002626]/60 leading-relaxed" set:html={DOMPurify.sanitize(String(d.description_infobox_contact_srg))} />
-                : (<p class="text-xs text-[#002626]/60 leading-relaxed">En cas d'urgence, contactez directement le SPJ de Huy au <strong class="text-[#002626]">085 27 46 00</strong> ou le Parquet de la Jeunesse.</p>)}
+              <div class="font-bold text-[#002626] text-sm mb-1">{str(d.titre_infobox_contact_srg)}</div>
+              <p class="text-xs text-[#002626]/60 leading-relaxed" set:html={DOMPurify.sanitize(String(d.description_infobox_contact_srg))} />
             </div>
           </div>
         </div>
@@ -795,12 +787,10 @@ const activeNav = "srg";
       <div class="text-center max-w-2xl mx-auto mb-12">
         <span class="text-[#E58346] font-black tracking-widest text-sm uppercase block mb-3">En toute transparence</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-5 leading-tight">
-          {str(d.titre_en_toute_transparence_srg)
-            ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_en_toute_transparence_srg))} />
-            : (<Fragment>Quand une admission n'est <span style="position:relative;display:inline-block;">pas possible<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span></Fragment>)}
+          <Fragment set:html={DOMPurify.sanitize(String(d.titre_en_toute_transparence_srg))} />
         </h2>
         <p class="text-base text-[#002626]/70 leading-relaxed">
-          {str(d.description_en_toute_transparence_srg) ?? `Notre objectif est toujours d'accueillir. Mais dans l'intérêt du jeune et du groupe, certaines situations ne nous permettent pas de proposer une prise en charge adaptée.`}
+          {str(d.description_en_toute_transparence_srg)}
         </p>
       </div>
 
@@ -808,42 +798,24 @@ const activeNav = "srg";
         <!-- SRG -->
         <div class="bg-white rounded-2xl p-7 border border-[#002626]/08">
           <div class="flex items-center gap-2 mb-5">
-            <span class="bg-[#E58346]/15 text-[#E58346] rounded-full px-3 py-1 text-xs font-bold">{str(d.titre_amay_couthuin_srg) ?? `SRG · Amay & Couthuin`}</span>
+            <span class="bg-[#E58346]/15 text-[#E58346] rounded-full px-3 py-1 text-xs font-bold">{str(d.titre_amay_couthuin_srg)}</span>
           </div>
           <ul class="space-y-3">
-            {strList(d.liste_amay_couthuin_srg).length
-              ? strList(d.liste_amay_couthuin_srg).map(x => (
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>{x}</li>
-                ))
-              : (<Fragment>
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>Le sexe et l'âge du jeune ne correspondent pas aux places disponibles dans les chambres.</li>
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>La problématique du jeune risque de mettre en péril la stabilité et la sécurité du groupe présent dans la maison.</li>
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>Le jeune n'est pas scolarisable ou n'accepte pas de s'insérer dans un processus de formation.</li>
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>Un diagnostic médical, psychologique ou psychiatrique préconise une orientation autre qu'un SRG.</li>
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>Le jeune a besoin de soins spécifiques (handicap, maladie lourde) que nous ne pouvons pas lui prodiguer.</li>
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>Le lien familial doit être travaillé en priorité, mais la distance du domicile des parents est un obstacle insurmontable.</li>
-                </Fragment>)}
+            {strList(d.liste_amay_couthuin_srg).map(x => (
+              <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>{x}</li>
+            ))}
           </ul>
         </div>
 
         <!-- Escale -->
         <div class="bg-white rounded-2xl p-7 border border-[#002626]/08">
           <div class="flex items-center gap-2 mb-5">
-            <span class="bg-[#E58346]/15 text-[#E58346] rounded-full px-3 py-1 text-xs font-bold">{str(d.titre_mise_en_autonomie_srg) ?? `L'Escale · mise en autonomie`}</span>
+            <span class="bg-[#E58346]/15 text-[#E58346] rounded-full px-3 py-1 text-xs font-bold">{str(d.titre_mise_en_autonomie_srg)}</span>
           </div>
           <ul class="space-y-3">
-            {strList(d.liste_mise_en_autonomie_srg).length
-              ? strList(d.liste_mise_en_autonomie_srg).map(x => (
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>{x}</li>
-                ))
-              : (<Fragment>
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>Le jeune a moins de 16 ans au moment de la visite de négociation.</li>
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>Le projet de l'Escale est envisagé dans une optique punitive.</li>
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>Le jeune n'accepte pas le projet de mise en autonomie.</li>
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>Le jeune n'a pas d'occupation scolaire ou assimilée et n'accepte pas de s'insérer dans un processus de scolarisation ou de formation.</li>
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>Un diagnostic médical fait état de troubles du comportement ou de troubles psychiatriques.</li>
-                  <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>Le jeune a besoin de soins spécifiques (handicap, maladie lourde) que nous ne pouvons pas lui prodiguer.</li>
-                </Fragment>)}
+            {strList(d.liste_mise_en_autonomie_srg).map(x => (
+              <li class="flex items-start gap-3 text-sm text-[#002626]/70 leading-relaxed"><span class="flex-shrink-0" style="display:inline-block;width:14px;height:2px;border-radius:2px;background:#E58346;margin-top:0.6rem;" aria-hidden="true"></span>{x}</li>
+            ))}
           </ul>
         </div>
       </div>

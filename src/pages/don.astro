@@ -143,12 +143,10 @@ const activeNav = "don";
     <div class="relative max-w-4xl mx-auto">
       <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(0,38,38,0.5);display:block;margin-bottom:22px;">Soutenir L'Espoir · depuis 1985</span>
       <h1 style="font-family:'Pally',sans-serif; font-weight:700; font-size:clamp(2.6rem,5vw,4.2rem); line-height:1.02; color:#002626; margin-bottom:26px; max-width:780px;">
-        {str(d.titre_dons) ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_dons))} /> : (
-          <Fragment>Donner, c'est nous aider à <span style="position:relative;display:inline-block;">continuer<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>.</Fragment>
-        )}
+        <Fragment set:html={DOMPurify.sanitize(String(d.titre_dons))} />
       </h1>
       <p style="font-size:18px; color:#002626; line-height:1.7; max-width:620px; margin-bottom:24px;">
-        {str(d.description_dons) ?? `Un repas chaud, une chambre repeinte, une famille qui souffle un weekend. Voilà ce que devient votre don, concrètement.`}
+        {str(d.description_dons)}
       </p>
       <div class="trust-strip">
         <span class="trust-badge"><span class="material-symbols-outlined">check_circle</span>100&nbsp;% sur le terrain</span>
@@ -181,17 +179,17 @@ const activeNav = "don";
         <div class="impact-card">
           <span class="material-symbols-outlined text-4xl text-[#C04B72] mb-4 is-filled">school</span>
           <h3 class="text-xl font-bold text-[#002626] mb-2">Éducation &amp; loisirs</h3>
-          <p class="text-[#002626]/70 text-sm leading-relaxed">{str(d.description_education_loisirs) ?? `Sorties culturelles, stages sportifs, matériel scolaire, ateliers créatifs : tout ce qui permet à un jeune de se construire au-delà de la prise en charge.`}</p>
+          <p class="text-[#002626]/70 text-sm leading-relaxed">{str(d.description_education_loisirs)}</p>
         </div>
         <div class="impact-card">
           <span class="material-symbols-outlined text-4xl text-[#E58346] mb-4 is-filled">home</span>
           <h3 class="text-xl font-bold text-[#002626] mb-2">Nos maisons</h3>
-          <p class="text-[#002626]/70 text-sm leading-relaxed">{str(d.description_nos_maisons) ?? `Aménagement des chambres, entretien, réparations, coin cuisine : on veut que les maisons du SRG soient de vrais foyers, pas des institutions.`}</p>
+          <p class="text-[#002626]/70 text-sm leading-relaxed">{str(d.description_nos_maisons)}</p>
         </div>
         <div class="impact-card">
           <span class="material-symbols-outlined text-4xl text-[#119DA4] mb-4 is-filled">volunteer_activism</span>
           <h3 class="text-xl font-bold text-[#002626] mb-2">Accompagnement des familles</h3>
-          <p class="text-[#002626]/70 text-sm leading-relaxed">{str(d.description_accompagnement_des_familles) ?? `Le SASE et le SAPA, ce sont des centaines d'heures sur le terrain, en voiture, autour d'une table. Votre soutien finance la formation continue de nos équipes.`}</p>
+          <p class="text-[#002626]/70 text-sm leading-relaxed">{str(d.description_accompagnement_des_familles)}</p>
         </div>
       </div>
     </div>

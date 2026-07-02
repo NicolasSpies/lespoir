@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
-import { getPage, sectionData, str, strList, asImage, imageUrl, imageSrcSet, extractVisitorHeaders } from '../lib/cms';
+import { getPage, sectionData, str, strList, asImage, imageUrl, imageSrcSet, focusPosition, extractVisitorHeaders } from '../lib/cms';
 import DOMPurify from 'isomorphic-dompurify';
 
 const vis = extractVisitorHeaders(Astro.request);
@@ -10,6 +10,8 @@ const page = await getPage('sase', vis);
 const d = sectionData(page, 'srg-1');
 const equipeRepeater = Array.isArray(d.notre_equipe_repeater_sase) ? d.notre_equipe_repeater_sase as Array<Record<string, unknown>> : [];
 const deroulementPoints = Array.isArray(d.deroulement_points_sase) ? d.deroulement_points_sase as Array<Record<string, unknown>> : [];
+const fotoPourQui = asImage(d.foto_pour_qui_sase);
+const fotoEquipe = asImage(d.foto_equipe_sase);
 const faqs = page?.faqs ?? [];
 
 const title = "SASE · Accompagnement socio-éducatif à domicile, Huy · Liège";
@@ -182,14 +184,12 @@ const activeNav = "sase";
 
           <!-- H1 -->
           <h1 class="font-black text-[#002626] leading-[1.05] tracking-tight mb-6 md:mb-8" style="font-size:clamp(2.2rem,4.6vw,4rem);">
-            {str(d.titre_h1_sase)
-              ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_h1_sase))} />
-              : (<>Un soutien éducatif,<br/>au cœur de chaque <span style="position:relative;display:inline-block;white-space:nowrap;">famille<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:-4px;left:0;width:100%;height:12px;" aria-hidden="true"><path d="M1 7 Q25 1 50 7 Q75 13 99 4" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>.</>)}
+            <Fragment set:html={DOMPurify.sanitize(String(d.titre_h1_sase))} />
           </h1>
 
           <!-- Description -->
           <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-8 md:mb-10 max-w-xl">
-            {str(d.description_hero_sase) ?? `Le SASE, c'est une aide concrète qui vient jusqu'à vous. Nos éducateurs se déplacent chez les familles pour aider à tenir le quotidien, renforcer les liens parent-enfant et traverser ensemble les moments difficiles.`}
+            {str(d.description_hero_sase)}
           </p>
 
           <!-- CTAs -->
@@ -226,53 +226,25 @@ const activeNav = "sase";
 
       <!-- Image (LEFT on desktop) -->
       <div class="section-img service-img-wrap">
-        <Placeholder alt="Famille accompagnée par le SASE de L'Espoir asbl" aspectRatio='4/3' />
+        {fotoPourQui
+          ? <img src={imageUrl(fotoPourQui, 'lg')} srcset={imageSrcSet(fotoPourQui)} sizes="(max-width:1024px) 100vw, 50vw" alt={fotoPourQui.alt ?? "Famille accompagnée par le SASE de L'Espoir asbl"} loading="lazy" decoding="async" style={`object-position:${focusPosition(fotoPourQui.focus_x, fotoPourQui.focus_y)};`} />
+          : <Placeholder alt="Famille accompagnée par le SASE de L'Espoir asbl" aspectRatio='4/3' />}
       </div>
 
       <!-- Text (RIGHT on desktop) -->
       <div class="section-text">
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Pour qui ?</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          {str(d.titre_pour_qui_sase)
-            ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_pour_qui_sase))} />
-            : (<><span style="font-weight:500;">Des familles accompagnées dans leur</span> <span style="position:relative;display:inline-block;">quotidien<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></>)}
+          <Fragment set:html={DOMPurify.sanitize(String(d.titre_pour_qui_sase))} />
         </h2>
-        {str(d.description_pour_qui_sase)
-          ? <div class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-8 sase-rich" set:html={DOMPurify.sanitize(String(d.description_pour_qui_sase))} />
-          : (<>
-        <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-5">
-          Le SASE s'adresse aux familles qui traversent une période difficile et ont besoin d'un coup de main concret. On intervient sur <strong class="text-[#002626]">mandat du SPJ</strong> ou à la <strong class="text-[#002626]">demande volontaire de la famille</strong>, avec l'accord du mandant.
-        </p>
-        <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-8">
-          Les enfants concernés ont de <strong class="text-[#002626]">0 à 18 ans</strong>. Nos éducateurs viennent chez vous, dans votre quartier, dans votre quotidien.
-        </p>
-          </>)}
+        <div class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-8 sase-rich" set:html={DOMPurify.sanitize(String(d.description_pour_qui_sase))} />
         <div class="checklist flex flex-col gap-3">
-          {strList(d.liste_pour_qui_sase).length
-            ? strList(d.liste_pour_qui_sase).map((x) => (
+          {strList(d.liste_pour_qui_sase).map((x) => (
           <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-[#C04B72] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
             <span class="text-[#002626]/80 text-base">{x}</span>
           </div>
-              ))
-            : (<>
-          <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-[#C04B72] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
-            <span class="text-[#002626]/80 text-base">Soutien à la parentalité et aux compétences éducatives</span>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-[#C04B72] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
-            <span class="text-[#002626]/80 text-base">Accompagnement scolaire et socio-professionnel</span>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-[#C04B72] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
-            <span class="text-[#002626]/80 text-base">Aide à la gestion du quotidien et de l'administration</span>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-[#C04B72] mt-0.5 is-filled" style="font-size:20px">check_circle</span>
-            <span class="text-[#002626]/80 text-base">Renforcement du lien parents-enfants</span>
-          </div>
-            </>)}
+          ))}
         </div>
       </div>
 
@@ -293,7 +265,7 @@ const activeNav = "sase";
         <span class="text-white/60 font-black tracking-widest text-xs uppercase">Notre approche</span>
       </div>
       <h2 class="font-black text-white leading-tight mb-16 max-w-xl" style="font-size:clamp(1.9rem,3.5vw,2.8rem);">
-        {str(d.titre_notre_approche_sase) ?? `Comment on travaille, concrètement`}
+        {str(d.titre_notre_approche_sase)}
       </h2>
 
       <!-- Steps -->
@@ -304,9 +276,9 @@ const activeNav = "sase";
           <div style="width:52px;height:52px;border-radius:50%;background:#002626;display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1;">
             <span class="material-symbols-outlined is-filled" style="color:#fff;font-size:24px">home_work</span>
           </div>
-          <h3 class="font-black text-white text-xl mb-3 leading-tight">{str(d.titre_approche_1_sase) ?? `On vient chez vous`}</h3>
+          <h3 class="font-black text-white text-xl mb-3 leading-tight">{str(d.titre_approche_1_sase)}</h3>
           <p class="text-white/80 leading-relaxed text-sm">
-            {str(d.description_approche_1_sase) ?? `Nos éducateurs se déplacent à l'heure qui vous convient. Ça change tout de se retrouver dans votre cuisine plutôt que dans un bureau.`}
+            {str(d.description_approche_1_sase)}
           </p>
         </div>
 
@@ -315,9 +287,9 @@ const activeNav = "sase";
           <div style="width:52px;height:52px;border-radius:50%;background:#002626;display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1;">
             <span class="material-symbols-outlined is-filled" style="color:#fff;font-size:24px">handshake</span>
           </div>
-          <h3 class="font-black text-white text-xl mb-3 leading-tight">{str(d.titre_approche_2_sase) ?? `À votre rythme, pas le nôtre`}</h3>
+          <h3 class="font-black text-white text-xl mb-3 leading-tight">{str(d.titre_approche_2_sase)}</h3>
           <p class="text-white/80 leading-relaxed text-sm">
-            {str(d.description_approche_2_sase) ?? `La confiance, ça se construit au fil des visites. Vous restez maître de votre projet familial et on avance ensemble à votre rythme, sans imposer de cadre rigide.`}
+            {str(d.description_approche_2_sase)}
           </p>
         </div>
 
@@ -326,9 +298,9 @@ const activeNav = "sase";
           <div style="width:52px;height:52px;border-radius:50%;background:#002626;display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1;">
             <span class="material-symbols-outlined is-filled" style="color:#fff;font-size:24px">diversity_3</span>
           </div>
-          <h3 class="font-black text-white text-xl mb-3 leading-tight">{str(d.titre_approche_3_sase) ?? `Plusieurs regards, une équipe`}</h3>
+          <h3 class="font-black text-white text-xl mb-3 leading-tight">{str(d.titre_approche_3_sase)}</h3>
           <p class="text-white/80 leading-relaxed text-sm">
-            {str(d.description_approche_3_sase) ?? `Éducateurs et psychologue travaillent ensemble pour voir la situation dans sa globalité et ajuster le tir si quelque chose ne fonctionne pas.`}
+            {str(d.description_approche_3_sase)}
           </p>
         </div>
 
@@ -347,14 +319,13 @@ const activeNav = "sase";
       <div class="section-text">
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">L'équipe</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          {str(d.titre_notre_equipe_sase) ?? `Une petite équipe, très présente sur le terrain`}
+          {str(d.titre_notre_equipe_sase)}
         </h2>
         <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-8">
-          {str(d.description_notre_equipe_sase) ?? `Deux éducateurs et un psychologue. C'est l'équipe qui tourne autour du projet de chaque famille. Pas de grande structure anonyme : les mêmes visages reviennent à chaque visite, et ça change tout.`}
+          {str(d.description_notre_equipe_sase)}
         </p>
         <div class="space-y-4">
-          {equipeRepeater.length
-            ? equipeRepeater.map((item, i) => (
+          {equipeRepeater.map((item, i) => (
           <div class:list={["flex items-start gap-4", i < equipeRepeater.length - 1 && "pb-4 border-b border-[#002626]/08"]}>
             <div class="w-9 h-9 rounded-full bg-[#C04B72]/10 flex items-center justify-center flex-shrink-0">
               <span class="material-symbols-outlined text-[#C04B72]" style="font-size:18px;">{["person", "psychology", "manage_accounts"][i] ?? "person"}</span>
@@ -364,42 +335,15 @@ const activeNav = "sase";
               <p class="text-xs text-[#002626]/60 leading-relaxed mt-0.5">{str(item.description_notre_equipe_sase)}</p>
             </div>
           </div>
-              ))
-            : (<>
-          <div class="flex items-start gap-4 pb-4 border-b border-[#002626]/08">
-            <div class="w-9 h-9 rounded-full bg-[#C04B72]/10 flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-[#C04B72]" style="font-size:18px;">person</span>
-            </div>
-            <div>
-              <div class="font-bold text-[#002626] text-sm">Éducateurs spécialisés</div>
-              <p class="text-xs text-[#002626]/60 leading-relaxed mt-0.5">Ils font les visites à domicile et assurent le suivi concret, semaine après semaine.</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-4 pb-4 border-b border-[#002626]/08">
-            <div class="w-9 h-9 rounded-full bg-[#C04B72]/10 flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-[#C04B72]" style="font-size:18px;">psychology</span>
-            </div>
-            <div>
-              <div class="font-bold text-[#002626] text-sm">Psychologue</div>
-              <p class="text-xs text-[#002626]/60 leading-relaxed mt-0.5">Elle intervient dans les situations plus complexes et aide l'équipe à garder le cap.</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="w-9 h-9 rounded-full bg-[#C04B72]/10 flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-[#C04B72]" style="font-size:18px;">manage_accounts</span>
-            </div>
-            <div>
-              <div class="font-bold text-[#002626] text-sm">Coordinatrice</div>
-              <p class="text-xs text-[#002626]/60 leading-relaxed mt-0.5">Elle gère les mandats et les contacts avec le SPJ, pour que les éducateurs puissent se concentrer sur les familles.</p>
-            </div>
-          </div>
-            </>)}
+          ))}
         </div>
       </div>
 
       <!-- Image (RIGHT on desktop) -->
       <div class="section-img service-img-wrap">
-        <Placeholder alt="L'équipe du SASE de L'Espoir asbl" aspectRatio='4/3' />
+        {fotoEquipe
+          ? <img src={imageUrl(fotoEquipe, 'lg')} srcset={imageSrcSet(fotoEquipe)} sizes="(max-width:1024px) 100vw, 50vw" alt={fotoEquipe.alt ?? "L'équipe du SASE de L'Espoir asbl"} loading="lazy" decoding="async" style={`object-position:${focusPosition(fotoEquipe.focus_x, fotoEquipe.focus_y)};`} />
+          : <Placeholder alt="L'équipe du SASE de L'Espoir asbl" aspectRatio='4/3' />}
       </div>
 
     </div>
@@ -417,14 +361,13 @@ const activeNav = "sase";
       <div class="orientation-text">
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Déroulement</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          {str(d.titre_deroulement_sase) ?? `Comment ça se passe en pratique ?`}
+          {str(d.titre_deroulement_sase)}
         </h2>
         <p class="text-base text-[#002626]/70 leading-relaxed mb-10">
-          {str(d.description_deroulement_sase) ?? `Chaque famille est différente, et le suivi s'adapte en conséquence. Voici comment ça se déroule habituellement :`}
+          {str(d.description_deroulement_sase)}
         </p>
         <div class="space-y-8">
-          {deroulementPoints.length
-            ? deroulementPoints.map((item, i) => (
+          {deroulementPoints.map((item, i) => (
           <div class="process-step">
             <div class="process-num">{i + 1}</div>
             <div>
@@ -432,37 +375,7 @@ const activeNav = "sase";
               <p class="text-sm text-[#002626]/65 leading-relaxed">{str(item.description_points_deroulement_sase)}</p>
             </div>
           </div>
-              ))
-            : (<>
-          <div class="process-step">
-            <div class="process-num">1</div>
-            <div>
-              <div class="font-bold text-[#002626] mb-1">Première rencontre</div>
-              <p class="text-sm text-[#002626]/65 leading-relaxed">Un éducateur vient chez vous pour faire connaissance et comprendre ce que vous traversez. Vous n'avez rien à signer à ce stade.</p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="process-num">2</div>
-            <div>
-              <div class="font-bold text-[#002626] mb-1">Définition du projet</div>
-              <p class="text-sm text-[#002626]/65 leading-relaxed">On pose ensemble ce qu'on veut travailler et à quelle fréquence se voir, en général 2 à 4 heures par semaine.</p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="process-num">3</div>
-            <div>
-              <div class="font-bold text-[#002626] mb-1">Suivi régulier</div>
-              <p class="text-sm text-[#002626]/65 leading-relaxed">Les éducateurs viennent régulièrement chez vous. Tous les 3 mois environ, on fait le point ensemble avec la famille et le mandant pour voir ce qui a changé.</p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="process-num">4</div>
-            <div>
-              <div class="font-bold text-[#002626] mb-1">Fin d'accompagnement</div>
-              <p class="text-sm text-[#002626]/65 leading-relaxed">On ne s'arrête pas du jour au lendemain. La fin du suivi se prépare à l'avance pour que la famille puisse tenir seule sans que ça fasse trop abrupt.</p>
-            </div>
-          </div>
-            </>)}
+          ))}
         </div>
       </div>
 
@@ -511,8 +424,8 @@ const activeNav = "sase";
           <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-[#C04B72] mt-0.5 is-filled" style="font-size:20px">info</span>
             <div>
-              <div class="font-bold text-[#002626] text-sm mb-1">{str(d.titre_infobox_sase_contact) ?? `Demande volontaire ?`}</div>
-              <p class="text-xs text-[#002626]/60 leading-relaxed">{str(d.description_infobox_sase_contact) ?? `Si vous êtes une famille souhaitant bénéficier du SASE sans mandat du SPJ, contactez-nous directement. Nous étudierons ensemble la possibilité d'une aide volontaire.`}</p>
+              <div class="font-bold text-[#002626] text-sm mb-1">{str(d.titre_infobox_sase_contact)}</div>
+              <p class="text-xs text-[#002626]/60 leading-relaxed">{str(d.description_infobox_sase_contact)}</p>
             </div>
           </div>
         </div>

@@ -302,17 +302,11 @@ const activeNav = "apropos";
       <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(0,38,38,0.5);display:block;margin-bottom:22px;">L'Espoir asbl · Huy, Belgique</span>
 
       <h1 style="font-family:'Pally',sans-serif; font-weight:700; font-size:clamp(2.6rem,5.2vw,4.4rem); line-height:1.02; margin-bottom:24px; max-width:780px;">
-        {str(d.titre_a_propos)
-          ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_a_propos))} />
-          : (<Fragment>
-              <span style="font-weight:500; font-size:0.6em; display:block; margin-bottom:8px; letter-spacing:0.02em;">Notre métier&nbsp;?</span>
-              Aider les <span style="position:relative;display:inline-block;">jeunes<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span><br/>
-              <span style="font-weight:500;">qui en ont besoin.</span>
-            </Fragment>)}
+        <Fragment set:html={DOMPurify.sanitize(String(d.titre_a_propos))} />
       </h1>
 
       <p style="font-size:17px; color:rgba(0,38,38,0.62); line-height:1.7; max-width:520px; margin-bottom:28px;">
-        {str(d.description_a_propos) ?? `Trois services agréés par la Fédération Wallonie-Bruxelles, à Huy et Amay, pour les familles et les jeunes en difficulté.`}
+        {str(d.description_a_propos)}
       </p>
 
       <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
@@ -337,151 +331,27 @@ const activeNav = "apropos";
       <div class="section-text">
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Notre histoire</span>
         <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
-          {str(d.titre_notre_histoire_a_propos)
-            ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_notre_histoire_a_propos))} />
-            : (<Fragment>Quarante ans <span style="font-weight:500;">de présence dans la région de</span> <span style="position:relative;display:inline-block;">Huy<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></Fragment>)}
+          <Fragment set:html={DOMPurify.sanitize(String(d.titre_notre_histoire_a_propos))} />
         </h2>
-        {str(d.description_notre_histoire_a_propos)
-          ? String(d.description_notre_histoire_a_propos).split(/\n\s*\n/).filter(p => p.trim()).map((p, i, arr) => (
-              <p class={`text-base md:text-lg text-[#002626]/75 leading-relaxed ${i === arr.length - 1 ? 'mb-10' : 'mb-4'}`}>{p.trim()}</p>
-            ))
-          : (<Fragment>
-              <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-4">
-                L'Espoir asbl existe depuis 1985. Au départ, c'était surtout une maison d'accueil pour les jeunes qui n'avaient nulle part où aller. L'association a grandi au fil des années et développé deux autres services pour répondre à des besoins différents : un accompagnement à domicile pour les familles et un service de parrainage pour créer des liens bénévoles durables.
-              </p>
-              <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed mb-10">
-                Aujourd'hui, L'Espoir asbl est reconnue par la Fédération Wallonie-Bruxelles et travaille en lien étroit avec le Service de Protection de la Jeunesse et les communes de l'arrondissement de Huy.
-              </p>
-            </Fragment>)}
+        {String(d.description_notre_histoire_a_propos).split(/\n\s*\n/).filter(p => p.trim()).map((p, i, arr) => (
+          <p class={`text-base md:text-lg text-[#002626]/75 leading-relaxed ${i === arr.length - 1 ? 'mb-10' : 'mb-4'}`}>{p.trim()}</p>
+        ))}
 
         <!-- Timeline -->
         <div class="space-y-0">
-          {timeline.length
-            ? timeline.map((item, i) => (
-                <div class="timeline-item">
-                  <div class="timeline-marker">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-line"></div>
-                  </div>
-                  <div class={i === timeline.length - 1 ? 'pb-2' : 'pb-8'}>
-                    {str(item.annee_notre_histoire) && <div class="timeline-year">{item.annee_notre_histoire}</div>}
-                    {str(item.titre_ligne_de_temps) && <div class="font-bold text-[#002626] text-sm mb-1">{item.titre_ligne_de_temps}</div>}
-                    {str(item.description_ligne_de_temps) && <p class="text-xs text-[#002626]/80 leading-relaxed">{item.description_ligne_de_temps}</p>}
-                  </div>
-                </div>
-              ))
-            : (<Fragment>
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
+          {timeline.map((item, i) => (
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <div class="timeline-dot"></div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class={i === timeline.length - 1 ? 'pb-2' : 'pb-8'}>
+                {str(item.annee_notre_histoire) && <div class="timeline-year">{item.annee_notre_histoire}</div>}
+                {str(item.titre_ligne_de_temps) && <div class="font-bold text-[#002626] text-sm mb-1">{item.titre_ligne_de_temps}</div>}
+                {str(item.description_ligne_de_temps) && <p class="text-xs text-[#002626]/80 leading-relaxed">{item.description_ligne_de_temps}</p>}
+              </div>
             </div>
-            <div class="pb-8">
-              <div class="timeline-year">1985</div>
-              <div class="font-bold text-[#002626] text-sm mb-1">La Maison-Dieu ferme, L'Espoir naît</div>
-              <p class="text-xs text-[#002626]/80 leading-relaxed">Le 30 juin, le home d'enfants de la Maison-Dieu à Antheit ferme ses portes après des décennies d'accueil. Une partie du personnel laïc décide de poursuivre la mission. Dès le 1er juillet, un premier agrément est accordé pour 15 mineurs, et l'équipe s'installe en décembre dans un bâtiment acheté à Couthuin.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-            </div>
-            <div class="pb-8">
-              <div class="timeline-year">1986</div>
-              <div class="font-bold text-[#002626] text-sm mb-1">Une deuxième maison à Huy</div>
-              <p class="text-xs text-[#002626]/80 leading-relaxed">Ouverture d'une maison rue des Sœurs Grises à Huy, agréée pour 15 mineurs supplémentaires.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-            </div>
-            <div class="pb-8">
-              <div class="timeline-year">1987</div>
-              <div class="font-bold text-[#002626] text-sm mb-1">L'Escale et la semi-autonomie</div>
-              <p class="text-xs text-[#002626]/80 leading-relaxed">Création de L'Escale, Chaussée de Liège à Huy : un service pour 6 adolescents en semi-autonomie, afin de les préparer à la vie en kot.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-            </div>
-            <div class="pb-8">
-              <div class="timeline-year">1988</div>
-              <div class="font-bold text-[#002626] text-sm mb-1">Une nouvelle section à Villers-le-Bouillet</div>
-              <p class="text-xs text-[#002626]/80 leading-relaxed">Pour réintégrer les jeunes d'une maison familiale fermée à Strée, L'Espoir achète une maison à Villers-le-Bouillet. Ces petites unités offrent aux jeunes un vrai milieu de vie, intégré au tissu social local.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-            </div>
-            <div class="pb-8">
-              <div class="timeline-year">1994</div>
-              <div class="font-bold text-[#002626] text-sm mb-1">Installation au cœur d'Amay</div>
-              <p class="text-xs text-[#002626]/80 leading-relaxed">L'Espoir acquiert l'ancien hôtel « Les Trois Clochers » à Amay. Les activités de la rue des Sœurs Grises y sont transférées, puis le groupe de l'Escale s'y installe à son tour.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-            </div>
-            <div class="pb-8">
-              <div class="timeline-year">1991 · 2002</div>
-              <div class="font-bold text-[#002626] text-sm mb-1">Les réformes de l'Aide à la Jeunesse</div>
-              <p class="text-xs text-[#002626]/80 leading-relaxed">Les décrets réduisent les durées d'hébergement et privilégient l'encadrement en famille. Les services deviennent SAAE et SAIE. En 2002, L'Espoir recentre ses missions : deux sections résidentielles autonomes à Couthuin et Amay/Escale, et un SAIE rue des Augustins à Huy pour 12 situations en accompagnement externe.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-            </div>
-            <div class="pb-8">
-              <div class="timeline-year">2018</div>
-              <div class="font-bold text-[#002626] text-sm mb-1">De nouvelles dénominations</div>
-              <p class="text-xs text-[#002626]/80 leading-relaxed">Le décret du 18 janvier transforme les SAAE en SRG (Service Résidentiel Général) et le SAIE en SASE (Service d'Accompagnement Socio-Éducatif).</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-            </div>
-            <div class="pb-8">
-              <div class="timeline-year">2022</div>
-              <div class="font-bold text-[#002626] text-sm mb-1">Naissance du SAPA · Escapade</div>
-              <p class="text-xs text-[#002626]/80 leading-relaxed">L'Espoir agrandit sa structure et ouvre Escapade, un service d'accompagnement au parrainage qui met en lien des jeunes avec des familles bénévoles.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-            </div>
-            <div class="pb-8">
-              <div class="timeline-year">2023</div>
-              <div class="font-bold text-[#002626] text-sm mb-1">Le SASE s'agrandit</div>
-              <p class="text-xs text-[#002626]/80 leading-relaxed">Le nombre de prises en charge du SASE passe à 17 situations accompagnées simultanément.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-            </div>
-            <div class="pb-2">
-              <div class="timeline-year">Aujourd'hui</div>
-              <div class="font-bold text-[#002626] text-sm mb-1">Trois services, une seule équipe</div>
-              <p class="text-xs text-[#002626]/80 leading-relaxed">L'Espoir asbl réunit éducateurs, psychologues, assistante sociale, infirmière et bénévoles autour d'un projet commun : que chaque jeune trouve sa voie.</p>
-            </div>
-          </div>
-            </Fragment>)}
+          ))}
         </div>
       </div>
 
@@ -504,35 +374,33 @@ const activeNav = "apropos";
       <div class="text-center mb-12 md:mb-16">
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Nos valeurs</span>
         <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight max-w-2xl mx-auto mb-6">
-          {str(d.titre_nos_valeurs_a_propos)
-            ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_nos_valeurs_a_propos))} />
-            : (<Fragment>Comment on <span style="position:relative;display:inline-block;">travaille<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>, concrètement.</Fragment>)}
+          <Fragment set:html={DOMPurify.sanitize(String(d.titre_nos_valeurs_a_propos))} />
         </h2>
         <p class="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-          {str(d.description_nos_valeurs_a_propos) ?? `Pas de grandes théories. Quatre principes qui guident nos décisions au quotidien.`}
+          {str(d.description_nos_valeurs_a_propos)}
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         <div class="valeur-card bg-white/5 border border-white/10 rounded-3xl p-7 md:p-9 hover:bg-white/[0.07] transition-colors">
-          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">{str(d.titre_rose_nos_valeurs_a_propos_1) ?? `Constance`}</div>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">{str(d.titre_nos_valeurs_a_propos_1) ?? `On reste, même quand ça dure.`}</h3>
-          <p class="text-white/65 leading-relaxed text-sm md:text-base">{str(d.description_nos_valeurs_a_propos_1) ?? `Un suivi dure parfois des années. La constance fait la différence, plus que les méthodes.`}</p>
+          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">{str(d.titre_rose_nos_valeurs_a_propos_1)}</div>
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">{str(d.titre_nos_valeurs_a_propos_1)}</h3>
+          <p class="text-white/65 leading-relaxed text-sm md:text-base">{str(d.description_nos_valeurs_a_propos_1)}</p>
         </div>
         <div class="valeur-card bg-white/5 border border-white/10 rounded-3xl p-7 md:p-9 hover:bg-white/[0.07] transition-colors">
-          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">{str(d.titre_rose_nos_valeurs_a_propos_2) ?? `Présence`}</div>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">{str(d.titre_nos_valeurs_a_propos_2) ?? `On va chez eux, pas l'inverse.`}</h3>
-          <p class="text-white/65 leading-relaxed text-sm md:text-base">{str(d.description_nos_valeurs_a_propos_2) ?? `Nos éducateurs se déplacent : chez les familles, dans leur quartier, à leur rythme.`}</p>
+          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">{str(d.titre_rose_nos_valeurs_a_propos_2)}</div>
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">{str(d.titre_nos_valeurs_a_propos_2)}</h3>
+          <p class="text-white/65 leading-relaxed text-sm md:text-base">{str(d.description_nos_valeurs_a_propos_2)}</p>
         </div>
         <div class="valeur-card bg-white/5 border border-white/10 rounded-3xl p-7 md:p-9 hover:bg-white/[0.07] transition-colors">
-          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">{str(d.titre_rose_nos_valeurs_a_propos_3) ?? `Co-construction`}</div>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">{str(d.titre_nos_valeurs_a_propos_3) ?? `Les décisions se prennent ensemble.`}</h3>
-          <p class="text-white/65 leading-relaxed text-sm md:text-base">{str(d.description_nos_valeurs_a_propos_3) ?? `Les familles connaissent leur situation mieux que nous. On laisse de la place au désaccord.`}</p>
+          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">{str(d.titre_rose_nos_valeurs_a_propos_3)}</div>
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">{str(d.titre_nos_valeurs_a_propos_3)}</h3>
+          <p class="text-white/65 leading-relaxed text-sm md:text-base">{str(d.description_nos_valeurs_a_propos_3)}</p>
         </div>
         <div class="valeur-card bg-white/5 border border-white/10 rounded-3xl p-7 md:p-9 hover:bg-white/[0.07] transition-colors">
-          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">{str(d.titre_rose_nos_valeurs_a_propos_4) ?? `Singularité`}</div>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">{str(d.titre_nos_valeurs_a_propos_4) ?? `On regarde la personne, pas le dossier.`}</h3>
-          <p class="text-white/65 leading-relaxed text-sm md:text-base">{str(d.description_nos_valeurs_a_propos_4) ?? `Pas de cas types, pas de protocoles automatiques. Chaque jeune a son rythme.`}</p>
+          <div class="text-[#C04B72] font-black text-xs tracking-widest uppercase mb-4">{str(d.titre_rose_nos_valeurs_a_propos_4)}</div>
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-3 leading-snug">{str(d.titre_nos_valeurs_a_propos_4)}</h3>
+          <p class="text-white/65 leading-relaxed text-sm md:text-base">{str(d.description_nos_valeurs_a_propos_4)}</p>
         </div>
       </div>
     </div>

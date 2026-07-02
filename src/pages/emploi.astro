@@ -289,7 +289,7 @@ const activeNav = "emploi";
           <span class="text-[#002626]/50 font-black tracking-widest text-xs uppercase">Pourquoi nous ?</span>
         </div>
         <h2 class="text-2xl md:text-3xl font-black text-[#002626] leading-tight">
-          {str(d.titre_pourquoi_nous) ?? (<Fragment>Une association où votre travail<br class="hidden md:block"/> fait vraiment la différence</Fragment>)}
+          {str(d.titre_pourquoi_nous)}
         </h2>
       </div>
 
@@ -301,7 +301,7 @@ const activeNav = "emploi";
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Équipe soudée</div>
-            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_1) ?? `Une dizaine de collègues qui se connaissent et se soutiennent vraiment au quotidien.`}</p>
+            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_1)}</p>
           </div>
         </div>
 
@@ -311,7 +311,7 @@ const activeNav = "emploi";
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Formation continue</div>
-            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_2) ?? `Des journées de formation régulières pour progresser et rester à jour dans vos pratiques.`}</p>
+            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_2)}</p>
           </div>
         </div>
 
@@ -321,7 +321,7 @@ const activeNav = "emploi";
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Équilibre vie pro / perso</div>
-            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_3) ?? `Horaires adaptés, supervision d'équipe et espaces de parole pour ne pas s'épuiser seul.`}</p>
+            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_3)}</p>
           </div>
         </div>
 
@@ -331,7 +331,7 @@ const activeNav = "emploi";
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Sens au travail</div>
-            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_4) ?? `Vous savez chaque soir pourquoi vous vous êtes levé le matin. Le contact humain est au centre de tout.`}</p>
+            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_4)}</p>
           </div>
         </div>
 
@@ -341,7 +341,7 @@ const activeNav = "emploi";
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Ancré dans la région</div>
-            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_5) ?? `Basé à Amay, on intervient dans la région de Huy. Pas de longs déplacements, un territoire connu.`}</p>
+            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_5)}</p>
           </div>
         </div>
 
@@ -351,7 +351,7 @@ const activeNav = "emploi";
           </div>
           <div>
             <div class="font-bold text-[#002626] text-sm">Agrément FWB</div>
-            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_6) ?? `Structure reconnue, barème CESS / AESI appliqué, avantages sectoriels aide à la jeunesse.`}</p>
+            <p class="text-xs text-[#002626]/55 mt-0.5 leading-relaxed">{str(d.description_pourquoi_nous_box_6)}</p>
           </div>
         </div>
 
@@ -430,9 +430,7 @@ const activeNav = "emploi";
             <span class="text-white/40 font-black tracking-widest text-xs uppercase">Ce qu'on cherche</span>
           </div>
           <h2 class="text-3xl md:text-4xl font-black text-white leading-tight mb-8">
-            {str(d.titre_ce_qu_on_cherche)
-              ? <Fragment set:html={DOMPurify.sanitize(String(d.titre_ce_qu_on_cherche))} />
-              : (<Fragment><span style="color:rgba(255,255,255,0.5); font-weight:500;">Des personnes</span> <span style="position:relative;display:inline-block;">avant des CV<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#E58346" stroke-width="2.5" stroke-linecap="round"/></svg></span></Fragment>)}
+            <Fragment set:html={DOMPurify.sanitize(String(d.titre_ce_qu_on_cherche))} />
           </h2>
           <div class="space-y-5">
             {critereList.length > 0
