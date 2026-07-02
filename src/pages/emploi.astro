@@ -544,11 +544,17 @@ const activeNav = "emploi";
               Les champs marqués d'un <span class="text-[#E58346] font-bold">*</span> sont obligatoires.
             </p>
 
-            {/* Poste visé — TEXT field (prefilled by Postuler / ?poste=) */}
+            {/* Poste visé — a CC `text` field, but rendered as a dropdown that
+               adapts to the live job offers; the picked title is submitted as text.
+               Prefilled by the Postuler buttons / ?poste=. */}
             {posteField && (
               <div>
                 <label class="block text-xs font-bold text-[#002626]/80 uppercase tracking-widest mb-2" for="poste_vise">Poste visé{posteField.required && <span class="text-[#E58346]"> *</span>}</label>
-                <input id="poste_vise" name="poste_vise" type="text" placeholder={posteField.placeholder ?? ''} required={posteField.required} class="form-field" />
+                <select id="poste_vise" name="poste_vise" required={posteField.required} class="form-field">
+                  <option value="" disabled selected>Sélectionnez un poste</option>
+                  {offres.map((o) => (<option value={o.title}>{o.title}</option>))}
+                  <option value="Candidature spontanée">Candidature spontanée</option>
+                </select>
               </div>
             )}
 
