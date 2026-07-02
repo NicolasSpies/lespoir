@@ -311,9 +311,7 @@ const activeNav = "srg";
           <div aria-hidden="true" class="absolute blob-anim-2" style="width:5rem;height:5rem;top:2rem;right:2rem;background:rgba(229,131,70,0.4);border-radius:55% 45% 65% 35%;"></div>
           <div aria-hidden="true" class="absolute blob-anim-3" style="width:3rem;height:3rem;bottom:3rem;left:1rem;background:rgba(178,89,42,0.42);border-radius:60% 40%;animation-delay:-4s;"></div>
           <div aria-hidden="true" class="absolute blob-anim-2" style="width:2rem;height:2rem;top:5rem;left:3rem;background:rgba(229,131,70,0.5);border-radius:50%;animation-delay:-7s;"></div>
-          {asImage(d.logo_srg)
-            ? <img src={imageUrl(asImage(d.logo_srg), 'lg')} srcset={imageSrcSet(asImage(d.logo_srg))} alt={asImage(d.logo_srg)!.alt ?? "L'Espoir asbl · SRG"} class="logo-mark relative z-10" style="width:18rem;height:auto;" loading="eager"/>
-            : <img src="/logo-srg.svg" alt="L'Espoir asbl · SRG" class="logo-mark relative z-10" style="width:18rem;height:auto;" loading="eager"/>}
+          <img src="/logo-srg.svg" alt="L'Espoir asbl · SRG" class="logo-mark relative z-10" style="width:18rem;height:auto;" loading="eager"/>
         </div>
       </div>
 
