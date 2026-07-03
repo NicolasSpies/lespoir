@@ -538,7 +538,7 @@ const activeNav = "home";
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div>
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-4">Notre histoire</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 md:mb-8 leading-tight">{str(d.titre_notre_histoire) ?? (<Fragment>Plus de <span class="counter" data-counter="40">40</span> ans au service<br/><span style="font-weight:500;">de la jeunesse à</span> <span style="position:relative;display:inline-block;">Huy<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></Fragment>)}</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 md:mb-8 leading-tight" set:html={DOMPurify.sanitize(String(str(d.titre_notre_histoire) ?? 'Plus de 40 ans au service de la jeunesse à <u>Huy</u>'))}></h2>
         <p class="text-base md:text-lg text-[#002626] opacity-80 leading-relaxed mb-6">
           {str(d.description_notre_histoire)?.split('\n\n')[0]?.trim()}
         </p>
@@ -570,9 +570,7 @@ const activeNav = "home";
     <div class="max-w-4xl mx-auto relative">
       <div class="mb-12 md:mb-14">
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-3">Nos valeurs</span>
-        <h2 class="text-3xl md:text-5xl font-bold text-[#002626] leading-[1.05] max-w-2xl">
-          {str(d.titre_nos_valeurs) ?? (<Fragment>Quatre principes, <span style="position:relative;display:inline-block;">concrets<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>.</Fragment>)}
-        </h2>
+        <h2 class="text-3xl md:text-5xl font-bold text-[#002626] leading-[1.05] max-w-2xl" set:html={DOMPurify.sanitize(String(str(d.titre_nos_valeurs) ?? 'Quatre principes, <u>concrets.</u>'))}></h2>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">

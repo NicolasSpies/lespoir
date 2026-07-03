@@ -115,6 +115,14 @@ const CMS_API = 'https://lespoir.contentcore.app/api/v1';
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M1 7 Q25 2 50 7 Q75 12 99 5' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
   }
 
+  /* ── CMS-managed titles: a <b>/<strong> in a title emphasises exactly those words.
+     When a heading CONTAINS a <b>, its base drops to medium so the bold words stand out;
+     a heading WITHOUT any <b> keeps its full bold weight (whole title bold). ── */
+  h1:has(b), h2:has(b), h3:has(b), h4:has(b),
+  h1:has(strong), h2:has(strong), h3:has(strong), h4:has(strong) { font-weight: 500 !important; }
+  h1:has(b) b, h2:has(b) b, h3:has(b) b, h4:has(b) b,
+  h1:has(strong) strong, h2:has(strong) strong, h3:has(strong) strong, h4:has(strong) strong { font-weight: 700 !important; }
+
   /* ── Base ── */
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
