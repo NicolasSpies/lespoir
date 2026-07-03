@@ -460,56 +460,17 @@ const activeNav = "emploi";
             <Fragment set:html={DOMPurify.sanitize(String(d.titre_ce_qu_on_cherche))} />
           </h2>
           <div class="space-y-5">
-            {critereList.length > 0
-              ? critereList.map((item) => (
-                  <div class="flex items-start gap-4">
-                    <div class="w-8 h-8 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span class="material-symbols-outlined text-[#C04B72] is-filled" style="font-size:16px">check</span>
-                    </div>
-                    <div>
-                      <div class="text-white font-bold text-sm mb-1">{str(item.titre_liste_ce_qu_on_cherche)}</div>
-                      <p class="text-white/50 text-xs leading-relaxed">{str(item.description_liste_ce_qu_on_cherche)}</p>
-                    </div>
-                  </div>
-                ))
-              : (<Fragment>
-            <div class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span class="material-symbols-outlined text-[#C04B72] is-filled" style="font-size:16px">check</span>
+            {critereList.map((item) => (
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span class="material-symbols-outlined text-[#C04B72] is-filled" style="font-size:16px">check</span>
+                </div>
+                <div>
+                  <div class="text-white font-bold text-sm mb-1">{str(item.titre_liste_ce_qu_on_cherche)}</div>
+                  <p class="text-white/50 text-xs leading-relaxed">{str(item.description_liste_ce_qu_on_cherche)}</p>
+                </div>
               </div>
-              <div>
-                <div class="text-white font-bold text-sm mb-1">Un vrai sens du contact humain</div>
-                <p class="text-white/50 text-xs leading-relaxed">La relation avec les jeunes et les familles est le coeur du métier. On ne cherche pas des techniciens, on cherche des gens.</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span class="material-symbols-outlined text-[#C04B72] is-filled" style="font-size:16px">check</span>
-              </div>
-              <div>
-                <div class="text-white font-bold text-sm mb-1">La capacité à travailler en équipe</div>
-                <p class="text-white/50 text-xs leading-relaxed">On fonctionne en co-référence. Partager, douter, se remettre en question ensemble, c'est dans notre ADN.</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span class="material-symbols-outlined text-[#C04B72] is-filled" style="font-size:16px">check</span>
-              </div>
-              <div>
-                <div class="text-white font-bold text-sm mb-1">De la résistance et de l'adaptabilité</div>
-                <p class="text-white/50 text-xs leading-relaxed">Le secteur de l'aide à la jeunesse est exigeant. On ne vous le cachera pas. Mais vous ne serez jamais seul face à ça.</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span class="material-symbols-outlined text-[#C04B72] is-filled" style="font-size:16px">check</span>
-              </div>
-              <div>
-                <div class="text-white font-bold text-sm mb-1">Le permis B</div>
-                <p class="text-white/50 text-xs leading-relaxed">Pour les postes terrain (SASE, SAPA), un véhicule est souvent nécessaire pour les déplacements dans la région.</p>
-              </div>
-            </div>
-              </Fragment>)}
+            ))}
           </div>
         </div>
 

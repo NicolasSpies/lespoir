@@ -596,46 +596,15 @@ const activeNav = "srg";
           {str(d.description_notre_equipe_srg)}
         </p>
         <div class="space-y-4">
-          {equipe.length
-            ? equipe.map((m, i) => (
-                <div class="flex items-start gap-4 p-4 rounded-xl bg-[#EFE7DA]">
-                  <span class="material-symbols-outlined text-[#E58346] is-filled" style="font-size:24px">{equipeIcons[i] ?? 'group'}</span>
-                  <div>
-                    <div class="font-bold text-[#002626] text-sm">{m.titre_notre_equipe_srg}</div>
-                    <div class="text-[#002626]/65 text-sm">{m.description_notre_equipe_srg}</div>
-                  </div>
-                </div>
-              ))
-            : (<Fragment>
-                <div class="flex items-start gap-4 p-4 rounded-xl bg-[#EFE7DA]">
-                  <span class="material-symbols-outlined text-[#E58346] is-filled" style="font-size:24px">groups</span>
-                  <div>
-                    <div class="font-bold text-[#002626] text-sm">Éducateurs spécialisés</div>
-                    <div class="text-[#002626]/65 text-sm">Là nuit et jour, ils portent le quotidien et le projet de chaque enfant</div>
-                  </div>
-                </div>
-                <div class="flex items-start gap-4 p-4 rounded-xl bg-[#EFE7DA]">
-                  <span class="material-symbols-outlined text-[#E58346] is-filled" style="font-size:24px">psychology</span>
-                  <div>
-                    <div class="font-bold text-[#002626] text-sm">Psychologue</div>
-                    <div class="text-[#002626]/65 text-sm">Rencontres individuelles avec les jeunes, soutien aux éducateurs et travail avec les familles</div>
-                  </div>
-                </div>
-                <div class="flex items-start gap-4 p-4 rounded-xl bg-[#EFE7DA]">
-                  <span class="material-symbols-outlined text-[#E58346] is-filled" style="font-size:24px">handshake</span>
-                  <div>
-                    <div class="font-bold text-[#002626] text-sm">Assistante sociale</div>
-                    <div class="text-[#002626]/65 text-sm">Elle fait le lien entre les familles, les services mandataires et les partenaires extérieurs</div>
-                  </div>
-                </div>
-                <div class="flex items-start gap-4 p-4 rounded-xl bg-[#EFE7DA]">
-                  <span class="material-symbols-outlined text-[#E58346] is-filled" style="font-size:24px">medical_services</span>
-                  <div>
-                    <div class="font-bold text-[#002626] text-sm">Infirmière</div>
-                    <div class="text-[#002626]/65 text-sm">Santé des jeunes, suivi des traitements et contact avec les médecins</div>
-                  </div>
-                </div>
-              </Fragment>)}
+          {equipe.map((m, i) => (
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-[#EFE7DA]">
+              <span class="material-symbols-outlined text-[#E58346] is-filled" style="font-size:24px">{equipeIcons[i] ?? 'group'}</span>
+              <div>
+                <div class="font-bold text-[#002626] text-sm">{m.titre_notre_equipe_srg}</div>
+                <div class="text-[#002626]/65 text-sm">{m.description_notre_equipe_srg}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -660,53 +629,15 @@ const activeNav = "srg";
           {str(d.description_orientation_srg)}
         </p>
         <div class="space-y-8">
-          {orientation.length
-            ? orientation.map((s, i) => (
-                <div class="process-step">
-                  <div class="process-num">{i + 1}</div>
-                  <div>
-                    <div class="font-bold text-[#002626] mb-1">{s.titre_points_orientation_srg}</div>
-                    <p class="text-sm text-[#002626]/65 leading-relaxed">{s.description_points_orientation_srg}</p>
-                  </div>
-                </div>
-              ))
-            : (<Fragment>
-                <div class="process-step">
-                  <div class="process-num">1</div>
-                  <div>
-                    <div class="font-bold text-[#002626] mb-1">Une place se libère</div>
-                    <p class="text-sm text-[#002626]/65 leading-relaxed">Dès qu'une place est disponible, le Directeur prévient le mandant concerné.</p>
-                  </div>
-                </div>
-                <div class="process-step">
-                  <div class="process-num">2</div>
-                  <div>
-                    <div class="font-bold text-[#002626] mb-1">Premier contact &amp; évaluation</div>
-                    <p class="text-sm text-[#002626]/65 leading-relaxed">Le mandant prend contact avec le Directeur, qui évalue la demande. Si les premiers critères sont réunis, la déléguée en charge du dossier contacte le coordinateur de la maison. Le service se rend disponible dans les 10 jours ouvrables.</p>
-                  </div>
-                </div>
-                <div class="process-step">
-                  <div class="process-num">3</div>
-                  <div>
-                    <div class="font-bold text-[#002626] mb-1">Entretien de négociation</div>
-                    <p class="text-sm text-[#002626]/65 leading-relaxed">Une première rencontre réunit les professionnels. Dans les 72 heures, le Directeur communique sa décision au mandant.</p>
-                  </div>
-                </div>
-                <div class="process-step">
-                  <div class="process-num">4</div>
-                  <div>
-                    <div class="font-bold text-[#002626] mb-1">Rencontre &amp; accueil</div>
-                    <p class="text-sm text-[#002626]/65 leading-relaxed">En cas d'accord, un rendez-vous est fixé dans la maison, avec le jeune, ses parents et/ou son institution. La date d'entrée est négociée — au maximum trois semaines — avec des temps d'acclimatation pour que le jeune se familiarise en douceur avec son nouveau lieu de vie.</p>
-                  </div>
-                </div>
-                <div class="process-step">
-                  <div class="process-num">5</div>
-                  <div>
-                    <div class="font-bold text-[#002626] mb-1">Formalisation du projet</div>
-                    <p class="text-sm text-[#002626]/65 leading-relaxed">Avant l'arrivée, un rendez-vous chez le mandant formalise les mesures d'aide ou de protection et fixe les objectifs poursuivis, ainsi que la date de la réunion de synthèse.</p>
-                  </div>
-                </div>
-              </Fragment>)}
+          {orientation.map((s, i) => (
+            <div class="process-step">
+              <div class="process-num">{i + 1}</div>
+              <div>
+                <div class="font-bold text-[#002626] mb-1">{s.titre_points_orientation_srg}</div>
+                <p class="text-sm text-[#002626]/65 leading-relaxed">{s.description_points_orientation_srg}</p>
+              </div>
+            </div>
+          ))}
         </div>
 
         <!-- Escale specifics -->
