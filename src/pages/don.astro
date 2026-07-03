@@ -1,12 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import WaveDivider from '../components/WaveDivider.astro';
-import { getPage, sectionData, str, extractVisitorHeaders } from '../lib/cms';
+import { getPage, getSiteData, sectionData, str, extractVisitorHeaders } from '../lib/cms';
 import DOMPurify from 'isomorphic-dompurify';
 
 const vis = extractVisitorHeaders(Astro.request);
 const page = await getPage('dons', vis);
 const d = sectionData(page, 'dons');
+
+// IBAN comes from the site-data custom Contact field (contact_custom_field_values.iban).
+const site = await getSiteData(vis);
+const iban = str(site?.contact_custom_field_values?.iban);
 
 const title = "Faire un don · Déduction fiscale 45% · L'Espoir asbl, Huy";
 const description = "Soutenez l'aide à la jeunesse : don ponctuel ou récurrent à L'Espoir asbl. Attestation fiscale de 45 % dès 40 € via le Fonds Arc-en-Ciel. IBAN BE41 6300 1180 0010.";
@@ -221,13 +225,15 @@ const activeNav = "don";
               <p class="text-[#002626]/65 text-sm mt-1">Via le Service Arc-en-Ciel, attestation fiscale automatique dès 40 €.</p>
             </div>
           </div>
+          {iban && (
           <div class="iban-display mb-4">
-            <span id="ibanText">BE41 6300 1180 0010</span>
+            <span id="ibanText">{iban}</span>
             <button class="copy-btn" id="copyIbanBtn" aria-label="Copier l'IBAN">
               <span class="material-symbols-outlined" style="font-size:16px;">content_copy</span>
               <span class="copy-label">Copier</span>
             </button>
           </div>
+          )}
           <div class="text-sm text-[#002626]/75 space-y-2 mb-6">
             <div class="flex items-start gap-2">
               <span class="material-symbols-outlined text-[#C04B72] flex-shrink-0" style="font-size:18px;">check_circle</span>

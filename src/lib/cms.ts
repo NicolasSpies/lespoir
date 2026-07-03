@@ -102,6 +102,8 @@ export interface SiteData {
   contact_email?: string | null; contact_phone?: string | null;
   footer_text?: string | null; legal_text?: string | null;
   default_og_image?: string | null; social_links?: Record<string, string>;
+  // Master-defined custom Contact-tab fields (IBAN, secondary email, …) — keyed by custom slug.
+  contact_custom_field_values?: Record<string, string>;
 }
 export async function getSiteData(vis: Record<string, string> = {}): Promise<SiteData | null> {
   try { return (await fetchJson('/site-data', {}, vis)) as SiteData; }
