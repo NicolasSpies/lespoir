@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import WaveDivider from '../components/WaveDivider.astro';
-import { getForm, getOrgContact, extractVisitorHeaders, CMS_API_BASE } from '../lib/cms';
+import { getForm, getOrgContact, getPage, sectionData, str, escAttr, extractVisitorHeaders, CMS_API_BASE } from '../lib/cms';
+import DOMPurify from 'isomorphic-dompurify';
 
 // Contact form is defined in ContentCore — render its fields exactly (removed
 // fields disappear automatically). Short inputs sit in a 2-col grid; select/
@@ -17,6 +18,37 @@ const orgAddr1 = org.addressLines[0] ?? 'Rue de Biber 11';
 const orgAddr2 = org.addressLines.slice(1).join(', ') || '4540 Amay, Belgique';
 const orgIban = org.iban ?? 'BE41 6300 1180 0010';
 const orgLegal = org.legal ?? 'BE 0431 081 064';
+
+// Contact page content (hero + "nos sites" blocks) from ContentCore. Any {{site.*}}
+// tokens the editor put in the blocks are already resolved server-side on delivery.
+const page = await getPage('contact', vis);
+const c = sectionData(page, 'contact');
+const cstr = (k: string): string | null => str(c[k]);
+const siteTel = (p: string | null): string => {
+  const dd = String(p ?? '').replace(/\D/g, '');
+  return dd ? `tel:+${dd.startsWith('0') ? '32' + dd.slice(1) : dd}` : '#';
+};
+// Tag / colour / icon per site block are visual meta (no CC field) — kept in code.
+const SITE_META = [
+  { color: '#002626', icon: 'star', tag: 'Direction · Siège' },
+  { color: '#E58346', icon: 'home', tag: 'SRG · Amay' },
+  { color: '#E58346', icon: 'key', tag: 'Mise en autonomie' },
+  { color: '#E58346', icon: 'home', tag: 'SRG · Couthuin' },
+  { color: '#C04B72', icon: 'home_work', tag: 'SASE · Huy' },
+  { color: '#119DA4', icon: 'volunteer_activism', tag: 'SAPA · Escapade' },
+];
+const sites = SITE_META.map((m, idx) => {
+  const n = idx + 1;
+  const addr = cstr(`adresse_nos_sites_contact_bloc_${n}`);
+  return {
+    ...m,
+    name: cstr(`titre_nos_sites_contact_bloc_${n}`),
+    addrHtml: addr ? escAttr(addr).replace(/\n/g, '<br/>') : null,
+    mapsQ: addr ? addr.replace(/\n/g, ' ') : null,
+    tel: cstr(`telephone_nos_sites_contact_bloc_${n}`),
+    mail: cstr(`e_mail_nos_sites_contact_bloc_${n}`),
+  };
+}).filter((s) => s.name);
 const shortFields = (contactForm?.fields ?? []).filter((f) => ['text', 'email', 'phone', 'tel', 'number'].includes(f.type));
 const longFields = (contactForm?.fields ?? []).filter((f) => ['select', 'textarea'].includes(f.type));
 // Anything else (e.g. a consent / checkbox field added later) → rendered as a checkbox.
@@ -211,12 +243,8 @@ const activeNav = "contact";
       <!-- Hero block (left-aligned, max-w-4xl) -->
       <div class="max-w-4xl mb-14 md:mb-20">
         <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(0,38,38,0.5);display:block;margin-bottom:22px;">Nous joindre</span>
-        <h1 style="font-family:'Pally',sans-serif; font-weight:700; font-size:clamp(2.4rem,4.8vw,3.8rem); line-height:1.05; color:#002626; margin-bottom:22px;">
-          Comment on peut <span style="position:relative;display:inline-block;">t'aider<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span>&nbsp;?
-        </h1>
-        <p style="font-size:17px; color:rgba(0,38,38,0.62); line-height:1.7; max-width:560px;">
-          Une question, une orientation, ou juste pour discuter. On répond toujours, sous 2 à 3 jours ouvrables.
-        </p>
+        <h1 style="font-family:'Pally',sans-serif; font-weight:700; font-size:clamp(2.4rem,4.8vw,3.8rem); line-height:1.05; color:#002626; margin-bottom:22px;" set:html={DOMPurify.sanitize(String(cstr('titre_hero_contact') ?? "Comment on peut <u>t'aider</u> ?"))}></h1>
+        <p style="font-size:17px; color:rgba(0,38,38,0.62); line-height:1.7; max-width:560px;">{cstr('description_hero_contact') ?? 'Une question, une orientation, ou juste pour discuter. On répond toujours, sous 2 à 3 jours ouvrables.'}</p>
       </div>
 
       <!-- Form + Info grid -->
@@ -361,104 +389,28 @@ const activeNav = "contact";
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-12">
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-3">Nos sites</span>
-        <h2 class="text-2xl md:text-3xl font-bold text-[#002626]">Six maisons, <span style="font-weight:500;">une même</span> <span style="position:relative;display:inline-block;">équipe<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#C04B72" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
-        <p class="text-[#002626]/55 mt-3 max-w-lg mx-auto text-sm leading-relaxed">
-          L'ASBL rayonne depuis Amay et Huy. Chaque service a son adresse, son téléphone et son email direct.
-        </p>
+        <h2 class="text-2xl md:text-3xl font-bold text-[#002626]" set:html={DOMPurify.sanitize(String(cstr('titre_nos_sites_contact') ?? 'Six maisons, une même <b><u>équipe</u></b>'))}></h2>
+        <p class="text-[#002626]/55 mt-3 max-w-lg mx-auto text-sm leading-relaxed">{cstr('description_nos_sites_contact') ?? "L'ASBL rayonne depuis Amay et Huy. Chaque service a son adresse, son téléphone et son email direct."}</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-
-        <!-- Direction / Secrétariat -->
-        <div class="location-card service-col" style="--svc-color:#002626;">
-          <span class="location-tag"><span class="material-symbols-outlined">star</span>Direction · Siège</span>
-          <div class="location-name">Direction &amp; Secrétariat</div>
-          <div class="location-addr">
-            <span class="material-symbols-outlined">location_on</span>
-            <span>Rue de Biber 11<br/>4540 Amay, Belgique</span>
+        {sites.map((s) => (
+          <div class="location-card service-col" style={`--svc-color:${s.color};`}>
+            <span class="location-tag"><span class="material-symbols-outlined">{s.icon}</span>{s.tag}</span>
+            <div class="location-name">{s.name}</div>
+            {s.addrHtml && (
+              <div class="location-addr">
+                <span class="material-symbols-outlined">location_on</span>
+                <span set:html={s.addrHtml}></span>
+              </div>
+            )}
+            <div class="location-contact">
+              {s.tel && <a href={siteTel(s.tel)}><span class="material-symbols-outlined">call</span>{s.tel}</a>}
+              {s.mail && <a href={`mailto:${s.mail}`}><span class="material-symbols-outlined">mail</span>{s.mail}</a>}
+              {s.mapsQ && <a href={`https://maps.google.com/?q=${encodeURIComponent(s.mapsQ)}`} target="_blank" rel="noopener" class="location-map"><span class="material-symbols-outlined">map</span>Itinéraire</a>}
+            </div>
           </div>
-          <div class="location-contact">
-            <a href="tel:+3285235814"><span class="material-symbols-outlined">call</span>085 23 58 14</a>
-            <a href="mailto:direction@asbl-espoir.be"><span class="material-symbols-outlined">mail</span>direction@asbl-espoir.be</a>
-            <a href="https://maps.google.com/?q=Rue+de+Biber+11+4540+Amay" target="_blank" rel="noopener" class="location-map"><span class="material-symbols-outlined">map</span>Itinéraire</a>
-          </div>
-        </div>
-
-        <!-- SRG Amay -->
-        <div class="location-card service-col" style="--svc-color:#E58346;">
-          <span class="location-tag"><span class="material-symbols-outlined">home</span>SRG · Amay</span>
-          <div class="location-name">SRG d'Amay</div>
-          <div class="location-addr">
-            <span class="material-symbols-outlined">location_on</span>
-            <span>Rue de Biber 9<br/>4540 Amay, Belgique</span>
-          </div>
-          <div class="location-contact">
-            <a href="tel:+3285317737"><span class="material-symbols-outlined">call</span>085 31 77 37</a>
-            <a href="mailto:amay@asbl-espoir.be"><span class="material-symbols-outlined">mail</span>amay@asbl-espoir.be</a>
-            <a href="https://maps.google.com/?q=Rue+de+Biber+9+4540+Amay" target="_blank" rel="noopener" class="location-map"><span class="material-symbols-outlined">map</span>Itinéraire</a>
-          </div>
-        </div>
-
-        <!-- L'Escale -->
-        <div class="location-card service-col" style="--svc-color:#E58346;">
-          <span class="location-tag"><span class="material-symbols-outlined">key</span>Mise en autonomie</span>
-          <div class="location-name">L'Escale</div>
-          <div class="location-addr">
-            <span class="material-symbols-outlined">location_on</span>
-            <span>Rue de Biber 7<br/>4540 Amay, Belgique</span>
-          </div>
-          <div class="location-contact">
-            <a href="tel:+3285317346"><span class="material-symbols-outlined">call</span>085 31 73 46</a>
-            <a href="mailto:escale@asbl-espoir.be"><span class="material-symbols-outlined">mail</span>escale@asbl-espoir.be</a>
-            <a href="https://maps.google.com/?q=Rue+de+Biber+7+4540+Amay" target="_blank" rel="noopener" class="location-map"><span class="material-symbols-outlined">map</span>Itinéraire</a>
-          </div>
-        </div>
-
-        <!-- SRG Couthuin -->
-        <div class="location-card service-col" style="--svc-color:#E58346;">
-          <span class="location-tag"><span class="material-symbols-outlined">home</span>SRG · Couthuin</span>
-          <div class="location-name">SRG de Couthuin</div>
-          <div class="location-addr">
-            <span class="material-symbols-outlined">location_on</span>
-            <span>Rue du Docteur Beaujean 28<br/>4218 Couthuin, Belgique</span>
-          </div>
-          <div class="location-contact">
-            <a href="tel:+3285711232"><span class="material-symbols-outlined">call</span>085 71 12 32</a>
-            <a href="mailto:couthuin@asbl-espoir.be"><span class="material-symbols-outlined">mail</span>couthuin@asbl-espoir.be</a>
-            <a href="https://maps.google.com/?q=Rue+du+Docteur+Beaujean+28+4218+Couthuin" target="_blank" rel="noopener" class="location-map"><span class="material-symbols-outlined">map</span>Itinéraire</a>
-          </div>
-        </div>
-
-        <!-- SASE Huy -->
-        <div class="location-card service-col" style="--svc-color:#C04B72;">
-          <span class="location-tag"><span class="material-symbols-outlined">home_work</span>SASE · Huy</span>
-          <div class="location-name">SASE</div>
-          <div class="location-addr">
-            <span class="material-symbols-outlined">location_on</span>
-            <span>Rue des Augustins 44<br/>4500 Huy, Belgique</span>
-          </div>
-          <div class="location-contact">
-            <a href="tel:+3285846936"><span class="material-symbols-outlined">call</span>085 84 69 36</a>
-            <a href="mailto:saie@asbl-espoir.be"><span class="material-symbols-outlined">mail</span>saie@asbl-espoir.be</a>
-            <a href="https://maps.google.com/?q=Rue+des+Augustins+44+4500+Huy" target="_blank" rel="noopener" class="location-map"><span class="material-symbols-outlined">map</span>Itinéraire</a>
-          </div>
-        </div>
-
-        <!-- Escapade / SAPA -->
-        <div class="location-card service-col" style="--svc-color:#119DA4;">
-          <span class="location-tag"><span class="material-symbols-outlined">volunteer_activism</span>SAPA · Escapade</span>
-          <div class="location-name">Escapade</div>
-          <div class="location-addr">
-            <span class="material-symbols-outlined">location_on</span>
-            <span>Rue Joseph Wauters 12<br/>4540 Amay, Belgique</span>
-          </div>
-          <div class="location-contact">
-            <a href="tel:+32456379102"><span class="material-symbols-outlined">call</span>+32 456 37 91 02</a>
-            <a href="mailto:escapade@asbl-espoir.be"><span class="material-symbols-outlined">mail</span>escapade@asbl-espoir.be</a>
-            <a href="https://maps.google.com/?q=Rue+Joseph+Wauters+12+4540+Amay" target="_blank" rel="noopener" class="location-map"><span class="material-symbols-outlined">map</span>Itinéraire</a>
-          </div>
-        </div>
-
+        ))}
       </div>
     </div>
   </section>
