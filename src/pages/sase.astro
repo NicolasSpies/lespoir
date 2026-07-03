@@ -2,12 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
-import { getPage, sectionData, str, strList, asImage, imageUrl, imageSrcSet, focusPosition, extractVisitorHeaders } from '../lib/cms';
+import { getPage, getOrgContact, sectionData, str, strList, asImage, imageUrl, imageSrcSet, focusPosition, extractVisitorHeaders } from '../lib/cms';
 import DOMPurify from 'isomorphic-dompurify';
 
 const vis = extractVisitorHeaders(Astro.request);
 const page = await getPage('sase-service-accompagnement-socio-educatif', vis);
 const d = sectionData(page, 'srg-1');
+
+// Org contact block (phone / address from site-data; SASE uses the asmaa mail).
+const org = await getOrgContact(vis);
+const orgPhone = org.phone ?? '085 23 58 14';
+const orgTel = org.telHref ?? 'tel:+3285235814';
+const orgAddr = org.addressLine ?? 'Rue de Biber 11, 4540 Amay, Belgique';
+const orgMail = org.asmaaMail ?? 'a.lakrary@asbl-espoir.be';
 const equipeRepeater = Array.isArray(d.notre_equipe_repeater_sase) ? d.notre_equipe_repeater_sase as Array<Record<string, unknown>> : [];
 const deroulementPoints = Array.isArray(d.deroulement_points_sase) ? d.deroulement_points_sase as Array<Record<string, unknown>> : [];
 const fotoPourQui = asImage(d.foto_pour_qui_sase);
@@ -385,22 +392,22 @@ const activeNav = "sase";
           <h3 class="text-xl font-bold mb-2">Nous contacter</h3>
           <p class="text-white/60 text-sm mb-8">Pour une demande d'information ou une orientation vers le SASE.</p>
           <div class="flex flex-wrap gap-5 mb-8">
-            <a href="tel:+3285235814" class="flex items-center gap-4 group" style="flex:1 1 200px;">
+            <a href={orgTel} class="flex items-center gap-4 group" style="flex:1 1 200px;">
               <div class="w-11 h-11 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#C04B72]/30 transition-colors">
                 <span class="material-symbols-outlined text-[#C04B72]" style="font-size:20px;">phone</span>
               </div>
               <div>
                 <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">Téléphone</div>
-                <div class="text-white font-semibold">085 23 58 14</div>
+                <div class="text-white font-semibold">{orgPhone}</div>
               </div>
             </a>
-            <a href="mailto:direction@asbl-espoir.be" class="flex items-center gap-4 group" style="flex:1 1 240px;">
+            <a href={`mailto:${orgMail}`} class="flex items-center gap-4 group" style="flex:1 1 240px;">
               <div class="w-11 h-11 rounded-full bg-[#C04B72]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#C04B72]/30 transition-colors">
                 <span class="material-symbols-outlined text-[#C04B72]" style="font-size:20px;">mail</span>
               </div>
               <div>
                 <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">E-mail</div>
-                <div class="text-white font-semibold">direction@asbl-espoir.be</div>
+                <div class="text-white font-semibold">{orgMail}</div>
               </div>
             </a>
             <div class="flex items-center gap-4" style="flex:1 1 240px;">
@@ -409,11 +416,11 @@ const activeNav = "sase";
               </div>
               <div>
                 <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">Adresse</div>
-                <div class="text-white font-semibold">Rue de Biber 11, 4540 Amay</div>
+                <div class="text-white font-semibold">{orgAddr}</div>
               </div>
             </div>
           </div>
-          <a href="mailto:direction@asbl-espoir.be" class="btn btn-accent w-full">
+          <a href={`mailto:${orgMail}`} class="btn btn-accent w-full">
             <span class="material-symbols-outlined" style="font-size:18px;">send</span>
             Envoyer un message
           </a>

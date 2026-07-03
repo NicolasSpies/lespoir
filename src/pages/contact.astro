@@ -1,13 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import WaveDivider from '../components/WaveDivider.astro';
-import { getForm, extractVisitorHeaders, CMS_API_BASE } from '../lib/cms';
+import { getForm, getOrgContact, extractVisitorHeaders, CMS_API_BASE } from '../lib/cms';
 
 // Contact form is defined in ContentCore — render its fields exactly (removed
 // fields disappear automatically). Short inputs sit in a 2-col grid; select/
 // textarea span full width.
 const vis = extractVisitorHeaders(Astro.request);
 const contactForm = await getForm('contact', vis);
+
+// Org contact details (phone / address / IBAN / legal) from site-data.
+const org = await getOrgContact(vis);
+const orgPhone = org.phone ?? '085 23 58 14';
+const orgTel = org.telHref ?? 'tel:+3285235814';
+const orgAddr1 = org.addressLines[0] ?? 'Rue de Biber 11';
+const orgAddr2 = org.addressLines.slice(1).join(', ') || '4540 Amay, Belgique';
+const orgIban = org.iban ?? 'BE41 6300 1180 0010';
+const orgLegal = org.legal ?? 'BE 0431 081 064';
 const shortFields = (contactForm?.fields ?? []).filter((f) => ['text', 'email', 'phone', 'tel', 'number'].includes(f.type));
 const longFields = (contactForm?.fields ?? []).filter((f) => ['select', 'textarea'].includes(f.type));
 // Anything else (e.g. a consent / checkbox field added later) → rendered as a checkbox.
@@ -305,13 +314,13 @@ const activeNav = "contact";
         <span class="text-[#C04B72] font-black tracking-widest text-sm uppercase block mb-3">Coordonnées</span>
         <h2 class="text-2xl font-bold text-[#002626] mb-6 leading-tight">Où nous trouver</h2>
 
-        <a href="tel:+3285235814" class="info-card">
+        <a href={orgTel} class="info-card">
           <div class="w-11 h-11 rounded-full bg-[#C04B72]/15 flex items-center justify-center flex-shrink-0">
             <span class="material-symbols-outlined text-[#C04B72] is-filled" style="font-size:20px">phone</span>
           </div>
           <div>
             <div class="text-xs text-[#002626]/45 uppercase tracking-widest font-bold mb-1">Téléphone</div>
-            <div class="font-bold text-[#002626]">085 23 58 14</div>
+            <div class="font-bold text-[#002626]">{orgPhone}</div>
             <div class="text-xs text-[#002626]/55 mt-0.5">Lun. au ven., 8h30 à 17h00</div>
           </div>
         </a>
@@ -322,8 +331,8 @@ const activeNav = "contact";
           </div>
           <div>
             <div class="text-xs text-[#002626]/45 uppercase tracking-widest font-bold mb-1">Siège social</div>
-            <div class="font-bold text-[#002626]">Rue de Biber 11</div>
-            <div class="text-sm text-[#002626]/70">4540 Amay, Belgique</div>
+            <div class="font-bold text-[#002626]">{orgAddr1}</div>
+            <div class="text-sm text-[#002626]/70">{orgAddr2}</div>
           </div>
         </div>
 
@@ -331,8 +340,8 @@ const activeNav = "contact";
         <div class="bg-white rounded-2xl px-5 py-4 border border-[#002626]/07">
           <div class="text-xs text-[#002626]/45 uppercase tracking-widest font-bold mb-2">Informations légales</div>
           <div class="text-sm text-[#002626]/70 space-y-1">
-            <div>N° entreprise : <span class="font-semibold text-[#002626]">0431 081 064</span></div>
-            <div>IBAN : <span class="font-semibold text-[#002626]">BE41 6300 1180 0010</span></div>
+            <div>N° entreprise : <span class="font-semibold text-[#002626]">{orgLegal}</span></div>
+            <div>IBAN : <span class="font-semibold text-[#002626]">{orgIban}</span></div>
             <div class="text-xs opacity-70 mt-2">Agréé Fédération Wallonie-Bruxelles · Dons ≥ 40 € déductibles fiscalement via le Service Arc-en-Ciel</div>
           </div>
         </div>

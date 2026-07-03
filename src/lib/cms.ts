@@ -110,6 +110,27 @@ export async function getSiteData(vis: Record<string, string> = {}): Promise<Sit
   catch { return null; }
 }
 
+/** Normalised org contact block from site-data (phone/address/mails/IBAN/legal). Null when unset. */
+export interface OrgContact {
+  phone: string | null; telHref: string | null; addressLine: string | null; addressLines: string[];
+  directionMail: string | null; asmaaMail: string | null; iban: string | null; legal: string | null;
+}
+export async function getOrgContact(vis: Record<string, string> = {}): Promise<OrgContact> {
+  const s = await getSiteData(vis);
+  const phone = str(s?.contact_phone);
+  const addr = str(s?.address);
+  return {
+    phone,
+    telHref: phone ? `tel:+32${phone.replace(/\D/g, '').replace(/^0/, '')}` : null,
+    addressLine: addr ? addr.replace(/\n/g, ', ') : null,
+    addressLines: addr ? addr.split('\n').map(l => l.trim()).filter(Boolean) : [],
+    directionMail: str(s?.contact_email),
+    asmaaMail: str(s?.contact_custom_field_values?.asmaa_mail),
+    iban: str(s?.contact_custom_field_values?.iban),
+    legal: str(s?.legal_text),
+  };
+}
+
 // ── Taxonomy terms ──────────────────────────────────────────────────────────────
 export interface TaxonomyTerm { id: number; label: string; slug: string; filter_slug?: string }
 export async function getTaxonomyTerms(taxonomy: string, vis: Record<string, string> = {}): Promise<TaxonomyTerm[]> {

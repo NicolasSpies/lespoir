@@ -2,12 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
-import { getPage, sectionData, str, strList, asImage, asGallery, imageUrl, imageSrcSet, focusPosition, extractVisitorHeaders } from '../lib/cms';
+import { getPage, getOrgContact, sectionData, str, strList, asImage, asGallery, imageUrl, imageSrcSet, focusPosition, extractVisitorHeaders } from '../lib/cms';
 import DOMPurify from 'isomorphic-dompurify';
 
 const vis = extractVisitorHeaders(Astro.request);
 const page = await getPage('srg-service-residentiel-general', vis);
 const d = sectionData(page, 'srg');
+
+// Org contact block (phone / address / direction mail) from site-data.
+const org = await getOrgContact(vis);
+const orgPhone = org.phone ?? '085 23 58 14';
+const orgTel = org.telHref ?? 'tel:+3285235814';
+const orgAddr = org.addressLine ?? 'Rue de Biber 11, 4540 Amay, Belgique';
+const orgMailDir = org.directionMail ?? 'direction@asbl-espoir.be';
 const faqs = page?.faqs ?? [];
 
 // notre_equipe_repeater_srg → équipe roles. Wire when non-empty (maps to the 4 role rows).
@@ -720,22 +727,22 @@ const activeNav = "srg";
           <h3 class="text-xl font-bold mb-2">Nous contacter</h3>
           <p class="text-white/60 text-sm mb-8">Pour toute demande d'information, d'orientation ou pour vérifier les disponibilités.</p>
           <div class="flex flex-wrap gap-5 mb-8">
-            <a href="tel:+3285235814" class="flex items-center gap-4 group" style="flex:1 1 200px;">
+            <a href={orgTel} class="flex items-center gap-4 group" style="flex:1 1 200px;">
               <div class="w-11 h-11 rounded-full bg-[#E58346]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#E58346]/30 transition-colors">
                 <span class="material-symbols-outlined text-[#E58346]" style="font-size:20px;">phone</span>
               </div>
               <div>
                 <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">Téléphone</div>
-                <div class="text-white font-semibold">085 23 58 14</div>
+                <div class="text-white font-semibold">{orgPhone}</div>
               </div>
             </a>
-            <a href="mailto:direction@asbl-espoir.be" class="flex items-center gap-4 group" style="flex:1 1 240px;">
+            <a href={`mailto:${orgMailDir}`} class="flex items-center gap-4 group" style="flex:1 1 240px;">
               <div class="w-11 h-11 rounded-full bg-[#E58346]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#E58346]/30 transition-colors">
                 <span class="material-symbols-outlined text-[#E58346]" style="font-size:20px;">mail</span>
               </div>
               <div>
                 <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">E-mail</div>
-                <div class="text-white font-semibold">direction@asbl-espoir.be</div>
+                <div class="text-white font-semibold">{orgMailDir}</div>
               </div>
             </a>
             <div class="flex items-center gap-4" style="flex:1 1 240px;">
@@ -744,11 +751,11 @@ const activeNav = "srg";
               </div>
               <div>
                 <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">Siège social</div>
-                <div class="text-white font-semibold">Rue de Biber 11, 4540 Amay</div>
+                <div class="text-white font-semibold">{orgAddr}</div>
               </div>
             </div>
           </div>
-          <a href="mailto:direction@asbl-espoir.be" class="btn btn-accent w-full">
+          <a href={`mailto:${orgMailDir}`} class="btn btn-accent w-full">
             <span class="material-symbols-outlined" style="font-size:18px;">send</span>
             Envoyer un message
           </a>

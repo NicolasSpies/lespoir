@@ -2,13 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
-import { getPage, sectionData, str, strList, asImage, imageUrl, imageSrcSet, focusPosition, extractVisitorHeaders } from '../lib/cms';
+import { getPage, getOrgContact, sectionData, str, strList, asImage, imageUrl, imageSrcSet, focusPosition, extractVisitorHeaders } from '../lib/cms';
 import DOMPurify from 'isomorphic-dompurify';
 
 const vis = extractVisitorHeaders(Astro.request);
 const page = await getPage('sapa-service-accompagnement-du-parrainage', vis);
 const d = sectionData(page, 'srg-1-1');
 const faqs = page?.faqs ?? [];
+
+// Org contact block (phone / address from site-data; SAPA uses the asmaa mail).
+const org = await getOrgContact(vis);
+const orgPhone = org.phone ?? '085 23 58 14';
+const orgTel = org.telHref ?? 'tel:+3285235814';
+const orgAddr = org.addressLine ?? 'Rue de Biber 11, 4540 Amay, Belgique';
+const orgMail = org.asmaaMail ?? 'a.lakrary@asbl-espoir.be';
 
 // description_concept_sapa is a textarea; split blank-line-separated blocks into <p> then sanitize.
 const conceptDescHtml = str(d.description_concept_sapa)
@@ -449,13 +456,13 @@ const activeNav = "sapa";
           <h3 class="text-xl font-bold mb-2">Contacter Escapade</h3>
           <p class="text-white/60 text-sm mb-6">Que vous souhaitiez devenir bénévole ou demander un parrainage pour votre enfant, l'équipe vous répond.</p>
           <div class="space-y-4 mb-6">
-            <a href="mailto:escapade@asbl-espoir.be" class="flex items-center gap-4 group">
+            <a href={`mailto:${orgMail}`} class="flex items-center gap-4 group">
               <div class="w-10 h-10 rounded-full bg-[#119DA4]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#119DA4]/30 transition-colors">
                 <span class="material-symbols-outlined text-[#119DA4]" style="font-size:18px;">mail</span>
               </div>
               <div>
                 <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">E-mail</div>
-                <div class="text-white font-semibold text-sm">escapade@asbl-espoir.be</div>
+                <div class="text-white font-semibold text-sm">{orgMail}</div>
               </div>
             </a>
             <div class="flex items-start gap-4">
@@ -464,25 +471,24 @@ const activeNav = "sapa";
               </div>
               <div>
                 <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">Adresse</div>
-                <div class="text-white font-semibold text-sm">Rue Joseph Wauters 12, 4540 Amay</div>
+                <div class="text-white font-semibold text-sm">{orgAddr}</div>
               </div>
             </div>
-            <div class="flex flex-wrap gap-x-6 gap-y-3 pt-1">
-              <a href="tel:+32499716129" class="flex items-center gap-3 group">
+            <a href={orgTel} class="flex items-center gap-4 group">
+              <div class="w-10 h-10 rounded-full bg-[#119DA4]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#119DA4]/30 transition-colors">
                 <span class="material-symbols-outlined text-[#119DA4]" style="font-size:18px;">phone</span>
-                <span><span class="block text-xs text-white/40 font-bold">Lucas Randolet</span><span class="text-white font-semibold text-sm">0499 71 61 29</span></span>
-              </a>
-              <a href="tel:+32493270790" class="flex items-center gap-3 group">
-                <span class="material-symbols-outlined text-[#119DA4]" style="font-size:18px;">phone</span>
-                <span><span class="block text-xs text-white/40 font-bold">Roxane Burton</span><span class="text-white font-semibold text-sm">0493 27 07 90</span></span>
-              </a>
-            </div>
+              </div>
+              <div>
+                <div class="text-xs text-white/40 uppercase tracking-widest font-bold mb-0.5">Téléphone</div>
+                <div class="text-white font-semibold text-sm">{orgPhone}</div>
+              </div>
+            </a>
             <div class="flex items-center gap-2 pt-1 text-xs text-white/50">
               <span class="material-symbols-outlined" style="font-size:16px;">schedule</span>
               Du lundi au vendredi, 9h à 17h
             </div>
           </div>
-          <a href="mailto:escapade@asbl-espoir.be" class="btn btn-accent w-full">
+          <a href={`mailto:${orgMail}`} class="btn btn-accent w-full">
             <span class="material-symbols-outlined" style="font-size:18px;">send</span>
             Nous écrire
           </a>
