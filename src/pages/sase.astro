@@ -15,6 +15,10 @@ const orgPhone = org.phone ?? '085 23 58 14';
 const orgTel = org.telHref ?? 'tel:+3285235814';
 const orgAddr = org.addressLine ?? 'Rue de Biber 11, 4540 Amay, Belgique';
 const orgMail = org.asmaaMail ?? 'a.lakrary@asbl-espoir.be';
+
+// Séance-d'informations infobox (under the contact box) — appears once CC delivers these fields.
+const seanceTitle = str(d.titre_infobox_sase_seance_information);
+const seanceDesc = str(d.description_infobox_sase_seance_information);
 const equipeRepeater = Array.isArray(d.notre_equipe_repeater_sase) ? d.notre_equipe_repeater_sase as Array<Record<string, unknown>> : [];
 const deroulementPoints = Array.isArray(d.deroulement_points_sase) ? d.deroulement_points_sase as Array<Record<string, unknown>> : [];
 const fotoPourQui = asImage(d.foto_pour_qui_sase);
@@ -436,6 +440,18 @@ const activeNav = "sase";
             </div>
           </div>
         </div>
+
+        {seanceTitle && (
+        <div class="mt-4 bg-white rounded-2xl p-6 border border-[#002626]/08">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-[#C04B72] mt-0.5 is-filled" style="font-size:20px">event</span>
+            <div>
+              <div class="font-bold text-[#002626] text-sm mb-1" set:html={DOMPurify.sanitize(String(seanceTitle))} />
+              {seanceDesc && <p class="text-xs text-[#002626]/60 leading-relaxed" set:html={DOMPurify.sanitize(String(seanceDesc))} />}
+            </div>
+          </div>
+        </div>
+        )}
       </div>
 
     </div>
