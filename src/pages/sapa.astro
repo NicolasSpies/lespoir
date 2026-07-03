@@ -438,18 +438,20 @@ const activeNav = "sapa";
 
       <!-- Séance d'info + Contact -->
       <div class="benevole-card space-y-4">
-        <!-- Séance d'informations -->
+        <!-- Séance d'informations (from CC) -->
+        {str(d.titre_infobox_sase_seance_information) && (
         <div class="bg-white rounded-2xl p-8 border border-[#002626]/08">
           <div class="flex items-start gap-3">
             <div class="w-11 h-11 rounded-full bg-[#119DA4]/15 flex items-center justify-center flex-shrink-0">
               <span class="material-symbols-outlined text-[#119DA4] is-filled" style="font-size:22px">event</span>
             </div>
             <div>
-              <h3 class="text-lg font-bold text-[#002626] mb-1">Une séance d'informations par mois</h3>
-              <p class="text-sm text-[#002626]/65 leading-relaxed">Chaque <strong class="text-[#002626]">1<sup>er</sup> lundi du mois, de 18h à 20h</strong>. L'occasion de tout comprendre du parrainage avant de vous lancer.</p>
+              <h3 class="text-lg font-bold text-[#002626] mb-1">{str(d.titre_infobox_sase_seance_information)}</h3>
+              {str(d.description_infobox_sase_seance_information) && <p class="text-sm text-[#002626]/65 leading-relaxed" set:html={DOMPurify.sanitize(String(d.description_infobox_sase_seance_information))} />}
             </div>
           </div>
         </div>
+        )}
 
         <!-- Contact Escapade -->
         <div class="bg-[#002626] rounded-2xl p-8 text-white overflow-hidden" style="background-image:radial-gradient(ellipse at 15% 20%,rgba(17,157,164,0.22),transparent 55%),radial-gradient(ellipse at 85% 80%,rgba(18,70,175,0.22),transparent 60%);">
