@@ -31,12 +31,15 @@ rsync -az package.json package-lock.json "$VPS:$DEPLOY_DIR/" 2>/dev/null || rsyn
 echo "==> Install runtime deps IN the deploy dir + ensure pm2 config/.env"
 scp deploy/ecosystem.config.cjs "$VPS:$DEPLOY_DIR/ecosystem.config.cjs"
 ssh "$VPS" "cd $DEPLOY_DIR && \
-  ([ -f .env ] || printf 'NODE_ENV=production\nHOST=127.0.0.1\nPORT=$PORT\n' > .env) && chmod 600 .env && \
+  ([ -f .env ] || printf 'NODE_ENV=production\nHOST=127.0.0.1\nPORT=$PORT\nCMS_HOST=https://lespoir.contentcore.app\n' > .env) && chmod 600 .env && \
   npm install --omit=dev --no-audit --no-fund"
 
 if [ -n "$PM2_APP" ]; then
-  echo "==> pm2 restart $PM2_APP (start if absent)"
-  ssh "$VPS" "pm2 restart $PM2_APP --update-env 2>/dev/null || pm2 start $DEPLOY_DIR/ecosystem.config.cjs; pm2 save; sleep 2; \
+  echo "==> pm2 re-create from ecosystem (delete+start) $PM2_APP"
+  # NOT `pm2 restart`: it does not re-read node_args (--env-file-if-exists) or
+  # max_memory_restart, so an ecosystem change would be swallowed. delete+start
+  # re-reads the file; `pm2 save` persists it across reboots.
+  ssh "$VPS" "pm2 delete $PM2_APP 2>/dev/null || true; pm2 start $DEPLOY_DIR/ecosystem.config.cjs; pm2 save; sleep 2; \
     curl -sL -o /dev/null -w '==> verify $PM2_APP -> HTTP %{http_code}\n' http://127.0.0.1:$PORT/; \
     find /var/cache/nginx/astro -type f -delete 2>/dev/null || true"
 else

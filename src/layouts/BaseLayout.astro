@@ -3,6 +3,7 @@
 import Nav from '../components/Nav.astro';
 import MobileDrawer from '../components/MobileDrawer.astro';
 import Footer from '../components/Footer.astro';
+import { CMS_HOST, CMS_HOST_SOURCE, CMS_API_BASE } from '../lib/cmsHost';
 
 interface Props {
   title: string;
@@ -50,7 +51,8 @@ const {
 
 const SITE = 'https://asbl-espoir.be';
 const canonical = SITE + canonicalPath;
-const CMS_API = 'https://lespoir.contentcore.app/api/v1';
+// Resolved at runtime via cmsHost (see src/lib/cmsHost.ts) — was a hardcoded literal.
+const CMS_API = CMS_API_BASE;
 ---
 
 <!DOCTYPE html>
@@ -58,6 +60,9 @@ const CMS_API = 'https://lespoir.contentcore.app/api/v1';
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{/* CMS host resolved at runtime (cmsHost): written per request, externally checkable.
+    data-source shows whether .env applied (env) or the fallback was used. */}
+<meta name="cc-api-host" content={CMS_HOST} data-source={CMS_HOST_SOURCE} />
 <!-- SEO:BEGIN -->
 <title>{title}</title>
 <meta name="description" content={description} />

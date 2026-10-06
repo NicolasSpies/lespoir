@@ -3,12 +3,17 @@
 // Every fetch uses cache:'no-store' (CFC mandatory). Visitor headers (XFF[0], UA,
 // Referer) are forwarded so CC analytics attributes the real visitor, not the VPS.
 
-const ORIGIN = (import.meta.env.CMS_ORIGIN as string | undefined) ?? 'https://lespoir.contentcore.app';
+// Host resolved at RUNTIME via cmsHost (server: process.env.CMS_HOST, browser:
+// <meta cc-api-host>, else fallback). Previously import.meta.env.CMS_ORIGIN —
+// which Vite bakes in at build time.
+import { CMS_HOST, CMS_API_BASE } from './cmsHost';
+
+const ORIGIN = CMS_HOST;
 const BASE = `${ORIGIN}/api/v1`;
 export const LANG = 'fr';
 
 /** Public delivery API base — safe to expose client-side (view/click beacons). */
-export const CMS_API_BASE = BASE;
+export { CMS_API_BASE };
 
 export interface ImageVariant { name: string; width: number | null; height: number | null; url: string }
 export interface ExpandedImage {
