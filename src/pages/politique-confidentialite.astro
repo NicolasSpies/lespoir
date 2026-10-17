@@ -90,7 +90,7 @@ const activeNav = null;
       <p class="text-lg text-white/65 leading-relaxed max-w-2xl">
         L'Espoir asbl s'engage à protéger la vie privée de toutes les personnes qui nous confient leurs données, enfants, familles, partenaires, donateurs et visiteurs de notre site. Voici comment, pourquoi et combien de temps nous les conservons.
       </p>
-      <p class="text-sm text-white/40 mt-6">Dernière mise à jour : 11 mai 2026 · Conforme RGPD (UE 2016/679)</p>
+      <p class="text-sm text-white/40 mt-6">Dernière mise à jour : octobre 2026 · Conforme RGPD (UE 2016/679)</p>
     </div>
   </section>
 
@@ -111,7 +111,7 @@ const activeNav = null;
             <a href="#conservation" class="toc-link">6. Durée de conservation</a>
             <a href="#securite" class="toc-link">7. Sécurité</a>
             <a href="#droits" class="toc-link">8. Vos droits</a>
-            <a href="#cookies" class="toc-link">9. Cookies</a>
+            <a href="#cookies" class="toc-link">9. Cookies &amp; audience</a>
             <a href="#mineurs" class="toc-link">10. Mineurs</a>
             <a href="#modifs" class="toc-link">11. Modifications</a>
             <a href="#contact" class="toc-link">12. Contact</a>
@@ -162,10 +162,11 @@ const activeNav = null;
             <li>Identité et coordonnées (gérées par <strong>Service Arc-en-Ciel asbl</strong>, notre partenaire pour l'attestation fiscale)</li>
             <li>Montant et date du don</li>
           </ul>
-          <h3>Automatiquement</h3>
+          <h3>Automatiquement (mesure d'audience sans cookie)</h3>
           <ul>
-            <li>Adresse IP anonymisée (journalisation technique)</li>
-            <li>Type de navigateur, appareil, pages consultées</li>
+            <li>Page consultée, langue et site web référent</li>
+            <li>Type de navigateur, type d'appareil et pays d'origine de la visite</li>
+            <li>Adresse IP, utilisée uniquement de manière transitoire et jamais conservée (voir la section « Cookies &amp; mesure d'audience »)</li>
           </ul>
         </div>
 
@@ -194,11 +195,11 @@ const activeNav = null;
           <p>Vos données ne sont accessibles qu'aux membres habilités de L'Espoir asbl (direction, équipes éducatives et administratives), dans la stricte mesure nécessaire à l'accomplissement de leurs missions.</p>
           <p>L'ensemble du traitement technique est opéré sur une infrastructure unique, soumise à un accord de sous-traitance conforme à l'article 28 du RGPD :</p>
           <ul>
-            <li><strong>Hostinger International Ltd.</strong> (Chypre, UE) — hébergement du site web, du serveur de messagerie e-mail, et du VPS sur lequel est déployé notre logiciel interne de gestion des messages de contact (Contentcore). Tous les serveurs concernés sont localisés au sein de l'Espace économique européen.</li>
+            <li><strong>Hostinger International Ltd.</strong>, 61 Lordou Vironos Street, 6023 Larnaca, Chypre (UE). Cette infrastructure héberge le site web, le serveur de messagerie e-mail ainsi que le serveur (VPS) sur lequel fonctionne notre système de gestion de contenu (ContentCore), utilisé notamment pour traiter les messages de contact. Les serveurs sont localisés à Paris (France), au sein de l'Espace économique européen.</li>
           </ul>
           <p>Vos données peuvent par ailleurs être communiquées à :</p>
           <ul>
-            <li><strong>Service Arc-en-Ciel asbl</strong> — émission des attestations fiscales pour les dons.</li>
+            <li><strong>Service Arc-en-Ciel asbl</strong>, pour l'émission des attestations fiscales liées aux dons.</li>
             <li>Les <strong>autorités publiques compétentes</strong> (Administration de l'Aide à la Jeunesse, SPF Finances, pouvoirs judiciaires) lorsque la loi l'exige.</li>
           </ul>
           <p><strong>Aucun transfert hors de l'Union européenne</strong> n'est effectué.</p>
@@ -255,10 +256,18 @@ const activeNav = null;
         </div>
 
         <div class="legal-card mb-10">
-          <h2 id="cookies">9. Cookies &amp; ressources externes</h2>
-          <p>Notre site <strong>ne dépose aucun cookie</strong>, ni traceur, ni outil d'analyse tiers. Aucune information n'est conservée dans votre navigateur entre deux visites.</p>
-          <p>De même, <strong>aucune ressource externe</strong> n'est chargée depuis un serveur tiers : les polices d'écriture (Inter, Pally, Material Symbols), les feuilles de style et les scripts sont tous hébergés directement sur notre site. Votre navigateur ne communique donc qu'avec <em>asbl-espoir.be</em>.</p>
-          <p>C'est un choix volontaire pour respecter votre vie privée sans avoir besoin d'un bandeau de consentement.</p>
+          <h2 id="cookies">9. Cookies &amp; mesure d'audience</h2>
+          <p>Notre site <strong>ne dépose aucun cookie</strong>, ni traceur publicitaire, ni outil d'analyse tiers. Aucune information n'est conservée dans votre navigateur entre deux visites, et aucun bandeau de consentement n'est donc nécessaire.</p>
+
+          <h3>Ressources techniques</h3>
+          <p>Les polices d'écriture (Inter, Pally, Material Symbols), les feuilles de style et les scripts sont tous hébergés directement sur notre site. Les images et illustrations sont fournies par le serveur de notre système de gestion de contenu (ContentCore, <em>lespoir.contentcore.app</em>), qui constitue l'infrastructure de contenu de notre propre site et est hébergé sur la même infrastructure européenne. Aucune ressource n'est chargée depuis un service publicitaire ou un réseau social.</p>
+
+          <h3>Mesure d'audience sans cookies</h3>
+          <p>Pour connaître la fréquentation de notre site, notre système de gestion de contenu comptabilise les pages vues au moyen d'un appel envoyé par votre navigateur à notre propre serveur (<em>lespoir.contentcore.app/api/v1/track</em>). Cet appel transmet uniquement la page consultée, la langue et le site web référent. <strong>Aucun cookie n'est déposé et aucun identifiant n'est enregistré dans votre navigateur.</strong></p>
+          <p>Votre adresse IP est utilisée de façon strictement transitoire, le temps de déterminer le pays d'origine de la visite et de calculer un identifiant de comptage quotidien non réversible permettant de distinguer les visiteurs sur une même journée. <strong>L'adresse IP n'est jamais conservée en clair et aucun identifiant durable n'est créé.</strong> Cette mesure repose sur notre intérêt légitime à connaître l'audience de notre site (article 6.1.f du RGPD).</p>
+
+          <h3>Liens vers des services externes</h3>
+          <p>Certaines pages contiennent des liens vers des services externes, par exemple Google Maps pour calculer un itinéraire vers l'un de nos sites. Tant que vous ne cliquez pas sur un tel lien, votre navigateur ne transmet aucune donnée à ces services. Ce n'est qu'au moment où vous cliquez que vous quittez notre site, le service tiers appliquant alors sa propre politique de confidentialité.</p>
         </div>
 
         <div class="legal-card mb-10">
