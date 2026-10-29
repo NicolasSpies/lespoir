@@ -4,6 +4,7 @@ import Placeholder from '../components/Placeholder.astro';
 import WaveDivider from '../components/WaveDivider.astro';
 import { getPage, getOrgContact, sectionData, str, strList, asImage, imageUrl, imageSrcSet, focusPosition, extractVisitorHeaders } from '../lib/cms';
 import DOMPurify from 'isomorphic-dompurify';
+import { safeJsonLd } from '../lib/safeJsonLd.ts';
 
 const vis = extractVisitorHeaders(Astro.request);
 const page = await getPage('sase-service-accompagnement-socio-educatif', vis);
@@ -470,7 +471,7 @@ const activeNav = "sase";
       </div>
     </div>
   </section>
-  {faqs.length > 0 && <script type="application/ld+json" set:html={JSON.stringify({ "@context":"https://schema.org","@type":"FAQPage","mainEntity": faqs.map(f => ({ "@type":"Question","name":f.question,"acceptedAnswer":{ "@type":"Answer","text": (f.answer||'').replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim() } })) })} />}
+  {faqs.length > 0 && <script type="application/ld+json" set:html={safeJsonLd({ "@context":"https://schema.org","@type":"FAQPage","mainEntity": faqs.map(f => ({ "@type":"Question","name":f.question,"acceptedAnswer":{ "@type":"Answer","text": (f.answer||'').replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim() } })) })} />}
 
   <WaveDivider from="#fbf9f8" to="#002626" path="M0 40 Q480 12 720 44 Q960 48 1440 16 L1440 60 L0 60 Z" />
 
