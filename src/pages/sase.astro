@@ -426,16 +426,18 @@ const activeNav = "sase";
           </a>
         </div>
 
-        <!-- Demande volontaire info card -->
+        <!-- Demande volontaire info card (masquée si vide dans CC) -->
+        {str(d.titre_infobox_sase_contact) && (
         <div class="mt-4 bg-white rounded-2xl p-6 border border-[#002626]/08">
           <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-[#C04B72] mt-0.5 is-filled" style="font-size:20px">info</span>
             <div>
               <div class="font-bold text-[#002626] text-sm mb-1">{str(d.titre_infobox_sase_contact)}</div>
-              <p class="text-xs text-[#002626]/60 leading-relaxed">{str(d.description_infobox_sase_contact)}</p>
+              {str(d.description_infobox_sase_contact) && <p class="text-xs text-[#002626]/60 leading-relaxed">{str(d.description_infobox_sase_contact)}</p>}
             </div>
           </div>
         </div>
+        )}
 
       </div>
 

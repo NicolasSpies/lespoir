@@ -424,16 +424,18 @@ const activeNav = "sapa";
           ))}
         </div>
 
-        <!-- Côté jeune -->
+        <!-- Côté jeune (masquée si vide dans CC) -->
+        {str(d['titre_infobox_sase_contact-1']) && (
         <div class="mt-8 bg-white rounded-2xl p-6 border border-[#002626]/08">
           <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-[#119DA4] mt-0.5 is-filled" style="font-size:20px">child_care</span>
             <div>
               <div class="font-bold text-[#002626] text-sm mb-1">{str(d['titre_infobox_sase_contact-1'])}</div>
-              <p class="text-xs text-[#002626]/60 leading-relaxed">{str(d['description_infobox_sase_contact-1'])}</p>
+              {str(d['description_infobox_sase_contact-1']) && <p class="text-xs text-[#002626]/60 leading-relaxed">{str(d['description_infobox_sase_contact-1'])}</p>}
             </div>
           </div>
         </div>
+        )}
       </div>
 
       <!-- Séance d'info + Contact -->

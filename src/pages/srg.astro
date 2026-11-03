@@ -640,16 +640,18 @@ const activeNav = "srg";
           ))}
         </div>
 
-        <!-- Escale specifics -->
+        <!-- Escale specifics (masquée si vide dans CC) -->
+        {str(d.titre_infobox_srg) && (
         <div class="mt-8 bg-white rounded-2xl p-6 border border-[#002626]/08">
           <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-[#E58346] mt-0.5 is-filled" style="font-size:20px">info</span>
             <div>
               <div class="font-bold text-[#002626] text-sm mb-1">{str(d.titre_infobox_srg)}</div>
-              <p class="text-xs text-[#002626]/60 leading-relaxed">{str(d.description_infobox_srg)}</p>
+              {str(d.description_infobox_srg) && <p class="text-xs text-[#002626]/60 leading-relaxed">{str(d.description_infobox_srg)}</p>}
             </div>
           </div>
         </div>
+        )}
       </div>
 
       <!-- Contact card -->
@@ -692,16 +694,18 @@ const activeNav = "srg";
           </a>
         </div>
 
-        <!-- Urgences -->
+        <!-- Urgences (masquée si vide dans CC) -->
+        {str(d.titre_infobox_contact_srg) && (
         <div class="mt-4 bg-white rounded-2xl p-6 border border-[#002626]/08">
           <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-[#E58346] mt-0.5 is-filled" style="font-size:20px">emergency</span>
             <div>
               <div class="font-bold text-[#002626] text-sm mb-1">{str(d.titre_infobox_contact_srg)}</div>
-              <p class="text-xs text-[#002626]/60 leading-relaxed" set:html={DOMPurify.sanitize(String(d.description_infobox_contact_srg))} />
+              {str(d.description_infobox_contact_srg) && <p class="text-xs text-[#002626]/60 leading-relaxed" set:html={DOMPurify.sanitize(String(d.description_infobox_contact_srg))} />}
             </div>
           </div>
         </div>
+        )}
       </div>
 
     </div>
