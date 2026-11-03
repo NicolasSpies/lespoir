@@ -356,7 +356,7 @@ const activeNav = "apropos";
         <!-- Image · under the text, real API dimensions (no forced crop) -->
         <div class="histoire-media rounded-3xl overflow-hidden">
           {histoImg
-            ? <img src={imageUrl(histoImg, 'lg')} srcset={imageSrcSet(histoImg)} sizes="(min-width: 1024px) 45vw, 100vw" width={histoImg.width ?? undefined} height={histoImg.height ?? undefined} alt={histoImg.alt ?? "L'équipe de L'Espoir asbl"} loading="lazy" decoding="async" />
+            ? <img src={imageUrl(histoImg, 'master')} width={histoImg.width ?? undefined} height={histoImg.height ?? undefined} alt={histoImg.alt ?? "L'équipe de L'Espoir asbl"} loading="lazy" decoding="async" />
             : (<Placeholder alt="L'équipe de L'Espoir asbl" aspectRatio='4/3' />)}
         </div>
       </div>
