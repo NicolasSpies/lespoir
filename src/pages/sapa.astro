@@ -8,7 +8,6 @@ import DOMPurify from 'isomorphic-dompurify';
 const vis = extractVisitorHeaders(Astro.request);
 const page = await getPage('sapa-service-accompagnement-du-parrainage', vis);
 const d = sectionData(page, 'srg-1-1');
-const faqs = page?.faqs ?? [];
 
 // Org contact block (phone / address from site-data; SAPA uses the asmaa mail).
 const org = await getOrgContact(vis);
@@ -31,6 +30,13 @@ const conceptDescHtml = str(d.description_concept_sapa)
 const benevolePoints = Array.isArray(d.benevole_points_sase)
   ? (d.benevole_points_sase as Array<Record<string, unknown>>)
   : [];
+
+// Repeater: steps to request a parrainage (family side). Same shape as benevole_points.
+const demandePoints = Array.isArray(d.demande_points_sapa)
+  ? (d.demande_points_sapa as Array<Record<string, unknown>>)
+  : [];
+// Demande-de-parrainage section is CC-driven; hide the whole block (and skip its waves) when empty.
+const hasDemande = !!(str(d.titre_demande_sapa) || str(d.description_demande_sapa) || demandePoints.length);
 
 // Concept image (cast in frontmatter — no TS generics in the template).
 const conceptImg = asImage(d.foto_concept_sapa);
@@ -498,96 +504,41 @@ const activeNav = "sapa";
     </div>
   </section>
 
-  <!-- ── WAVE: Bénévole → Orientation ── -->
+  <!-- ── WAVE + ÉTAPES DE LA DEMANDE DE PARRAINAGE (piloté par CC, masqué + waves sautées si vide) ── -->
+  {hasDemande ? (
+    <>
+    <WaveDivider from="#EFE7DA" to="#fbf9f8" path="M0 4 Q360 48 720 8 Q1080 0 1440 40 L1440 60 L0 60 Z" />
 
-  <WaveDivider from="#EFE7DA" to="#119DA4" path="M0 4 Q360 48 720 8 Q1080 0 1440 40 L1440 60 L0 60 Z" />
-
-  <!-- ── POURQUOI S'ENGAGER ── -->
-  <section id="orientation" class="py-16 md:py-24 px-6 md:px-8 bg-[#119DA4]">
-    <div class="max-w-7xl mx-auto">
-
-      <!-- Header -->
-      <div class="flex items-center gap-3 mb-4">
-        <div style="width:4px;height:20px;background:#002626;border-radius:4px;flex-shrink:0;"></div>
-        <span class="text-[#002626]/60 font-black tracking-widest text-xs uppercase">Pourquoi s'engager ?</span>
-      </div>
-      <h2 class="font-black text-[#002626] leading-tight mb-16 max-w-xl" style="font-size:clamp(1.9rem,3.5vw,2.8rem);">
-        {str(d.titre_pourquoi_engager_sapa)}
-      </h2>
-
-      <!-- Steps -->
-      <div class="grid grid-cols-1 md:grid-cols-3 relative" style="gap:0;">
-
-        <!-- Step 01 -->
-        <div class="pb-12 md:pb-0 md:pr-12 approach-col">
-          <div style="width:52px;height:52px;border-radius:50%;background:#002626;display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1;">
-            <span class="material-symbols-outlined is-filled" style="color:#119DA4;font-size:24px">child_care</span>
-          </div>
-          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">{str(d.titre_pourquoi_engager_1_sapa)}</h3>
-          <p class="text-[#002626]/65 leading-relaxed text-sm">
-            {str(d.description_pourquoi_engager_1_sapa)}
+    <section id="orientation" class="py-16 md:py-24 px-6 md:px-8 bg-surface">
+      <div class="max-w-3xl mx-auto">
+        <span class="text-[#119DA4] font-black tracking-widest text-sm uppercase block mb-4">Demander un parrainage</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-[#002626] mb-6 leading-tight">
+          {str(d.titre_demande_sapa)}
+        </h2>
+        {str(d.description_demande_sapa) && (
+          <p class="text-base text-[#002626]/70 leading-relaxed mb-10">
+            {str(d.description_demande_sapa)}
           </p>
+        )}
+        <div class="space-y-8">
+          {demandePoints.map((pt, i) => (
+            <div class="process-step">
+              <div class="process-num">{i + 1}</div>
+              <div>
+                <div class="font-bold text-[#002626] mb-1">{str(pt.titre_points_demande_sapa)}</div>
+                <p class="text-sm text-[#002626]/65 leading-relaxed">{str(pt.description_points_demande_sapa)}</p>
+              </div>
+            </div>
+          ))}
         </div>
-
-        <!-- Step 02 -->
-        <div class="pb-12 md:pb-0 md:px-6 approach-col">
-          <div style="width:52px;height:52px;border-radius:50%;background:#002626;display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1;">
-            <span class="material-symbols-outlined is-filled" style="color:#119DA4;font-size:24px">family_restroom</span>
-          </div>
-          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">{str(d.titre_pourquoi_engager_2_sapa)}</h3>
-          <p class="text-[#002626]/65 leading-relaxed text-sm">
-            {str(d.description_pourquoi_engager_2_sapa)}
-          </p>
-        </div>
-
-        <!-- Step 03 -->
-        <div class="pb-0 md:pl-12 approach-col">
-          <div style="width:52px;height:52px;border-radius:50%;background:#002626;display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1;">
-            <span class="material-symbols-outlined is-filled" style="color:#119DA4;font-size:24px">volunteer_activism</span>
-          </div>
-          <h3 class="font-black text-[#002626] text-xl mb-3 leading-tight">{str(d.titre_pourquoi_engager_3_sapa)}</h3>
-          <p class="text-[#002626]/65 leading-relaxed text-sm">
-            {str(d.description_pourquoi_engager_3_sapa)}
-          </p>
-        </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── WAVE: Orientation → Autres services ── -->
-
-  <WaveDivider from="#119DA4" to="#fbf9f8" path="M0 44 Q480 0 720 36 Q1200 48 1440 24 L1440 60 L0 60 Z" />
-
-  <!-- ⚠️ FAQ À VALIDER PAR L'ÉQUIPE L'ESPOIR · contenus rédigés sur base du site et des pratiques FWB standard -->
-  <section id="faq" class="py-16 md:py-24 px-6 md:px-8 bg-surface">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="text-[#119DA4] font-black tracking-widest text-sm uppercase block mb-3">Questions fréquentes</span>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002626] mb-5 leading-tight"><span style="font-weight:500;">Ce qu'on nous demande souvent</span> <span style="position:relative;display:inline-block;">sur le SAPA<svg class="curly-svg" viewBox="0 0 100 10" preserveAspectRatio="none" fill="none" style="position:absolute;bottom:-3px;left:0;width:100%;height:10px;" aria-hidden="true"><path d="M1 7 Q25 2 50 7 Q75 12 99 5" stroke="#119DA4" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
-        <p class="text-base md:text-lg text-[#002626]/75 leading-relaxed">Les questions qui reviennent le plus souvent de la part des familles candidates au parrainage et des intervenants de l'aide à la jeunesse.</p>
-      </div>
-      <div class="space-y-3">
-        {faqs.map((f) => (
-        <details class="faq-item">
-          <summary>{f.question}<span class="material-symbols-outlined">expand_more</span></summary>
-          <div class="faq-body"><Fragment set:html={DOMPurify.sanitize(f.answer)} /></div>
-        </details>
-        ))}
-      </div>
-      <div class="mt-10 text-center">
-        <p class="text-[#002626]/70 text-sm md:text-base mb-4">Une autre question ?</p>
-        <a href="/contact?objet=sapa" class="btn btn-outline">
-          <span class="material-symbols-outlined" style="font-size:18px;">mail</span>
-          Nous contacter
-        </a>
-      </div>
-    </div>
-  </section>
-  {faqs.length > 0 && <script type="application/ld+json" set:html={JSON.stringify({ "@context":"https://schema.org","@type":"FAQPage","mainEntity": faqs.map(f => ({ "@type":"Question","name":f.question,"acceptedAnswer":{ "@type":"Answer","text": (f.answer||'').replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim() } })) })} />}
-  <!-- ── WAVE: Autres services → Don ── -->
-
-  <WaveDivider from="#fbf9f8" to="#002626" path="M0 40 Q480 12 720 44 Q960 48 1440 16 L1440 60 L0 60 Z" />
+    <WaveDivider from="#fbf9f8" to="#002626" path="M0 40 Q480 12 720 44 Q960 48 1440 16 L1440 60 L0 60 Z" />
+    </>
+  ) : (
+    <WaveDivider from="#EFE7DA" to="#002626" path="M0 40 Q480 12 720 44 Q960 48 1440 16 L1440 60 L0 60 Z" />
+  )}
 
   <!-- ── CTA: Soutien (V3 unified) ── -->
   <section id="don" class="bg-[#002626] py-16 md:py-24 px-6 md:px-8 overflow-hidden relative">
