@@ -15,6 +15,7 @@ cd "$(dirname "$0")/.."
 VPS="${VPS:-root@72.62.177.185}"
 DEPLOY_DIR="${DEPLOY_DIR:-/var/www/lespoir}"
 PM2_APP="${PM2_APP-lespoir}"
+PM2_USER="${PM2_USER:-ccsites}"
 PORT="${PORT:-4325}"
 
 echo "==> Build (Tailwind + Astro SSR)"
@@ -35,11 +36,14 @@ ssh "$VPS" "cd $DEPLOY_DIR && \
   npm install --omit=dev --no-audit --no-fund"
 
 if [ -n "$PM2_APP" ]; then
-  echo "==> pm2 re-create from ecosystem (delete+start) $PM2_APP"
-  # NOT `pm2 restart`: it does not re-read node_args (--env-file-if-exists) or
-  # max_memory_restart, so an ecosystem change would be swallowed. delete+start
-  # re-reads the file; `pm2 save` persists it across reboots.
-  ssh "$VPS" "pm2 delete $PM2_APP 2>/dev/null || true; pm2 start $DEPLOY_DIR/ecosystem.config.cjs; pm2 save; sleep 2; \
+  echo "==> pm2 reload $PM2_APP (als $PM2_USER)"
+  # Die Seite gehoert seit 18.11.2026 dem pm2 von ccsites, nicht dem von root.
+  # Ein pm2-Aufruf als root wuerde einen zweiten Prozess anlegen, der am belegten
+  # Port scheitert. `cd /`, weil ccsites das Verzeichnis von root nicht betreten
+  # darf. reload liest die ecosystem-Datei nicht neu: aendert sie sich, einmal
+  # von Hand als ccsites `pm2 delete` und `pm2 start` ausfuehren.
+  ccpm2() { echo "sudo -u $PM2_USER -H bash -c 'cd / && pm2 $*'"; }
+  ssh "$VPS" "$(ccpm2 reload "$PM2_APP" --update-env) || $(ccpm2 start "$DEPLOY_DIR/ecosystem.config.cjs"); $(ccpm2 save); sleep 2; \
     curl -sL -o /dev/null -w '==> verify $PM2_APP -> HTTP %{http_code}\n' http://127.0.0.1:$PORT/; \
     find /var/cache/nginx/astro -type f -delete 2>/dev/null || true"
 else
